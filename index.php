@@ -7,5 +7,13 @@
   </head>
   <body>
     <h1>Sample Title</h1>
+
+    <?php
+      $creatorArray = ["Josip", "Declan", "Himanth", "Connor"];
+      foreach($creatorArray as $x)
+      {
+        echo("<p>" . $x . "</p>");
+      }
+    ?>
   </body>
 </html>

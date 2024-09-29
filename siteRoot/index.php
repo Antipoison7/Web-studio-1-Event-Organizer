@@ -1,3 +1,6 @@
+<?php
+  include_once('./Resources/Helper/headers.php');
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -26,5 +29,8 @@
         }
       ?>
     </div>
+    <?php
+      makeFooter();
+    ?>
   </body>
 </html>

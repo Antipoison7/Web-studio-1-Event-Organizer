@@ -19,10 +19,10 @@
         <div style="width: 14em; height: 3em;"></div>
     </div>
 
-    <form method="post" action="./intermediateLogin">
+    <form method="post" action="./intermediateLogin.php">
       <div class="login">
         <label for="username">Username / Email:</label>
-        <input type="text" id="username" name="username">
+        <input type="text" id="username" name="username" autocomplete="username">
 
         <label for="password">Password: <a href="./forgot">Forgot password</a></label>
         <input type="password" id="password" name="password">

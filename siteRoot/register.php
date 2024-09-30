@@ -19,13 +19,16 @@
         <div style="width: 14em; height: 3em;"></div>
     </div>
 
-    <form method="post" action="./intermediateRegister">
+    <form method="post" action="./intermediateRegister.php">
       <div class="login">
         <label for="email">Email:</label>
         <input type="email" id="email" name="email">
 
-        <label for="email">Username:</label>
-        <input type="username" id="username" name="username">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username">
+
+        <label for="realname">Real Name:</label>
+        <input type="text" id="realname" name="realname">
 
         <label for="password">Password: <a href="./forgot">Forgot password</a></label>
         <input type="password" id="password" name="password">

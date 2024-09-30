@@ -26,6 +26,7 @@
                     <a href=\"./\"><h2>Privacy Policy</h2></a>
                     <a href=\"./\"><h2>Terms of Service</h2></a>
                     <a href=\"./\"><h2>Create an Event</h2></a>
+                    <a href=\"./login.php\"><h2>Log In</h2></a>
                 </div>
                 <div>
                     <h1>Contact Us</h1>

@@ -21,11 +21,22 @@
 
     <form method="post" action="./intermediateRegister">
       <div class="login">
-        <label for="username">Username / Email:</label>
-        <input type="text" id="username" name="username">
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email">
+
+        <label for="email">Username:</label>
+        <input type="username" id="username" name="username">
 
         <label for="password">Password: <a href="./forgot">Forgot password</a></label>
         <input type="password" id="password" name="password">
+
+        <p>Passwords should be:</p>
+        <ul>
+          <li>At least 8 characters in length</li>
+          <li>Contains at least one uppercase Letter</li>
+          <li>Contains at least one lowercase Letter</li>
+          <li>Contains at least one symbol</li>
+        </ul>
 
         <div class="flex">
           <button type="submit" class="smallButton" style="margin-right: 5px;">Register</button>          

@@ -29,7 +29,7 @@
 
         <div class="flex">
           <button type="submit" class="smallButton" style="margin-right: 5px;">Login</button>
-          <a href="./register.php"><div class="smallButton">Register</div></a>
+          <a href="./register.php"><div class="smallButtonInv">Register</div></a>
           
         </div>
       </div>

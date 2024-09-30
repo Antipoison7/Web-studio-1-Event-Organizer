@@ -3,6 +3,31 @@
     font-family: Arial, Helvetica, sans-serif;
 }
 
+.button
+{
+    align-items: center;
+    background-color: white;
+    border-radius: 10px;
+    border: 3px solid black;
+    display: flex;
+    height: 3em;
+    justify-content: center;
+    margin: 10px 0px 10px 0px;
+    width: 14em;
+}
+
+.button p
+{
+    font-size:x-large;
+}
+
+.loginHeader
+{
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 2px solid gray;
+}
+
 .flex
 {
     display: flex;

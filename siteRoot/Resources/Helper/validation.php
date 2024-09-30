@@ -9,7 +9,7 @@
     {
         $exp = "/[^a-z0-9]/gi";
 
-        if(preg_match($exp, $text) == 0)
+        if(preg_match($exp, $text) === false)
         {
             return true;
         }
@@ -23,7 +23,7 @@
     {
         $exp = "/[^a-z0-9 ]/gi";
 
-        if(preg_match($exp, $text) == 0)
+        if(preg_match($exp, $text) === false)
         {
             return true;
         }
@@ -35,9 +35,9 @@
 
     function isEmail($email)
     {
-        $exp = "/[\w!#$%&'*+/=?^_`{|}~-]+(?:\.[\w!#$%&'*+/=?^_`{|}~-]+)*@\w.\w/g";
+        $exp = "/[\w!#$%&'*+/=?^_`{|}~-]+(?:\.[\w!#$%&'*+/=?^_`{|}~-]+)*@\w.\w/";
 
-        if(preg_match($exp, $email) == 1)
+        if(preg_match_all($exp, $email) === true)
         {
             return true;
         }
@@ -51,7 +51,33 @@
     function validatePassword($password)
     {
         $problems = array();
-        
+
+        $isUppercase = "/[A-Z]/";
+        $isLowercase = "/[a-z]/";
+        $containsSpecialCharacter = "/[~`!@#$%^&*()_+={[}\]|\\:;\"'<,>.?\/-]/"; //TODO: Fix this
+
+        $testPassword = "Passa\aa";
+
+        if(strlen($testPassword)<8)
+        {
+            $problems[] = "At least 8 characters in length";
+        }
+
+        if(preg_match_all($isUppercase, $testPassword) != 1)
+        {
+            $problems[] = "Contains at least one uppercase Letter";
+        }
+
+        if(preg_match_all($isLowercase, $testPassword) != 1)
+        {
+            $problems[] = "Contains at least one lowercase Letter";
+        }
+
+        if(preg_match_all($containsSpecialCharacter, $testPassword) != 1)
+        {
+            $problems[] = "Contains at least one symbol";
+        }
+        return $problems;
     }
 
     

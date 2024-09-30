@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <?php
+    include_once('./Resources/Helper/validation.php');
     session_start();
     $email = $_POST["email"];
     $username = $_POST["username"];
@@ -21,6 +22,7 @@
         <p><a href="index.php">Damn, if you see this and it doesn't load, click this. Do not refresh the page.</a></p>
         <?php
             echo(var_dump($_POST));
+            echo(var_dump(isEmail($email)));
         ?>
             <script>
                 // function redirectScript()

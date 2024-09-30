@@ -1,5 +1,6 @@
 <?php
   include_once('./Resources/Helper/headers.php');
+  include_once('./Resources/Helper/validation.php');
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -38,7 +39,7 @@
           <li>At least 8 characters in length</li>
           <li>Contains at least one uppercase Letter</li>
           <li>Contains at least one lowercase Letter</li>
-          <li>Contains at least one symbol</li>
+          <li>Contains at least one symbol (!@#$%^&*)</li>
         </ul>
 
         <div class="flex">
@@ -47,6 +48,8 @@
       </div>
     </form>
 
-    <?php makeFooter(); ?>
+    <?php makeFooter(); 
+  var_dump(validatePassword("pas"));
+    ?>
   </body>
 </html>

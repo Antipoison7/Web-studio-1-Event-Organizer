@@ -1,9 +1,9 @@
 <?php
-    function makeHeader()
+    function makeHeader($title)
     {
     echo("
             <div class=\"header\">
-                <p>Header</p>
+                <p>" . $title . "</p>
             </div>
         ");
     }

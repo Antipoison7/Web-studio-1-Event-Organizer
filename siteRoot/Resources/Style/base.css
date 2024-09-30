@@ -10,15 +10,65 @@
     border-radius: 10px;
     border: 3px solid black;
     display: flex;
-    height: 3em;
+    height: 2em;
     justify-content: center;
     margin: 10px 0px 10px 0px;
-    width: 14em;
+    padding: 0px;
+    width: 9em;
+    font-size:30px;
+    box-sizing: border-box;
 }
 
-.button p
+.button:hover
 {
-    font-size:x-large;
+    align-items: center;
+    background-color: black;
+    border-radius: 10px;
+    border: 3px solid white;
+    color: white;
+    cursor: pointer;
+    display: flex;
+    height: 2em;
+    justify-content: center;
+    margin: 10px 0px 10px 0px;
+    padding: 0px;
+    width: 9em;
+    font-size:30px;
+    box-sizing: border-box;
+}
+
+.smallButton
+{
+    align-items: center;
+    background-color: white;
+    border-radius: 10px;
+    border: 3px solid black;
+    display: flex;
+    height: 1.5em;
+    justify-content: center;
+    margin: 10px 0px 10px 0px;
+    padding: 0px;
+    width: 6em;
+    font-size:30px;
+    box-sizing: border-box;
+}
+
+.smallButton:hover
+{
+    align-items: center;
+    background-color: black;
+    border-radius: 10px;
+    border: 3px solid white;
+    color: white;
+    cursor: pointer;
+    display: flex;
+    height: 1.5em;
+    justify-content: center;
+    margin: 10px 0px 10px 0px;
+    padding: 0px;
+    width: 6em;
+    font-size:30px;
+    box-sizing: border-box;
 }
 
 .loginHeader
@@ -27,6 +77,21 @@
     display: flex;
     justify-content: space-between;
     margin-bottom: 30px;
+}
+
+.login
+{
+    display: flex; 
+    flex-direction:column; 
+    justify-content:center; 
+    max-width:100vh;
+    margin:0px auto 0px auto;
+}
+
+.login input
+{
+    height: 1.5em;
+    font-size: large;
 }
 
 .flex

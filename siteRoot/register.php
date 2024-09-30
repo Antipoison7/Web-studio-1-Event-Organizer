@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>User Login</title>
+    <title>User Register</title>
     
     <meta charset="UTF-8">
     <link rel="stylesheet" href="./Resources/Style/base.css">
@@ -12,14 +12,14 @@
   </head>
   <body>
     <div class="loginHeader">
-        <a href="./">
-            <div class="button">Home</div>
+        <a href="./login.php">
+            <div class="button">Login</div>
         </a>
-        <h1>User Login</h1>
+        <h1>User Register</h1>
         <div style="width: 14em; height: 3em;"></div>
     </div>
 
-    <form method="post" action="./intermediateLogin">
+    <form method="post" action="./intermediateRegister">
       <div class="login">
         <label for="username">Username / Email:</label>
         <input type="text" id="username" name="username">
@@ -28,9 +28,7 @@
         <input type="password" id="password" name="password">
 
         <div class="flex">
-          <button type="submit" class="smallButton" style="margin-right: 5px;">Login</button>
-          <a href="./register.php"><div class="smallButton">Register</div></a>
-          
+          <button type="submit" class="smallButton" style="margin-right: 5px;">Register</button>          
         </div>
       </div>
     </form>

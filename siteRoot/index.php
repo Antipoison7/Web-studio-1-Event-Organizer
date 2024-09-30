@@ -10,8 +10,7 @@
     <link rel="stylesheet" href="./Resources/Style/base.css">
   </head>
   <body>
-    <h1>Sample Title</h1>
-
+    <?php makeHeader("Sample Title") ?>
     <div class="creatorFlex">
       <?php
         $creatorArray = [

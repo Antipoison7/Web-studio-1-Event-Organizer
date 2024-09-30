@@ -23,9 +23,10 @@
 
 .loginHeader
 {
+    border-bottom: 2px solid gray;
     display: flex;
     justify-content: space-between;
-    border-bottom: 2px solid gray;
+    margin-bottom: 30px;
 }
 
 .flex
@@ -36,19 +37,20 @@
 
 .footer
 {
+    border-top: 2px solid gray;
     display: grid;
     grid-template-columns: auto auto auto auto;
-    border-top: 2px solid gray;
+    margin-top: 30px;
 }
 
 .creatorBox
 {
+    border: 1px solid black;
     display: flex;
     flex-direction: column;
-    border: 1px solid black;
-    width: 20vw;
     height: 20vw;
     padding: 10px;
+    width: 20vw;
 }
 
 .creatorBox div a, .creatorBox div a:visited, .creatorBox a:hover, .creatorBox a:active .creatorBox h2
@@ -63,8 +65,8 @@
 
 .creatorBox img
 {
-    width: 100%;
     height: 100%;
+    width: 100%;
 }
 
 .creatorFlex

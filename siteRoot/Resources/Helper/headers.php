@@ -46,7 +46,7 @@
                     <div>
                         <a><div class=\"smallButton\">Login</div></a>
                         <a><div class=\"smallButtonInv\">Register</div></a>
-                        <a><img src=\"\" alt=\"Your Cart\"></a>
+                        <a><img src=\"./Resources/Images/Resources/shoppingCart.svg\" alt=\"Your Cart\" style=\"height:3em\"></a>
                     </div>
                 </div>
             ");

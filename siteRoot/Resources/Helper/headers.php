@@ -27,13 +27,18 @@
                     <a href=\"./\"><h2>Terms of Service</h2></a>
                     <a href=\"./eventRegistration.php\"><h2>Create an Event</h2></a>
                     <a href=\"./login.php\"><h2>Log In</h2></a>
+                    <a href=\"./register.php\"><h2>Register</h2></a>
                 </div>
                 <div>
                     <h1>Contact Us</h1>
                     <a href=\"./\"><h2>Email</h2></a>
                     <a href=\"./\"><h2>Phone Number</h2></a>
                 </div>
-                <div></div>
+                <div>
+                    <h1>Quick links</h1>
+                    <a href=\"./\"><h2>Home</h2></a>
+                    <a href=\"./\"><h2>About Us</h2></a>
+                </div>
             </div>
         ");
     }
@@ -44,8 +49,8 @@
                 <div class=\"mainHeader\">
                     <h1>$title</h1>
                     <div>
-                        <a><div class=\"smallButton\">Login</div></a>
-                        <a><div class=\"smallButtonInv\">Register</div></a>
+                        <a href=\"./login.php\"><div class=\"smallButton\">Login</div></a>
+                        <a href=\"./register.php\"><div class=\"smallButtonInv\">Register</div></a>
                         <a><img src=\"./Resources/Images/Resources/shoppingCart.svg\" alt=\"Your Cart\" style=\"height:3em\"></a>
                     </div>
                 </div>

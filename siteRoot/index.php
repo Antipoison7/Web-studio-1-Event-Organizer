@@ -24,7 +24,7 @@
         {
           echo("<div class=\"creatorBox\">
                 <p>" . $x["name"] . "</p>
-                <img src=\"./Resources/Images/Pfp/" . $x["pfp"] . "\" alt=\"" . $x["name"] . " Profile Picture\">
+                <img src=\"./Resources/Images/userPfp/" . $x["pfp"] . "\" alt=\"" . $x["name"] . " Profile Picture\">
                 </div>");
         }
       ?>

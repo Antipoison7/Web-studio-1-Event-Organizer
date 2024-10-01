@@ -141,6 +141,11 @@
     display: flex;
 }
 
+.mainHeader h1
+{
+    margin-left: 20px;
+}
+
 .mainHeader div
 {
     display: flex;

@@ -48,8 +48,6 @@
       </div>
     </form>
 
-    <?php makeFooter(); 
-  var_dump(validatePassword("pas"));
-    ?>
+    <?php makeFooter(); ?>
   </body>
 </html>

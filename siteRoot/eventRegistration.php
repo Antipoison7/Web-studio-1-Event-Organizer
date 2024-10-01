@@ -11,8 +11,8 @@
     <link rel="icon" type="image/x-icon" href="./Resources/Images/Resources/favicon.png">
   </head>
   <body>
-    <?php makeHeader("Sample Title") ?>
-    
+    <?php makeHeader("Event Registraion") ?>
+    <?php eventRegistration(); ?>
     <?php
       makeFooter();
     ?>

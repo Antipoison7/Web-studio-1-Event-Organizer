@@ -38,7 +38,6 @@
         ");
     }
 
-<<<<<<< HEAD
     function eventRegistration() {
         
         echo("
@@ -60,19 +59,5 @@
         
         ");
         
-=======
-    function headerNoLogin($title)
-    {
-        echo("
-                <div class=\"mainHeader\">
-                    <h1>$title</h1>
-                    <div>
-                        <a><div class=\"smallButton\">Login</div></a>
-                        <a><div class=\"smallButtonInv\">Register</div></a>
-                        <a><img src=\"./Resources/Images/Resources/shoppingCart.svg\" alt=\"Your Cart\" style=\"height:3em\"></a>
-                    </div>
-                </div>
-            ");
->>>>>>> dc045d5926d567925d6c9c0201966904b1af9df1
     }
 ?>

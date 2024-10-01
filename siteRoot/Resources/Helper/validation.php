@@ -57,26 +57,22 @@
         // If you see this, no you don't, yes I am aware this sucks, no I do not want to put more time into this
         $containsSpecialCharacter = "/[\~\`\!\@\#\$\%\^\&\*\(\)\_\+\=\{\[\}\]\|\\\:\;\"\'\<\,\>\.\?\/\-]/"; //TODO: Fix this
 
-        $testPassword = "Easdadsadasd";
-
-        echo(preg_match_all($isLowercase,$testPassword));
-
-        if(strlen($testPassword)<8)
+        if(strlen($password)<8)
         {
             $problems[] = "At least 8 characters in length";
         }
 
-        if(preg_match_all($isUppercase, $testPassword) < 1)
+        if(preg_match_all($isUppercase, $password) < 1)
         {
             $problems[] = "Contains at least one uppercase Letter";
         }
 
-        if(preg_match_all($isLowercase, $testPassword) < 1)
+        if(preg_match_all($isLowercase, $password) < 1)
         {
             $problems[] = "Contains at least one lowercase Letter";
         }
 
-        if(preg_match_all($containsSpecialCharacter, $testPassword) < 1)
+        if(preg_match_all($containsSpecialCharacter, $password) < 1)
         {
             $problems[] = "Contains at least one symbol";
         }

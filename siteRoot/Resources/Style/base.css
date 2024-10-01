@@ -136,6 +136,17 @@
     color: darkslategray;
 }
 
+.mainHeader
+{
+    display: flex;
+}
+
+.mainHeader div
+{
+    display: flex;
+    margin-left: auto;
+}
+
 .flex
 {
     display: flex;

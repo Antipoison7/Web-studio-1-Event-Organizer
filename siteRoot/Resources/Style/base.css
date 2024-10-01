@@ -145,6 +145,12 @@
 {
     display: flex;
     margin-left: auto;
+    align-items: center;
+}
+
+.mainHeader a
+{
+    margin: 10px;
 }
 
 .flex

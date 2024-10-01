@@ -44,8 +44,8 @@
                 <div class=\"mainHeader\">
                     <h1>$title</h1>
                     <div>
-                        <a><div class=\"smallButton\">Ae</div></a>
-                        <a><div class=\"smallButton\">Ae</div></a>
+                        <a><div class=\"smallButton\">Login</div></a>
+                        <a><div class=\"smallButtonInv\">Register</div></a>
                         <a><img src=\"\" alt=\"Your Cart\"></a>
                     </div>
                 </div>

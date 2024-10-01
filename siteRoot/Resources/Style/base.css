@@ -136,6 +136,23 @@
     color: darkslategray;
 }
 
+.mainHeader
+{
+    display: flex;
+}
+
+.mainHeader div
+{
+    display: flex;
+    margin-left: auto;
+    align-items: center;
+}
+
+.mainHeader a
+{
+    margin: 10px;
+}
+
 .flex
 {
     display: flex;

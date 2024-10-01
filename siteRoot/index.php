@@ -11,7 +11,7 @@
     <link rel="icon" type="image/x-icon" href="./Resources/Images/Resources/favicon.png">
   </head>
   <body>
-    <?php makeHeader("Sample Title") ?>
+    <?php headerNoLogin("Sample Title") ?>
     <div class="creatorFlex">
       <?php
         $creatorArray = [

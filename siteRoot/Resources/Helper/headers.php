@@ -46,6 +46,8 @@
                     <input type=\"text\" id=\"eventTitle\" name=\"eventTitle\"><br>
                     <label for=\"eventDescription\">Whats your event about?</label><br>
                     <input type=\"text\" id=\"eventDescription\" name=\"eventDescription\">
+                    <label for=\"eimg\">What image would you like displayed? </label>
+                    <input type=\"file\" id=\"eimg\" name=\"eimg\" accept=\"image/*\">
                 </form>
         
         

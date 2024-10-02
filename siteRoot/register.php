@@ -25,7 +25,7 @@
         <label for="email">Email:</label>
         <input type="email" id="email" name="email">
 
-        <label for="username">Username:</label>
+        <label for="username">Username: <span class="min">(Cannot contain the '@' symbol)</span></label>
         <input type="text" id="username" name="username">
 
         <label for="realname">Real Name:</label>

@@ -33,7 +33,7 @@
                     <a href=\"./\"><h2>Email</h2></a>
                     <a href=\"./\"><h2>Phone Number</h2></a>
                 </div >
-                <div class=\"footerItem\" <!--class=\"flex\" style=\"flex-direction: column;\"-->>
+                <div class=\"footerItem\">
                     <div>
                         <h1>Forum Links</h1>
                         <a href=\"./\"><h2>Home</h2></a>

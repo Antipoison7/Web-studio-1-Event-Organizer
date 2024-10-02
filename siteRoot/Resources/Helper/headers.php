@@ -12,7 +12,7 @@
     {
     echo("
             <!-- <div class=\"footer\">
-                div class=\"flex\">
+                <div class=\"flex\">
                     <a href=\"./\"><div style=\"background-color:black; width: 30px; height: 30px; color: white;\">A</div></a>
                     <a href=\"./\"><div style=\"background-color:black; width: 30px; height: 30px; color: white;\">B</div></a>
                     <a href=\"./\"><div style=\"background-color:black; width: 30px; height: 30px; color: white;\">C</div></a>

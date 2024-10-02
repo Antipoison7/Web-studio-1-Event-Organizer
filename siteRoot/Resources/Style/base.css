@@ -190,7 +190,8 @@ a:hover
     border: 1px solid black;
     display: flex;
     flex-direction: column;
-    height: fit-content;
+    height: auto;
+    width: auto;
     
     padding: 10px;
     column-gap: 20px;

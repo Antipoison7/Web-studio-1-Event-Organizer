@@ -187,15 +187,10 @@ a:hover
     border-top: 2px solid gray;
     display: flex;
     
-    flex-direction: column;
-    height: auto;
-    width: 20%;
-    
+       
+    display: flex;
+    justify-content: space-around;
     padding: 10px;
-    column-gap: 20px;
-    justify-content: center;
-    
-    
 }
 
 .footer div {
@@ -240,4 +235,16 @@ a:hover
     display: flex;
     justify-content: space-around;
     padding: 10px;
+}
+.footerItem {
+
+    border: 1px solid black;
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    width: 20%;
+    
+    padding: 10px;
+    column-gap: 20px;
+    justify-content: center;
 }

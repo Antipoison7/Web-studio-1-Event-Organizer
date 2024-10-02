@@ -190,7 +190,10 @@ a:hover
        
     display: flex;
     justify-content: space-around;
+    flex-direction: row;
+    width: 100%;
     padding: 10px;
+    
 }
 
 .footer div {
@@ -242,9 +245,12 @@ a:hover
     display: flex;
     flex-direction: column;
     height: auto;
-    width: 25%;
+    /*width: 25%;*/
+    align-content:flex-start;
     
     padding: px;
     column-gap: 5px;
     /*justify-content: center;*/
+    font-size: small;
+
 }

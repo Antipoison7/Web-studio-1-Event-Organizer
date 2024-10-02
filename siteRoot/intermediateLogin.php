@@ -1,8 +1,19 @@
 <!DOCTYPE html>
 <?php
     session_start();
+    $type = $_POST["hiddenType"]; //Gets the type from the post requrest
+
+    if(($type == "Login")||($type == "Register"))
     $username = $_POST["username"];
     $password = $_POST["password"];
+
+    //For the register stuff
+    if($type == "Register")
+    {
+        $email = $_POST["email"];
+        $realname = $_POST["realname"];
+    }
+
 ?>
 
 <html lang="en">

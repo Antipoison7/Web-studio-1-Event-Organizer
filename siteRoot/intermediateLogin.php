@@ -1,17 +1,40 @@
+<?php
+    include_once('./Resources/Helper/validation.php');
+?>
 <!DOCTYPE html>
 <?php
     session_start();
     $type = $_POST["hiddenType"]; //Gets the type from the post requrest
 
-    if(($type == "Login")||($type == "Register"))
-    $username = $_POST["username"];
-    $password = $_POST["password"];
-
-    //For the register stuff
-    if($type == "Register")
+    if($type == "Login")
     {
+        $username = $_POST["username"];
+        $password = $_POST["password"];
+
+        if(isBlank([$username,$password]))
+        {
+            echo("username and password set");
+        }
+        else
+        {
+            echo("username and password not set");
+        }
+    }
+    else if($type == "Register")
+    {
+        $username = $_POST["username"];
+        $password = $_POST["password"];
         $email = $_POST["email"];
         $realname = $_POST["realname"];
+
+        if(isBlank([$username,$password,$email,$realname]))
+        {
+            echo("register set");
+        }
+        else
+        {
+            echo("register not set");
+        }
     }
 
 ?>

@@ -192,7 +192,7 @@ a:hover
     height: 20vw;
     padding: 10px;
     width: 20vw;
-    justify-content: space-between;
+    
 }
 
 .creatorBox div a, .creatorBox div a:visited, .creatorBox a:hover, .creatorBox a:active .creatorBox h2
@@ -209,7 +209,7 @@ a:hover
 {
     height: 100%;
     width: 100%;
-    justify-content: space-around;
+    
 }
 
 .creatorFlex

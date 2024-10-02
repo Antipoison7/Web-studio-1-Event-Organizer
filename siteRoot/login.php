@@ -27,6 +27,9 @@
         <label for="password">Password: <a href="./forgot">Forgot password</a></label>
         <input type="password" id="password" name="password">
 
+        <!-- Sets the value passed to the intermediate to Register -->
+        <input type="text" id="hiddenType" name="hiddenType" value="Login" hidden>
+
         <div class="flex">
           <button type="submit" class="smallButton" style="margin-right: 5px;">Login</button>
           <a href="./register.php"><div class="smallButtonInv">Register</div></a>

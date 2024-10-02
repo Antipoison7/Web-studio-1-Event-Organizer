@@ -192,7 +192,7 @@ a:hover
     flex-direction: column;
     
     padding: 10px;
-    justify-content: space-between;
+    column-gap: 20px;
     
     
 }

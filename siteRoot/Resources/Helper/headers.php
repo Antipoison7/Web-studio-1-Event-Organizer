@@ -25,7 +25,6 @@
                     <a href=\"./\"><h2>FAQ</h2></a>
                     <a href=\"./\"><h2>Privacy Policy</h2></a>
                     <a href=\"./\"><h2>Terms of Service</h2></a>
-                    <a href=\"./eventRegistration.php\"><h2>Create an Event</h2></a>
                     <a href=\"./login.php\"><h2>Log In</h2></a>
                     <a href=\"./register.php\"><h2>Register</h2></a>
                 </div>
@@ -34,10 +33,22 @@
                     <a href=\"./\"><h2>Email</h2></a>
                     <a href=\"./\"><h2>Phone Number</h2></a>
                 </div>
-                <div>
-                    <h1>Quick links</h1>
-                    <a href=\"./\"><h2>Home</h2></a>
-                    <a href=\"./\"><h2>About Us</h2></a>
+                <div class=\"flex\" style=\"flex-direction: column;\">
+                    <div>
+                        <h1>Forum Links</h1>
+                        <a href=\"./\"><h2>Home</h2></a>
+                        <a href=\"./\"><h2>About Us</h2></a>
+                    </div>
+                    <div>
+                        <h1>Event Links</h1>
+                        <a href=\"./eventRegistration.php\"><h2>Create an Event</h2></a>
+                        <a href=\"./\"><h2>About Us</h2></a>
+                    </div>
+                    <div>
+                        <h1>Profile Links</h1>
+                        <a href=\"./\"><h2>Home</h2></a>
+                        <a href=\"./\"><h2>About Us</h2></a>
+                    </div>
                 </div>
             </div>
         ");

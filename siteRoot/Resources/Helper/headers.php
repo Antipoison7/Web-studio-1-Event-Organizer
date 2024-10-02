@@ -11,14 +11,14 @@
     function makeFooter()
     {
     echo("
-            <!-- <div class=\"footer\">
-                div class=\"flex\">
+            <div class=\"footer\">
+                <!--<div class=\"flex\">
                     <a href=\"./\"><div style=\"background-color:black; width: 30px; height: 30px; color: white;\">A</div></a>
                     <a href=\"./\"><div style=\"background-color:black; width: 30px; height: 30px; color: white;\">B</div></a>
                     <a href=\"./\"><div style=\"background-color:black; width: 30px; height: 30px; color: white;\">C</div></a>
                     <a href=\"./\"><div style=\"background-color:black; width: 30px; height: 30px; color: white;\">D</div></a>
                  </div> -->
-                <div>
+                <div class=\"footerItem\">
                     <h1>Quick links</h1>
                     <a href=\"./\"><h2>Home</h2></a>
                     <a href=\"./\"><h2>About Us</h2></a>
@@ -28,12 +28,12 @@
                     <a href=\"./login.php\"><h2>Log In</h2></a>
                     <a href=\"./register.php\"><h2>Register</h2></a>
                 </div>
-                <div>
+                <div class=\"footerItem\">
                     <h1>Contact Us</h1>
                     <a href=\"./\"><h2>Email</h2></a>
                     <a href=\"./\"><h2>Phone Number</h2></a>
-                </div>
-                <div class=\"flex\" style=\"flex-direction: column;\">
+                </div >
+                <div class=\"footerItem\" <!--class=\"flex\" style=\"flex-direction: column;\"-->>
                     <div>
                         <h1>Forum Links</h1>
                         <a href=\"./\"><h2>Home</h2></a>

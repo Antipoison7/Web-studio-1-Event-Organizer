@@ -185,9 +185,16 @@ a:hover
 .footer
 {
     border-top: 2px solid gray;
-    display: grid;
-    grid-template-columns: auto auto auto auto;
-    margin-top: 30px;
+    display: flex;
+    
+       
+    display: flex;
+    justify-content: space-around;
+    padding: 10px;
+}
+
+.footer div {
+    width: 20%;
 }
 
 .creatorBox
@@ -228,4 +235,16 @@ a:hover
     display: flex;
     justify-content: space-around;
     padding: 10px;
+}
+.footerItem {
+
+    border: 1px solid black;
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    width: 20%;
+    
+    padding: 10px;
+    column-gap: 20px;
+    justify-content: center;
 }

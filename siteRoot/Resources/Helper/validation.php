@@ -87,5 +87,20 @@
         return $problems;
     }
 
+    function isBlank($inputArray)
+    {
+        $hasStuff = true;
+
+        foreach($inputArray as $x)
+        {
+            if(strlen($x) <= 0)
+            {
+                $hasStuff = false;
+            }
+        }
+
+        return $hasStuff;
+    }
+
     
 ?>

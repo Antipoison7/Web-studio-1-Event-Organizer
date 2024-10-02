@@ -190,9 +190,12 @@ a:hover
     border: 1px solid black;
     display: flex;
     flex-direction: column;
+    height: auto;
+    width: 20%;
     
     padding: 10px;
-    justify-content: space-between;
+    column-gap: 20px;
+    justify-content: center;
     
     
 }
@@ -211,13 +214,13 @@ a:hover
 {
     height: 100%;
     width: 100%;
-    align-items: center;
+    
     
 }
 
 .creatorFlex
 {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    justify-content: space-around;
+    padding: 10px;
 }

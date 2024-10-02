@@ -6,6 +6,8 @@
     session_start();
     $type = $_POST["hiddenType"]; //Gets the type from the post requrest
 
+    $redirect = "./index.php";
+
     if($type == "Login")
     {
         $username = $_POST["username"];

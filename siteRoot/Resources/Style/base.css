@@ -189,9 +189,9 @@ a:hover
     border: 1px solid black;
     display: flex;
     flex-direction: column;
-    height: 20vw;
+    
     padding: 10px;
-    width: 20vw;
+    
     
 }
 

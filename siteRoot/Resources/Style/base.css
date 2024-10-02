@@ -189,9 +189,7 @@ a:hover
     border: 1px solid black;
     display: flex;
     flex-direction: column;
-    height: 20vw;
-    padding: 10px;
-    width: 20vw;
+    
 }
 
 .creatorBox div a, .creatorBox div a:visited, .creatorBox a:hover, .creatorBox a:active .creatorBox h2
@@ -206,7 +204,8 @@ a:hover
 
 .creatorBox img
 {
-    
+    height: 100%;
+    width: 100%;
 }
 
 .creatorFlex

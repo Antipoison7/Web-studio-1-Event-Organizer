@@ -37,14 +37,22 @@
     {
         $exp = "/[\w!#$%&'*+/=?^_`{|}~-]+(?:\.[\w!#$%&'*+/=?^_`{|}~-]+)*@\w.\w/";
 
-        if(preg_match_all($exp, $email) === true)
+        if(strlen($email) > 1)
         {
-            return true;
+            if(preg_match_all($exp, $email) === true)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
         else
         {
             return false;
         }
+        
     }
 
     //This function returns an array with issues

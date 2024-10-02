@@ -14,13 +14,13 @@
   <body>
     <div class="loginHeader">
         <a href="./login.php">
-            <div class="button">Login</div>
+            <div class="button">Back</div>
         </a>
         <h1>User Register</h1>
         <div style="width: 14em; height: 3em;"></div>
     </div>
 
-    <form method="post" action="./intermediateRegister.php">
+    <form method="post" action="./intermediateLogin.php">
       <div class="login">
         <label for="email">Email:</label>
         <input type="email" id="email" name="email">
@@ -33,6 +33,9 @@
 
         <label for="password">Password: <a href="./forgot">Forgot password</a></label>
         <input type="password" id="password" name="password">
+
+        <!-- Sets the value passed to the intermediate to Register -->
+        <input type="text" id="hiddenType" name="hiddenType" value="Register" hidden>
 
         <p>Passwords should be:</p>
         <ul>

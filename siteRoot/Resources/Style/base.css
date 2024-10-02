@@ -248,9 +248,16 @@ a:hover
     /*width: 25%;*/
     align-content:flex-start;
     
-    padding: px;
+    padding: 0px;
     column-gap: 5px;
     /*justify-content: center;*/
     font-size: small;
 
+}
+
+.footerItem div {
+
+    align-content: left;
+    display: flex;
+    flex-direction: column;
 }

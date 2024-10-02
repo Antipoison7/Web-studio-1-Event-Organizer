@@ -171,6 +171,11 @@ a:hover
     margin: 10px;
 }
 
+.min
+{
+    font-size: large;
+}
+
 .flex
 {
     display: flex;

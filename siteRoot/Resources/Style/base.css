@@ -185,10 +185,10 @@ a:hover
 .footer
 {
     border-top: 2px solid gray;
-    display: flex;
-    grid-template-columns: auto auto auto auto;
+    display: grid;
+    grid-template-columns: auto auto auto;
     margin-top: 30px;
-    flex-direction: column;
+    
 }
 
 .creatorBox

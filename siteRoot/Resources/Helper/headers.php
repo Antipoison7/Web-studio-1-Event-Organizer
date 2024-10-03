@@ -20,11 +20,11 @@
                  </div> -->
                 <div class=\"footerItem\">
                     <h1>Quick links</h1>
-                    <a href=\"./\"><h2>Home</h2></a>
-                    <a href=\"./\"><h2>About Us</h2></a>
-                    <a href=\"./\"><h2>FAQ</h2></a>
-                    <a href=\"./\"><h2>Privacy Policy</h2></a>
-                    <a href=\"./\"><h2>Terms of Service</h2></a>
+                    <a href=\"./HomePage.php\"><h2>Home</h2></a>
+                    <a href=\"./index.php\"><h2>About Us</h2></a>
+                    <a href=\"./FAQSite.php\"><h2>FAQ</h2></a>
+                    <a href=\"./PrivacyPolicy.php\"><h2>Privacy Policy</h2></a>
+                    <a href=\"./TermsOfService.php\"><h2>Terms of Service</h2></a>
                     <a href=\"./login.php\"><h2>Log In</h2></a>
                     <a href=\"./register.php\"><h2>Register</h2></a>
                 </div>

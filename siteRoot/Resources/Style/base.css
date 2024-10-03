@@ -193,6 +193,7 @@ a:hover
     flex-direction: row;
     width: 100%;
     padding: 10px;
+    column-gap: 15%;
     
 }
 
@@ -252,6 +253,8 @@ a:hover
     column-gap: 5px;
     /*justify-content: center;*/
     font-size: small;
+    justify-content: left;
+    flex: 2 1 auto;
 
 }
 
@@ -260,4 +263,7 @@ a:hover
     align-content: left;
     display: flex;
     flex-direction: column;
+    width: fit-content;
 }
+
+

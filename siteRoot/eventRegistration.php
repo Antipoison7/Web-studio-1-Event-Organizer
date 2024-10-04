@@ -11,7 +11,7 @@
     <link rel="icon" type="image/x-icon" href="./Resources/Images/Resources/favicon.png">
   </head>
   <body>
-    <?php makeHeader("Event Registraion") ?>
+    <?php headerNoLogin("Event Registraion") ?>
       <form>
         <label for="etitle">Whats the title of your event?</label><br>
         <input type="text" id="eventTitle" name="eventTitle"><br>

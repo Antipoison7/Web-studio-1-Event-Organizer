@@ -55,6 +55,19 @@
         
     }
 
+    function containsAmp($username)
+    {
+        if(strpos($username, '@') === false)
+        {
+            return false;
+        }
+        else
+        {
+            return true;
+        }
+        
+    }
+
     //This function returns an array with issues
     function validatePassword($password)
     {
@@ -100,6 +113,19 @@
         }
 
         return $hasStuff;
+    }
+
+    function validateRegister($inputArray)
+    {
+        $isValid = true;
+
+        $errors = array();
+
+        if(containsAmp($inputArray["username"]))
+        {
+            $isValid = false;
+            $_SESSION["issues"]["username"] = "Contains Amp";
+        }
     }
 
     

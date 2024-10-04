@@ -7,9 +7,9 @@
 
     function isOnlyText($text)
     {
-        $exp = "/[^a-z0-9]/gi";
+        $exp = "/[^a-z0-9]/";
 
-        if(preg_match($exp, $text) === false)
+        if(preg_match_all($exp, $text) === false)
         {
             return true;
         }
@@ -21,9 +21,9 @@
 
     function isOnlyTextOrSpace($text)
     {
-        $exp = "/[^a-z0-9 ]/gi";
+        $exp = "/[^a-z0-9 ]/";
 
-        if(preg_match($exp, $text) === false)
+        if(preg_match_all($exp, $text) === false)
         {
             return true;
         }
@@ -35,11 +35,11 @@
 
     function isEmail($email)
     {
-        $exp = "/[\w!#$%&'*+/=?^_`{|}~-]+(?:\.[\w!#$%&'*+/=?^_`{|}~-]+)*@\w*.\w*/";
+        
 
         if(strlen($email) > 1)
         {
-            if(preg_match_all($exp, $email) === true)
+            if(filter_var($email, FILTER_VALIDATE_EMAIL) !== false)
             {
                 return true;
             }
@@ -80,22 +80,22 @@
 
         if(strlen($password)<8)
         {
-            $problems[] = "At least 8 characters in length";
+            $problems["length"] = "At least 8 characters in length";
         }
 
         if(preg_match_all($isUppercase, $password) < 1)
         {
-            $problems[] = "Contains at least one uppercase Letter";
+            $problems["upper"] = "Contains at least one uppercase Letter";
         }
 
         if(preg_match_all($isLowercase, $password) < 1)
         {
-            $problems[] = "Contains at least one lowercase Letter";
+            $problems["lower"] = "Contains at least one lowercase Letter";
         }
 
         if(preg_match_all($containsSpecialCharacter, $password) < 1)
         {
-            $problems[] = "Contains at least one symbol";
+            $problems["symbol"] = "Contains at least one symbol";
         }
         return $problems;
     }
@@ -119,13 +119,25 @@
     {
         $isValid = true;
 
-        $errors = array();
-
         if(containsAmp($inputArray["username"]))
         {
             $isValid = false;
             $_SESSION["issues"]["username"] = "Contains Amp";
         }
+
+        if(!isEmail($inputArray["email"]))
+        {
+            $isValid = false;
+            $_SESSION["issues"]["email"] = "Invalid Email";
+        }
+
+        if(count(validatePassword($inputArray["password"])) != 0)
+        {
+            $isValid = false;
+            $_SESSION["issues"]["password"] = validatePassword($inputArray["password"]);
+        }
+
+        return $isValid;
     }
 
     

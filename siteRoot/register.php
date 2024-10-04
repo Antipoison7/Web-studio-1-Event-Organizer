@@ -33,26 +33,28 @@
         <input type="text" id="realname" name="realname" <?php if(isset($_SESSION["issues"]) && ($_SESSION["issues"]["realName"] == "unset")){echo("class = \"loginError\" placeholder = \"Please enter a name\"");} ?>>
 
         <label for="password">Password:</label>
-        <input type="password" id="password" name="password" <?php if(isset($_SESSION["issues"]) && ($_SESSION["issues"]["password"] == "unset")){echo("class = \"loginError\" placeholder = \"Please enter a password\"");} ?>>
+        <input type="password" id="password" name="password" <?php if(isset($_SESSION["issues"]) && (isset($_SESSION["issues"]["password"]))){echo("class = \"loginError\" placeholder = \"Please enter a password\"");} ?>>
 
         <!-- Sets the value passed to the intermediate to Register -->
         <input type="text" id="hiddenType" name="hiddenType" value="Register" hidden>
 
         <p>Passwords should be:</p>
         <ul>
-          <li>At least 8 characters in length</li>
-          <li>Contains at least one uppercase Letter</li>
-          <li>Contains at least one lowercase Letter</li>
-          <li>Contains at least one symbol (!@#$%^&*)</li>
+          <li <?php if(isset($_SESSION["issues"]) && (isset($_SESSION["issues"]["password"]["length"]))){echo("class = \"loginFontError\"");}?>>At least 8 characters in length</li>
+          <li <?php if(isset($_SESSION["issues"]) && (isset($_SESSION["issues"]["password"]["upper"]))){echo("class = \"loginFontError\"");}?>>Contains at least one uppercase Letter</li>
+          <li <?php if(isset($_SESSION["issues"]) && (isset($_SESSION["issues"]["password"]["lower"]))){echo("class = \"loginFontError\"");}?>>Contains at least one lowercase Letter</li>
+          <li <?php if(isset($_SESSION["issues"]) && (isset($_SESSION["issues"]["password"]["symbol"]))){echo("class = \"loginFontError\"");}?>>Contains at least one symbol (!@#$%^&*)</li>
         </ul>
 
         <div class="flex">
           <button type="submit" class="smallButton" style="margin-right: 5px;">Register</button>          
         </div>
       </div>
-      <?php echo(PHP_VERSION); ?>
     </form>
 
+    <?php
+      echo(var_dump($_SESSION["issues"]));
+    ?>
     <?php makeFooter(); ?>
   </body>
 </html>

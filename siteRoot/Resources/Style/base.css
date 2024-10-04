@@ -154,6 +154,11 @@ a:hover
     border-color: red;
 }
 
+.loginFontError
+{
+    color:red;
+}
+
 .mainHeader
 {
     display: flex;

@@ -30,9 +30,7 @@
         $email = $_POST["email"];
         $realname = $_POST["realname"];
 
-        echo($username);
-        echo(var_dump(containsAmp($username)));
-        echo(var_dump(containsAmp("asdasdasdasdas@")));
+        
 
         if(isBlank([$username,$password,$email,$realname]))
         {
@@ -41,17 +39,27 @@
                 unset($_SESSION["issues"]);
             }
 
-            validateRegister(["username"=>$username,"password"=>$password,"email"=>$email,"realName"=>$realname]);
+            if(validateRegister(["username"=>$username,"password"=>$password,"email"=>$email,"realName"=>$realname]) == false)
+            {
+                $redirect = "./register.php";
+            }
+            else
+            {
+                $redirect = "./index.php";
+            }
             echo("register set");
         }
         else
         {
             $_SESSION["issues"] = registerIsBlank([$username,$password,$email,$realname]);
+            if($_SESSION["issues"]["password"] == "set")
+            {
+                $_SESSION["issues"]["password"] = validatePassword($password);
+            }
             $redirect = "./register.php";
             echo("register not set");
         }
     }
-
 ?>
 
 <html lang="en">

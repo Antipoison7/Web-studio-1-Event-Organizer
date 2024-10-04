@@ -21,6 +21,9 @@
         
           <label for="eventDescription">Whats your event about?</label><br>
             <input type="text" id="eventDescription" name="eventDescription" placeholder="Come spend a day in the park etc." size="50" maxlength="250"><br><br>
+
+          <label for="eLink">Link to purchase page/website?</label><br>
+            <input type="text" id="eLink" name="eLink" placeholder="               https://www.youtube.com/watch?v=dQw4w9WgXcQ?autoplay=1" size="50" maxlength="25"><br><br>
         
           <label for="eimg">What image would you like displayed? </label><br>
             <input type="file" id="eimg" name="eimg" accept="image/*\" placeholder="Image of Park"><br>

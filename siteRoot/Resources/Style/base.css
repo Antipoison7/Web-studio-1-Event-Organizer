@@ -152,6 +152,9 @@ a:hover
 .mainHeader
 {
     display: flex;
+    background-color: white;
+    border: 1px solid white;
+    border-radius: 25px;
 }
 
 .mainHeader h1
@@ -169,6 +172,7 @@ a:hover
 .mainHeader a
 {
     margin: 10px;
+    
 }
 
 .min
@@ -184,16 +188,19 @@ a:hover
 
 .footer
 {
-    border-top: 2px solid gray;
+    
     display: flex;
     
        
     display: flex;
     justify-content: space-around;
     flex-direction: row;
-    width: 100%;
+    width: 98%;
     padding: 10px;
-    column-gap: 15%;
+    column-gap: 10%;
+    background-color: white;
+    border: 1px solid white;
+    border-radius: 25px;
     
 }
 
@@ -264,6 +271,19 @@ a:hover
     display: flex;
     flex-direction: column;
     width: fit-content;
+}
+
+.regBlock {
+    display: flex;
+    align-content:space-between;
+    justify-content: space-around;
+    padding: 5px;
+    border: 5px solid black;
+    margin: 100px;
+    border-radius: 25px;
+    background-color: lightblue;
+
+
 }
 
 

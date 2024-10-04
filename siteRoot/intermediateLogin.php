@@ -1,5 +1,6 @@
 <?php
     include_once('./Resources/Helper/validation.php');
+    include_once('./Resources/Helper/loginHelper.php');
 ?>
 <!DOCTYPE html>
 <?php
@@ -29,12 +30,24 @@
         $email = $_POST["email"];
         $realname = $_POST["realname"];
 
+        echo($username);
+        echo(var_dump(containsAmp($username)));
+        echo(var_dump(containsAmp("asdasdasdasdas@")));
+
         if(isBlank([$username,$password,$email,$realname]))
         {
+            if(isset($_SESSION["issues"]))
+            {
+                unset($_SESSION["issues"]);
+            }
+
+            validateRegister(["username"=>$username,"password"=>$password,"email"=>$email,"realName"=>$realname]);
             echo("register set");
         }
         else
         {
+            $_SESSION["issues"] = registerIsBlank([$username,$password,$email,$realname]);
+            $redirect = "./register.php";
             echo("register not set");
         }
     }
@@ -52,7 +65,7 @@
         <!-- redirectScript() -->
     <body onload=''>
 
-        <p><a href="index.php">Damn, if you see this and it doesn't load, click this. Do not refresh the page.</a></p>
+        <p><a href="<?php echo($redirect); ?>">Damn, if you see this and it doesn't load, click this. Do not refresh the page.</a></p>
         <?php
             echo(var_dump($_POST));
         ?>

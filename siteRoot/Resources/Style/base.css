@@ -285,6 +285,7 @@ a:hover
 }
 
 .regBlock div {
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
 
     justify-content: center;
 }

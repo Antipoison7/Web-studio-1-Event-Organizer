@@ -21,6 +21,7 @@
         else
         {
             echo("username and password not set");
+            $redirect = "./login.php";
         }
     }
     else if($type == "Register")
@@ -47,7 +48,7 @@
             {
                 $redirect = "./index.php";
             }
-            echo("register set");
+            // echo("register set");
         }
         else
         {
@@ -57,7 +58,7 @@
                 $_SESSION["issues"]["password"] = validatePassword($password);
             }
             $redirect = "./register.php";
-            echo("register not set");
+            // echo("register not set");
         }
     }
 ?>

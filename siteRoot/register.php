@@ -53,7 +53,7 @@
     </form>
 
     <?php
-      echo(var_dump($_SESSION["issues"]));
+      // echo(var_dump($_SESSION["issues"]));
     ?>
     <?php makeFooter(); ?>
   </body>

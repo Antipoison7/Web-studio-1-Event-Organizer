@@ -131,7 +131,7 @@ a:hover
     display: flex; 
     flex-direction:column; 
     justify-content:center; 
-    max-width:100vh;
+    max-width: 80%;
     margin:0px auto 0px auto;
     font-size:x-large;
 }
@@ -147,6 +147,11 @@ a:hover
 {
     margin: 0;
     color: darkslategray;
+}
+
+.loginError
+{
+    border-color: red;
 }
 
 .mainHeader

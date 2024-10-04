@@ -193,10 +193,11 @@ a:hover
     
        
     display: flex;
-    justify-content: space-around;
+    justify-content:center;
     flex-direction: row;
-    width: 98%;
-    padding: 10px;
+    width: 98.8%;
+    padding: 5px;
+    
     column-gap: 10%;
     background-color: white;
     border: 1px solid white;
@@ -249,7 +250,7 @@ a:hover
 }
 .footerItem {
 
-    border-top: 1px solid black;
+    
     display: flex;
     flex-direction: column;
     height: auto;

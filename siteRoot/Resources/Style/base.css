@@ -282,8 +282,11 @@ a:hover
     margin: 100px;
     border-radius: 25px;
     background-color: lightblue;
+}
 
+.regBlock div {
 
+    justify-content: center;
 }
 
 

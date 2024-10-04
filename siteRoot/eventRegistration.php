@@ -17,13 +17,13 @@
         <div>
 
           <label for="etitle">Whats the title of your event?</label><br>
-            <input type="text" id="eventTitle" name="eventTitle"><br>
+            <input type="text" id="eventTitle" name="eventTitle"><br><br>
         
           <label for="eventDescription">Whats your event about?</label><br>
-            <input type="text" id="eventDescription" name="eventDescription"><br>
+            <input type="text" id="eventDescription" name="eventDescription"><br><br>
         
           <label for="eimg">What image would you like displayed? </label><br>
-            <input type="file" id="eimg" name="eimg" accept="image/*\">
+            <input type="file" id="eimg" name="eimg" accept="image/*\"><br>
         </div>
       </form>
     

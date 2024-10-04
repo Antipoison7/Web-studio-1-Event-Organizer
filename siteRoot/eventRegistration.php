@@ -17,13 +17,13 @@
         <div>
 
           <label for="etitle">Whats the title of your event?</label><br>
-            <input type="text" id="eventTitle" name="eventTitle"><br><br>
+            <input type="text" id="eventTitle" name="eventTitle" placeholder="Day in the Park etc." size="50" maxlength="25"><br><br>
         
           <label for="eventDescription">Whats your event about?</label><br>
-            <input type="text" id="eventDescription" name="eventDescription"><br><br>
+            <input type="text" id="eventDescription" name="eventDescription" placeholder="Come spend a day in the park etc." size="50" maxlength="250"><br><br>
         
           <label for="eimg">What image would you like displayed? </label><br>
-            <input type="file" id="eimg" name="eimg" accept="image/*\"><br>
+            <input type="file" id="eimg" name="eimg" accept="image/*\" placeholder="Image of Park"><br>
         </div>
       </form>
     

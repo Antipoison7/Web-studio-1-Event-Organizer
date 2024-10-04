@@ -1,6 +1,7 @@
 <?php
   include_once('./Resources/Helper/headers.php');
   include_once('./Resources/Helper/validation.php');
+  session_start();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -23,16 +24,16 @@
     <form method="post" action="./intermediateLogin.php">
       <div class="login">
         <label for="email">Email:</label>
-        <input type="email" id="email" name="email">
+        <input type="email" id="email" name="email" <?php if(isset($_SESSION["issues"]) && ($_SESSION["issues"]["email"] == "unset")){echo("class = \"loginError\" placeholder = \"Please enter an email\"");} ?>>
 
         <label for="username">Username: <span class="min">(Cannot contain the '@' symbol)</span></label>
-        <input type="text" id="username" name="username">
+        <input type="text" id="username" name="username" <?php if(isset($_SESSION["issues"]) && ($_SESSION["issues"]["username"] == "unset")){echo("class = \"loginError\" placeholder = \"Please enter a username\"");} ?>>
 
         <label for="realname">Real Name:</label>
-        <input type="text" id="realname" name="realname">
+        <input type="text" id="realname" name="realname" <?php if(isset($_SESSION["issues"]) && ($_SESSION["issues"]["realName"] == "unset")){echo("class = \"loginError\" placeholder = \"Please enter a name\"");} ?>>
 
-        <label for="password">Password: <a href="./forgot">Forgot password</a></label>
-        <input type="password" id="password" name="password">
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" <?php if(isset($_SESSION["issues"]) && ($_SESSION["issues"]["password"] == "unset")){echo("class = \"loginError\" placeholder = \"Please enter a password\"");} ?>>
 
         <!-- Sets the value passed to the intermediate to Register -->
         <input type="text" id="hiddenType" name="hiddenType" value="Register" hidden>
@@ -49,6 +50,7 @@
           <button type="submit" class="smallButton" style="margin-right: 5px;">Register</button>          
         </div>
       </div>
+      <?php echo(PHP_VERSION); ?>
     </form>
 
     <?php makeFooter(); ?>

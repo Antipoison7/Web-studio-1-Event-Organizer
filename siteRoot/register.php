@@ -26,7 +26,7 @@
         <label for="email">Email:</label>
         <input type="email" id="email" name="email" <?php if(isset($_SESSION["issues"]) && ($_SESSION["issues"]["email"] == "unset")){echo("class = \"loginError\" placeholder = \"Please enter an email\"");} ?>>
 
-        <label for="username">Username: <span class="min">(Cannot contain the '@' symbol)</span></label>
+        <label for="username">Username: <span class="min">(Cannot contain the '@','&' or ' '(space) symbols)</span></label>
         <input type="text" id="username" name="username" <?php if(isset($_SESSION["issues"]) && ($_SESSION["issues"]["username"] == "unset")){echo("class = \"loginError\" placeholder = \"Please enter a username\"");} ?>>
 
         <label for="realname">Real Name:</label>

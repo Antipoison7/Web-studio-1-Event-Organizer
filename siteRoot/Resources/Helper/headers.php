@@ -30,7 +30,7 @@
                 </div>
                 <div class=\"footerItem\">
                     <h1>Contact Us</h1>
-                    <a href=\"./\"><h2>Email</h2></a>
+                    <a href=\"mailto:orders.connor@gmail.com\"><h2>Email</h2></a>
                     <a href=\"./\"><h2>Phone Number</h2></a>
                 </div >
                 <div class=\"footerItem\">

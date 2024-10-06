@@ -101,6 +101,8 @@
     {
         try
         {
+            $passwordEnc = encryptPassword($password);
+
             $db = new PDO("mysql:host=talsprddb02.int.its.rmit.edu.au;dbname=COSC3046_2402_UGRD_1479_G4", "COSC3046_2402_UGRD_1479_G4", "GYS3sfUkzIqA");
             $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
@@ -109,7 +111,7 @@
 
             $stmt->bindParam(':login', $username, PDO::PARAM_STR);
             $stmt->bindParam(':email', $email, PDO::PARAM_STR);
-            $stmt->bindParam(':password', $password, PDO::PARAM_STR);
+            $stmt->bindParam(':password', $passwordEnc, PDO::PARAM_STR);
             $stmt->bindParam(':realName', $realName, PDO::PARAM_STR);
 
             $stmt->execute();

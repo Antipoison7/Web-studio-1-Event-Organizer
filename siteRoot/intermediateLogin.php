@@ -46,6 +46,7 @@
             }
             else
             {
+                registerUser($email, $username, $realname, $password);
                 $redirect = "./index.php";
             }
             // echo("register set");

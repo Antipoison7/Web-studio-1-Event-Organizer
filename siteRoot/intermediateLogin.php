@@ -69,6 +69,7 @@
 
 
         <!-- <meta http-equiv='refresh' content='5'; url ='index.php'/> -->
+        <?php createMeta() ?>
         </head>
 
         <!-- redirectScript() -->

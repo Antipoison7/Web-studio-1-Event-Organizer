@@ -68,4 +68,12 @@
                 </div>
             ");
     }
+
+    function createMeta()
+    {
+        echo("<meta charset=\"UTF-8\">
+              <meta name=\"description\" content=\"A free online event hoster and forum platform\">
+              <meta name=\"author\" content=\"RMIT Group 1\">
+              <meta name=\"keywords\" content=\"Forums, Forum, Events, Event Hosting\">");
+    }
 ?>

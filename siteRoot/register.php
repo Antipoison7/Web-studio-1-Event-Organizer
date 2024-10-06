@@ -8,7 +8,8 @@
   <head>
     <title>User Register</title>
     
-    <meta charset="UTF-8">
+    
+    <?php createMeta() ?>
     <link rel="stylesheet" href="./Resources/Style/base.css">
     <link rel="icon" type="image/x-icon" href="./Resources/Images/Resources/favicon.png">
   </head>

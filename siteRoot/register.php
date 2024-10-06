@@ -25,7 +25,7 @@
     <form method="post" action="./intermediateLogin.php">
       <div class="login">
         <label for="email">Email:</label>
-        <input type="email" id="email" name="email" <?php if(isset($_SESSION["issues"]) && ($_SESSION["issues"]["email"] == "unset")){echo("class = \"loginError\" placeholder = \"Please enter an email\"");} ?>>
+        <input type="email" id="email" name="email" <?php if(isset($_SESSION["issues"]) && ($_SESSION["issues"]["email"] == "unset")){echo("class = \"loginError\" placeholder = \"Please enter an email\"");} else if(isset($_SESSION["issues"]) && ($_SESSION["issues"]["email"] == "Email Already In Use")){echo("class = \"loginError\" placeholder = \"Email Already In Use\"");} ?>>
 
         <label for="username">Username: <span class="min">(Cannot contain the '@','&' or ' '(space) symbols)</span></label>
         <input type="text" id="username" name="username" <?php if(isset($_SESSION["issues"]) && ($_SESSION["issues"]["username"] == "unset")){echo("class = \"loginError\" placeholder = \"Please enter a username\"");} else if ((isset($_SESSION["issues"])) && (substr($_SESSION["issues"]["username"],0,8) == "Contains")){echo("class = \"loginError\" placeholder = \"Contains Invalid Characters\"");} ?>>

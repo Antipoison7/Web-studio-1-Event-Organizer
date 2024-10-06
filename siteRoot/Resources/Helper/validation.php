@@ -172,12 +172,42 @@
             $_SESSION["issues"]["password"] = validatePassword($inputArray["password"]);
         }
 
+        if(isDuplicateEmail($inputArray["email"]))
+        {
+            $isValid = false;
+            $_SESSION["issues"]["email"] = "Email Already In Use";
+        }
+
         return $isValid;
     }
 
     function isDuplicateEmail($email)
     {
+        try
+        {
+            $db = new PDO("mysql:host=talsprddb02.int.its.rmit.edu.au;dbname=COSC3046_2402_UGRD_1479_G4", "COSC3046_2402_UGRD_1479_G4", "GYS3sfUkzIqA");
+            $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
+            $stmt = $db->prepare("SELECT login_name,email 
+                                  FROM accounts 
+                                  JOIN users ON accounts.login_name = users.username 
+                                  WHERE email = :lookupName;");
+            $stmt->bindParam(':lookupName',$email, PDO::PARAM_STR);
+            $stmt->execute();
+
+            if($stmt->rowCount() != 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        catch (PDOException $e)
+        {
+            echo("oh great heavens: " . $e->getMessage());
+        }
     }
 
     

@@ -27,7 +27,7 @@
         <input type="email" id="email" name="email" <?php if(isset($_SESSION["issues"]) && ($_SESSION["issues"]["email"] == "unset")){echo("class = \"loginError\" placeholder = \"Please enter an email\"");} ?>>
 
         <label for="username">Username: <span class="min">(Cannot contain the '@','&' or ' '(space) symbols)</span></label>
-        <input type="text" id="username" name="username" <?php if(isset($_SESSION["issues"]) && ($_SESSION["issues"]["username"] == "unset")){echo("class = \"loginError\" placeholder = \"Please enter a username\"");} ?>>
+        <input type="text" id="username" name="username" <?php if(isset($_SESSION["issues"]) && ($_SESSION["issues"]["username"] == "unset")){echo("class = \"loginError\" placeholder = \"Please enter a username\"");} else if ((isset($_SESSION["issues"])) && (substr($_SESSION["issues"]["username"],0,8) == "Contains")){echo("class = \"loginError\" placeholder = \"Contains Invalid Characters\"");} ?>>
 
         <label for="realname">Real Name:</label>
         <input type="text" id="realname" name="realname" <?php if(isset($_SESSION["issues"]) && ($_SESSION["issues"]["realName"] == "unset")){echo("class = \"loginError\" placeholder = \"Please enter a name\"");} ?>>

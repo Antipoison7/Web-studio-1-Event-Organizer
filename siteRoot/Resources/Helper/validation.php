@@ -55,7 +55,7 @@
         
     }
 
-    function containsAmp($username)
+    function containsAt($username)
     {
         if(strpos($username, '@') === false)
         {
@@ -65,7 +65,30 @@
         {
             return true;
         }
-        
+    }
+
+    function containsAmp($username)
+    {
+        if(strpos($username, '&') === false)
+        {
+            return false;
+        }
+        else
+        {
+            return true;
+        }
+    }
+
+    function containsSpace($username)
+    {
+        if(strpos($username, ' ') === false)
+        {
+            return false;
+        }
+        else
+        {
+            return true;
+        }
     }
 
     //This function returns an array with issues
@@ -119,7 +142,19 @@
     {
         $isValid = true;
 
+        if(containsAt($inputArray["username"]))
+        {
+            $isValid = false;
+            $_SESSION["issues"]["username"] = "Contains At";
+        }
+
         if(containsAmp($inputArray["username"]))
+        {
+            $isValid = false;
+            $_SESSION["issues"]["username"] = "Contains Amp";
+        }
+
+        if(containsSpace($inputArray["username"]))
         {
             $isValid = false;
             $_SESSION["issues"]["username"] = "Contains Amp";
@@ -138,6 +173,11 @@
         }
 
         return $isValid;
+    }
+
+    function isDuplicateEmail($email)
+    {
+
     }
 
     

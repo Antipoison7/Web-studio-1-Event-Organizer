@@ -31,7 +31,6 @@
         $email = $_POST["email"];
         $realname = $_POST["realname"];
 
-        
 
         if(isBlank([$username,$password,$email,$realname]))
         {
@@ -46,10 +45,10 @@
             }
             else
             {
-                registerUser($email, $username, $realname, $password);
+                // registerUser($email, $username, $realname, $password);
                 $redirect = "./index.php";
             }
-            // echo("register set");
+            echo("register set");
         }
         else
         {

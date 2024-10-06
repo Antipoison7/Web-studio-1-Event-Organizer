@@ -42,6 +42,36 @@
         return $errors;
     }
 
+    function encryptPassword($password) //Worthless Class btw
+    {
+        return password_hash($password, PASSWORD_DEFAULT);
+    }
+
+    // function isValidLogin($username, $password)
+    // {
+    //     try
+    //     {
+    //         $db = new PDO("mysql:host=talsprddb02.int.its.rmit.edu.au;dbname=COSC3046_2402_UGRD_1479_G4", "COSC3046_2402_UGRD_1479_G4", "GYS3sfUkzIqA");
+    //         $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+    //         $query = "SELECT * FROM accounts WHERE login_name = :loginName;";
+
+    //         $stmt = $db->prepare($query);
+    //         $stmt->execute();
+
+    //         foreach($stmt as $row)
+    //         {
+    //             echo($row['FirstName'] . " " . $row['LastName'] . " ");
+    //         }
+    //     }
+    //     catch (PDOException $e)
+    //     {
+    //         echo("oh great heavens: " . $e->getMessage());
+    //     }
+
+    //     return password_verify($password, $results["PassHash"]);
+    // }
+
     function dumpDB()
     {
         try
@@ -65,5 +95,28 @@
         }
 
 
+    }
+
+    function registerUser($email, $username, $realName, $password)
+    {
+        try
+        {
+            $db = new PDO("mysql:host=talsprddb02.int.its.rmit.edu.au;dbname=COSC3046_2402_UGRD_1479_G4", "COSC3046_2402_UGRD_1479_G4", "GYS3sfUkzIqA");
+            $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+            $stmt = $db->prepare("INSERT INTO accounts (login_name, email, pass_hash) VALUES (:login, :email, :password);
+                                  INSERT INTO users (username, display_name, real_name) VALUES (:login, :login, :realName);");
+
+            $stmt->bindParam(':login', $username, PDO::PARAM_STR);
+            $stmt->bindParam(':email', $email, PDO::PARAM_STR);
+            $stmt->bindParam(':password', $password, PDO::PARAM_STR);
+            $stmt->bindParam(':realName', $realName, PDO::PARAM_STR);
+
+            $stmt->execute();
+        }
+        catch (PDOException $e)
+        {
+            echo("oh great heavens: " . $e->getMessage());
+        }
     }
 ?>

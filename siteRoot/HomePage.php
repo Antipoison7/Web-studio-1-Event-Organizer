@@ -17,7 +17,7 @@
         $creatorArray = [
           array("name" => "Josip", "pfp" => ""), 
           array("name" => "Declan", "pfp" => "declanPfp.jpg"), 
-          array("name" => "Himanth", "pfp" => "rock.jpeg"), 
+          array("name" => "Himanth", "pfp" => ""), 
           array("name" => "Connor", "pfp" => "connorPfp.jpg")
         ];
         foreach($creatorArray as $x)

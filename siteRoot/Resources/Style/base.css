@@ -3,6 +3,18 @@
     font-family: Arial, Helvetica, sans-serif;
 }
 
+a
+{
+    color: black;
+    text-decoration-color: black;
+}
+
+a:hover
+{
+    color:gray;
+    text-decoration-color: black;
+}
+
 .button
 {
     align-items: center;
@@ -58,8 +70,43 @@
     align-items: center;
     background-color: black;
     border-radius: 10px;
-    border: 3px solid white;
+    border: 3px solid black;
     color: white;
+    cursor: pointer;
+    display: flex;
+    height: 1.5em;
+    justify-content: center;
+    margin: 10px 0px 10px 0px;
+    padding: 0px;
+    width: 6em;
+    font-size:30px;
+    box-sizing: border-box;
+}
+
+.smallButtonInv
+{
+    align-items: center;
+    background-color: black;
+    border-radius: 10px;
+    border: 3px solid black;
+    color: white;
+    display: flex;
+    height: 1.5em;
+    justify-content: center;
+    margin: 10px 0px 10px 0px;
+    padding: 0px;
+    width: 6em;
+    font-size:30px;
+    box-sizing: border-box;
+}
+
+.smallButtonInv:hover
+{
+    align-items: center;
+    background-color: white;
+    border-radius: 10px;
+    border: 3px solid black;
+    color: black;
     cursor: pointer;
     display: flex;
     height: 1.5em;
@@ -84,13 +131,62 @@
     display: flex; 
     flex-direction:column; 
     justify-content:center; 
-    max-width:100vh;
+    max-width: 80%;
     margin:0px auto 0px auto;
+    font-size:x-large;
 }
 
 .login input
 {
     height: 1.5em;
+    font-size: large;
+    margin-bottom: 5px;
+}
+
+.login ul, .login p
+{
+    margin: 0;
+    color: darkslategray;
+}
+
+.loginError
+{
+    border-color: red;
+}
+
+.loginFontError
+{
+    color:red;
+}
+
+.mainHeader
+{
+    display: flex;
+    background-color: white;
+    border: 1px solid white;
+    border-radius: 25px;
+}
+
+.mainHeader h1
+{
+    margin-left: 20px;
+}
+
+.mainHeader div
+{
+    display: flex;
+    margin-left: auto;
+    align-items: center;
+}
+
+.mainHeader a
+{
+    margin: 10px;
+    
+}
+
+.min
+{
     font-size: large;
 }
 
@@ -102,10 +198,24 @@
 
 .footer
 {
-    border-top: 2px solid gray;
-    display: grid;
-    grid-template-columns: auto auto auto auto;
+    
+    display: flex;
+    
+       
+    display: flex;
+    justify-content:center;
+    flex-direction: row;
+    width: 98.8%;
+    padding: 5px;
+    column-gap: 10%;
+    background-color: white;
+    border-top: solid 2px gray;
     margin-top: 30px;
+    /* border-radius: 25px; */
+}
+
+.footer div {
+    width: 20%;
 }
 
 .creatorBox
@@ -113,9 +223,14 @@
     border: 1px solid black;
     display: flex;
     flex-direction: column;
-    height: 20vw;
+    height: auto;
+    width: 20%;
+    
     padding: 10px;
-    width: 20vw;
+    column-gap: 20px;
+    justify-content: center;
+    
+    
 }
 
 .creatorBox div a, .creatorBox div a:visited, .creatorBox a:hover, .creatorBox a:active .creatorBox h2
@@ -132,10 +247,57 @@
 {
     height: 100%;
     width: 100%;
+    
+    
 }
 
 .creatorFlex
 {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
+    padding: 10px;
 }
+.footerItem {
+
+    
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    /*width: 25%;*/
+    align-content:flex-start;
+    
+    padding: 0px;
+    column-gap: 5px;
+    /*justify-content: center;*/
+    font-size: small;
+    justify-content: left;
+    flex: 2 1 auto;
+
+}
+
+.footerItem div {
+
+    align-content: left;
+    display: flex;
+    flex-direction: column;
+    width: fit-content;
+}
+
+.regBlock {
+    display: flex;
+    align-content:space-between;
+    justify-content: space-around;
+    padding: 10px;
+    border: 5px solid black;
+    margin: 100px;
+    border-radius: 25px;
+    background-color: lightblue;
+}
+
+.regBlock div {
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+
+    justify-content: center;
+}
+
+

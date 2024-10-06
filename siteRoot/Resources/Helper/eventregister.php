@@ -4,18 +4,27 @@ $username = "COSC3046_2402_UGRD_1479_G4";
 $password = "GYS3sfUkzIqA";
 $dbname = "COSC3046_2402_UGRD_1479_G4";
 
+
 try {
   $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
   
   $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+        $event_name =  $_REQUEST['eventTitle'];
+        $event_desc = $_REQUEST['eventDescription'];
+        $event_link =  $_REQUEST['eLink'];
+        $event_region = $_REQUEST['eventRegion'];
+        $event_image = $_REQUEST['eimg'];
+
+
   $sql = "INSERT INTO EventList (eventName, eventDescription, priceURL, imageLink, Region)
-  VALUES ()";
+  VALUES ($event_name, $event_desc, $event_link, $event_image, $event_region)";
   
   $conn->exec($sql);
   echo "New record created successfully";
 } catch(PDOException $e) {
   echo $sql . "<br>" . $e->getMessage();
-}
 
-$conn = null;
+  $conn = null;
+}
 ?>

@@ -1,5 +1,6 @@
 <?php
   include_once('./Resources/Helper/headers.php');
+  include_once('./Resources/Helper/eventregister.php');
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -13,7 +14,7 @@
   </head>
   <body style="background-color: lightgray;">
     <?php headerNoLogin("Event Registration") ?>
-      <form class="regBlock">
+      <form class="regBlock" action="./Resources/Helper/eventregister.php" method="post">
         <div>
 
           <label for="etitle">Whats the title of your event?</label><br>
@@ -24,10 +25,17 @@
 
           <label for="eLink">Link to purchase page/website?</label><br>
             <input type="text" id="eLink" name="eLink" placeholder="               https://www.youtube.com/watch?v=dQw4w9WgXcQ?autoplay=1" size="50" maxlength="25"><br><br>
+
+          <label for="eventRegion">Where is your event located?</label><br>
+            <input type="text" id="eventRegion" name="eventRegion" placeholder="Victoria, Australia..." size="50" maxlength="50"><br><br>
+
         
           <label for="eimg">What image would you like displayed? </label><br>
             <input type="file" id="eimg" name="eimg" accept="image/*\" placeholder="Image of Park"><br>
+
+            <input type="submit" value="Submit"> <br>
         </div>
+          
       </form>
     
     <?php

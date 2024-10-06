@@ -1,5 +1,6 @@
 <?php
     include_once('./Resources/Helper/validation.php');
+    include_once('./Resources/Helper/loginHelper.php');
 ?>
 <!DOCTYPE html>
 <?php
@@ -20,6 +21,7 @@
         else
         {
             echo("username and password not set");
+            $redirect = "./login.php";
         }
     }
     else if($type == "Register")
@@ -29,16 +31,36 @@
         $email = $_POST["email"];
         $realname = $_POST["realname"];
 
+        
+
         if(isBlank([$username,$password,$email,$realname]))
         {
-            echo("register set");
+            if(isset($_SESSION["issues"]))
+            {
+                unset($_SESSION["issues"]);
+            }
+
+            if(validateRegister(["username"=>$username,"password"=>$password,"email"=>$email,"realName"=>$realname]) == false)
+            {
+                $redirect = "./register.php";
+            }
+            else
+            {
+                $redirect = "./index.php";
+            }
+            // echo("register set");
         }
         else
         {
-            echo("register not set");
+            $_SESSION["issues"] = registerIsBlank([$username,$password,$email,$realname]);
+            if($_SESSION["issues"]["password"] == "set")
+            {
+                $_SESSION["issues"]["password"] = validatePassword($password);
+            }
+            $redirect = "./register.php";
+            // echo("register not set");
         }
     }
-
 ?>
 
 <html lang="en">
@@ -52,7 +74,7 @@
         <!-- redirectScript() -->
     <body onload=''>
 
-        <p><a href="index.php">Damn, if you see this and it doesn't load, click this. Do not refresh the page.</a></p>
+        <p><a href="<?php echo($redirect); ?>">Damn, if you see this and it doesn't load, click this. Do not refresh the page.</a></p>
         <?php
             echo(var_dump($_POST));
         ?>

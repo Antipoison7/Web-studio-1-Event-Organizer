@@ -154,6 +154,11 @@ a:hover
     border-color: red;
 }
 
+.loginFontError
+{
+    color:red;
+}
+
 .mainHeader
 {
     display: flex;
@@ -202,12 +207,11 @@ a:hover
     flex-direction: row;
     width: 98.8%;
     padding: 5px;
-    
     column-gap: 10%;
     background-color: white;
-    border: 1px solid white;
-    border-radius: 25px;
-    
+    border-top: solid 2px gray;
+    margin-top: 30px;
+    /* border-radius: 25px; */
 }
 
 .footer div {

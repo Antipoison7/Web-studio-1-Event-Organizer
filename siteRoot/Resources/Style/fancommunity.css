@@ -1,0 +1,31 @@
+body {
+    background-color: #f0f0f0; /* Light gray background i guess it looks good hahaha */
+    font-family: Arial, sans-serif; /* Set font family */
+}
+
+h1 {
+    color: #333; /* Dark gray for headers ghostyyyy oooo!!!! */
+    text-align: center; /* Center align the header */
+}
+
+.gallery {
+    display: flex;
+    flex-wrap: wrap; /* Allows the images to wrap to the next line gyg veg warp!!! yummy */
+    justify-content: center; /* Center the images */
+    margin: 20px; /* Margin around the gallery */
+}
+
+.gallery img {
+    width: 150px; /* Set a width for images pretty small huh!!!*/
+    height: auto; /* Maintain aspect ratio social distancing hehe!!*/
+    margin: 10px; /* Spacing between images extra social distancing hehehehe!!*/
+    border-radius: 8px; /* Rounded corners bisuits!!*/
+}
+
+.discussion {
+    padding: 20px;
+    background-color: #fff; /* White background for discussions ofcoure it should be white */
+    border: 1px solid #ccc; /* Light gray border I need to specify the right!!*/
+    border-radius: 8px; /* Rounded corners */
+    margin: 20px; /* Margin around discussion blocks look unique!!*/
+}

@@ -24,10 +24,32 @@
 
     <form method="post" action="./intermediateLogin.php">
       <div class="login">
-        <label for="email">Email:</label>
-        <input type="email" id="email" name="email" <?php if(isset($_SESSION["issues"]) && ($_SESSION["issues"]["email"] == "unset")){echo("class = \"loginError\" placeholder = \"Please enter an email\"");} else if(isset($_SESSION["issues"]) && ($_SESSION["issues"]["email"] == "Email Already In Use")){echo("class = \"loginError\" placeholder = \"Email Already In Use\"");} ?>>
+        <label for="email">Email: <?php 
+        if(isset($_SESSION["issues"])){
+          if(isset($_SESSION["issues"]["email"])){
+            if($_SESSION["issues"]["email"] == "unset"){
+              echo("<span class=\"loginFontError\">Please enter an email</span>");
+              } 
+              else if(isset($_SESSION["issues"]) && ($_SESSION["issues"]["email"] == "Email Already In Use")){
+                echo("<span class=\"loginFontError\">Email Already In Use</span>");
+                }
+                else if(isset($_SESSION["issues"]) && ($_SESSION["issues"]["email"] == "Invalid Email")){
+                  echo("<span class=\"loginFontError\">Invalid Email</span>");
+                }}} ?></label>
+        <input type="email" id="email" name="email" <?php 
+        if(isset($_SESSION["issues"])){  
+          if(isset($_SESSION["issues"]["email"])){
+            if($_SESSION["issues"]["email"] == "unset"){
+            echo("class = \"loginError\" placeholder = \"Please enter an email\"");
+            } 
+            else if(isset($_SESSION["issues"]) && ($_SESSION["issues"]["email"] == "Email Already In Use")){
+              echo("class = \"loginError\" placeholder = \"Email Already In Use\"");
+              }
+            else if(isset($_SESSION["issues"]) && ($_SESSION["issues"]["email"] == "Invalid Email")){
+              echo("class = \"loginError\"");
+            }}} ?>>
 
-        <label for="username">Username: <span class="min">(Cannot contain the '@','&' or ' '(space) symbols)</span></label>
+        <label for="username">Username: <span class="min">(Cannot contain the '@','&' or ' '(space) symbols)</span><?php if(isset($_SESSION["issues"]) && ($_SESSION["issues"]["username"] == "unset")){echo("<span class=\"loginFontError\">Please enter a username</span>");} ?></label>
         <input type="text" id="username" name="username" <?php if(isset($_SESSION["issues"]) && ($_SESSION["issues"]["username"] == "unset")){echo("class = \"loginError\" placeholder = \"Please enter a username\"");} else if ((isset($_SESSION["issues"])) && (substr($_SESSION["issues"]["username"],0,8) == "Contains")){echo("class = \"loginError\" placeholder = \"Contains Invalid Characters\"");} ?>>
 
         <label for="realname">Real Name:</label>

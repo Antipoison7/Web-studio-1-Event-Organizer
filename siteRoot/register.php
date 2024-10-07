@@ -25,59 +25,98 @@
     <form method="post" action="./intermediateLogin.php">
       <div class="login">
         <label for="email">Email: <?php 
-        if(isset($_SESSION["issues"])){
-          if(isset($_SESSION["issues"]["email"])){
+          if(isset($_SESSION["issues"])){
+            if(isset($_SESSION["issues"]["email"])){
             if($_SESSION["issues"]["email"] == "unset"){
               echo("<span class=\"loginFontError\">Please enter an email</span>");
               } 
-              else if(isset($_SESSION["issues"]) && ($_SESSION["issues"]["email"] == "Email Already In Use")){
+            else if(isset($_SESSION["issues"]) && ($_SESSION["issues"]["email"] == "Email Already In Use")){
                 echo("<span class=\"loginFontError\">Email Already In Use</span>");
                 }
-                else if(isset($_SESSION["issues"]) && ($_SESSION["issues"]["email"] == "Invalid Email")){
+            else if(isset($_SESSION["issues"]) && ($_SESSION["issues"]["email"] == "Invalid Email")){
                   echo("<span class=\"loginFontError\">Invalid Email</span>");
                 }}} ?></label>
         <input type="email" id="email" name="email" <?php 
-        if(isset($_SESSION["issues"])){  
+        if(isset($_SESSION["issues"])){
           if(isset($_SESSION["issues"]["email"])){
             if($_SESSION["issues"]["email"] == "unset"){
-            echo("class = \"loginError\" placeholder = \"Please enter an email\"");
+            echo("class = \"loginError\"");
             } 
             else if(isset($_SESSION["issues"]) && ($_SESSION["issues"]["email"] == "Email Already In Use")){
-              echo("class = \"loginError\" placeholder = \"Email Already In Use\"");
+              echo("class = \"loginError\"");
               }
             else if(isset($_SESSION["issues"]) && ($_SESSION["issues"]["email"] == "Invalid Email")){
               echo("class = \"loginError\"");
             }}} ?>>
 
-        <label for="username">Username: <span class="min">(Cannot contain the '@','&' or ' '(space) symbols)</span><?php if(isset($_SESSION["issues"]) && ($_SESSION["issues"]["username"] == "unset")){echo("<span class=\"loginFontError\">Please enter a username</span>");} ?></label>
-        <input type="text" id="username" name="username" <?php if(isset($_SESSION["issues"]) && ($_SESSION["issues"]["username"] == "unset")){echo("class = \"loginError\" placeholder = \"Please enter a username\"");} else if ((isset($_SESSION["issues"])) && (substr($_SESSION["issues"]["username"],0,8) == "Contains")){echo("class = \"loginError\" placeholder = \"Contains Invalid Characters\"");} ?>>
+        <label for="username">Username: <span class="min <?php if ((isset($_SESSION["issues"])) && (substr($_SESSION["issues"]["username"],0,8) == "Contains")){echo("loginFontError");} ?>">(Cannot contain the '@','&' or ' '(space) symbols)</span><?php 
+        if(isset($_SESSION["issues"])){
+          if(isset($_SESSION["issues"]["username"])){
+          if($_SESSION["issues"]["username"] == "unset"){
+          echo("<span class=\"loginFontError\"> Please enter a username</span>");
+          }}} ?></label>
+        <input type="text" id="username" name="username" <?php if(isset($_SESSION["issues"]) && ($_SESSION["issues"]["username"] == "unset")){echo("class = \"loginError\"");} else if ((isset($_SESSION["issues"])) && (substr($_SESSION["issues"]["username"],0,8) == "Contains")){echo("class = \"loginError\"");} ?>>
 
-        <label for="realname">Real Name:</label>
-        <input type="text" id="realname" name="realname" <?php if(isset($_SESSION["issues"]) && ($_SESSION["issues"]["realName"] == "unset")){echo("class = \"loginError\" placeholder = \"Please enter a name\"");} ?>>
+        <label for="realname">Real Name: <?php 
+          if(isset($_SESSION["issues"])){
+            if(isset($_SESSION["issues"]["realName"])){
+          if($_SESSION["issues"]["realName"] == "unset"){
+            echo("<span class=\"loginFontError\"> Please enter a name</span>");
+          }}} ?></label>
+        <input type="text" id="realname" name="realname" <?php 
+        if(isset($_SESSION["issues"])){
+          if(isset($_SESSION["issues"]["realName"])){
+          if($_SESSION["issues"]["realName"] == "unset"){
+            echo("class = \"loginError\"");
+          }}} ?>>
 
-        <label for="password">Password:</label>
-        <input type="password" id="password" name="password" <?php if(isset($_SESSION["issues"]) && (isset($_SESSION["issues"]["password"]))){echo("class = \"loginError\" placeholder = \"Please enter a password\"");} ?>>
+        <label for="password">Password: <?php 
+          if(isset($_SESSION["issues"])){
+            if(isset($_SESSION["issues"]["password"])){
+          if(gettype($_SESSION["issues"]["password"]) == "string"){
+          echo("<span class=\"loginFontError\">Please enter a password</span>");
+            }
+          else
+          {
+          echo("<span class=\"loginFontError\">Invalid Password</span>");
+          }
+          }} ?></label>
+        <input type="password" id="password" name="password" <?php 
+          if(isset($_SESSION["issues"])){
+            if(isset($_SESSION["issues"]["password"])){
+          if(gettype($_SESSION["issues"]["password"]) == "string"){
+          echo("class = \"loginError\"");
+            }
+          else
+          {
+          echo("class = \"loginError\"");
+          }
+          }} ?>>
 
         <!-- Sets the value passed to the intermediate to Register -->
         <input type="text" id="hiddenType" name="hiddenType" value="Register" hidden>
 
         <p>Passwords should be:</p>
         <ul>
-          <li <?php if(isset($_SESSION["issues"]) && (isset($_SESSION["issues"]["password"]["length"]))){echo("class = \"loginFontError\"");}?>>At least 8 characters in length</li>
-          <li <?php if(isset($_SESSION["issues"]) && (isset($_SESSION["issues"]["password"]["upper"]))){echo("class = \"loginFontError\"");}?>>Contains at least one uppercase Letter</li>
-          <li <?php if(isset($_SESSION["issues"]) && (isset($_SESSION["issues"]["password"]["lower"]))){echo("class = \"loginFontError\"");}?>>Contains at least one lowercase Letter</li>
-          <li <?php if(isset($_SESSION["issues"]) && (isset($_SESSION["issues"]["password"]["symbol"]))){echo("class = \"loginFontError\"");}?>>Contains at least one symbol (!@#$%^&*)</li>
+          <li <?php if(isset($_SESSION["issues"]) && (isset($_SESSION["issues"]["password"]["length"]))){echo("class = \"loginFontErrorColor\"");}?>>At least 8 characters in length</li>
+          <li <?php if(isset($_SESSION["issues"]) && (isset($_SESSION["issues"]["password"]["upper"]))){echo("class = \"loginFontErrorColor\"");}?>>Contains at least one uppercase Letter</li>
+          <li <?php if(isset($_SESSION["issues"]) && (isset($_SESSION["issues"]["password"]["lower"]))){echo("class = \"loginFontErrorColor\"");}?>>Contains at least one lowercase Letter</li>
+          <li <?php if(isset($_SESSION["issues"]) && (isset($_SESSION["issues"]["password"]["symbol"]))){echo("class = \"loginFontErrorColor\"");}?>>Contains at least one symbol (!@#$%^&*)</li>
         </ul>
 
         <div class="flex">
           <button type="submit" class="smallButton" style="margin-right: 5px;">Register</button>          
         </div>
+        <?php echo(var_dump($_SESSION)); 
+              echo("<br>");
+        ?>
       </div>
     </form>
 
     <?php
       // echo(var_dump($_SESSION["issues"]));
     ?>
-    <?php makeFooter(); ?>
+    <?php makeFooter(); 
+    unset($_SESSION["issues"]);?>
   </body>
 </html>

@@ -160,6 +160,11 @@ a:hover
     font-size: medium;
 }
 
+.loginFontErrorColor
+{
+    color:red;
+}
+
 .mainHeader
 {
     display: flex;

@@ -36,7 +36,7 @@
         {
             if(isset($_SESSION["issues"]))
             {
-                unset($_SESSION["issues"]);
+                unset($_SESSION["issues"]); // If issues have not been cleared in register, clear them
             }
 
             if(validateRegister(["username"=>$username,"password"=>$password,"email"=>$email,"realName"=>$realname]) == false)

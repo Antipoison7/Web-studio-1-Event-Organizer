@@ -45,14 +45,16 @@
               }
             else if(isset($_SESSION["issues"]) && ($_SESSION["issues"]["email"] == "Invalid Email")){
               echo("class = \"loginError\"");
-            }} ?>>
+            }} 
+            
+            if(isset($_SESSION["registryDetails"]["email"])){echo("value = \"" . $_SESSION["registryDetails"]["email"] . "\"");}?>>
 
         <label for="username">Username: <span class="min <?php if ((isset($_SESSION["issues"])) && (substr($_SESSION["issues"]["username"],0,8) == "Contains")){echo("loginFontError");} ?>">(Cannot contain the '@','&' or ' '(space) symbols)</span><?php 
           if(isset($_SESSION["issues"]["username"])){
           if($_SESSION["issues"]["username"] == "unset"){
           echo("<span class=\"loginFontError\"> Please enter a username</span>");
           }} ?></label>
-        <input type="text" id="username" name="username" <?php if(isset($_SESSION["issues"]) && ($_SESSION["issues"]["username"] == "unset")){echo("class = \"loginError\"");} else if ((isset($_SESSION["issues"])) && (substr($_SESSION["issues"]["username"],0,8) == "Contains")){echo("class = \"loginError\"");} ?>>
+        <input type="text" id="username" name="username" <?php if(isset($_SESSION["issues"]) && ($_SESSION["issues"]["username"] == "unset")){echo("class = \"loginError\"");} else if ((isset($_SESSION["issues"])) && (substr($_SESSION["issues"]["username"],0,8) == "Contains")){echo("class = \"loginError\"");} if(isset($_SESSION["registryDetails"]["username"])){echo("value = \"" . $_SESSION["registryDetails"]["username"] . "\"");} ?>>
 
         <label for="realname">Real Name: <?php 
             if(isset($_SESSION["issues"]["realName"])){
@@ -63,7 +65,9 @@
           if(isset($_SESSION["issues"]["realName"])){
           if($_SESSION["issues"]["realName"] == "unset"){
             echo("class = \"loginError\"");
-          }} ?>>
+          }} 
+          
+          if(isset($_SESSION["registryDetails"]["realname"])){echo("value = \"" . $_SESSION["registryDetails"]["realname"] . "\"");}?>>
 
         <label for="password">Password: <?php 
             if(isset($_SESSION["issues"]["password"])){
@@ -84,7 +88,9 @@
           {
           echo("class = \"loginError\"");
           }
-          } ?>>
+          } 
+          
+          if(isset($_SESSION["registryDetails"]["password"])){echo("value = \"" . $_SESSION["registryDetails"]["password"] . "\"");}?>>
 
         <!-- Sets the value passed to the intermediate to Register -->
         <input type="text" id="hiddenType" name="hiddenType" value="Register" hidden>
@@ -100,9 +106,6 @@
         <div class="flex">
           <button type="submit" class="smallButton" style="margin-right: 5px;">Register</button>          
         </div>
-        <?php echo(var_dump($_SESSION)); 
-              echo("<br>");
-        ?>
       </div>
     </form>
 
@@ -110,6 +113,7 @@
       // echo(var_dump($_SESSION["issues"]));
     ?>
     <?php makeFooter(); 
-    unset($_SESSION["issues"]);?>
+    unset($_SESSION["issues"]);
+    unset($_SESSION["registryDetails"]);?>
   </body>
 </html>

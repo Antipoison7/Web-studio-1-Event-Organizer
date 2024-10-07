@@ -31,6 +31,11 @@
         $email = $_POST["email"];
         $realname = $_POST["realname"];
 
+        $_SESSION["registryDetails"]["username"] = $username;
+        $_SESSION["registryDetails"]["password"] = $password;
+        $_SESSION["registryDetails"]["email"] = $email;
+        $_SESSION["registryDetails"]["realname"] = $realname;
+
 
         if(isBlank([$username,$password,$email,$realname]))
         {
@@ -45,15 +50,19 @@
             }
             else
             {
-                isDuplicateEmail($email);
                 // registerUser($email, $username, $realname, $password);
+                unset($_SESSION["registryDetails"]);
+                $_SESSION["loginDetails"]["username"] = $username;
+                $_SESSION["loginDetails"]["password"] = $password;
+
                 $redirect = "./index.php";
             }
-            echo("register set");
+            // echo("register set");
         }
         else
         {
             $_SESSION["issues"] = registerIsBlank([$username,$password,$email,$realname]);
+            validateRegister(["username"=>$username,"password"=>$password,"email"=>$email,"realName"=>$realname]);
             if($_SESSION["issues"]["password"] == "set")
             {
                 $_SESSION["issues"]["password"] = validatePassword($password);

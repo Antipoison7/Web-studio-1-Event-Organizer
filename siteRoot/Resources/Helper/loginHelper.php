@@ -47,30 +47,54 @@
         return password_hash($password, PASSWORD_DEFAULT);
     }
 
-    // function isValidLogin($username, $password)
-    // {
-    //     try
-    //     {
-    //         $db = new PDO("mysql:host=talsprddb02.int.its.rmit.edu.au;dbname=COSC3046_2402_UGRD_1479_G4", "COSC3046_2402_UGRD_1479_G4", "GYS3sfUkzIqA");
-    //         $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    function isValidLogin($username, $password)
+    {
+        try
+        {
+            $db = new PDO("mysql:host=talsprddb02.int.its.rmit.edu.au;dbname=COSC3046_2402_UGRD_1479_G4", "COSC3046_2402_UGRD_1479_G4", "GYS3sfUkzIqA");
+            $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-    //         $query = "SELECT * FROM accounts WHERE login_name = :loginName;";
+            $type = "username";
 
-    //         $stmt = $db->prepare($query);
-    //         $stmt->execute();
+            if(strpos($username, '@') !== false)
+            {
+                $type = "email";
+            }
 
-    //         foreach($stmt as $row)
-    //         {
-    //             echo($row['FirstName'] . " " . $row['LastName'] . " ");
-    //         }
-    //     }
-    //     catch (PDOException $e)
-    //     {
-    //         echo("oh great heavens: " . $e->getMessage());
-    //     }
+            if($type == "username")
+            {
+                $stmt = $db->prepare("SELECT pass_hash FROM accounts WHERE login_name = :name;");
+            }
+            else if($type == "email")
+            {
+                $stmt = $db->prepare("SELECT pass_hash FROM accounts WHERE email = :name;");
+            }
 
-    //     return password_verify($password, $results["PassHash"]);
-    // }
+            $stmt->bindParam(':name', $username, PDO::PARAM_STR);
+
+            $stmt->execute();
+
+            // echo(var_dump($stmt->fetchColumn()));
+
+            $passVal = $stmt->fetchColumn();
+
+            if($passVal != false)
+            {
+                return password_verify($password, $passVal);
+            }
+            else
+            {
+                return false;
+            }
+
+            
+
+        }
+        catch (PDOException $e)
+        {
+            echo("oh great heavens: " . $e->getMessage());
+        }
+    }
 
     function dumpDB()
     {

@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Event Organizer</title>
+    <title>Privacy Policy</title>
     
     
     <?php createMeta() ?>
@@ -12,7 +12,7 @@
     <link rel="icon" type="image/x-icon" href="./Resources/Images/Resources/favicon.png">
   </head>
   <body>
-    <?php headerNoLogin("Meet the Creators") ?>
+    <?php headerNoLogin("Privacy Policy") ?>
     <div class="creatorFlex">
       <?php
         $creatorArray = [

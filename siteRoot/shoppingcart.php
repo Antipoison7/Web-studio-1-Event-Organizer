@@ -5,7 +5,7 @@ session_start();
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <?php createMeta() ?>
+    <meta charset="UTF-8">
     <link rel="stylesheet" href="./Resources/Style/base.css">
     <title>Shopping Cart</title>
 

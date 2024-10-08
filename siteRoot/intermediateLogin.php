@@ -92,22 +92,22 @@
                <title>Please Dont Break</title>
 
 
-        <!-- <meta http-equiv='refresh' content='5'; url ='index.php'/> -->
+        <meta http-equiv='refresh' content='5'; url ='<?php echo($redirect)?>'/>
         </head>
 
-        <!-- redirectScript() -->
-    <body onload=''>
+        
+    <body onload='redirectScript()'>
 
         <p><a href="<?php echo($redirect); ?>">Damn, if you see this and it doesn't load, click this. Do not refresh the page.</a></p>
             <script>
-                // function redirectScript()
-                // {
-                //     sleep(1000);
-                //     window.location.replace("index.php");
-                // }
-                // function sleep(ms) {
-                //     return new Promise(resolve => setTimeout(resolve, ms));
-                // }
+                function redirectScript()
+                {
+                    sleep(1000);
+                    window.location.replace("<?php echo($redirect)?>");
+                }
+                function sleep(ms) {
+                    return new Promise(resolve => setTimeout(resolve, ms));
+                }
             </script>
 
     </body>

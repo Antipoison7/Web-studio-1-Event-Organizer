@@ -23,8 +23,8 @@
           <label for="eventDescription">Whats your event about?</label><br>
             <input type="text" id="eventDescription" name="eventDescription" placeholder="Come spend a day in the park etc." size="50" maxlength="250"><br><br>
 
-          <label for="eLink">Link to purchase page/website?</label><br>
-            <input type="text" id="eLink" name="eLink" placeholder="               https://www.youtube.com/watch?v=dQw4w9WgXcQ?autoplay=1" size="50" maxlength="25"><br><br>
+          <label for="eLink">Price of ticket</label><br>
+            <input type="text" id="priceCost" name="priceCost" placeholder="80.00 Dont include $ Symbols" size="50" maxlength="50"><br><br>
 
           <label for="eventRegion">Where is your event located?</label><br>
             <input type="text" id="eventRegion" name="eventRegion" placeholder="Victoria, Australia..." size="50" maxlength="50"><br><br>

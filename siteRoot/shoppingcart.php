@@ -8,19 +8,16 @@ include_once('./Resources/Helper/headers.php');
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="./Resources/Style/base.css">
+    <link rel="icon" type="image/x-icon" href="./Resources/Images/Resources/favicon.png">
     <title>Shopping Cart</title>
 
 </head>
 <body>
-    <header>
-        <h1>Shopping Cart</h1>
-    </header>
+    <?php headerNoLogin("Shopping Cart"); ?>
     
     <main>
     </main>
 
-    <footer>
-        <div>Footer Content</div>
-    </footer>
+    <?php makeFooter(); ?>
 </body>
 </html>

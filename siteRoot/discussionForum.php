@@ -14,9 +14,9 @@
   </head>
   <body>
     <?php headerNoLogin("Discussion Board") ?>
-    <div class="discussionBoard">
+    
     <?php
-        echo "<table style='border: solid 1px black;'>";
+        echo "<div class='discussionBoard'>";
         echo "<tr><th>Id</th><th>Firstname</th><th>Lastname</th></tr>";
 
         class TableRows extends RecursiveIteratorIterator {
@@ -25,15 +25,15 @@
           }
 
         function current() {
-            return "<td style='width:150px;border:1px solid black;'>" . parent::current(). "</td>";
+            return "<div class='DiscussionPost'>" . parent::current(). "</div>";
         }
 
         function beginChildren() {
-            echo "<tr>";
+            echo "<br>";
         }
 
         function endChildren() {
-            echo "</tr>" . "\n";
+            echo "<br>" . "\n";
         }
         }
 
@@ -45,7 +45,7 @@
         try {
         $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $stmt = $conn->prepare("SELECT id, firstname, lastname FROM MyGuests");
+        $stmt = $conn->prepare("SELECT eventName, eventDesc, priceURL, imageLink, Region FROM EventList");
         $stmt->execute();
 
         // set the resulting array to associative
@@ -57,7 +57,7 @@
         echo "Error: " . $e->getMessage();
         }
         $conn = null;
-        echo "</table>";
+        echo "</div>";
         ?>
 
 

@@ -31,12 +31,17 @@
         $email = $_POST["email"];
         $realname = $_POST["realname"];
 
+        $_SESSION["registryDetails"]["username"] = $username;
+        $_SESSION["registryDetails"]["password"] = $password;
+        $_SESSION["registryDetails"]["email"] = $email;
+        $_SESSION["registryDetails"]["realname"] = $realname;
+
 
         if(isBlank([$username,$password,$email,$realname]))
         {
             if(isset($_SESSION["issues"]))
             {
-                unset($_SESSION["issues"]);
+                unset($_SESSION["issues"]); // If issues have not been cleared in register, clear them
             }
 
             if(validateRegister(["username"=>$username,"password"=>$password,"email"=>$email,"realName"=>$realname]) == false)
@@ -46,13 +51,18 @@
             else
             {
                 // registerUser($email, $username, $realname, $password);
+                unset($_SESSION["registryDetails"]);
+                $_SESSION["loginDetails"]["username"] = $username;
+                $_SESSION["loginDetails"]["password"] = $password;
+
                 $redirect = "./index.php";
             }
-            echo("register set");
+            // echo("register set");
         }
         else
         {
             $_SESSION["issues"] = registerIsBlank([$username,$password,$email,$realname]);
+            validateRegister(["username"=>$username,"password"=>$password,"email"=>$email,"realName"=>$realname]);
             if($_SESSION["issues"]["password"] == "set")
             {
                 $_SESSION["issues"]["password"] = validatePassword($password);
@@ -69,7 +79,6 @@
 
 
         <!-- <meta http-equiv='refresh' content='5'; url ='index.php'/> -->
-        <?php createMeta() ?>
         </head>
 
         <!-- redirectScript() -->

@@ -14,7 +14,7 @@ include('/home/sh8/S4055688/public_html/web-studio-project-group_01_wps_2024/sit
     <title>Fan Community</title>
 </head>
 <body>
-
+    <!-- If this causes a merge error, you need to pull more often -->
     <header>
         <h1>Welcome to the Fan Community!</h1>
         <nav>

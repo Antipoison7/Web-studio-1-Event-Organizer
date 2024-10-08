@@ -157,6 +157,12 @@ a:hover
 .loginFontError
 {
     color:red;
+    font-size: medium;
+}
+
+.loginFontErrorColor
+{
+    color:red;
 }
 
 .mainHeader

@@ -328,4 +328,13 @@ a:hover
     background-color: lightblue;
 }
 
+.cartIcon {
+    display: inline-block;
+    padding: 5px;
+    border-radius: 5px;
+    transition: background-color 0.2s;
+}
 
+.cartIcon:hover {
+    background-color: #c5c3c3;
+}

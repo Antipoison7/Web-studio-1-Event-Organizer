@@ -14,9 +14,6 @@ include_once('./Resources/Helper/headers.php');
 </head>
 <body>
     <?php headerNoLogin("Shopping Cart"); ?>
-    <header>
-        <h1>Shopping Cart</h1>
-    </header>
     
     <main>
     </main>

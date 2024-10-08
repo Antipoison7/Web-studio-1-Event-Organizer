@@ -5,9 +5,10 @@ session_start();
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <?php createMeta() ?>
+    <link rel="stylesheet" href="./Resources/Style/base.css">
     <title>Shopping Cart</title>
+
 </head>
 <body>
     <header>

@@ -315,10 +315,12 @@ a:hover
     margin: 100px;
     border-radius: 25px;
     background-color: lightblue;
+    flex-direction:column;
+    flex: 0 1 calc(20% - 8px);
 }
 
 .DiscussionPost {
-    display: flex;
+    flex: 0 1 calc(20% - 8px);
     align-content:space-between;
     justify-content: space-around;
     padding: 10px;
@@ -326,6 +328,7 @@ a:hover
     margin: 100px;
     border-radius: 25px;
     background-color: lightblue;
+    
 }
 
 

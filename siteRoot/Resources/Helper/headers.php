@@ -36,7 +36,7 @@
                 <div class=\"footerItem\">
                     <div>
                         <h1>Forum Links</h1>
-                        <a href=\"./\"><h2>Home</h2></a>
+                        <a href=\./Discussion_Forum.php\"><h2>Home</h2></a>
                         <a href=\"./\"><h2>About Us</h2></a>
                     </div>
                     <div>

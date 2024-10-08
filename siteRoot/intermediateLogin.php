@@ -17,6 +17,29 @@
         if(isBlank([$username,$password]))
         {
             echo("username and password set");
+            // echo(var_dump(isValidLogin($username, $password, "username")));
+
+            $checkingName = "username";
+
+            if(strpos($username, '@') !== false)
+            {
+                $checkingname = "email";
+            }
+
+            if(isValidLogin($username, $password, "username"))
+            {
+                echo($username . " " . $password);
+                $_SESSION["loginDetails"]["username"] = $username;
+                $_SESSION["loginDetails"]["password"] = $password;
+                $redirect = "./HomePage.php";
+                
+            }
+            else
+            {
+                echo(isValidLogin($username, $password, "username"));
+                echo("invalid login / password");
+                $redirect = "./login.php";
+            }
         }
         else
         {
@@ -50,12 +73,12 @@
             }
             else
             {
-                // registerUser($email, $username, $realname, $password);
+                registerUser($email, $username, $realname, $password);
                 unset($_SESSION["registryDetails"]);
                 $_SESSION["loginDetails"]["username"] = $username;
                 $_SESSION["loginDetails"]["password"] = $password;
 
-                $redirect = "./index.php";
+                $redirect = "./HomePage.php";
             }
             // echo("register set");
         }

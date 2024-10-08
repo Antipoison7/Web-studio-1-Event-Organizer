@@ -12,7 +12,7 @@
     <link rel="icon" type="image/x-icon" href="./Resources/Images/Resources/favicon.png">
   </head>
   <body>
-    <?php headerNoLogin("Meet the Creators") ?>
+    <?php headerNoLogin("Home Page User Logged In") ?>
     <div class="creatorFlex">
       <?php
         $creatorArray = [

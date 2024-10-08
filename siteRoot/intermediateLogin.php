@@ -9,7 +9,7 @@
 
     $redirect = "./index.php";
 
-    if($type == "Login")
+    if($type == "Login") //Login Checking
     {
         $username = $_POST["username"];
         $password = $_POST["password"];
@@ -19,16 +19,8 @@
             echo("username and password set");
             // echo(var_dump(isValidLogin($username, $password, "username")));
 
-            $checkingName = "username";
-
-            if(strpos($username, '@') !== false)
+            if(isValidLogin($username, $password))
             {
-                $checkingname = "email";
-            }
-
-            if(isValidLogin($username, $password, "username"))
-            {
-                echo($username . " " . $password);
                 $_SESSION["loginDetails"]["username"] = $username;
                 $_SESSION["loginDetails"]["password"] = $password;
                 $redirect = "./HomePage.php";
@@ -36,7 +28,6 @@
             }
             else
             {
-                echo(isValidLogin($username, $password, "username"));
                 echo("invalid login / password");
                 $redirect = "./login.php";
             }
@@ -47,7 +38,7 @@
             $redirect = "./login.php";
         }
     }
-    else if($type == "Register")
+    else if($type == "Register") //Registry Checking
     {
         $username = $_POST["username"];
         $password = $_POST["password"];
@@ -108,9 +99,6 @@
     <body onload=''>
 
         <p><a href="<?php echo($redirect); ?>">Damn, if you see this and it doesn't load, click this. Do not refresh the page.</a></p>
-        <?php
-            echo(var_dump($_POST));
-        ?>
             <script>
                 // function redirectScript()
                 // {

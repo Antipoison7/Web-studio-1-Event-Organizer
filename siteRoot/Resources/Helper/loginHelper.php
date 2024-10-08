@@ -47,27 +47,34 @@
         return password_hash($password, PASSWORD_DEFAULT);
     }
 
-    function isValidLogin($username, $password, $type)
+    function isValidLogin($username, $password)
     {
         try
         {
             $db = new PDO("mysql:host=talsprddb02.int.its.rmit.edu.au;dbname=COSC3046_2402_UGRD_1479_G4", "COSC3046_2402_UGRD_1479_G4", "GYS3sfUkzIqA");
             $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
+            $type = "username";
+
+            if(strpos($username, '@') !== false)
+            {
+                $type = "email";
+            }
+
             if($type == "username")
             {
-                $stmt = $db->prepare("SELECT pass_hash FROM accounts WHERE login_name = :name");
+                $stmt = $db->prepare("SELECT pass_hash FROM accounts WHERE login_name = :name;");
             }
             else if($type == "email")
             {
-                $stmt = $db->prepare("SELECT pass_hash FROM accounts WHERE email = :name");
+                $stmt = $db->prepare("SELECT pass_hash FROM accounts WHERE email = :name;");
             }
 
             $stmt->bindParam(':name', $username, PDO::PARAM_STR);
 
             $stmt->execute();
 
-            echo(var_dump($stmt->fetchColumn()));
+            // echo(var_dump($stmt->fetchColumn()));
 
             $passVal = $stmt->fetchColumn();
 
@@ -87,7 +94,6 @@
         {
             echo("oh great heavens: " . $e->getMessage());
         }
-
     }
 
     function dumpDB()

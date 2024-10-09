@@ -15,6 +15,17 @@ a:hover
     text-decoration-color: black;
 }
 
+.crunch
+{
+    margin: 0;
+    padding: 0;
+}
+
+.uncrunch
+{
+    padding: 0px 8px 0px 8px;
+}
+
 .button
 {
     align-items: center;
@@ -211,7 +222,6 @@ a:hover
     display: flex;
     justify-content:center;
     flex-direction: row;
-    width: 98.8%;
     padding: 5px;
     column-gap: 10%;
     background-color: white;
@@ -374,7 +384,7 @@ a:hover
     url(../Images/Resources/Headers/AdobeStock_Jogging_One.jpeg);
     background-position: 50% 15%;
     background-size: cover;
-    margin: -8px -8px 30px -8px;
+    margin: 0px 0px 30px 0px;
     padding: 30px 8px 30px 8px;
 
 
@@ -386,4 +396,12 @@ a:hover
 .profileHeader h1
 {
     text-shadow: -2px 0 2px white, 0 2px 2px white, 2px 0 2px white, 0 -2px 2px white;
+}
+
+.split
+{
+    width: inherit;
+    height: 2px;
+    background-color: gray;
+    margin: 10px 0px 10px 0px
 }

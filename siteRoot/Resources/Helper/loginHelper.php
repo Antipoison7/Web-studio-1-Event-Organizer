@@ -145,4 +145,12 @@
             echo("oh great heavens: " . $e->getMessage());
         }
     }
+
+    function failedLogin()
+    {
+        echo("<div class=\"failedLogin\">
+      <h1>You need to be logged in to use this page</h2>
+      <h2><a href=\"./login.php\">Please log in here and try again</a></h2>
+    </div>");
+    }
 ?>

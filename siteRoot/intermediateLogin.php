@@ -29,12 +29,14 @@
             else
             {
                 echo("invalid login / password");
+                $_SESSION["loginDetails"]["username"] = $username;
                 $redirect = "./login.php";
             }
         }
         else
         {
             echo("username and password not set");
+            $_SESSION["loginDetails"]["username"] = $username;
             $redirect = "./login.php";
         }
     }

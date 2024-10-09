@@ -341,3 +341,24 @@ a:hover
 .cartIcon:hover {
     background-color: #c5c3c3;
 }
+
+.profileHeader
+{
+    
+    background-image:linear-gradient(rgba(255, 255, 255, 0.558),rgba(255, 255, 255, 0.558)),
+    url(../Images/Resources/Headers/AdobeStock_Jogging_One.jpeg);
+    background-position: 50% 15%;
+    background-size: cover;
+    margin: -8px -8px 30px -8px;
+    padding: 30px 8px 30px 8px;
+
+
+    border-bottom: 2px solid gray;
+    display: flex;
+    justify-content: space-between;
+}
+
+.profileHeader h1
+{
+    text-shadow: -2px 0 2px white, 0 2px 2px white, 2px 0 2px white, 0 -2px 2px white;
+}

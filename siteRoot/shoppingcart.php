@@ -14,6 +14,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Shopping Cart</title>
     <link rel="stylesheet" href="./Resources/Style/shoppingcart.css">
+    <link rel="stylesheet" href="./Resources/Style/base.css">
 </head>
 <body>
     

@@ -17,6 +17,11 @@
       <br>
       <img id="WebsiteBanner" src="./Resources/Images/Resources/Website banner_Final.jpg" alt="WebsiteBanner" width=100%>
     </div>
+    <div class="HomePageFlex">
+      <a href="./register.php"><div class="smallButtonInv">Register</div></a>
+      <a href="./eventRegistration.php"><div class="smallButtonHomePage">Create Event</div></a>
+
+    </div>
     <?php
       makeFooter();
     ?>

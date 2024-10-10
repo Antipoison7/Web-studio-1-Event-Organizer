@@ -57,7 +57,10 @@
 
         <div class="cart-summary">
             <h2>Total: <span id="cart-total">$<?= $total ?></span></h2>
-            <button class="checkout-btn">Checkout</button>
+            <a href="checkout.php" class="checkout-btn">
+                <button class="btn checkout">Checkout</button>
+            </a>
+
         </div>
     </div>
 

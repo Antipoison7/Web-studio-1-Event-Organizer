@@ -1,5 +1,11 @@
 <?php
   include_once('./Resources/Helper/headers.php');
+
+  $cartItems = [
+    ['title' => 'Soccer Game 7v7', 'price' => 0, 'img' => './Resources/Images/soccer.jpg', 'date' => '26/11/2024'],
+    ['title' => 'Tennis Tournament', 'price' => 20, 'img' => './Resources/Images/tennis.jpg', 'date' => '20/12 - 22/12']
+];
+
 ?>
 <!DOCTYPE html>
 <html lang="en">

@@ -16,6 +16,16 @@ include_once('./Resources/Helper/headers.php');
     <?php headerNoLogin("Checkout"); ?>
     
     <main>
+    <?php
+    if (isset($_POST['totalAmount'])) {
+    $totalAmount = $_POST['totalAmount'];
+    echo "Total Amount: $" . htmlspecialchars($totalAmount);
+        } else {
+    echo "No total amount found!";
+    }
+?>
+
+
     </main>
 
 

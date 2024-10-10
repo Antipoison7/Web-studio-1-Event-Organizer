@@ -61,7 +61,7 @@
                 <div class=\"mainHeader\">
                     <h1>$title</h1>
                     <div>
-                        <a href=\"./login.php\"><div class=\"smallButton\">Login</div></a>
+                        <a href=\"./login.php\"><div class=\"smallButtonInv\">Login</div></a>
                         <a href=\"./register.php\"><div class=\"smallButtonInv\">Register</div></a>
                         <a href=\"./shoppingcart.php\" class=\"cartIcon\"><img src=\"./Resources/Images/Resources/shoppingCart.svg\" alt=\"Your Cart\" style=\"height:3em\"></a></div>
                     </div>

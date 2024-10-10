@@ -55,7 +55,30 @@
         </div>
     </div>
 
-    <!-- Footer -->
+    
     <?php makeFooter(); ?>
+    
+ <!-- JavaScript for Quantity and Total Update -->
+ <script>
+        function updateTotal(index, price) {
+            var quantity = document.getElementById('quantity' + index).value;
+            var itemTotal = quantity * price;
+            document.getElementById('item-total' + index).textContent = '$' + itemTotal;
 
+            // Update the cart total
+            var cartTotal = 0;
+            var items = document.querySelectorAll('.item-total');
+            items.forEach(function(item) {
+                cartTotal += parseFloat(item.textContent.replace('$', ''));
+            });
+            document.getElementById('cart-total').textContent = '$' + cartTotal;
+        }
+
+        function removeItem(index) {
+            document.querySelectorAll('.cart-item')[index].remove();
+            updateTotal(0, 0); // Recalculate total after item removal
+        }
+    </script>
+</body>
+</html>
 

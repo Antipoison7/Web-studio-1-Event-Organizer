@@ -17,6 +17,10 @@
       <br>
       <img id="WebsiteBanner" src="./Resources/Images/Resources/Website banner_Final.jpg" alt="WebsiteBanner" width=100%>
     </div>
+    <div class="HomePageFlex">
+      
+
+    </div>
     <?php
       makeFooter();
     ?>

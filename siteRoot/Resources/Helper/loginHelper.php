@@ -78,6 +78,9 @@
 
             $passVal = $stmt->fetchColumn();
 
+            $db = null;
+            $stmt = null;
+
             if($passVal != false)
             {
                 return password_verify($password, $passVal);
@@ -112,6 +115,9 @@
             {
                 echo($row['FirstName'] . " " . $row['LastName'] . " ");
             }
+
+            $db = null;
+            $stmt = null;
         }
         catch (PDOException $e)
         {
@@ -139,6 +145,9 @@
             $stmt->bindParam(':realName', $realName, PDO::PARAM_STR);
 
             $stmt->execute();
+
+            $db = null;
+            $stmt = null;
         }
         catch (PDOException $e)
         {

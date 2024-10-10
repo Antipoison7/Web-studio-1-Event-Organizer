@@ -197,10 +197,14 @@
 
             if($stmt->rowCount() != 0)
             {
+                $db = null;
+                $stmt = null;
                 return true;
             }
             else
             {
+                $db = null;
+                $stmt = null;
                 return false;
             }
         }

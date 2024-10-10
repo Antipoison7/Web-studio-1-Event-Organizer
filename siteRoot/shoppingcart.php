@@ -1,11 +1,5 @@
 <?php
-include_once('./Resources/Helper/header.php');
-
-// Sample cart items - this should come from session data or database
-$cartItems = [
-    ['title' => 'Soccer Game 7v7', 'price' => 0, 'img' => './Resources/Images/soccer.jpg', 'date' => '26/11/2024'],
-    ['title' => 'Tennis Tournament', 'price' => 20, 'img' => './Resources/Images/tennis.jpg', 'date' => '20/12 - 22/12']
-];
+  include_once('./Resources/Helper/headers.php');
 ?>
 <!DOCTYPE html>
 <html lang="en">

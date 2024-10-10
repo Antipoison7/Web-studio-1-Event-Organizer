@@ -13,6 +13,7 @@ a:hover
 {
     color:gray;
     text-decoration-color: black;
+    cursor:pointer;
 }
 
 .crunch

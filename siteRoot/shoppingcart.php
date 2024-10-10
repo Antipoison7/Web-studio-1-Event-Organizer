@@ -13,7 +13,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Shopping Cart</title>
-    <link rel="stylesheet" href="./Resources/Style/base.css">
+    <link rel="stylesheet" href="./Resources/Style/shoppingcart.css">
 </head>
 <body>
     

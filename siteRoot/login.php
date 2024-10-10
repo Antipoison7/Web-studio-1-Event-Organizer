@@ -1,5 +1,6 @@
 <?php
   include_once('./Resources/Helper/headers.php');
+  session_start();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -23,7 +24,7 @@
     <form method="post" action="./intermediateLogin.php">
       <div class="login">
         <label for="username">Username / Email:</label>
-        <input type="text" id="username" name="username" autocomplete="username">
+        <input type="text" id="username" name="username" autocomplete="username" <?php if(isset($_SESSION["loginDetails"]["username"])){echo("value = \"" . $_SESSION["loginDetails"]["username"] . "\"");}?>>
 
         <label for="password">Password: <a href="./forgot">Forgot password</a></label>
         <input type="password" id="password" name="password">

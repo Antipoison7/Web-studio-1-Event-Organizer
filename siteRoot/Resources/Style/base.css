@@ -401,7 +401,6 @@ a:hover
 
 .split
 {
-    width: inherit;
     height: 2px;
     background-color: gray;
     margin: 10px 0px 10px 0px

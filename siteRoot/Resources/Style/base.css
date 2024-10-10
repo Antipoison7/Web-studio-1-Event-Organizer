@@ -183,6 +183,7 @@ a:hover
     background-color: white;
     border: 1px solid white;
     border-radius: 25px;
+    align-items: center;
 }
 
 .mainHeader h1

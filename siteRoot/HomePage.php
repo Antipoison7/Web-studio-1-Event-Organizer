@@ -12,23 +12,10 @@
     <link rel="icon" type="image/x-icon" href="./Resources/Images/Resources/favicon.png">
   </head>
   <body>
-    <?php headerNoLogin("Home Page Index") ?>
-    <div class="creatorFlex">
-      <?php
-        $creatorArray = [
-          array("name" => "Josip", "pfp" => ""), 
-          array("name" => "Declan", "pfp" => "declanPfp.jpg"), 
-          array("name" => "Himanth", "pfp" => ""), 
-          array("name" => "Connor", "pfp" => "connorPfp.jpg")
-        ];
-        foreach($creatorArray as $x)
-        {
-          echo("<div class=\"creatorBox\">
-                <p>" . $x["name"] . "</p>
-                <img src=\"./Resources/Images/userPfp/" . $x["pfp"] . "\" alt=\"" . $x["name"] . " Profile Picture\">
-                </div>");
-        }
-      ?>
+    <?php headerNoLogin("Home Page") ?>
+    <div class="BannerFlex">
+      <br>
+      <img id="WebsiteBanner" src="./Resources/Images/Resources/Website banner_Final.jpg" alt="WebsiteBanner" width=100%>
     </div>
     <?php
       makeFooter();

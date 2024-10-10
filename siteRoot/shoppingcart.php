@@ -13,6 +13,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Shopping Cart</title>
+    <link rel="stylesheet" href="./Resources/Style/shoppingcart.css">
     <link rel="stylesheet" href="./Resources/Style/base.css">
 </head>
 <body>
@@ -40,6 +41,12 @@
                         <option value="1" selected>1</option>
                         <option value="2">2</option>
                         <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
                     </select>
                 </div>
             </div>
@@ -54,7 +61,30 @@
         </div>
     </div>
 
-    <!-- Footer -->
+    
     <?php makeFooter(); ?>
+    
+ <!-- JavaScript for Quantity and Total Update -->
+ <script>
+        function updateTotal(index, price) {
+            var quantity = document.getElementById('quantity' + index).value;
+            var itemTotal = quantity * price;
+            document.getElementById('item-total' + index).textContent = '$' + itemTotal;
 
+            // Update the cart total
+            var cartTotal = 0;
+            var items = document.querySelectorAll('.item-total');
+            items.forEach(function(item) {
+                cartTotal += parseFloat(item.textContent.replace('$', ''));
+            });
+            document.getElementById('cart-total').textContent = '$' + cartTotal;
+        }
+
+        function removeItem(index) {
+            document.querySelectorAll('.cart-item')[index].remove();
+            updateTotal(0, 0); // Recalculate total after item removal
+        }
+    </script>
+</body>
+</html>
 

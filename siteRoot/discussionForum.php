@@ -28,14 +28,14 @@
               die("Connection failed: " . mysqli_connect_error());
             }
 
-            $sql = "SELECT eventName, eventDesc, priceCost, imageLink, Region FROM EventList";
+            $sql = "SELECT eventName, eventDesc, priceCost, imageLink FROM EventList";
             $result = mysqli_query($conn, $sql);
             echo "<div class='DiscussionBlock'>";
 
             if (mysqli_num_rows($result) > 0) {
                     
               while($row = mysqli_fetch_assoc($result)) {
-                echo "<div class='DiscussionPost'>" . $row["eventName"]. " " . $row["eventDesc"]. " " . $row["priceCost"]. "<br>" . $row["imageLink"]. " " . $row["Region"]. "</div>";
+                echo "<div class='DiscussionPost'><div id='discussionpost_layout'><div id='Event_Title'>" . $row["eventName"]. "</div><div id='Event_Description'> " . $row["eventDesc"]. "</div><div id='Event_Image'> " . $row["imageLink"]. "</div><element id='Price_Amount'>" . $row["priceCost"]. "</div></div>";
               }
             } else {
               echo "0 results";

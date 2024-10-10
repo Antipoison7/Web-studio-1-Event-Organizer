@@ -32,22 +32,26 @@
                     <h1>Contact Us</h1>
                     <a href=\"mailto:orders.connor@gmail.com\"><h2>Email</h2></a>
                     <a href=\"./\"><h2>Phone Number</h2></a>
+                    <br>
                 </div >
                 <div class=\"footerItem\">
                     <div>
                         <h1>Forum Links</h1>
                         <a href=\"./discussionForum.php\"><h2>Home</h2></a>
                         <a href=\"./\"><h2>About Us</h2></a>
+                        <br>
                     </div>
                     <div>
                         <h1>Event Links</h1>
                         <a href=\"./eventRegistration.php\"><h2>Create an Event</h2></a>
                         <a href=\"./\"><h2>About Us</h2></a>
+                        <br>
                     </div>
                     <div>
                         <h1>Profile Links</h1>
                         <a href=\"./profileCustomise.php\"><h2>Customize Profile</h2></a>
                         <a href=\"./\"><h2>About Us</h2></a>
+                        <br>
                     </div>
                 </div>
             </div>

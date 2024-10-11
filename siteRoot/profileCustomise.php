@@ -17,7 +17,7 @@
   <body class="crunch">
     <div class="profileHeader">
         <a href="./">
-            <div class="button">Home</div>
+            <div class="button">Discard</div>
         </a>
         <h1>Customise profile</h1>
         <div style="width: 14em; height: 3em;"></div>
@@ -25,9 +25,9 @@
 
     <?php if(isset($_SESSION["loginDetails"])){if(isValidLogin($_SESSION["loginDetails"]["username"], $_SESSION["loginDetails"]["password"])){?>
       <div class="content">
-        <form class="uncrunch">
+        <form id="customiseForm" class="uncrunch">
           <div class="flex userInfoContainer">
-            <label for="pfp"><img class="customisePfp" src=".<?php echo(getProfilePicture($_SESSION["loginDetails"]["username"])); ?>"></label>
+            <label for="pfp"><img class="customisePfp" id="profilePictureIcon" src=".<?php echo(getProfilePicture($_SESSION["loginDetails"]["username"])); ?>"></label>
             <input type="file" name="pfp" id="pfp" hidden>
             <div class="userInfoBoxR">
               <label for="displayName">Display Name</label>
@@ -36,22 +36,42 @@
               <input type="text" name="realName" id="realName" value="<?php echo(getRealName($_SESSION["loginDetails"]["username"])) ?>">
             </div>
           </div>
+
           <div class="userInfoContainer userInfoBoxR">
             <label for="description">Description</label>
-            <textarea id="description" name="description" rows="4" cols="50" value="<?php echo(getRealName($_SESSION["loginDetails"]["username"])) ?>">
-            </textarea>
+            <textarea id="description" name="description" rows="4" cols="50" form="customiseForm"><?php echo(getDescription($_SESSION["loginDetails"]["username"])) ?></textarea>
           </div>
 
           <div class="split"></div>
 
-          <div class="flex">
-          <label for="theme">Profile theme:</label>
-          <a href="https://www.google.com">Custom Themes?</a>
+          <div class="userInfoContainer userInfoBoxR">
+            <div class="themeBox">
+            <label for="theme">Profile theme:&nbsp;</label>
+            <a href="https://www.google.com">Custom Themes?</a>
+            </div>
+            <select name="theme" id="theme">
+              <option value="lightMode.css">Light mode</option>
+              <option value="darkMode.css">Dark mode</option>
+            </select>
           </div>
-          <select name="theme" id="theme">
-            <option value="lightMode.css">Light mode</option>
-            <option value="darkMode.css">Dark mode</option>
-          </select>
+          <div class="userInfoContainer">
+            <a href="./">
+              <div class="buttonInv">Change Password</div>
+            </a>
+
+            <a href="./">
+              <div class="buttonWarn">Archive</div>
+            </a>
+          </div>
+          <div>
+          </div>
+
+          <div class="finishCustomise">
+            <a href="./">
+              <div class="button">Discard</div>
+            </a>
+            <button class="button save" type="submit">Save Changes</button>
+          </div>
         </form>
       </div>
     <?php }
@@ -65,4 +85,20 @@
     } ?>
     <?php makeFooter(); ?>
   </body>
+
+  <script>
+    let imageObj = document.getElementById("profilePictureIcon");
+    imageObj.addEventListener("mouseover", dimImmadome);
+    imageObj.addEventListener("mouseout", brightImmadome);
+
+    function dimImmadome()
+    {
+      imageObj.style.filter = "brightness(75%)";
+    }
+
+    function brightImmadome()
+    {
+      imageObj.style.filter = "brightness(100%)";
+    }
+  </script>
 </html>

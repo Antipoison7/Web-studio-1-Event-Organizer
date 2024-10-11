@@ -14,8 +14,11 @@
   </head>
   <body>
     <div class="loginHeader">
-        <a href="./">
-            <div class="button">Home</div>
+      <div id="logo"><a href="./HomePage.php">
+        <img  src="./Resources/Images/Resources/WebsiteLogo.webp" alt="WebsiteLogo" width="100" height="100">
+      </a></div>
+        <a class="LoginButton" href="./">
+            <div class="smallButtonInv">Home</div>
         </a>
         <h1>User Login</h1>
         <div style="width: 14em; height: 3em;"></div>

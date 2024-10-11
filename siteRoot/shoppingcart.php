@@ -57,8 +57,14 @@
 
         <div class="cart-summary">
             <h2>Total: <span id="cart-total">$<?= $total ?></span></h2>
-            <button class="checkout-btn">Checkout</button>
-        </div>
+            <!-- Add a form to send the total -->
+        <form action="checkout.php" method="POST">
+            <!-- Add a hidden input to pass the total -->
+            <input type="hidden" name="totalAmount" id="hidden-total" value="<?= $total ?>">
+            <button type="submit" class="btn checkout">Checkout</button>
+        </form>
+</div>
+
     </div>
 
     
@@ -78,6 +84,8 @@
                 cartTotal += parseFloat(item.textContent.replace('$', ''));
             });
             document.getElementById('cart-total').textContent = '$' + cartTotal;
+
+            document.getElementById('hidden-total').value = cartTotal;
         }
 
         function removeItem(index) {

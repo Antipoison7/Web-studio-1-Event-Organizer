@@ -253,6 +253,7 @@ a:hover
     background-color: white;
     border: 1px solid white;
     border-radius: 25px;
+    align-items: center;
 }
 
 .mainHeader h1
@@ -471,7 +472,7 @@ a:hover
 
 .profileHeader h1
 {
-    text-shadow: -2px 0 2px white, 0 2px 2px white, 2px 0 2px white, 0 -2px 2px white;
+    text-shadow: -2px 0 2px white, 0 2px 2px white, 2px 0 2px, 0 -2px 2px white;
     font-size: 3em;
 }
 
@@ -623,3 +624,9 @@ border-top: 5px solid black;
     font-size:30px;
     box-sizing: border-box;
 }
+
+#logo {
+
+    margin: 0;
+}
+

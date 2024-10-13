@@ -2,7 +2,7 @@
 include_once('./Resources/Helper/headers.php');
 
 $cartItems = [
-    ['title' => 'Soccer Game 7v7', 'price' => 0, 'img' => './Resources/Images/soccer.jpg', 'date' => '26/11/2024'],
+    ['title' => 'Soccer Game 7v7', 'price' => 5, 'img' => './Resources/Images/soccer.jpg', 'date' => '26/11/2024'],
     ['title' => 'Tennis Tournament', 'price' => 20, 'img' => './Resources/Images/tennis.jpg', 'date' => '20/12 - 22/12']
 ];
 ?>
@@ -58,12 +58,14 @@ $cartItems = [
             <h2>Total: <span id="cart-total">$<?= $total ?></span></h2>
 
             <!-- Add a form to send the total, items, and quantities -->
-            <form action="checkout.php" method="POST">
+            <form action="checkout.php" method="POST" id="cart-form">
                 <!-- Add hidden inputs for each item and its quantity -->
                 <?php foreach ($cartItems as $index => $item): ?>
-                    <input type="hidden" name="items[<?= $index ?>][title]" value="<?= $item['title'] ?>">
-                    <input type="hidden" name="items[<?= $index ?>][quantity]" id="hidden-quantity<?= $index ?>" value="1">
-                    <input type="hidden" name="items[<?= $index ?>][price]" value="<?= $item['price'] ?>">
+                    <div id="hidden-inputs<?= $index ?>">
+                        <input type="hidden" name="items[<?= $index ?>][title]" value="<?= $item['title'] ?>">
+                        <input type="hidden" name="items[<?= $index ?>][quantity]" id="hidden-quantity<?= $index ?>" value="1">
+                        <input type="hidden" name="items[<?= $index ?>][price]" value="<?= $item['price'] ?>">
+                    </div>
                 <?php endforeach; ?>
 
                 <!-- Add a hidden input for the total amount -->
@@ -75,54 +77,60 @@ $cartItems = [
     </div>
 
     <?php makeFooter(); ?>
-    
- <!-- JavaScript for Quantity and Total Update -->
- <script>
-    function updateItemTotal(index, price) {
-        // Get the selected quantity
-        var quantity = document.getElementById('quantity' + index).value;
-        var itemTotal = quantity * price;
-        
-        // Update the item total display
-        document.getElementById('item-total' + index).textContent = '$' + itemTotal;
 
-        // Update the hidden quantity input for the item
-        document.getElementById('hidden-quantity' + index).value = quantity;
+    <!-- JavaScript for Quantity and Total Update -->
+    <script>
+        function updateItemTotal(index, price) {
+            // Get the selected quantity
+            var quantity = document.getElementById('quantity' + index).value;
+            var itemTotal = quantity * price;
 
-        // Recalculate and update the cart total
-        updateCartTotal();
-    }
+            // Update the item total display
+            document.getElementById('item-total' + index).textContent = '$' + itemTotal;
 
-    function updateCartTotal() {
-        var cartTotal = 0;
-        
-        // Loop through all items and sum their totals
-        var itemTotals = document.querySelectorAll('.item-total');
-        itemTotals.forEach(function(item) {
-            cartTotal += parseFloat(item.textContent.replace('$', ''));
-        });
-
-        // Update the cart total display
-        document.getElementById('cart-total').textContent = '$' + cartTotal;
-
-        // Update the hidden total input
-        document.getElementById('hidden-total').value = cartTotal;
-    }
-
-    function removeItem(index) {
-            // Remove the cart item from the DOM
-            var cartItem = document.getElementById('cart-item' + index);
-            cartItem.remove();
-
-            // Remove the corresponding hidden input fields
-            var hiddenInputs = document.getElementById('hidden-inputs' + index);
-            hiddenInputs.remove();
+            // Update the hidden quantity input for the item
+            document.getElementById('hidden-quantity' + index).value = quantity;
 
             // Recalculate and update the cart total
             updateCartTotal();
         }
 
-        //debugging
+        function updateCartTotal() {
+            var cartTotal = 0;
+            
+            // Loop through all items and sum their totals
+            var itemTotals = document.querySelectorAll('.item-total');
+            itemTotals.forEach(function(item) {
+                cartTotal += parseFloat(item.textContent.replace('$', ''));
+            });
+
+            // Update the cart total display
+            document.getElementById('cart-total').textContent = '$' + cartTotal;
+
+            // Update the hidden total input
+            document.getElementById('hidden-total').value = cartTotal;
+
+            console.log("Updated cart total:", cartTotal); // Debugging log
+        }
+
+        function removeItem(index) {
+            // Remove the cart item from the DOM
+            var cartItem = document.getElementById('cart-item' + index);
+            if (cartItem) {
+                cartItem.remove();
+            }
+
+            // Remove the corresponding hidden input fields
+            var hiddenInputs = document.getElementById('hidden-inputs' + index);
+            if (hiddenInputs) {
+                hiddenInputs.remove();
+            }
+
+            // Recalculate and update the cart total
+            updateCartTotal();
+        }
+
+        // Debugging
         document.getElementById('cart-form').onsubmit = function() {
             var formData = new FormData(this);
             console.log("Form submission data:", formData);
@@ -131,6 +139,6 @@ $cartItems = [
                 console.log(pair[0]+ ': ' + pair[1]);
             }
         }
- </script>
+    </script>
 </body>
 </html>

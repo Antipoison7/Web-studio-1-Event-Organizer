@@ -110,17 +110,27 @@ $cartItems = [
     }
 
     function removeItem(index) {
-        // Remove the cart item from the DOM
-        var cartItem = document.getElementById('cart-item' + index);
-        cartItem.remove();
+            // Remove the cart item from the DOM
+            var cartItem = document.getElementById('cart-item' + index);
+            cartItem.remove();
 
-        // Remove the corresponding hidden input fields
-        var hiddenInputs = document.getElementById('hidden-inputs' + index);
-        hiddenInputs.remove();
+            // Remove the corresponding hidden input fields
+            var hiddenInputs = document.getElementById('hidden-inputs' + index);
+            hiddenInputs.remove();
 
-        // Recalculate and update the cart total
-        updateCartTotal();
-    }
+            // Recalculate and update the cart total
+            updateCartTotal();
+        }
+
+        //debugging
+        document.getElementById('cart-form').onsubmit = function() {
+            var formData = new FormData(this);
+            console.log("Form submission data:", formData);
+
+            for (var pair of formData.entries()) {
+                console.log(pair[0]+ ': ' + pair[1]);
+            }
+        }
  </script>
 </body>
 </html>

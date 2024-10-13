@@ -636,3 +636,7 @@ border-top: 5px solid black;
     
 }
 
+#Event_Title h1 {
+    font-size: 240%;
+}
+

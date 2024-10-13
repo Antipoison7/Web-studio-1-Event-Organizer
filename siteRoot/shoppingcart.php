@@ -114,6 +114,10 @@ $cartItems = [
         var cartItem = document.getElementById('cart-item' + index);
         cartItem.remove();
 
+        // Remove the corresponding hidden input fields
+        var hiddenInputs = document.getElementById('hidden-inputs' + index);
+        hiddenInputs.remove();
+
         // Recalculate and update the cart total
         updateCartTotal();
     }

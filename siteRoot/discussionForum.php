@@ -35,7 +35,7 @@
             if (mysqli_num_rows($result) > 0) {
                     
               while($row = mysqli_fetch_assoc($result)) {
-                echo "<div class='DiscussionPost'><div id='discussionpost_layout'><div id='Event_Title'>" . $row["eventName"]. "</div><div id='Event_Description'> " . $row["eventDesc"]. "</div><div id='Event_Image'> <img id=\"discussionImage\" src=\"./Resources/Images/Resources/day in the park example.jpg\" alt=\"day in the park image\"></div><element id='Price_Amount'>" . $row["priceCost"]. "</div></div>";
+                echo "<div class='DiscussionPost'><div id='discussionpost_layout'><div id='Event_Title'><h1>" . $row["eventName"]. "</h1></div><div id='Event_Description'> " . $row["eventDesc"]. "</div><div id='Event_Image'> <img id=\"discussionImage\" src=\"./Resources/Images/Resources/day in the park example.jpg\" alt=\"day in the park image\"></div><element id='Price_Amount'>" . $row["priceCost"]. "</div></div>";
               }
             } else {
               echo "0 results";

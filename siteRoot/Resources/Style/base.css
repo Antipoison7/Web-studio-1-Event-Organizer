@@ -630,3 +630,9 @@ border-top: 5px solid black;
     margin: 0;
 }
 
+#discussionImage {
+
+    max-width: 100%;
+    
+}
+

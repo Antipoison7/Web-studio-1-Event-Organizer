@@ -58,14 +58,12 @@ $cartItems = [
             <h2>Total: <span id="cart-total">$<?= $total ?></span></h2>
 
             <!-- Add a form to send the total, items, and quantities -->
-            <form action="checkout.php" method="POST" id="cart-form">
+            <form action="checkout.php" method="POST">
                 <!-- Add hidden inputs for each item and its quantity -->
                 <?php foreach ($cartItems as $index => $item): ?>
-                    <div id="hidden-inputs<?= $index ?>">
-                        <input type="hidden" name="items[<?= $index ?>][title]" value="<?= $item['title'] ?>">
-                        <input type="hidden" name="items[<?= $index ?>][quantity]" id="hidden-quantity<?= $index ?>" value="1">
-                        <input type="hidden" name="items[<?= $index ?>][price]" value="<?= $item['price'] ?>">
-                    </div>
+                    <input type="hidden" name="items[<?= $index ?>][title]" value="<?= $item['title'] ?>">
+                    <input type="hidden" name="items[<?= $index ?>][quantity]" id="hidden-quantity<?= $index ?>" value="1">
+                    <input type="hidden" name="items[<?= $index ?>][price]" value="<?= $item['price'] ?>">
                 <?php endforeach; ?>
 
                 <!-- Add a hidden input for the total amount -->
@@ -112,17 +110,27 @@ $cartItems = [
     }
 
     function removeItem(index) {
-        // Remove the cart item from the DOM
-        var cartItem = document.getElementById('cart-item' + index);
-        cartItem.remove();
+            // Remove the cart item from the DOM
+            var cartItem = document.getElementById('cart-item' + index);
+            cartItem.remove();
 
-        // Remove the corresponding hidden input fields
-        var hiddenInputs = document.getElementById('hidden-inputs' + index);
-        hiddenInputs.remove();
+            // Remove the corresponding hidden input fields
+            var hiddenInputs = document.getElementById('hidden-inputs' + index);
+            hiddenInputs.remove();
 
-        // Recalculate and update the cart total
-        updateCartTotal();
-    }
+            // Recalculate and update the cart total
+            updateCartTotal();
+        }
+
+        //debugging
+        document.getElementById('cart-form').onsubmit = function() {
+            var formData = new FormData(this);
+            console.log("Form submission data:", formData);
+
+            for (var pair of formData.entries()) {
+                console.log(pair[0]+ ': ' + pair[1]);
+            }
+        }
  </script>
 </body>
 </html>

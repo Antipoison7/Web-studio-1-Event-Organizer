@@ -272,4 +272,20 @@ include_once('./Resources/Helper/validation.php');
             }
         }
     }
+
+    function getThemes()
+    {
+        $db = new PDO("mysql:host=talsprddb02.int.its.rmit.edu.au;dbname=COSC3046_2402_UGRD_1479_G4", "COSC3046_2402_UGRD_1479_G4", "GYS3sfUkzIqA");
+        $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+        $stmt = $db->prepare("SELECT * FROM themes;");
+        $stmt->execute();
+
+        $themeArray = $stmt->fetchAll(PDO::FETCH_BOTH);
+
+        $db = null;
+        $stmt = null;
+
+        return $themeArray;
+    }
 ?>

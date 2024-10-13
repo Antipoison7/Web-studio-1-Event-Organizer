@@ -13,23 +13,7 @@
   </head>
   <body>
     <?php headerNoLogin("FAQ") ?>
-    <div class="creatorFlex">
-      <?php
-        $creatorArray = [
-          array("name" => "Josip", "pfp" => ""), 
-          array("name" => "Declan", "pfp" => "declanPfp.jpg"), 
-          array("name" => "Himanth", "pfp" => ""), 
-          array("name" => "Connor", "pfp" => "connorPfp.jpg")
-        ];
-        foreach($creatorArray as $x)
-        {
-          echo("<div class=\"creatorBox\">
-                <p>" . $x["name"] . "</p>
-                <img src=\"./Resources/Images/userPfp/" . $x["pfp"] . "\" alt=\"" . $x["name"] . " Profile Picture\">
-                </div>");
-        }
-      ?>
-    </div>
+    <h1>UNDER DEVELOPMENT</h1>
     <?php
       makeFooter();
     ?>

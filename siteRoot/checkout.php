@@ -8,6 +8,7 @@ include_once('./Resources/Helper/headers.php');
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="./Resources/Style/base.css">
+    <link rel="stylesheet" href="./Resources/Style/checkout.css">
     <link rel="icon" type="image/x-icon" href="./Resources/Images/Resources/favicon.png">
     <title>Checkout</title>
 </head>

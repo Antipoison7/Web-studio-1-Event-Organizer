@@ -25,9 +25,14 @@
 
     <?php if(isset($_SESSION["loginDetails"])){if(isValidLogin($_SESSION["loginDetails"]["username"], $_SESSION["loginDetails"]["password"])){?>
       <div class="content">
-        <form id="customiseForm" class="uncrunch">
+        <form id="customiseForm" class="uncrunch" method="post" action="./IntermediateCustomise.php">
           <div class="flex userInfoContainer">
-            <label for="pfp"><img class="customisePfp" id="profilePictureIcon" src=".<?php echo(getProfilePicture($_SESSION["loginDetails"]["username"])); ?>"></label>
+            <label for="pfp" style="margin-right: 20px;">
+              <div class="pfpContainer">
+                <img class="customisePfp" alt="User Profile Picture" id="profilePictureIcon" src=".<?php echo(getProfilePicture($_SESSION["loginDetails"]["username"])); ?>">
+                <img class="customisePfpOverlay" id="profilePictureOverlay" src="./Resources/Images/Resources/addPhoto.png" hidden>
+              </div>
+            </label>
             <input type="file" name="pfp" id="pfp" hidden>
             <div class="userInfoBoxR">
               <label for="displayName">Display Name</label>
@@ -55,11 +60,13 @@
             </select>
           </div>
           <div class="userInfoContainer">
-            <a href="./">
+            <h2>Change Password?</h2>
+            <a href="./" style="display:inline-block;">
               <div class="buttonInv">Change Password</div>
             </a>
 
-            <a href="./">
+            <h2>Archive Account? (Requires Password)</h2>
+            <a href="./" style="display:inline-block;">
               <div class="buttonWarn">Archive</div>
             </a>
           </div>
@@ -88,17 +95,22 @@
 
   <script>
     let imageObj = document.getElementById("profilePictureIcon");
+    let imageOvl = document.getElementById("profilePictureOverlay");
     imageObj.addEventListener("mouseover", dimImmadome);
     imageObj.addEventListener("mouseout", brightImmadome);
+    imageOvl.addEventListener("mouseover", dimImmadome);
+    imageOvl.addEventListener("mouseout", brightImmadome);
 
     function dimImmadome()
     {
       imageObj.style.filter = "brightness(75%)";
+      imageOvl.hidden = false;
     }
-
+    
     function brightImmadome()
     {
       imageObj.style.filter = "brightness(100%)";
+      imageOvl.hidden = true;
     }
   </script>
 </html>

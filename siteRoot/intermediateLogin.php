@@ -5,10 +5,17 @@
 <!DOCTYPE html>
 <?php
     session_start();
-    $type = $_POST["hiddenType"]; //Gets the type from the post requrest
+    $type = "fail";
+    
+    if(isset($_POST["hiddenType"]))
+    {
+        $type = $_POST["hiddenType"]; //Gets the type from the post requrest
+    }
 
     $redirect = "./index.php";
 
+    try
+    {
     if($type == "Login") //Login Checking
     {
         $username = $_POST["username"];
@@ -87,6 +94,11 @@
             // echo("register not set");
         }
     }
+}
+catch(Exception $e)
+{
+    $redirect = "./index.php";
+}
 ?>
 
 <html lang="en">

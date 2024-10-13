@@ -138,6 +138,15 @@
         return $hasStuff;
     }
 
+    function isValidTheme($inputString)
+    {
+        $db = new PDO("mysql:host=talsprddb02.int.its.rmit.edu.au;dbname=COSC3046_2402_UGRD_1479_G4", "COSC3046_2402_UGRD_1479_G4", "GYS3sfUkzIqA");
+        $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+        $stmt = $db->prepare("SELECT theme_url FROM themes;");
+        $stmt->execute();
+    }
+
     function validateRegister($inputArray)
     {
         $isValid = true;
@@ -179,6 +188,28 @@
         }
 
         return $isValid;
+    }
+
+    function validateCustomise($inputArray)
+    {
+        $isValid = true;
+
+        if($inputArray["displayName"])
+        {
+            $isValid = false;
+            $_SESSION["issues"]["displayName"] = "Display name cannot be blank";
+        }
+
+        if($inputArray["realName"])
+        {
+            $isValid = false;
+            $_SESSION["issues"]["realName"] = "Name cannot be blank";
+        }
+
+        if(isValidTheme($inputArray["theme"]))
+        {
+
+        }
     }
 
     function isDuplicateEmail($email)

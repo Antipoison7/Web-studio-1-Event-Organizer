@@ -17,13 +17,25 @@ include_once('./Resources/Helper/headers.php');
     
     <main>
     <?php
-    if (isset($_POST['totalAmount'])) {
+    if (isset($_POST['items']) && isset($_POST['totalAmount'])) {
+    $items = $_POST['items'];
     $totalAmount = $_POST['totalAmount'];
-    echo "Total Amount: $" . htmlspecialchars($totalAmount);
-        } else {
-    echo "No total amount found!";
+
+    echo "<h2>Order Summary</h2>";
+    echo "<ul>";
+    foreach ($items as $item) {
+        $title = htmlspecialchars($item['title']);
+        $quantity = htmlspecialchars($item['quantity']);
+        $price = htmlspecialchars($item['price']);
+        echo "<li>$title - Quantity: $quantity - Price: $$price</li>";
     }
+    echo "</ul>";
+    echo "<p>Total Amount: $" . htmlspecialchars($totalAmount) . "</p>";
+    } else {
+    echo "No items found in the cart.";
+}
 ?>
+
 
 
     </main>

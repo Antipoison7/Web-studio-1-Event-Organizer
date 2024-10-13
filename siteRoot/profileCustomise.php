@@ -60,10 +60,12 @@
             </select>
           </div>
           <div class="userInfoContainer">
+            <h2>Change Password?</h2>
             <a href="./">
               <div class="buttonInv">Change Password</div>
             </a>
 
+            <h2>Archive Account? (Requires Password)</h2>
             <a href="./">
               <div class="buttonWarn">Archive</div>
             </a>

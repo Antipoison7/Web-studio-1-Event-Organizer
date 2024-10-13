@@ -58,12 +58,14 @@ $cartItems = [
             <h2>Total: <span id="cart-total">$<?= $total ?></span></h2>
 
             <!-- Add a form to send the total, items, and quantities -->
-            <form action="checkout.php" method="POST">
+            <form action="checkout.php" method="POST" id="cart-form">
                 <!-- Add hidden inputs for each item and its quantity -->
                 <?php foreach ($cartItems as $index => $item): ?>
-                    <input type="hidden" name="items[<?= $index ?>][title]" value="<?= $item['title'] ?>">
-                    <input type="hidden" name="items[<?= $index ?>][quantity]" id="hidden-quantity<?= $index ?>" value="1">
-                    <input type="hidden" name="items[<?= $index ?>][price]" value="<?= $item['price'] ?>">
+                    <div id="hidden-inputs<?= $index ?>">
+                        <input type="hidden" name="items[<?= $index ?>][title]" value="<?= $item['title'] ?>">
+                        <input type="hidden" name="items[<?= $index ?>][quantity]" id="hidden-quantity<?= $index ?>" value="1">
+                        <input type="hidden" name="items[<?= $index ?>][price]" value="<?= $item['price'] ?>">
+                    </div>
                 <?php endforeach; ?>
 
                 <!-- Add a hidden input for the total amount -->

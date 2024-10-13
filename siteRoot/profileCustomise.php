@@ -55,8 +55,13 @@
             <a href="https://www.google.com">Custom Themes?</a>
             </div>
             <select name="theme" id="theme">
-              <option value="lightMode.css">Light mode</option>
-              <option value="darkMode.css">Dark mode</option>
+              <?php
+              $themes = getThemes();
+                foreach($themes as $i)
+                {
+                  echo("<option value=\"" . $i["theme_url"] . "\">" . $i["theme_name"] . "</option>");
+                }
+              ?>
             </select>
           </div>
           <div class="userInfoContainer">

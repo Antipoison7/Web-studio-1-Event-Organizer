@@ -63,11 +63,11 @@
 
             if($type == "username")
             {
-                $stmt = $db->prepare("SELECT pass_hash FROM accounts WHERE login_name = :name;");
+                $stmt = $db->prepare("SELECT accounts.pass_hash FROM accounts JOIN users ON accounts.login_name = users.username WHERE login_name = :name AND archived = 0;");
             }
             else if($type == "email")
             {
-                $stmt = $db->prepare("SELECT pass_hash FROM accounts WHERE email = :name;");
+                $stmt = $db->prepare("SELECT accounts.pass_hash FROM accounts JOIN users ON accounts.login_name = users.username WHERE email = :name AND archived = 0;");
             }
 
             $stmt->bindParam(':name', $username, PDO::PARAM_STR);

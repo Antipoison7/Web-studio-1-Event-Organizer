@@ -145,6 +145,19 @@
 
         $stmt = $db->prepare("SELECT theme_url FROM themes;");
         $stmt->execute();
+
+        $themeArray = $stmt->fetchAll(PDO::FETCH_COLUMN, 0);
+
+        $db = null;
+        $stmt = null;
+
+        $isThemeValid = false;
+
+        if(in_array($inputString, $themeArray, true))
+        {
+            $isThemeValid = true;
+        }
+        return $isThemeValid;
     }
 
     function validateRegister($inputArray)
@@ -206,9 +219,10 @@
             $_SESSION["issues"]["realName"] = "Name cannot be blank";
         }
 
-        if(isValidTheme($inputArray["theme"]))
+        if(!isValidTheme($inputArray["theme"]))
         {
-
+            $isValid = false;
+            $_SESSION["issues"]["theme"] = "Invalid Theme";
         }
     }
 

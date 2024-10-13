@@ -652,3 +652,13 @@ border-top: 5px solid black;
     margin: 0;
 }
 
+#discussionImage {
+
+    max-width: 100%;
+    
+}
+
+#Event_Title h1 {
+    font-size: 240%;
+}
+

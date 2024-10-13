@@ -57,13 +57,23 @@
 
         <div class="cart-summary">
             <h2>Total: <span id="cart-total">$<?= $total ?></span></h2>
-            <!-- Add a form to send the total -->
-        <form action="checkout.php" method="POST">
-            <!-- Add a hidden input to pass the total -->
+
+            <!-- Add a form to send the total, items, and quantities -->
+            <form action="checkout.php" method="POST">
+            <!-- Add hidden inputs for each item and its quantity -->
+        <?php foreach ($cartItems as $index => $item): ?>
+            <input type="hidden" name="items[<?= $index ?>][title]" value="<?= $item['title'] ?>">
+            <input type="hidden" name="items[<?= $index ?>][quantity]" id="hidden-quantity<?= $index ?>" value="1">
+            <input type="hidden" name="items[<?= $index ?>][price]" value="<?= $item['price'] ?>">
+        <?php endforeach; ?>
+
+            <!-- Add a hidden input for the total amount -->
             <input type="hidden" name="totalAmount" id="hidden-total" value="<?= $total ?>">
+
             <button type="submit" class="btn checkout">Checkout</button>
-        </form>
-</div>
+            </form>
+        </div>
+
 
     </div>
 
@@ -86,6 +96,10 @@
             document.getElementById('cart-total').textContent = '$' + cartTotal;
 
             document.getElementById('hidden-total').value = cartTotal;
+
+            document.getElementById('hidden-quantity' + index).value = quantity;
+}
+
         }
 
         function removeItem(index) {

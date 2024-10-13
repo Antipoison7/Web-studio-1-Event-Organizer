@@ -43,4 +43,3 @@ include_once('./Resources/Helper/headers.php');
 
 </body>
 </html>
-

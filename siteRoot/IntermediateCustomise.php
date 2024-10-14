@@ -27,8 +27,13 @@
 
             if(validateCustomise(["profilePicture" => $pfp, "displayName" => $displayName,"realName" => $realName,"description" => $description,"theme" => $theme]))
             {
-
-            };
+                $redirect = "./index.php";
+                updateUser($_SESSION["loginDetails"]["username"], $pfp, $displayName, $realName, $description, $theme);
+            }
+            else
+            {
+                $redirect = "./profileCustomise.php";
+            }
         }
 
 

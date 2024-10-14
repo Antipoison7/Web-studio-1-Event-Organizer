@@ -1,4 +1,6 @@
 <?php
+    include_once('./Resources/Helper/userDetailsHelper.php');
+
     function registerIsBlank($inputArray)
     {
         $errors = array();
@@ -143,6 +145,45 @@
             $stmt->bindParam(':email', $email, PDO::PARAM_STR);
             $stmt->bindParam(':password', $passwordEnc, PDO::PARAM_STR);
             $stmt->bindParam(':realName', $realName, PDO::PARAM_STR);
+
+            $stmt->execute();
+
+            $db = null;
+            $stmt = null;
+        }
+        catch (PDOException $e)
+        {
+            echo("oh great heavens: " . $e->getMessage());
+        }
+    }
+
+    function updateUser($username, $pfp, $displayName, $realName, $description, $theme)
+    {
+        try
+        {
+            $userName = $username;
+
+            if(strpos($username, '@') !== false)
+            {
+                $userName = getUsername($username);
+            }
+
+            $db = new PDO("mysql:host=talsprddb02.int.its.rmit.edu.au;dbname=COSC3046_2402_UGRD_1479_G4", "COSC3046_2402_UGRD_1479_G4", "GYS3sfUkzIqA");
+            $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+            $stmt = $db->prepare("UPDATE users
+                                  SET
+                                  display_name = :displayName,
+                                  real_name = :realName,
+                                  description = :description,
+                                  theme_name = :themeName
+                                  WHERE username = :username;");
+
+            $stmt->bindParam(':displayName', $displayName, PDO::PARAM_STR);
+            $stmt->bindParam(':real_name', $realName, PDO::PARAM_STR);
+            $stmt->bindParam(':description', $description, PDO::PARAM_STR);
+            $stmt->bindParam(':themeName', $theme, PDO::PARAM_STR);
+            $stmt->bindParam(':username', $userName, PDO::PARAM_STR);
 
             $stmt->execute();
 

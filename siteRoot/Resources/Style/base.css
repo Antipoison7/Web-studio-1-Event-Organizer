@@ -659,6 +659,11 @@ border-top: 5px solid black;
     margin: 0;
 }
 
+#logo a img
+{
+    border-radius: 10px;
+}
+
 #discussionImage {
 
     max-width: 100%;

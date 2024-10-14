@@ -207,13 +207,13 @@
     {
         $isValid = true;
 
-        if($inputArray["displayName"])
+        if(strlen($inputArray["displayName"])<= 0)
         {
             $isValid = false;
             $_SESSION["issues"]["displayName"] = "Display name cannot be blank";
         }
 
-        if($inputArray["realName"])
+        if(strlen($inputArray["realName"])<= 0)
         {
             $isValid = false;
             $_SESSION["issues"]["realName"] = "Name cannot be blank";
@@ -224,6 +224,8 @@
             $isValid = false;
             $_SESSION["issues"]["theme"] = "Invalid Theme";
         }
+
+        return $isValid;
     }
 
     function isDuplicateEmail($email)

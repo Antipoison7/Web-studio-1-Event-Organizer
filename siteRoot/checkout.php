@@ -36,18 +36,45 @@ include_once('./Resources/Helper/headers.php');
                 <input type="text" id="card-number" placeholder="Enter Card Number" required>
 
                 <label for="card-type">Card Type *</label>
-                <input type="text" id="card-type" placeholder="Enter Card Type" required>
+                <select id="exp-month" required>
+                    <option value=""></option>
+                    <option value="01">MasterCard</option>
+                    <option value="02">Visa</option>
+                    <option value="03">American Express</option>
+                </select>
 
                 <label for="exp-month">Exp Month *</label>
                 <select id="exp-month" required>
-                    <option value="">Select Month</option>
-                    <option value="01">January</option>
-                    <!-- Other months -->
-                    <option value="12">December</option>
+                    <option value=""></option>
+                    <option value="01">1</option>
+                    <option value="02">2</option>
+                    <option value="03">3</option>
+                    <option value="04">4</option>
+                    <option value="05">5</option>
+                    <option value="06">6</option>
+                    <option value="07">7</option>
+                    <option value="08">8</option>
+                    <option value="09">9</option>
+                    <option value="10">10</option>
+                    <option value="11">11</option>
+                    <option value="12">12</option>
                 </select>
 
                 <label for="exp-year">Exp Year *</label>
-                <input type="text" id="exp-year" placeholder="Enter Exp Year" required>
+                <select id="exp-month" required>
+                    <option value=""></option>
+                    <option value="01">2024</option>
+                    <option value="02">2025</option>
+                    <option value="03">2026</option>
+                    <option value="04">2027</option>
+                    <option value="05">2028</option>
+                    <option value="06">2029</option>
+                    <option value="07">2030</option>
+                    <option value="08">2031</option>
+                    <option value="09">2032</option>
+                    <option value="10">2033</option>
+                    <option value="11">2034</option>
+                </select>
 
                 <label for="security-code">Security Code *</label>
                 <input type="password" id="security-code" placeholder="Enter Security Code" required>

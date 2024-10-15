@@ -660,5 +660,11 @@ border-top: 5px solid black;
 
 #Event_Title h1 {
     font-size: 240%;
+    text-align: center;
+}
+
+#Event_Description {
+    text-align: center;
+    font-size: larger;
 }
 

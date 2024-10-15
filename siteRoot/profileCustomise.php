@@ -36,9 +36,9 @@
             <input type="file" name="pfp" id="pfp" hidden>
             <div class="userInfoBoxR">
               <label for="displayName">Display Name</label>
-              <input type="text" name="displayName" id="displayName" value="<?php echo(getDisplayName($_SESSION["loginDetails"]["username"])) ?>">
+              <input type="text" name="displayName" id="displayName" value="<?php echo(getDisplayName($_SESSION["loginDetails"]["username"])) ?>" autocomplete="off">
               <label for="realName" >Real Name</label>
-              <input type="text" name="realName" id="realName" value="<?php echo(getRealName($_SESSION["loginDetails"]["username"])) ?>">
+              <input type="text" name="realName" id="realName" value="<?php echo(getRealName($_SESSION["loginDetails"]["username"])) ?>" autocomplete="off">
             </div>
           </div>
 

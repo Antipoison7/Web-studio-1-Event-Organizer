@@ -680,12 +680,24 @@ border-top: 5px solid black;
     font-size: larger;
 }
 
+#Price_Amount {
+    text-align: center;
+    align-items: center;
+    
+}
+
 #popup-ticket {
     display: none;
-    width: 300px;
-    height: 100px;
+    width:fit-content;
+    height:fit-content;
     border:1px solid #CCC;
     background:#EEE;
+    
+  }
+
+  #popup-ticket a {
+    color: blue;
+    text-decoration: underline;
   }
   
   #popup-ticket:target {

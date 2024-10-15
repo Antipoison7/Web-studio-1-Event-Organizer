@@ -655,6 +655,11 @@ border-top: 5px solid black;
     box-sizing: border-box;
 }
 
+.privacyPolicy p, .privacyPolicy li
+{
+    font-size: larger;
+}
+
 #logo {
 
     margin: 0;

@@ -13,8 +13,9 @@
     <link rel="icon" type="image/x-icon" href="./Resources/Images/Resources/favicon.png">
   </head>
   <body>
-    <?php headerNoLogin("Discussion Board") ?>
     
+      <?php headerNoLogin("Discussion Board") ?>
+      <div class="BannerFlex">
         <?php
             $servername = "talsprddb02.int.its.rmit.edu.au:3306";
             $username = "COSC3046_2402_UGRD_1479_G4";
@@ -35,7 +36,7 @@
             if (mysqli_num_rows($result) > 0) {
                     
               while($row = mysqli_fetch_assoc($result)) {
-                echo "<div class='DiscussionPost'><div id='discussionpost_layout'><div id='Event_Title'><h1>" . $row["eventName"]. "</h1></div><div id='Event_Description'> " . $row["eventDesc"]. "</div><div id='Event_Image'> <img id=\"discussionImage\" src=\"./Resources/Images/Resources/day in the park example.jpg\" alt=\"day in the park image\"></div><element id='Price_Amount'>$<a href=\"#popup-ticket\">" . $row["priceCost"]. "</a></div></div><div id=\"popup-ticket\">Ticket added to Cart <a href=\"#\"> Close the Popup</a></div>";
+                echo "<div class='DiscussionPost'><div id='discussionpost_layout'><div id='Event_Title'><h1>" . $row["eventName"]. "</h1></div><div id='Event_Description'> " . $row["eventDesc"]. "</div><div id='Event_Image'> <img id=\"discussionImage\" src=\"./Resources/Images/Resources/day in the park example.jpg\" alt=\"day in the park image\"></div><element id='Price_Amount'>$<a href=\"#popup-ticket\">" . $row["priceCost"]. "</a><div id=\"popup-ticket\">Ticket added to Cart <a href=\"#\"> Close the Popup</a></div></div></div>";
               }
             } else {
               echo "0 results";
@@ -44,6 +45,7 @@
 
             mysqli_close($conn);
         ?>
+      
 
 
 

@@ -7,78 +7,64 @@ include_once('./Resources/Helper/headers.php');
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./Resources/Style/checkoutpage.css">
     <link rel="stylesheet" href="./Resources/Style/base.css">
-    <link rel="stylesheet" href="./Resources/Style/checkout.css">
     <link rel="icon" type="image/x-icon" href="./Resources/Images/Resources/favicon.png">
     <title>Checkout</title>
 </head>
 <body>
     <?php headerNoLogin("Checkout"); ?>
-    
+
     <main class="checkout-container">
         <!-- Payment Form Section -->
         <div class="payment-section">
             <h2>Payment</h2>
 
-            <!-- Add Coupon Section -->
-            <div class="coupon-section">
-                <h3>Add Promo Codes / Gift Cards</h3>
-                <form method="POST" action="apply_coupon.php">
-                    <input type="text" name="coupon_code" placeholder="Enter Coupon Code">
-                    <button type="submit">Apply Coupon</button>
-                </form>
-            </div>
-
             <!-- Credit/Debit Card Section -->
-            <div class="payment-method">
-                <h3>Credit / Debit Card</h3>
-                <label for="card-number">Card Number *</label>
-                <input type="text" id="card-number" placeholder="Enter Card Number" required>
+<div class="payment-method">
+    <h3>Credit / Debit Card</h3>
 
-                <label for="card-type">Card Type *</label>
-                <select id="exp-month" required>
-                    <option value=""></option>
-                    <option value="01">MasterCard</option>
-                    <option value="02">Visa</option>
-                    <option value="03">American Express</option>
-                </select>
+    <div class="card-info-container">
+        <div class="card-info">
+            <label for="card-number">Card Number *</label>
+            <input type="text" id="card-number" placeholder="Enter Card Number" required>
+        </div>
 
-                <label for="exp-month">Exp Month *</label>
-                <select id="exp-month" required>
-                    <option value=""></option>
-                    <option value="01">1</option>
-                    <option value="02">2</option>
-                    <option value="03">3</option>
-                    <option value="04">4</option>
-                    <option value="05">5</option>
-                    <option value="06">6</option>
-                    <option value="07">7</option>
-                    <option value="08">8</option>
-                    <option value="09">9</option>
-                    <option value="10">10</option>
-                    <option value="11">11</option>
-                    <option value="12">12</option>
-                </select>
+        <div class="card-info">
+            <label for="card-type">Card Type *</label>
+            <select id="card-type" required>
+                <option value="">Select Card Type</option>
+                <option value="MasterCard">MasterCard</option>
+                <option value="Visa">Visa</option>
+                <option value="Amex">American Express</option>
+            </select>
+        </div>
+    </div>
 
-                <label for="exp-year">Exp Year *</label>
-                <select id="exp-month" required>
-                    <option value=""></option>
-                    <option value="01">2024</option>
-                    <option value="02">2025</option>
-                    <option value="03">2026</option>
-                    <option value="04">2027</option>
-                    <option value="05">2028</option>
-                    <option value="06">2029</option>
-                    <option value="07">2030</option>
-                    <option value="08">2031</option>
-                    <option value="09">2032</option>
-                    <option value="10">2033</option>
-                    <option value="11">2034</option>
-                </select>
+    <div class="expiry-container">
+        <div class="expiry">
+            <label for="exp-month">Exp Month *</label>
+            <select id="exp-month" required>
+                <?php for ($i = 1; $i <= 12; $i++) {
+                    printf('<option value="%02d">%02d</option>', $i, $i);
+                } ?>
+            </select>
+        </div>
+        <div class="expiry">
+            <label for="exp-year">Exp Year *</label>
+            <select id="exp-year" required>
+                <?php for ($year = date('Y'); $year <= date('Y') + 11; $year++) {
+                    echo "<option value='$year'>$year</option>";
+                } ?>
+            </select>
+        </div>
+    </div>
 
-                <label for="security-code">Security Code *</label>
-                <input type="password" id="security-code" placeholder="Enter Security Code" required>
-            </div>
+    <label for="security-code">Security Code *</label>
+    <input type="password" id="security-code" placeholder="Enter Security Code" required>
+</div>
+
 
             <!-- Billing Address Section -->
             <div class="billing-address">
@@ -92,14 +78,14 @@ include_once('./Resources/Helper/headers.php');
                 <label for="address">Address *</label>
                 <input type="text" id="address" placeholder="Enter Address" required>
 
-                <label for="suburb">Suburb *</label>
-                <input type="text" id="suburb" placeholder="Enter Suburb" required>
-
-                <label for="state">State *</label>
-                <input type="text" id="state" placeholder="Enter State" required>
-
-                <label for="postcode">Postcode *</label>
-                <input type="text" id="postcode" placeholder="Enter Postcode" required>
+                <div class="address-info">
+                    <label for="suburb">Suburb *</label>
+                    <input type="text" id="suburb" placeholder="Enter Suburb" required>
+                    <label for="state">State *</label>
+                    <input type="text" id="state" placeholder="Enter State" required>
+                    <label for="postcode">Postcode *</label>
+                    <input type="text" id="postcode" placeholder="Enter Postcode" required>
+                </div>
 
                 <label for="phone">Mobile Phone *</label>
                 <input type="text" id="phone" placeholder="Enter Mobile Phone" required>
@@ -130,8 +116,9 @@ include_once('./Resources/Helper/headers.php');
                 echo "No items found in the cart.";
             }
             ?>
-            <a href="#" style="color: #007bff; text-decoration: underline;">Cancel Order</a>
+            <a href="#" class="cancel-order">Cancel Order</a>
         </div>
     </main>
+
 </body>
 </html>

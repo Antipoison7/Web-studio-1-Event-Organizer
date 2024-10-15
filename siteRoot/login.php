@@ -23,6 +23,12 @@
 
     <form method="post" action="./intermediateLogin.php">
       <div class="login">
+        <?php
+          if(isset($_SESSION["issues"]["accountValidation"]))
+          {
+            echo("<h3>Invalid username/password</h3>");
+          }
+        ?>
         <label for="username">Username / Email:</label>
         <input type="text" id="username" name="username" autocomplete="username" <?php if(isset($_SESSION["loginDetails"]["username"])){echo("value = \"" . $_SESSION["loginDetails"]["username"] . "\"");}?>>
 

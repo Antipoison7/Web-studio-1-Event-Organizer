@@ -37,6 +37,7 @@
             {
                 echo("invalid login / password");
                 $_SESSION["loginDetails"]["username"] = $username;
+                $_SESSION["issues"]["accountValidation"] = false;
                 $redirect = "./login.php";
             }
         }
@@ -44,6 +45,7 @@
         {
             echo("username and password not set");
             $_SESSION["loginDetails"]["username"] = $username;
+            $_SESSION["issues"]["accountValidation"] = false;
             $redirect = "./login.php";
         }
     }

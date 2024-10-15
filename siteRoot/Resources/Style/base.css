@@ -218,6 +218,13 @@ a:hover
     font-size:2em;
 }
 
+.login h3
+{
+    font-size: 0.8em;
+    color: red;
+    margin: 10px 0px 10px 0px;
+}
+
 .login input
 {
     height: 1.5em;
@@ -650,6 +657,11 @@ border-top: 5px solid black;
 #logo {
 
     margin: 0;
+}
+
+#logo a img
+{
+    border-radius: 10px;
 }
 
 #discussionImage {

@@ -53,6 +53,12 @@
                         
                         <br>
                     </div>
+                    <div>
+                        <h1>Moderation</h1>
+                        <a href=\"./adminControls.php\"><h2>Mod Portal</h2></a>
+                        
+                        <br>
+                    </div>
                 </div>
             </div>
         ");

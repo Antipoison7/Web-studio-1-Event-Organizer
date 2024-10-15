@@ -174,16 +174,16 @@
             $stmt = $db->prepare("UPDATE users
                                   SET
                                   display_name = :displayName,
-                                  real_name = :realName,
-                                  description = :description,
+                                  real_name = :real_name,
+                                  profile_description = :descriptions,
                                   theme_name = :themeName
-                                  WHERE username = :username;");
+                                  WHERE username = :usersname;");
 
             $stmt->bindParam(':displayName', $displayName, PDO::PARAM_STR);
             $stmt->bindParam(':real_name', $realName, PDO::PARAM_STR);
-            $stmt->bindParam(':description', $description, PDO::PARAM_STR);
+            $stmt->bindParam(':descriptions', $description, PDO::PARAM_STR);
             $stmt->bindParam(':themeName', $theme, PDO::PARAM_STR);
-            $stmt->bindParam(':username', $userName, PDO::PARAM_STR);
+            $stmt->bindParam(':usersname', $userName, PDO::PARAM_STR);
 
             $stmt->execute();
 

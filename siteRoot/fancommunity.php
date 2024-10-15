@@ -22,7 +22,6 @@ include('/home/sh8/S4055688/public_html/web-studio-project-group_01_wps_2024/sit
                 <li><a href="index.php">Home</a></li>
                 <li><a href="login.php">Login</a></li>
                 <li><a href="register.php">Register</a></li>
-                <li><a href="fancommunity.php">Community</a></li>
             </ul>
         </nav>
     </header>

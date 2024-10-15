@@ -57,9 +57,15 @@
             <select name="theme" id="theme">
               <?php
               $themes = getThemes();
+              $userTheme = getThemeName($_SESSION["loginDetails"]["username"]);
                 foreach($themes as $i)
                 {
-                  echo("<option value=\"" . $i["theme_url"] . "\">" . $i["theme_name"] . "</option>");
+                  echo("<option value=\"" . $i["theme_url"] . "\"");
+                    if($i["theme_url"] == $userTheme)
+                    {
+                      echo("selected");
+                    }
+                  echo(">" . $i["theme_name"] . "</option>");
                 }
               ?>
             </select>

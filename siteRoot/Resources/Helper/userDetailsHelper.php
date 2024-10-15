@@ -93,7 +93,7 @@ include_once('./Resources/Helper/validation.php');
                     $db = new PDO("mysql:host=talsprddb02.int.its.rmit.edu.au;dbname=COSC3046_2402_UGRD_1479_G4", "COSC3046_2402_UGRD_1479_G4", "GYS3sfUkzIqA");
                     $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-                    $stmt = $db->prepare("SELECT description FROM users WHERE username = :name;");
+                    $stmt = $db->prepare("SELECT profile_description FROM users WHERE username = :name;");
 
                     if(containsAt($username))
                     {

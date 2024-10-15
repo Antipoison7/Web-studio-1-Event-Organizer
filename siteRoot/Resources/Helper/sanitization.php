@@ -1,8 +1,8 @@
 <?php
     function cleanTextHTML($textIn)
     {
-        $textOut = str_replace($textIn, "&lt;", "<");
-        $textOut = str_replace($textOut, "&gt;", ">");
+        $textOut = str_replace("<","&lt;",$textIn);
+        $textOut = str_replace(">","&gt;",$textOut);
         return $textOut;
     }
 ?>

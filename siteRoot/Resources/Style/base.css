@@ -672,5 +672,23 @@ border-top: 5px solid black;
 
 #Event_Title h1 {
     font-size: 240%;
+    text-align: center;
 }
+
+#Event_Description {
+    text-align: center;
+    font-size: larger;
+}
+
+#popup-ticket {
+    display: none;
+    width: 300px;
+    height: 100px;
+    border:1px solid #CCC;
+    background:#EEE;
+  }
+  
+  #popup-ticket:target {
+    display: block;
+  }
 

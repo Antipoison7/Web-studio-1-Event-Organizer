@@ -15,7 +15,16 @@
     <?php headerNoLogin("Moderator Portal") ?>
         <div>
             <h2>User management</h2>
+            <ul>
+                <li><a href="./">Archive Accounts</a></li>
+                <li><a href="./">Reset Cooldowns</a></li>
+                <li><a href="./">Set Cooldowns</a></li>
+            </ul>
             <h2>Post management</h2>
+            <ul>
+                <li><a href="./">Unarchive Posts</a></li>
+                <li><a href="./">Unarchive Events</a></li>
+            </ul>
         </div>
     <?php
       makeFooter();

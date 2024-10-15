@@ -680,3 +680,15 @@ border-top: 5px solid black;
     font-size: larger;
 }
 
+#popup-ticket {
+    display: none;
+    width: 300px;
+    height: 100px;
+    border:1px solid #CCC;
+    background:#EEE;
+  }
+  
+  #popup-ticket:target {
+    display: block;
+  }
+

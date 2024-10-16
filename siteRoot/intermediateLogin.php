@@ -30,6 +30,7 @@
             {
                 $_SESSION["loginDetails"]["username"] = $username;
                 $_SESSION["loginDetails"]["password"] = $password;
+                unset($_SESSION["issues"]["accountValidation"]);
                 $redirect = "./HomePage.php";
                 
             }

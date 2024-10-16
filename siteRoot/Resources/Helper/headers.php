@@ -1,4 +1,6 @@
 <?php
+    include_once('./Resources/Helper/loginHelper.php');
+
     function makeHeader($title)
     {
     echo("
@@ -73,22 +75,90 @@
     
     function headerNoLogin($title)
     {
-        echo("
-                
+        if(isset($_SESSION["loginDetails"])){if(isValidLogin($_SESSION["loginDetails"]["username"], $_SESSION["loginDetails"]["password"])){
+            $pfpVal = "default.png";
+            try
+                {
+                    $db = new PDO("mysql:host=talsprddb02.int.its.rmit.edu.au;dbname=COSC3046_2402_UGRD_1479_G4", "COSC3046_2402_UGRD_1479_G4", "GYS3sfUkzIqA");
+                    $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-                <div class=\"mainHeader\">
-                    <div id=\"logo\"><a href=\"./HomePage.php\">
-                        <img  src=\"./Resources/Images/Resources/WebsiteLogo.webp\" alt=\"WebsiteLogo\" width=\"100\" height=\"100\">
-                    </a></div>
+                    $stmt = $db->prepare("SELECT profile_picture FROM users WHERE username = :name;");
 
-                    <h1>$title</h1>
-                    <div>
-                        <a href=\"./login.php\"><div class=\"smallButtonInv\">Login</div></a>
-                        <a href=\"./register.php\"><div class=\"smallButtonInv\">Register</div></a>
-                        <a href=\"./shoppingcart.php\" class=\"cartIcon\"><img src=\"./Resources/Images/Resources/shoppingCart.svg\" alt=\"Your Cart\" style=\"height:3em\"></a></div>
-                    </div>
+                    if(containsAt($_SESSION["loginDetails"]["username"]))
+                    {
+                        $setName = getUsername($_SESSION["loginDetails"]["username"]);
+                    }
+                    else
+                    {
+                        $setName = $_SESSION["loginDetails"]["username"];
+                    }
+
+                    $stmt->bindParam(':name', $setName, PDO::PARAM_STR);
+                    $stmt->execute();
+
+                    $pfpVal = $stmt->fetchColumn();
+
+                    $db = null;
+                    $stmt = null;
+                }
+                catch (PDOException $e)
+                {
+                    echo("oh great heavens: " . $e->getMessage());
+                }
+
+            echo("
+            <div class=\"mainHeader\">
+                <div id=\"logo\"><a href=\"./HomePage.php\">
+                    <img  src=\"./Resources/Images/Resources/WebsiteLogo.webp\" alt=\"WebsiteLogo\" width=\"100\" height=\"100\">
+                </a></div>
+
+                <h1>$title</h1>
+                <div>
+                <a href=\"./profileView.php\">
+                <img src=\"." . "/Resources/Images/userPfp/rock.jpeg" . "\" alt=\"User Profile Picture\" class=\"headerPfp\">
+                </a>
+                    <a href=\"./shoppingcart.php\" class=\"cartIcon\"><img src=\"./Resources/Images/Resources/shoppingCart.svg\" alt=\"Your Cart\" style=\"height:3em\"></a></div>
                 </div>
-            ");
+            </div>
+        ");
+        }
+        else
+        {
+            echo("
+            <div class=\"mainHeader\">
+                <div id=\"logo\"><a href=\"./HomePage.php\">
+                    <img  src=\"./Resources/Images/Resources/WebsiteLogo.webp\" alt=\"WebsiteLogo\" width=\"100\" height=\"100\">
+                </a></div>
+
+                <h1>$title</h1>
+                <div>
+                    <a href=\"./login.php\"><div class=\"smallButtonInv\">Login</div></a>
+                    <a href=\"./register.php\"><div class=\"smallButtonInv\">Register</div></a>
+                    <a href=\"./shoppingcart.php\" class=\"cartIcon\"><img src=\"./Resources/Images/Resources/shoppingCart.svg\" alt=\"Your Cart\" style=\"height:3em\"></a></div>
+                </div>
+            </div>
+        ");
+        }
+        }
+        else
+        {
+            echo("
+            <div class=\"mainHeader\">
+                <div id=\"logo\"><a href=\"./HomePage.php\">
+                    <img  src=\"./Resources/Images/Resources/WebsiteLogo.webp\" alt=\"WebsiteLogo\" width=\"100\" height=\"100\">
+                </a></div>
+
+                <h1>$title</h1>
+                <div>
+                    <a href=\"./login.php\"><div class=\"smallButtonInv\">Login</div></a>
+                    <a href=\"./register.php\"><div class=\"smallButtonInv\">Register</div></a>
+                    <a href=\"./shoppingcart.php\" class=\"cartIcon\"><img src=\"./Resources/Images/Resources/shoppingCart.svg\" alt=\"Your Cart\" style=\"height:3em\"></a></div>
+                </div>
+            </div>
+        ");
+        }
+
+        
     }
 
     function createMeta()

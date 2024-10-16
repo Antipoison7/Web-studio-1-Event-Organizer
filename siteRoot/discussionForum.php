@@ -1,4 +1,5 @@
 <?php
+  session_start();
   include_once('./Resources/Helper/headers.php');
   include_once('./Resources/Helper/sanitization.php');
 ?>

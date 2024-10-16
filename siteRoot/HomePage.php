@@ -1,5 +1,6 @@
 <?php
   include_once('./Resources/Helper/headers.php');
+  session_start();
 ?>
 <!DOCTYPE html>
 <html lang="en">

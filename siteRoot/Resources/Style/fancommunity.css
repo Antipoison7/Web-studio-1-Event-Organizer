@@ -1,31 +1,185 @@
-body {
-    background-color: #f0f0f0; /* Light gray background i guess it looks good hahaha */
-    font-family: Arial, sans-serif; /* Set font family */
+/* Header background styles */
+.header-background {
+    background: url('../Images/fancommunity/topimage.png');
+    padding: 100px 20px; /* Adjust padding as needed */
+    border-radius: 0 0 5px 5px; /* Rounded corners at the bottom */
+    box-shadow: 0 2px 5px rgba(209, 45, 45, 0.1); /* Optional: subtle shadow for depth */
 }
 
-h1 {
-    color: #333; /* Dark gray for headers ghostyyyy oooo!!!! */
-    text-align: center; /* Center align the header */
-}
-
-.gallery {
+/* Header styles */
+.header-container {
     display: flex;
-    flex-wrap: wrap; /* Allows the images to wrap to the next line gyg veg warp!!! yummy */
-    justify-content: center; /* Center the images */
-    margin: 20px; /* Margin around the gallery */
+    justify-content: space-between;
+    align-items: center;
 }
 
-.gallery img {
-    width: 150px; /* Set a width for images pretty small huh!!!*/
-    height: auto; /* Maintain aspect ratio social distancing hehe!!*/
-    margin: 10px; /* Spacing between images extra social distancing hehehehe!!*/
-    border-radius: 8px; /* Rounded corners bisuits!!*/
+.logo img {
+    width: 50px;
+    height: auto;
 }
 
-.discussion {
+.nav-icons ul {
+    display: flex;
+    list-style: none;
+}
+
+.nav-icons li {
+    margin-right: 15px; /* Space between icons */
+}
+
+.nav-icons img {
+    width: 30px; /* Adjust icon size as needed */
+    height: auto;
+}
+
+/* Background for the entire page */
+body {
+    background: url('../Images/fancommunity/trendingbackground.png') no-repeat center center; /* Replace with your actual image path */
+    background-size: cover; /* Cover entire section */
+    padding: 20px; /* Add padding to create space around content */
+}
+
+/* Combined background for discussions to fan gallery */
+.combined-background {
+    background: url('..') no-repeat center center; /* Replace with your actual image path */
+    background-size: cover; /* Cover entire section */
+    padding: 20px; /* Add padding to create space around content */
+    border-radius: 5px; /* Optional: rounded corners */
+}
+
+/* Trending discussions styles */
+.trending-discussions {
+    margin: 20px 0;
+}
+
+/* Trending discussions container */
+.discussion-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Discussion item styles */
+.discussion-item {
+    width: 45%;
+    background-color: rgba(245, 245, 245, 0.8); /* Slightly transparent background */
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.arrow-navigation img {
+    width: 40px;
+    height: auto;
+    cursor: pointer;
+}
+
+/* Community Clubs styles */
+.community-clubs {
+    margin: 20px 0; /* Added margin */
+}
+
+/* Community Clubs styles */
+.clubs-container {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+}
+
+.club-item {
+    width: 15%; /* Adjust width for each club image */
+    margin: 10px; /* Spacing between images */
+}
+
+.club-item img {
+    width: 100%; /* Make images responsive */
+    border-radius: 50%; /* Makes the club images round */
+}
+
+/* Club Summary styles */
+.club-summary {
+    display: flex;
+    align-items: center; /* Center align the summary box vertically */
+}
+
+.summary-box {
+    background-color: rgba(245, 245, 245, 0.8); /* Slightly transparent background for summary */
+    text-align: center;
     padding: 20px;
-    background-color: #fff; /* White background for discussions ofcoure it should be white */
-    border: 1px solid #ccc; /* Light gray border I need to specify the right!!*/
-    border-radius: 8px; /* Rounded corners */
-    margin: 20px; /* Margin around discussion blocks look unique!!*/
+    border-radius: 50%; /* Makes the summary box round */
+    margin-left: 10px; /* Space between last club image and summary */
+}
+
+.summary-box span {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.summary-box p {
+    font-size: 14px;
+    color: #888;
+}
+
+/* Fan Gallery styles */
+.fan-gallery {
+    margin: 30px 0;
+}
+
+.gallery-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.gallery-item {
+    position: relative;
+    width: 30%;
+    margin-bottom: 20px;
+}
+
+.gallery-collage {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 5px;
+}
+
+.gallery-collage img {
+    width: 100%;
+    border-radius: 5px;
+}
+
+.image-overlay {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.6);
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+
+.gallery-summary .summary-box {
+    background-color: rgba(245, 245, 245, 0.8); /* Slightly transparent background for gallery summary */
+    text-align: center;
+    padding: 20px;
+    border-radius: 5px;
+}
+
+.gallery-summary .summary-box span {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.gallery-summary .summary-box p {
+    font-size: 14px;
+    color: #888;
+}
+
+/* Footer styles */
+footer {
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+    margin-top: 20px;
 }

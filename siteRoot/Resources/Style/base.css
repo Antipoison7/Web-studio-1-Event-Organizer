@@ -395,7 +395,7 @@ a:hover
 }
 
 .footerItem a {
-
+    margin-bottom: 15px;
     max-height: 35px;
 }
 

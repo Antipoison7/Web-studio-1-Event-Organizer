@@ -61,12 +61,6 @@
                         
                         <br>
                     </div>
-                    <div>
-                        <h1>Fancommunity</h1>
-                        <a href=\"./fancommunity.php\"><h2>Social</h2></a>
-                        
-                        <br>
-                    </div>
                 </div>
             </div>
         ");
@@ -115,7 +109,7 @@
                 <h1>$title</h1>
                 <div>
                 <a href=\"./profileView.php\">
-                <img src=\"." . "/Resources/Images/userPfp/rock.jpeg" . "\" alt=\"User Profile Picture\" class=\"headerPfp\">
+                <img src=\"." . $pfpVal . "\" alt=\"User Profile Picture\" class=\"headerPfp\">
                 </a>
                     <a href=\"./shoppingcart.php\" class=\"cartIcon\"><img src=\"./Resources/Images/Resources/shoppingCart.svg\" alt=\"Your Cart\" style=\"height:3em\"></a></div>
                 </div>

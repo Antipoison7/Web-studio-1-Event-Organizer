@@ -29,8 +29,8 @@
           <div class="flex userInfoContainer">
             <label for="pfp" style="margin-right: 20px;">
               <div class="pfpContainer">
-                <img class="customisePfp" alt="User Profile Picture" id="profilePictureIcon" src=".<?php echo(getProfilePicture($_SESSION["loginDetails"]["username"])); ?>">
-                <img class="customisePfpOverlay" id="profilePictureOverlay" src="./Resources/Images/Resources/addPhoto.png" hidden>
+                <img class="customisePfp" alt="Upload Profile Picture" id="profilePictureIcon" src=".<?php echo(getProfilePicture($_SESSION["loginDetails"]["username"])); ?>">
+                <img class="customisePfpOverlay" alt="Upload Profile Picture" id="profilePictureOverlay" src="./Resources/Images/Resources/addPhoto.png" hidden>
               </div>
             </label>
             <input type="file" name="pfp" id="pfp" hidden>

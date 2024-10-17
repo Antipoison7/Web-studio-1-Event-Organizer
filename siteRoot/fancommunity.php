@@ -20,14 +20,14 @@ include('/home/sh8/S4055688/public_html/web-studio-project-group_01_wps_2024/sit
     <div class="header-background"> <!-- Added background container -->
         <div class="header-container">
             <div class="logo">
-                <img src="/path-to-logo/sportsfanclub-logo.png" alt="Sports Fan Club">
+                <img src="./Resources/Images/fancommunity/logo.png" alt="Sports Fan Club">
             </div>
             <nav class="nav-icons">
                 <ul>
                     <li><a href="fancommunity.php"><img src="./Resources/Images/fancommunity/emojis/people.png" alt="Fan Community"></a></li>
-                    <li><a href="search.php"><img src="/path-to-icons/search-emoji.png" alt="Search"></a></li>
-                    <li><a href="favorites.php"><img src="/path-to-icons/heart-emoji.png" alt="Favorites"></a></li>
-                    <li><a href="profile.php"><img src="/path-to-icons/profile-pic.png" alt="Profile"></a></li>
+                    <li><a href="search.php"><img src="./Resources/Images/fancommunity/emojis/search.png" alt="Search"></a></li>
+                    <li><a href="favorites.php"><img src="./Resources/Images/fancommunity/emojis/heart.png"></a></li>
+                    <li><a href="profile.php"><img src="./Resources/Images/fancommunity/emojis/profile.png" alt="Profile"></a></li>
                 </ul>
             </nav>
         </div>
@@ -58,22 +58,22 @@ include('/home/sh8/S4055688/public_html/web-studio-project-group_01_wps_2024/sit
         <h2>Community Clubs</h2>
         <div class="clubs-container">
             <div class="club-item">
-                <img src="/Resources/Images/club1.jpg" alt="Club 1">
+                <img src="./Resources/Images/fancommunity/clubs/club1.png" alt="Club 1">
             </div>
             <div class="club-item">
-                <img src="/Resources/Images/club2.jpg" alt="Club 2">
+                <img src="./Resources/Images/fancommunity/clubs/club2.png" alt="Club 2">
             </div>
             <div class="club-item">
-                <img src="/Resources/Images/club3.jpg" alt="Club 3">
+                <img src="./Resources/Images/fancommunity/clubs/club3.png" alt="Club 3">
             </div>
             <div class="club-item">
-                <img src="/Resources/Images/club4.jpg" alt="Club 4">
+                <img src="./Resources/Images/fancommunity/clubs/club4.png" alt="Club 4">
             </div>
             <div class="club-item">
-                <img src="/Resources/Images/club5.jpg" alt="Club 5">
+                <img src="./Resources/Images/fancommunity/clubs/club5.png" alt="Club 5">
             </div>
             <div class="club-item">
-                <img src="/Resources/Images/club6.jpg" alt="Club 6">
+                <img src="./Resources/Images/fancommunity/clubs/club6.png" alt="Club 6">
             </div>
             <div class="club-summary">
                 <div class="summary-box">

@@ -1,7 +1,7 @@
 /* Header background styles */
 .header-background {
     background: url('../Images/fancommunity/topimage.png');
-    padding: 100px 20px; /* Adjust padding as needed */
+    padding: 50px 20px; /* Adjust padding as needed */
     border-radius: 0 0 5px 5px; /* Rounded corners at the bottom */
     box-shadow: 0 2px 5px rgba(209, 45, 45, 0.1); /* Optional: subtle shadow for depth */
 }
@@ -87,12 +87,12 @@ body {
 }
 
 .club-item {
-    width: 15%; /* Adjust width for each club image */
-    margin: 10px; /* Spacing between images */
+    width: 10%; /* Adjust width for each club image */
+    margin: 22px; /* Spacing between images */
 }
 
 .club-item img {
-    width: 100%; /* Make images responsive */
+    width: 99%; /* Make images responsive */
     border-radius: 50%; /* Makes the club images round */
 }
 
@@ -182,4 +182,12 @@ footer {
     text-align: center;
     padding: 10px 0;
     margin-top: 20px;
+}
+.nav-icons img {
+    width: 70px !important; /* Force the size to increase */
+    height: auto !important; /* Maintain the aspect ratio */
+}
+.logo img {
+    width: 150px; /* Adjust the width to make the logo bigger */
+    height: auto; /* Keeps the aspect ratio */
 }

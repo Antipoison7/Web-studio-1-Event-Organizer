@@ -27,6 +27,7 @@ a:hover
     padding: 0px 8px 0px 8px;
 }
 
+/* Large button*/
 .button
 {
     align-items: center;
@@ -61,6 +62,7 @@ a:hover
     box-sizing: border-box;
 }
 
+/* Large button with black fill, white text */
 .buttonInv
 {
     align-items: center;
@@ -96,6 +98,7 @@ a:hover
     box-sizing: border-box;
 }
 
+/* Large button with red fill, white text */
 .buttonWarn
 {
     align-items: center;
@@ -131,6 +134,7 @@ a:hover
     box-sizing: border-box;
 }
 
+/* Smaller sized button used in the header and in some other pages */
 .smallButton
 {
     align-items: center;
@@ -165,6 +169,7 @@ a:hover
     box-sizing: border-box;
 }
 
+/* Same as smallButton but with black fill, white text */
 .smallButtonInv
 {
     align-items: center;
@@ -200,6 +205,7 @@ a:hover
     box-sizing: border-box;
 }
 
+/* Classes used in the login and register pages */
 .loginHeader
 {
     border-bottom: 2px solid gray;

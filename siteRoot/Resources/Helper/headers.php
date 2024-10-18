@@ -60,7 +60,13 @@
                         <a href=\"./adminControls.php\"><h2>Mod Portal</h2></a>
                         
                         <br>
-                    </div>                 
+                    </div> 
+                    <div>
+                        <h1>Fancommunity</h1>
+                        <a href=\"./fancommunity.php\"><h2>Social</h2></a>
+                        
+                        <br>
+                    </div>                   
                 </div>
             </div>
         ");

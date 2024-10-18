@@ -1,8 +1,8 @@
 <?php
-session_start(); //Start the session like on every other page or else login stuff wont work - Connor
-include('/home/sh8/S4055688/public_html/web-studio-project-group_01_wps_2024/siteRoot/Resources/Helper/headers.php'); // Including the header
+include 'fetchgeolocation.php'; // Include the file
+$ip = $_SERVER['REMOTE_ADDR']; // Get the user's IP address
+$geolocationData = getUserGeolocation($ip); // Pass the IP address to fetch geolocation data
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -34,7 +34,6 @@ include('/home/sh8/S4055688/public_html/web-studio-project-group_01_wps_2024/sit
         </div>
     </div>
 </header>
-
 
     <!-- Trending Discussions Section -->
     <section class="trending-discussions">
@@ -98,64 +97,58 @@ include('/home/sh8/S4055688/public_html/web-studio-project-group_01_wps_2024/sit
             <div class="gallery-item">
                 <div class="gallery-collage">
                     <img src="./Resources/Images/fancommunity/Fangallery/E1P1.png" alt="Event 1 Image 1">
-                    <img src="./Resources/Images/fancommunity/Fangallery/E1P2.png"" alt="Event 1 Image 2">
-                    <img src="./Resources/Images/fancommunity/Fangallery/E1P3.png"" alt="Event 1 Image 3">
-                    <img src="./Resources/Images/fancommunity/Fangallery/E1P4.png"" alt="Event 1 Image 3">
-                    <div class="image-overlay">
-                    </div>
+                    <img src="./Resources/Images/fancommunity/Fangallery/E1P2.png" alt="Event 1 Image 2">
+                    <img src="./Resources/Images/fancommunity/Fangallery/E1P3.png" alt="Event 1 Image 3">
+                    <img src="./Resources/Images/fancommunity/Fangallery/E1P4.png" alt="Event 1 Image 4">
+                    <div class="image-overlay"></div>
                 </div>
                 <p>FIBA Basketball World Cup</p>
             </div>
 
             <div class="gallery-item">
                 <div class="gallery-collage">
-                    <img src="./Resources/Images/fancommunity/Fangallery/E2P1.png" alt="Event 1 Image 1">
-                    <img src="./Resources/Images/fancommunity/Fangallery/E2P2.png"" alt="Event 1 Image 2">
-                    <img src="./Resources/Images/fancommunity/Fangallery/E2P3.png"" alt="Event 1 Image 3">
-                    <img src="./Resources/Images/fancommunity/Fangallery/E2P4.png"" alt="Event 1 Image 3">
-                    <div class="image-overlay">
-                    </div>
+                    <img src="./Resources/Images/fancommunity/Fangallery/E2P1.png" alt="Event 2 Image 1">
+                    <img src="./Resources/Images/fancommunity/Fangallery/E2P2.png" alt="Event 2 Image 2">
+                    <img src="./Resources/Images/fancommunity/Fangallery/E2P3.png" alt="Event 2 Image 3">
+                    <img src="./Resources/Images/fancommunity/Fangallery/E2P4.png" alt="Event 2 Image 4">
+                    <div class="image-overlay"></div>
                 </div>
-                <p>Basketball  pros</p>
+                <p>Basketball Pros</p>
             </div>
 
             <div class="gallery-item">
                 <div class="gallery-collage">
                     <img src="./Resources/Images/fancommunity/Fangallery/E1P1.png" alt="Event 1 Image 1">
-                    <img src="./Resources/Images/fancommunity/Fangallery/E1P2.png"" alt="Event 1 Image 2">
-                    <img src="./Resources/Images/fancommunity/Fangallery/E1P3.png"" alt="Event 1 Image 3">
-                    <img src="./Resources/Images/fancommunity/Fangallery/E1P4.png"" alt="Event 1 Image 3">
-                    <div class="image-overlay">
-                    </div>
+                    <img src="./Resources/Images/fancommunity/Fangallery/E1P2.png" alt="Event 1 Image 2">
+                    <img src="./Resources/Images/fancommunity/Fangallery/E1P3.png" alt="Event 1 Image 3">
+                    <img src="./Resources/Images/fancommunity/Fangallery/E1P4.png" alt="Event 1 Image 4">
+                    <div class="image-overlay"></div>
                 </div>
                 <p>FIBA Basketball World Cup</p>
             </div>
 
             <div class="gallery-item">
                 <div class="gallery-collage">
-                    <img src="./Resources/Images/fancommunity/Fangallery/E3P1.png" alt="Event 1 Image 1">
-                    <img src="./Resources/Images/fancommunity/Fangallery/E3P2.png"" alt="Event 1 Image 2">
-                    <img src="./Resources/Images/fancommunity/Fangallery/E3P3.png"" alt="Event 1 Image 3">
-                    <img src="./Resources/Images/fancommunity/Fangallery/E3P4.png"" alt="Event 1 Image 3">
-                    <div class="image-overlay">
-                    </div>
+                    <img src="./Resources/Images/fancommunity/Fangallery/E3P1.png" alt="Event 3 Image 1">
+                    <img src="./Resources/Images/fancommunity/Fangallery/E3P2.png" alt="Event 3 Image 2">
+                    <img src="./Resources/Images/fancommunity/Fangallery/E3P3.png" alt="Event 3 Image 3">
+                    <img src="./Resources/Images/fancommunity/Fangallery/E3P4.png" alt="Event 3 Image 4">
+                    <div class="image-overlay"></div>
                 </div>
-                <p>Cricket Worldcup</p>
+                <p>Cricket World Cup</p>
             </div>
 
             <div class="gallery-item">
                 <div class="gallery-collage">
-                    <img src="./Resources/Images/fancommunity/Fangallery/E4P1.png" alt="Event 1 Image 1">
-                    <img src="./Resources/Images/fancommunity/Fangallery/E4P2.png"" alt="Event 1 Image 2">
-                    <img src="./Resources/Images/fancommunity/Fangallery/E4P3.png"" alt="Event 1 Image 3">
-                    <img src="./Resources/Images/fancommunity/Fangallery/E4P4.png"" alt="Event 1 Image 3">
-                    <div class="image-overlay">
-                    </div>
+                    <img src="./Resources/Images/fancommunity/Fangallery/E4P1.png" alt="Event 4 Image 1">
+                    <img src="./Resources/Images/fancommunity/Fangallery/E4P2.png" alt="Event 4 Image 2">
+                    <img src="./Resources/Images/fancommunity/Fangallery/E4P3.png" alt="Event 4 Image 3">
+                    <img src="./Resources/Images/fancommunity/Fangallery/E4P4.png" alt="Event 4 Image 4">
+                    <div class="image-overlay"></div>
                 </div>
-                <p>BCM  Women</p>
+                <p>BCM Women</p>
             </div>
             
-            <!-- Repeat similar structure for other events -->
             <div class="gallery-summary">
                 <div class="summary-box">
                     <span>+22.5k</span>
@@ -165,9 +158,21 @@ include('/home/sh8/S4055688/public_html/web-studio-project-group_01_wps_2024/sit
         </div>
     </section>
 
+    <?php if ($geolocationData): ?>
+    <div>
+        <h3>User Location:</h3>
+        <p>Latitude: <?= $geolocationData['latitude'] ?></p>
+        <p>Longitude: <?= $geolocationData['longitude'] ?></p>
+        <!-- Add a link to the location, if applicable -->
+        <a href="https://www.google.com/maps/search/?api=1&query=<?= $geolocationData['latitude'] ?>,<?= $geolocationData['longitude'] ?>">View on Map</a>
+    </div>
+    <?php else: ?>
+        <p>Unable to fetch location data.</p>
+    <?php endif; ?>
+
     <!-- Footer -->
     <footer>
         <p>&copy; 2024 Fan Community</p>
     </footer>
 </body>
-</html>
+</

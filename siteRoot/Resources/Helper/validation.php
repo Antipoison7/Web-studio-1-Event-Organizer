@@ -261,5 +261,10 @@
         }
     }
 
+    function makeCaptcha()
+    {
+        $_SESSION["captcha"] = substr(uniqid(bin2hex(random_bytes(10/2)), true),0,6);
+    }
+
     
 ?>

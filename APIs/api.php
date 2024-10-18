@@ -5,7 +5,7 @@ include_once('./apiDB.php');
 // Set headers for the response
 header("Content-Type: application/json");
 header("Access-Control-Allow-Origin: *");
-header("Access-Control-Allow-Methods: GET");
+header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE");
 
 //NOTE, THIS IS SAMPLE STUFF, DO NOT USE GET WITH PASSWORDS AS IT IS UNSECURE
 //THIS IS JUST TO PROVIDE SAMPLE CODE FOR USER AUTHENTICATION AND COMMANDS

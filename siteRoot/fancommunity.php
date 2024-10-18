@@ -25,10 +25,10 @@ include('/home/sh8/S4055688/public_html/web-studio-project-group_01_wps_2024/sit
             </div>
             <nav class="nav-icons">
                 <ul>
-                    <li><a href="fancommunity.php"><img src="./Resources/Images/fancommunity/emojis/people.png" alt="Fan Community"></a></li>
-                    <li><a href="search.php"><img src="./Resources/Images/fancommunity/emojis/search.png" alt="Search"></a></li>
+                    <li><a href="HomePage.php"><img src="./Resources/Images/fancommunity/emojis/home.png" alt="Home"></a></li>
+                    <li><a href="fancommunity.php"><img src="./Resources/Images/fancommunity/emojis/people.png" alt="Fancommunity"></a></li>
                     <li><a href="favorites.php"><img src="./Resources/Images/fancommunity/emojis/heart.png"></a></li>
-                    <li><a href="profile.php"><img src="./Resources/Images/fancommunity/emojis/profile.png" alt="Profile"></a></li>
+                    <li><a href="profileView.php"><img src="./Resources/Images/fancommunity/emojis/profile.png" alt="Profile"></a></li>
                 </ul>
             </nav>
         </div>
@@ -38,7 +38,9 @@ include('/home/sh8/S4055688/public_html/web-studio-project-group_01_wps_2024/sit
 
     <!-- Trending Discussions Section -->
     <section class="trending-discussions">
-        <h2>Trending Discussions</h2>
+    <div class="trending-heading">
+        <img src="./Resources/Images/fancommunity/Headers/discussions.png" alt="Trending Discussions">
+    </div>
         <div class="discussion-container combined-background">
             <div class="discussion-item">
                 <h3>Discussion 1</h3>
@@ -56,7 +58,9 @@ include('/home/sh8/S4055688/public_html/web-studio-project-group_01_wps_2024/sit
 
     <!-- Community Clubs Section -->
     <section class="community-clubs">
-        <h2>Community Clubs</h2>
+    <div class="clubs-heading">
+        <img src="./Resources/Images/fancommunity/Headers/communityheading.png" alt="Community Clubs">
+    </div>
         <div class="clubs-container">
             <div class="club-item">
                 <img src="./Resources/Images/fancommunity/clubs/club1.png" alt="Club 1">
@@ -87,24 +91,75 @@ include('/home/sh8/S4055688/public_html/web-studio-project-group_01_wps_2024/sit
 
     <!-- Fan Gallery Section -->
     <section class="fan-gallery">
-        <h2>Fan Gallery</h2>
+    <div class="gallery-heading">
+        <img src="./Resources/Images/fancommunity/Headers/fangallery.png" alt="Fan Gallery">
+    </div>
         <div class="gallery-container">
             <div class="gallery-item">
                 <div class="gallery-collage">
-                    <img src="/Resources/Images/event1-1.jpg" alt="Event 1 Image 1">
-                    <img src="/Resources/Images/event1-2.jpg" alt="Event 1 Image 2">
-                    <img src="/Resources/Images/event1-3.jpg" alt="Event 1 Image 3">
+                    <img src="./Resources/Images/fancommunity/Fangallery/E1P1.png" alt="Event 1 Image 1">
+                    <img src="./Resources/Images/fancommunity/Fangallery/E1P2.png"" alt="Event 1 Image 2">
+                    <img src="./Resources/Images/fancommunity/Fangallery/E1P3.png"" alt="Event 1 Image 3">
+                    <img src="./Resources/Images/fancommunity/Fangallery/E1P4.png"" alt="Event 1 Image 3">
                     <div class="image-overlay">
-                        <span>+27</span>
                     </div>
                 </div>
-                <p>Event 1</p>
+                <p>FIBA Basketball World Cup</p>
             </div>
+
+            <div class="gallery-item">
+                <div class="gallery-collage">
+                    <img src="./Resources/Images/fancommunity/Fangallery/E2P1.png" alt="Event 1 Image 1">
+                    <img src="./Resources/Images/fancommunity/Fangallery/E2P2.png"" alt="Event 1 Image 2">
+                    <img src="./Resources/Images/fancommunity/Fangallery/E2P3.png"" alt="Event 1 Image 3">
+                    <img src="./Resources/Images/fancommunity/Fangallery/E2P4.png"" alt="Event 1 Image 3">
+                    <div class="image-overlay">
+                    </div>
+                </div>
+                <p>Basketball  pros</p>
+            </div>
+
+            <div class="gallery-item">
+                <div class="gallery-collage">
+                    <img src="./Resources/Images/fancommunity/Fangallery/E1P1.png" alt="Event 1 Image 1">
+                    <img src="./Resources/Images/fancommunity/Fangallery/E1P2.png"" alt="Event 1 Image 2">
+                    <img src="./Resources/Images/fancommunity/Fangallery/E1P3.png"" alt="Event 1 Image 3">
+                    <img src="./Resources/Images/fancommunity/Fangallery/E1P4.png"" alt="Event 1 Image 3">
+                    <div class="image-overlay">
+                    </div>
+                </div>
+                <p>FIBA Basketball World Cup</p>
+            </div>
+
+            <div class="gallery-item">
+                <div class="gallery-collage">
+                    <img src="./Resources/Images/fancommunity/Fangallery/E3P1.png" alt="Event 1 Image 1">
+                    <img src="./Resources/Images/fancommunity/Fangallery/E3P2.png"" alt="Event 1 Image 2">
+                    <img src="./Resources/Images/fancommunity/Fangallery/E3P3.png"" alt="Event 1 Image 3">
+                    <img src="./Resources/Images/fancommunity/Fangallery/E3P4.png"" alt="Event 1 Image 3">
+                    <div class="image-overlay">
+                    </div>
+                </div>
+                <p>Cricket Worldcup</p>
+            </div>
+
+            <div class="gallery-item">
+                <div class="gallery-collage">
+                    <img src="./Resources/Images/fancommunity/Fangallery/E4P1.png" alt="Event 1 Image 1">
+                    <img src="./Resources/Images/fancommunity/Fangallery/E4P2.png"" alt="Event 1 Image 2">
+                    <img src="./Resources/Images/fancommunity/Fangallery/E4P3.png"" alt="Event 1 Image 3">
+                    <img src="./Resources/Images/fancommunity/Fangallery/E4P4.png"" alt="Event 1 Image 3">
+                    <div class="image-overlay">
+                    </div>
+                </div>
+                <p>BCM  Women</p>
+            </div>
+            
             <!-- Repeat similar structure for other events -->
             <div class="gallery-summary">
                 <div class="summary-box">
                     <span>+22.5k</span>
-                    <p>Event Photos</p>
+                    <p>Events Photos</p>
                 </div>
             </div>
         </div>

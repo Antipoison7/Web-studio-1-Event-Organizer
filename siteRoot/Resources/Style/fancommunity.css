@@ -122,19 +122,22 @@ body {
 
 /* Fan Gallery styles */
 .fan-gallery {
-    margin: 30px 0;
+    margin: 40px 0;
 }
 
+/* Adjust fan gallery container to behave like the club container */
 .gallery-container {
     display: flex;
+    align-items: center;
+    justify-content: flex-start;
     flex-wrap: wrap;
-    justify-content: space-between;
 }
 
+/* Adjust fan gallery items to be side by side like club items */
 .gallery-item {
+    width: 15%; /* Adjust width for each fan gallery item */
+    margin: 17px; /* Spacing between fan gallery items */
     position: relative;
-    width: 30%;
-    margin-bottom: 20px;
 }
 
 .gallery-collage {
@@ -158,23 +161,6 @@ body {
     border-radius: 5px;
 }
 
-.gallery-summary .summary-box {
-    background-color: rgba(245, 245, 245, 0.8); /* Slightly transparent background for gallery summary */
-    text-align: center;
-    padding: 20px;
-    border-radius: 5px;
-}
-
-.gallery-summary .summary-box span {
-    font-size: 24px;
-    font-weight: bold;
-}
-
-.gallery-summary .summary-box p {
-    font-size: 14px;
-    color: #888;
-}
-
 /* Footer styles */
 footer {
     background-color: rgba(0, 0, 0, 0.8);
@@ -190,4 +176,28 @@ footer {
 .logo img {
     width: 150px; /* Adjust the width to make the logo bigger */
     height: auto; /* Keeps the aspect ratio */
+}
+/* Community Clubs heading image - left aligned */
+.clubs-heading img {
+    display: block;
+    margin: 0; /* Removes centering */
+    max-width: 25%; /* Ensures the image is responsive */
+    height: auto;
+    padding-bottom: 20px; /* Adds space below the image */
+}
+/* Fan Gallery heading image - left aligned */
+.gallery-heading img {
+    display: block;
+    margin: 0; /* Removes centering */
+    max-width: 25%; /* Ensures the image is responsive */
+    height: auto;
+    padding-bottom: 20px; /* Adds space below the image */
+}
+/* Trending Discussions heading image - left aligned */
+.trending-heading img {
+    display: block;
+    margin: 0; /* Removes centering */
+    max-width: 25%; /* Ensures the image is responsive */
+    height: auto;
+    padding-bottom: 20px; /* Adds space below the image */
 }

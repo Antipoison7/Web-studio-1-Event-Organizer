@@ -60,7 +60,7 @@
                         <a href=\"./adminControls.php\"><h2>Mod Portal</h2></a>
                         
                         <br>
-                    </div>
+                    </div>                 
                 </div>
             </div>
         ");

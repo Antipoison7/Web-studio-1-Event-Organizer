@@ -1,6 +1,6 @@
 <?php
-  include_once('./Resources/Helper/headers.php');
   session_start();
+  include_once('./Resources/Helper/headers.php');
 ?>
 <!DOCTYPE html>
 <html lang="en">

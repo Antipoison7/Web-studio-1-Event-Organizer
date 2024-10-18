@@ -1,4 +1,5 @@
 <?php
+session_start(); //Start the session like on every other page or else login stuff wont work - Connor
 include('/home/sh8/S4055688/public_html/web-studio-project-group_01_wps_2024/siteRoot/Resources/Helper/headers.php'); // Including the header
 ?>
 

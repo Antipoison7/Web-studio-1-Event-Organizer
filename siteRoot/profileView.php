@@ -1,8 +1,8 @@
 <?php
+  session_start();
   include_once('./Resources/Helper/headers.php');
   include_once('./Resources/Helper/loginHelper.php');
   include_once('./Resources/Helper/userDetailsHelper.php');
-  session_start();
 ?>
 <!DOCTYPE html>
 <html lang="en">

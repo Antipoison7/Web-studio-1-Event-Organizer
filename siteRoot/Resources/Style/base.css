@@ -688,6 +688,35 @@ border-top: 5px solid black;
     font-size: larger;
 }
 
+.captcha
+{
+    margin: 10px 0px;
+    background-color:rgb(255, 254, 248);
+    border-radius: 10px;
+    border: 2px solid black;
+    padding: 5px;
+}
+
+.captcha label
+{
+    display: flex;
+    flex-wrap: wrap;
+    align-content: center;
+}
+
+.captcha h1
+{
+    font-size: 1em;
+    margin: 10px 0px;
+}
+
+.captcha h2
+{
+    font-family: cursive;
+    font-size: 1em;
+    margin: 5px 0px;
+}
+
 #logo {
 
     margin: 0;

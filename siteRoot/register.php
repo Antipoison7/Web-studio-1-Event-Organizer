@@ -2,6 +2,8 @@
 session_start();
 include_once('./Resources/Helper/headers.php');
 include_once('./Resources/Helper/validation.php');
+include_once('./Resources/Helper/loginHelper.php');
+makeCaptcha();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -167,6 +169,14 @@ include_once('./Resources/Helper/validation.php');
               echo ("class = \"loginFontErrorColor\"");
             } ?>>Contains at least one symbol (!@#$%^&*)</li>
       </ul>
+
+      <div class="captcha">
+        <div>
+          <label for="captchaText"><h1>Captcha Code:&nbsp;</h1>
+          <?php echo("<h2>" . $_SESSION["captcha"] . "</h2>"); ?></label>
+          <input type="text" id="captchaText" name="captchaText">
+        </div>
+      </div>
 
       <div class="flex">
         <button type="submit" class="smallButton" style="margin-right: 5px;">Register</button>

@@ -1,13 +1,13 @@
 "# web-studio-project-group_01_wps_2024"
 
-##Accounts
+Accounts
 
-    ###Admin Account
+    Admin Account
         Username: adminAccount
         Email: admin.testing@email.com
         Password: P@ssword1
 
-    ###Normal Account-
+    Normal Account-
         Username: joeAverage
         Email: average.joe@email.com
         Password: P@ssword1

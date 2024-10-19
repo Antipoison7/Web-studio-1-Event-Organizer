@@ -114,9 +114,9 @@ $geolocationData = getUserGeolocation($ip); // Pass the IP address to fetch geol
                     <img src="./Resources/Images/fancommunity/Fangallery/E1P4.png" alt="Event 1 Image 4">
                     <div class="image-overlay"></div>
                 </div>
-                <p>FIBA Basketball World Cup</p>
-                <p>Docklands</p> <!-- Event Location -->
-    <a href="https://www.google.com/maps/search/?api=1&query=-37.81363,144.96306" target="_blank" rel="noopener noreferrer">View on Map</a> 
+                <p>Basketball League</p>
+                <p>John Cain Arena</p> <!-- Event Location -->
+    <a href="https://www.google.com/maps/place/John+Cain+Arena/@-37.8227725,144.9793938,17z/data=!3m1!4b1!4m6!3m5!1s0x6ad642be136568a7:0x38c0a17f8edfa003!8m2!3d-37.8227725!4d144.9819687!16zL20vMGIzMTd5?entry=ttu&g_ep=EgoyMDI0MTAxNi4wIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noopener noreferrer">View on Map</a> 
     <!-- Ensure to replace with the actual coordinates -->
             </div>
 
@@ -129,8 +129,8 @@ $geolocationData = getUserGeolocation($ip); // Pass the IP address to fetch geol
                     <div class="image-overlay"></div>
                 </div>
                 <p>Basketball Pros</p>
-                <p>Docklands</p> <!-- Event Location -->
-    <a href="https://www.google.com/maps/search/?api=1&query=-37.81363,144.96306" target="_blank" rel="noopener noreferrer">View on Map</a> 
+                <p>Margaret Court Arena</p> <!-- Event Location -->
+    <a href="https://www.google.com/maps/place/Margaret+Court+Arena/@-37.8211276,144.9750615,17z/data=!3m1!4b1!4m6!3m5!1s0x6ad642b94abc8457:0x606c4133f1ce2040!8m2!3d-37.8211276!4d144.9776364!16zL20vMGNtZ2p6?entry=ttu&g_ep=EgoyMDI0MTAxNi4wIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noopener noreferrer">View on Map</a> 
     <!-- Ensure to replace with the actual coordinates -->
             </div>
 
@@ -157,8 +157,8 @@ $geolocationData = getUserGeolocation($ip); // Pass the IP address to fetch geol
                     <div class="image-overlay"></div>
                 </div>
                 <p>Cricket World Cup</p>
-                <p>Docklands</p> <!-- Event Location -->
-    <a href="https://www.google.com/maps/search/?api=1&query=-37.81363,144.96306" target="_blank" rel="noopener noreferrer">View on Map</a> 
+                <p>Melbourne Cricket Ground</p> <!-- Event Location -->
+    <a href="https://www.google.com/maps/place/Melbourne+Cricket+Ground/@-37.8198747,144.9795207,16.37z/data=!4m6!3m5!1s0x6ad64295571a6281:0x63575fd647a0b2f9!8m2!3d-37.8199669!4d144.9834493!16zL20vMDRfMW0?entry=ttu&g_ep=EgoyMDI0MTAxNi4wIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noopener noreferrer">View on Map</a> 
     <!-- Ensure to replace with the actual coordinates -->
             </div>
 
@@ -171,9 +171,9 @@ $geolocationData = getUserGeolocation($ip); // Pass the IP address to fetch geol
                     <div class="image-overlay"></div>
                 </div>
                 <p>BCM Women</p>
-                <p>Docklands</p> <!-- Event Location -->
-    <a href="https://www.google.com/maps/search/?api=1&query=-37.81363,144.96306" target="_blank" rel="noopener noreferrer">View on Map</a> 
-    <!-- Ensure to replace with the actual coordinates -->HARSHA2934@
+                <p>State Sport Centres</p> <!-- Event Location -->
+    <a href="https://www.google.com/maps/place/State+Sport+Centres+-+MSAC/@-37.843442,144.9592874,17z/data=!3m2!4b1!5s0x6ad6674064e9d437:0x476bccb16c8b7538!4m6!3m5!1s0x6ad667e27fe5b65b:0x7da260ae352a6392!8m2!3d-37.843442!4d144.9618623!16zL20vMGMzX3pm?entry=ttu&g_ep=EgoyMDI0MTAxNi4wIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noopener noreferrer">View on Map</a> 
+    <!-- Ensure to replace with the actual coordinates -->
      
             </div>
             

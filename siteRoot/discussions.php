@@ -15,7 +15,7 @@ if ($conn->connect_error) {
 // Function to fetch random discussions from the database
 function fetchRandomDiscussions() {
     global $conn;
-    $sql = "SELECT id, title, content FROM discussions ORDER BY RAND() LIMIT 10";
+    $sql = "SELECT id, title, content FROM discussions ORDER BY RAND() LIMIT 500";
     $result = $conn->query($sql);
 
     if (!$result) {
@@ -30,7 +30,6 @@ function fetchRandomDiscussions() {
     }
     return $discussions;
 }
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -40,6 +39,24 @@ function fetchRandomDiscussions() {
     <title>Discussions</title>
     <link rel="stylesheet" href="./Resources/Style/base.css"> 
     <link rel="stylesheet" href="./Resources/Style/discussions.css"> <!-- Your new CSS for discussions -->
+    <style>
+        /* Additional styles for two-column layout */
+        .discussions-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+        .discussion-item {
+            width: 48%; /* Adjust the width for two items per row */
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            padding: 15px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        .discussion-actions {
+            margin-top: 10px;
+        }
+    </style>
 </head>
 <body>
     <header>
@@ -56,23 +73,40 @@ function fetchRandomDiscussions() {
     </section>
 
     <section class="discussions-container">
-        <?php
-        // Fetch random discussions from your SQL database
-        $discussions = fetchRandomDiscussions(); // This should be your SQL query fetching discussions
+    <?php
+    // Fetch random discussions from your SQL database
+    $discussions = fetchRandomDiscussions();
+    
+    // Loop through discussions and display them in pairs
+    for ($i = 0; $i < count($discussions); $i += 2) {
+        echo "<div class='discussion-row'>"; // Start a new row
+        // Display the first discussion
+        echo "<div class='discussion-item'>";
+        echo "<h3>{$discussions[$i]['title']}</h3>";
+        echo "<p>{$discussions[$i]['content']}</p>";
+        echo "<div class='discussion-actions'>";
+        echo "<a href='#' class='like-btn' data-id='{$discussions[$i]['id']}'>Like</a>";
+        echo "<a href='#' class='dislike-btn' data-id='{$discussions[$i]['id']}'>Dislike</a>";
+        echo "<a href='reply.php?discussion_id={$discussions[$i]['id']}'>Reply</a>";
+        echo "</div>";
+        echo "</div>";
         
-        foreach($discussions as $discussion) {
+        // Check if there is a second discussion to display
+        if (isset($discussions[$i + 1])) {
             echo "<div class='discussion-item'>";
-            echo "<h3>{$discussion['title']}</h3>";
-            echo "<p>{$discussion['content']}</p>";
+            echo "<h3>{$discussions[$i + 1]['title']}</h3>";
+            echo "<p>{$discussions[$i + 1]['content']}</p>";
             echo "<div class='discussion-actions'>";
-            echo "<a href='#' class='like-btn' data-id='{$discussion['id']}'>Like</a>";  // Like button with discussion ID
-            echo "<a href='#' class='dislike-btn' data-id='{$discussion['id']}'>Dislike</a>"; // Dislike button with discussion ID
-            echo "<a href='reply.php?discussion_id={$discussion['id']}'>Reply</a>"; // Link to reply page
+            echo "<a href='#' class='like-btn' data-id='{$discussions[$i + 1]['id']}'>Like</a>";
+            echo "<a href='#' class='dislike-btn' data-id='{$discussions[$i + 1]['id']}'>Dislike</a>";
+            echo "<a href='reply.php?discussion_id={$discussions[$i + 1]['id']}'>Reply</a>";
             echo "</div>";
             echo "</div>";
         }
-        ?>
-    </section>
+        echo "</div>"; // End the discussion row
+    }
+    ?>
+</section>
 
     <script>
         // JavaScript for handling like and dislike actions

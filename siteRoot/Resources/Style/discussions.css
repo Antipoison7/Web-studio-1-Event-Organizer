@@ -1,15 +1,18 @@
 .discussions-container {
-    max-width: 800px;
-    margin: 20px auto;
-    padding: 20px;
-    border: 1px solid #ddd;
+    max-width: 1000px;
+    margin: 140px;
+    padding: 80px;
+    border: 5px solid #ddd;
     border-radius: 8px;
-    background-color: #f9f9f9;
 }
 
 .discussion-item {
-    border-bottom: 1px solid #ddd;
-    padding: 15px 0;
+    flex: 0 0 calc(50% - 150px); /* Allow two items in a row with space */
+    border: 100px solid #ddd; /* Add border for distinction */
+    padding: 150px; /* Add some padding */
+    border-radius: 8px; /* Rounded corners */
+    background-color: #f9f9f9; /* Background color for items */
+    margin-right: 100px; /* Right margin for spacing */
 }
 
 .discussion-item:last-child {
@@ -53,6 +56,7 @@
 .add-discussion form button:hover {
     background-color: #0056b3; /* Darker shade on hover */
 }
+
 .discussion-actions a {
     margin-right: 15px;
     text-decoration: none;
@@ -77,4 +81,9 @@
 
 .discussion-actions a:hover {
     opacity: 0.8; /* Slightly darker on hover */
+}
+.discussion-row {
+    display: flex; /* Use flexbox for rows */
+    justify-content: space-between; /* Space between items */
+    margin-bottom: 20px; /* Space between rows */
 }

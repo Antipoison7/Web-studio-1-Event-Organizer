@@ -62,7 +62,7 @@ $geolocationData = getUserGeolocation($ip); // Pass the IP address to fetch geol
                 <p>A short description or snippet of the discussion.</p>
             </div>
             <div class="arrow-navigation">
-                <a href="discussions.php"><img src="/path-to-icons/right-arrow.png" alt="Go to Discussions"></a>
+    <a href="discussions.php"><img src="./Resources/Images/fancommunity/emojis/arrow.png" alt="Go to Discussions"></a>
             </div>
         </div>
     </section>

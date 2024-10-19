@@ -1,0 +1,80 @@
+.discussions-container {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+}
+
+.discussion-item {
+    border-bottom: 1px solid #ddd;
+    padding: 15px 0;
+}
+
+.discussion-item:last-child {
+    border-bottom: none; /* Remove border from last item */
+}
+
+.discussion-actions {
+    margin-top: 10px;
+}
+
+.discussion-actions a {
+    margin-right: 15px;
+    text-decoration: none;
+    color: #007bff; /* Link color */
+}
+
+.add-discussion {
+    margin-top: 30px;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #f1f1f1;
+}
+
+.add-discussion form input,
+.add-discussion form textarea,
+.add-discussion form button {
+    width: 100%;
+    margin-top: 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.add-discussion form button {
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+}
+
+.add-discussion form button:hover {
+    background-color: #0056b3; /* Darker shade on hover */
+}
+.discussion-actions a {
+    margin-right: 15px;
+    text-decoration: none;
+    padding: 8px 12px;
+    border-radius: 5px;
+}
+
+.like-btn {
+    background-color: #28a745; /* Green for Like */
+    color: white;
+}
+
+.dislike-btn {
+    background-color: #dc3545; /* Red for Dislike */
+    color: white;
+}
+
+.reply-btn {
+    background-color: #007bff; /* Blue for Reply */
+    color: white;
+}
+
+.discussion-actions a:hover {
+    opacity: 0.8; /* Slightly darker on hover */
+}

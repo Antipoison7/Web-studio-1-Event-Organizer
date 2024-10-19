@@ -1,6 +1,18 @@
 <?php
 include 'fetchgeolocation.php'; // Include the file
-$ip = $_SERVER['REMOTE_ADDR']; // Get the user's IP address
+
+// Function to get the user's real IP address
+function getUserIP() {
+    if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
+        return $_SERVER['HTTP_CLIENT_IP'];
+    } elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+        return $_SERVER['HTTP_X_FORWARDED_FOR'];
+    } else {
+        return $_SERVER['REMOTE_ADDR'];
+    }
+}
+
+$ip = getUserIP(); // Get the user's IP address
 $geolocationData = getUserGeolocation($ip); // Pass the IP address to fetch geolocation data
 ?>
 <!DOCTYPE html>
@@ -27,7 +39,7 @@ $geolocationData = getUserGeolocation($ip); // Pass the IP address to fetch geol
                 <ul>
                     <li><a href="HomePage.php"><img src="./Resources/Images/fancommunity/emojis/home.png" alt="Home"></a></li>
                     <li><a href="fancommunity.php"><img src="./Resources/Images/fancommunity/emojis/people.png" alt="Fancommunity"></a></li>
-                    <li><a href="favorites.php"><img src="./Resources/Images/fancommunity/emojis/heart.png"></a></li>
+                    <li><a href="favorites.php"><img src="./Resources/Images/fancommunity/emojis/heart.png" alt="Favorites"></a></li>
                     <li><a href="profileView.php"><img src="./Resources/Images/fancommunity/emojis/profile.png" alt="Profile"></a></li>
                 </ul>
             </nav>
@@ -37,9 +49,9 @@ $geolocationData = getUserGeolocation($ip); // Pass the IP address to fetch geol
 
     <!-- Trending Discussions Section -->
     <section class="trending-discussions">
-    <div class="trending-heading">
-        <img src="./Resources/Images/fancommunity/Headers/discussions.png" alt="Trending Discussions">
-    </div>
+        <div class="trending-heading">
+            <img src="./Resources/Images/fancommunity/Headers/discussions.png" alt="Trending Discussions">
+        </div>
         <div class="discussion-container combined-background">
             <div class="discussion-item">
                 <h3>Discussion 1</h3>
@@ -57,9 +69,9 @@ $geolocationData = getUserGeolocation($ip); // Pass the IP address to fetch geol
 
     <!-- Community Clubs Section -->
     <section class="community-clubs">
-    <div class="clubs-heading">
-        <img src="./Resources/Images/fancommunity/Headers/communityheading.png" alt="Community Clubs">
-    </div>
+        <div class="clubs-heading">
+            <img src="./Resources/Images/fancommunity/Headers/communityheading.png" alt="Community Clubs">
+        </div>
         <div class="clubs-container">
             <div class="club-item">
                 <img src="./Resources/Images/fancommunity/clubs/club1.png" alt="Club 1">
@@ -90,9 +102,9 @@ $geolocationData = getUserGeolocation($ip); // Pass the IP address to fetch geol
 
     <!-- Fan Gallery Section -->
     <section class="fan-gallery">
-    <div class="gallery-heading">
-        <img src="./Resources/Images/fancommunity/Headers/fangallery.png" alt="Fan Gallery">
-    </div>
+        <div class="gallery-heading">
+            <img src="./Resources/Images/fancommunity/Headers/fangallery.png" alt="Fan Gallery">
+        </div>
         <div class="gallery-container">
             <div class="gallery-item">
                 <div class="gallery-collage">
@@ -103,6 +115,9 @@ $geolocationData = getUserGeolocation($ip); // Pass the IP address to fetch geol
                     <div class="image-overlay"></div>
                 </div>
                 <p>FIBA Basketball World Cup</p>
+                <p>Docklands</p> <!-- Event Location -->
+    <a href="https://www.google.com/maps/search/?api=1&query=-37.81363,144.96306" target="_blank" rel="noopener noreferrer">View on Map</a> 
+    <!-- Ensure to replace with the actual coordinates -->
             </div>
 
             <div class="gallery-item">
@@ -114,6 +129,9 @@ $geolocationData = getUserGeolocation($ip); // Pass the IP address to fetch geol
                     <div class="image-overlay"></div>
                 </div>
                 <p>Basketball Pros</p>
+                <p>Docklands</p> <!-- Event Location -->
+    <a href="https://www.google.com/maps/search/?api=1&query=-37.81363,144.96306" target="_blank" rel="noopener noreferrer">View on Map</a> 
+    <!-- Ensure to replace with the actual coordinates -->
             </div>
 
             <div class="gallery-item">
@@ -125,6 +143,9 @@ $geolocationData = getUserGeolocation($ip); // Pass the IP address to fetch geol
                     <div class="image-overlay"></div>
                 </div>
                 <p>FIBA Basketball World Cup</p>
+                <p>Docklands</p> <!-- Event Location -->
+    <a href="https://www.google.com/maps/search/?api=1&query=-37.81363,144.96306" target="_blank" rel="noopener noreferrer">View on Map</a> 
+    <!-- Ensure to replace with the actual coordinates -->
             </div>
 
             <div class="gallery-item">
@@ -136,6 +157,9 @@ $geolocationData = getUserGeolocation($ip); // Pass the IP address to fetch geol
                     <div class="image-overlay"></div>
                 </div>
                 <p>Cricket World Cup</p>
+                <p>Docklands</p> <!-- Event Location -->
+    <a href="https://www.google.com/maps/search/?api=1&query=-37.81363,144.96306" target="_blank" rel="noopener noreferrer">View on Map</a> 
+    <!-- Ensure to replace with the actual coordinates -->
             </div>
 
             <div class="gallery-item">
@@ -147,6 +171,10 @@ $geolocationData = getUserGeolocation($ip); // Pass the IP address to fetch geol
                     <div class="image-overlay"></div>
                 </div>
                 <p>BCM Women</p>
+                <p>Docklands</p> <!-- Event Location -->
+    <a href="https://www.google.com/maps/search/?api=1&query=-37.81363,144.96306" target="_blank" rel="noopener noreferrer">View on Map</a> 
+    <!-- Ensure to replace with the actual coordinates -->HARSHA2934@
+     
             </div>
             
             <div class="gallery-summary">
@@ -158,6 +186,7 @@ $geolocationData = getUserGeolocation($ip); // Pass the IP address to fetch geol
         </div>
     </section>
 
+    <!-- Geolocation Section -->
     <?php if ($geolocationData): ?>
     <div>
         <h3>User Location:</h3>
@@ -167,12 +196,23 @@ $geolocationData = getUserGeolocation($ip); // Pass the IP address to fetch geol
         <a href="https://www.google.com/maps/search/?api=1&query=<?= $geolocationData['latitude'] ?>,<?= $geolocationData['longitude'] ?>">View on Map</a>
     </div>
     <?php else: ?>
-        <p>Unable to fetch location data.</p>
+    <p>Unable to retrieve geolocation data.</p>
     <?php endif; ?>
 
-    <!-- Footer -->
+    <!-- Footer Section -->
     <footer>
-        <p>&copy; 2024 Fan Community</p>
+        <div class="footer-links">
+            <a href="#">Privacy</a>
+            <a href="#">Terms and Conditions</a>
+            <a href="#">FAQ</a>
+            <a href="#">Contact Us</a>
+        </div>
+        <div class="social-media">
+            <a href="#"><img src="./Resources/Images/fancommunity/social/instagram.png" alt="Instagram"></a>
+            <a href="#"><img src="./Resources/Images/fancommunity/social/facebook.png" alt="Facebook"></a>
+            <a href="#"><img src="./Resources/Images/fancommunity/social/youtube.png" alt="YouTube"></a>
+        </div>
     </footer>
+
 </body>
-</
+</html>

@@ -12,6 +12,13 @@
 
     function makeFooter()
     {
+
+    $isValid = false;
+
+    if(isset($_SESSION["loginDetails"]["username"])&&isset($_SESSION["loginDetails"]["password"])){if(isValidLogin($_SESSION["loginDetails"]["username"], $_SESSION["loginDetails"]["password"])){
+        $isValid = true;
+    }}
+
     echo("
             <div class=\"footer\">
                 <!--<div class=\"flex\">
@@ -30,9 +37,9 @@
                     <a href=\"./login.php\"><h2>Log In</h2></a>
                     <a href=\"./register.php\"><h2>Register</h2></a>");
 
-                    if(isset($_SESSION["loginDetails"])){if(isValidLogin($_SESSION["loginDetails"]["username"], $_SESSION["loginDetails"]["password"])){
+                    if($isValid){
                         echo("<a href=\"./Resources/Helper/logout.php\"><h2>Log Out</h2></a>");
-                    }}
+                    }
 
     echo("
                 </div>
@@ -54,13 +61,20 @@
                         <a href=\"./eventRegistration.php\"><h2>Create an Event</h2></a>
                         
                         <br>
-                    </div>
-                    <div>
+                    </div>");
+
+                    if($isValid)
+                    {
+                        echo("<div>
                         <h1>Profile Links</h1>
+                        <a href=\"./profileView.php\"><h2>Your Profile</h2></a>
                         <a href=\"./profileCustomise.php\"><h2>Customize Profile</h2></a>
-                        
-                        <br>
-                    </div>
+                        <a href=\"./Resources/Helper/logout.php\"><h2>Log Out</h2></a>
+                            <br>
+                        </div>");
+                    }
+
+    echo("
                     <div>
                         <h1>Moderation</h1>
                         <a href=\"./adminControls.php\"><h2>Mod Portal</h2></a>
@@ -76,12 +90,12 @@
                 </div>
             </div>
         ");
-    }
-
+    
+}
     
     function headerNoLogin($title)
     {
-        if(isset($_SESSION["loginDetails"])){if(isValidLogin($_SESSION["loginDetails"]["username"], $_SESSION["loginDetails"]["password"])){
+        if(isset($_SESSION["loginDetails"]["username"])&&isset($_SESSION["loginDetails"]["password"])){if(isValidLogin($_SESSION["loginDetails"]["username"], $_SESSION["loginDetails"]["password"])){
             $pfpVal = "default.png";
             try
                 {
@@ -119,19 +133,29 @@
                 </a></div>
 
                 <h1>$title</h1>
-                <div>
-                <a href=\"./profileView.php\">
-                <img src=\"." . $pfpVal . "\" alt=\"User Profile Picture\" class=\"headerPfp\">
-                </a>
-                    <a href=\"./shoppingcart.php\" class=\"cartIcon\"><img src=\"./Resources/Images/Resources/shoppingCart.svg\" alt=\"Your Cart\" style=\"height:3em\"></a></div>
+                <div class=\"mainHeaderdiv\">
+                    <div class=\"dropdownContainer\">
+                        <div>
+                            <img src=\"." . $pfpVal . "\" alt=\"User Profile Picture\" class=\"headerPfp\" id=\"dropDownController\"></div>
+                        <a href=\"./shoppingcart.php\" class=\"cartIcon\"><img src=\"./Resources/Images/Resources/shoppingCart.svg\" alt=\"Your Cart\" style=\"height:3em\"></a></div>
+                        <div id=\"dropdown\" class=\"hiddenClass\">
+                                <a href=\"./profileView.php\"><div>My Profile</div></a>
+                                <a href=\"./profileCustomise.php\"><div>Customise Profile</div></a>
+                                <a href=\"./Resources/Helper/logout.php\"><div>Log Out</div></a>
+                        </div>
+                    </div>
                 </div>
             </div>
+            <script>
+            let dController = document.getElementById(\"dropDownController\");
+                dController.addEventListener(\"click\", function(){document.getElementById('dropdown').classList.toggle(\"hiddenClass\");})
+            </script>
         ");
         }
         else
         {
             echo("
-            <div class=\"mainHeader\">
+            <div class=\"mainHeaderLogout\">
                 <div id=\"logo\"><a href=\"./HomePage.php\">
                     <img  src=\"./Resources/Images/Resources/WebsiteLogo.webp\" alt=\"WebsiteLogo\" width=\"100\" height=\"100\">
                 </a></div>
@@ -149,7 +173,7 @@
         else
         {
             echo("
-            <div class=\"mainHeader\">
+            <div class=\"mainHeaderLogout\">
                 <div id=\"logo\"><a href=\"./HomePage.php\">
                     <img  src=\"./Resources/Images/Resources/WebsiteLogo.webp\" alt=\"WebsiteLogo\" width=\"100\" height=\"100\">
                 </a></div>

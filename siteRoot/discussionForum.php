@@ -3,6 +3,9 @@
   include_once('./Resources/Helper/headers.php');
   include_once('./Resources/Helper/sanitization.php');
   include_once('./Resources/Helper/loginHelper.php');
+  
+  $isAdmin = false;
+
   if(isset($_SESSION["loginDetails"]))
   {
       $isAdmin = isValidAdminLogin($_SESSION["loginDetails"]["username"], $_SESSION["loginDetails"]["password"]);
@@ -52,8 +55,10 @@
                             <img id=\"discussionImage\" src=\"./Resources/Images/Resources/day in the park example.jpg\" alt=\"day in the park image\">
                           </div>
                           <element id='Price_Amount'>$<a href=\"#popup-ticket\">" . cleanTextHTML($row["priceCost"]). "</a>
-                            <div id=\"popup-ticket\">Ticket added to Cart <a href=\"#\"> Close the Popup</a></div>
-                            <img src=\"./Resources/Images/Resources/delete.png\" alt=\"Delete Post\" class=\"discussionDeleteImage\" onclick=\"toggleDeleteMenu(" . $row["EventID"] . ")\">
+                            <div id=\"popup-ticket\">Ticket added to Cart <a href=\"#\"> Close the Popup</a></div>";
+                if($isAdmin == true)
+                {
+                  echo("<img src=\"./Resources/Images/Resources/delete.png\" alt=\"Delete Post\" class=\"discussionDeleteImage\" onclick=\"toggleDeleteMenu(" . $row["EventID"] . ")\">
                           </element>
 
                           <div class=\"discussionDeleteDiv hiddenClass\" id=\"deleteBox" . $row["EventID"] . "\">
@@ -63,7 +68,13 @@
                               <input type=\"text\" id=\"post" . $row["EventID"] . "\">
                               <div class=\"smallButtonWarn\" onclick=\"tryArchivePost(" . $row["EventID"] . ")\">Archive</div>
                             </div>
-                          </div>
+                          </div>");
+                }
+                else
+                {
+                  echo("</element>");
+                }
+                echo "
                         </div>
                       </div>";
               }

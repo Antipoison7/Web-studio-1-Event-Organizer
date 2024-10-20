@@ -14,7 +14,7 @@ Accounts
 
 **Hosts**
 
-[Connor's mirror s4096467](https://saturn.csit.rmit.edu.au/~s4096467/web-studio-project-group_01_wps_2024/siteRoot/)
+[Connor's mirror s4096467 (most likely to be up to date)](https://saturn.csit.rmit.edu.au/~s4096467/web-studio-project-group_01_wps_2024/siteRoot/)
 
 Josip
 

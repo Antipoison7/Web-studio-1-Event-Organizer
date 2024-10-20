@@ -2,7 +2,7 @@
   session_start();
   include_once('./Resources/Helper/headers.php');
   include_once('./Resources/Helper/loginHelper.php');
-  if(isset($_SESSION["loginDetails"]))
+  if(isset($_SESSION["loginDetails"]["username"])&&isset($_SESSION["loginDetails"]["password"]))
   {
       $isAdmin = isValidAdminLogin($_SESSION["loginDetails"]["username"], $_SESSION["loginDetails"]["password"]);
   }

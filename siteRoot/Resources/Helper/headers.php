@@ -138,6 +138,7 @@
                         <div>
                             <img src=\"." . $pfpVal . "\" alt=\"User Profile Picture\" class=\"headerPfp\" id=\"dropDownController\"></div>
                         <a href=\"./shoppingcart.php\" class=\"cartIcon\"><img src=\"./Resources/Images/Resources/shoppingCart.svg\" alt=\"Your Cart\" style=\"height:3em\"></a></div>
+                        <div id=\"dropdownTri\" class=\"hiddenClass\"></div>
                         <div id=\"dropdown\" class=\"hiddenClass\">
                                 <a href=\"./profileView.php\"><div>My Profile</div></a>
                                 <a href=\"./profileCustomise.php\"><div>Customise Profile</div></a>
@@ -148,7 +149,7 @@
             </div>
             <script>
             let dController = document.getElementById(\"dropDownController\");
-                dController.addEventListener(\"click\", function(){document.getElementById('dropdown').classList.toggle(\"hiddenClass\");})
+                dController.addEventListener(\"click\", function(){document.getElementById('dropdown').classList.toggle(\"hiddenClass\");document.getElementById('dropdownTri').classList.toggle(\"hiddenClass\");})
             </script>
         ");
         }

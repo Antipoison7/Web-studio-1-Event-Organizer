@@ -101,6 +101,58 @@
         }
     }
 
+    function isValidAdminLogin($username, $password)
+    {
+        try
+        {
+            $db = new PDO("mysql:host=talsprddb02.int.its.rmit.edu.au;dbname=COSC3046_2402_UGRD_1479_G4", "COSC3046_2402_UGRD_1479_G4", "GYS3sfUkzIqA");
+            $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+            $type = "username";
+
+            if(strpos($username, '@') !== false)
+            {
+                $type = "email";
+            }
+
+            if($type == "username")
+            {
+                $stmt = $db->prepare("SELECT DISTINCT accounts.pass_hash FROM accounts LEFT JOIN users ON accounts.login_name = users.username LEFT JOIN achievementLink ON achievementLink.login_username = accounts.login_name WHERE login_name = :name AND archived = 0 AND achievementLink.achieved_id <=3;");
+            }
+            else if($type == "email")
+            {
+                $stmt = $db->prepare("SELECT DISTINCT accounts.pass_hash FROM accounts LEFT JOIN users ON accounts.login_name = users.username LEFT JOIN achievementLink ON achievementLink.login_username = accounts.login_name WHERE email = :name AND archived = 0 AND achievementLink.achieved_id <=3;");
+            }
+
+            $stmt->bindParam(':name', $username, PDO::PARAM_STR);
+
+            $stmt->execute();
+
+            // echo(var_dump($stmt->fetchColumn()));
+
+            $passVal = $stmt->fetchColumn();
+
+            $db = null;
+            $stmt = null;
+
+            if($passVal != false)
+            {
+                return password_verify($password, $passVal);
+            }
+            else
+            {
+                return false;
+            }
+
+            
+
+        }
+        catch (PDOException $e)
+        {
+            echo("oh great heavens: " . $e->getMessage());
+        }
+    }
+
     function dumpDB()
     {
         try

@@ -27,6 +27,11 @@ a:hover
     padding: 0px 8px 0px 8px;
 }
 
+.hiddenClass
+{
+    display: none;
+}
+
 /* Large button*/
 .button
 {
@@ -193,7 +198,43 @@ a:hover
     background-color: white;
     border-radius: 10px;
     border: 3px solid black;
-    color: black;
+    color: #333333;
+    cursor: pointer;
+    display: flex;
+    height: 1.5em;
+    justify-content: center;
+    margin: 10px 0px 10px 0px;
+    padding: 0px;
+    width: 6em;
+    font-size:30px;
+    box-sizing: border-box;
+}
+
+/* Smaller sized button used in the header and in some other pages */
+.smallButtonWarn
+{
+    align-items: center;
+    background-color: #ae2b29;
+    border-radius: 10px;
+    border: 3px solid black;
+    color: white;
+    display: flex;
+    height: 1.5em;
+    justify-content: center;
+    margin: 10px 0px 10px 0px;
+    padding: 0px;
+    width: 6em;
+    font-size:30px;
+    box-sizing: border-box;
+}
+
+.smallButtonWarn:hover
+{
+    align-items: center;
+    background-color: white;
+    border-radius: 10px;
+    border: 3px solid black;
+    color: #ae2b29;
     cursor: pointer;
     display: flex;
     height: 1.5em;
@@ -717,6 +758,35 @@ border-top: 5px solid black;
     margin: 5px 0px;
 }
 
+.discussionDeleteImage
+{
+    width: 8%;
+    margin-left: auto;
+    padding: 10px;
+    display: block;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+}
+
+.discussionDeleteDiv
+{
+    grid-column: 1/4;
+}
+
+.darkRedColor
+{
+    color: darkred;    
+}
+
+.discussionDeleteDiv input
+{
+    height: 2em;
+    border: 3px solid black;
+    border-radius: 5px;
+    width:20%;
+}
+
 #logo {
 
     margin: 0;
@@ -746,7 +816,7 @@ border-top: 5px solid black;
 #Price_Amount {
     text-align: center;
     align-items: center;
-    
+    position:relative;
 }
 
 #popup-ticket {

@@ -2,6 +2,11 @@
   session_start();
   include_once('./Resources/Helper/headers.php');
   include_once('./Resources/Helper/sanitization.php');
+  include_once('./Resources/Helper/loginHelper.php');
+  if(isset($_SESSION["loginDetails"]))
+  {
+      $isAdmin = isValidAdminLogin($_SESSION["loginDetails"]["username"], $_SESSION["loginDetails"]["password"]);
+  }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -30,14 +35,37 @@
               die("Connection failed: " . mysqli_connect_error());
             }
 
-            $sql = "SELECT eventName, eventDesc, priceCost FROM EventList";
+            $sql = "SELECT EventID, eventName, eventDesc, priceCost FROM EventList";
             $result = mysqli_query($conn, $sql);
             echo "<div class='DiscussionBlock'>";
 
             if (mysqli_num_rows($result) > 0) {
                     
               while($row = mysqli_fetch_assoc($result)) {
-                echo "<div class='DiscussionPost'><div id='discussionpost_layout'><div id='Event_Title'><h1>" . cleanTextHTML($row["eventName"]). "</h1></div><div id='Event_Description'> " . cleanTextHTML($row["eventDesc"]). "</div><div id='Event_Image'> <img id=\"discussionImage\" src=\"./Resources/Images/Resources/day in the park example.jpg\" alt=\"day in the park image\"></div><element id='Price_Amount'>$<a href=\"#popup-ticket\">" . cleanTextHTML($row["priceCost"]). "</a><div id=\"popup-ticket\">Ticket added to Cart <a href=\"#\"> Close the Popup</a></div></div></div>";
+                echo "<div class='DiscussionPost' id=\"bigPost" . $row["EventID"] . "\">
+                        <div id='discussionpost_layout'>
+                          <div id='Event_Title'>
+                            <h1>" . cleanTextHTML($row["eventName"]). "</h1>
+                          </div>
+                          <div id='Event_Description'> " . cleanTextHTML($row["eventDesc"]). "</div>
+                          <div id='Event_Image'> 
+                            <img id=\"discussionImage\" src=\"./Resources/Images/Resources/day in the park example.jpg\" alt=\"day in the park image\">
+                          </div>
+                          <element id='Price_Amount'>$<a href=\"#popup-ticket\">" . cleanTextHTML($row["priceCost"]). "</a>
+                            <div id=\"popup-ticket\">Ticket added to Cart <a href=\"#\"> Close the Popup</a></div>
+                            <img src=\"./Resources/Images/Resources/delete.png\" alt=\"Delete Post\" class=\"discussionDeleteImage\" onclick=\"toggleDeleteMenu(" . $row["EventID"] . ")\">
+                          </element>
+
+                          <div class=\"discussionDeleteDiv hiddenClass\" id=\"deleteBox" . $row["EventID"] . "\">
+                            <h2>Are you sure you want to archive post:</h2>
+                            <p>Copy this word to confirm: <span class=\"darkRedColor\">Delete</span></p>
+                            <div class=\"flex\" style=\"align-items:center; gap: 5px;\">
+                              <input type=\"text\" id=\"post" . $row["EventID"] . "\">
+                              <div class=\"smallButtonWarn\" onclick=\"tryArchivePost(" . $row["EventID"] . ")\">Archive</div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>";
               }
             } else {
               echo "0 results";
@@ -58,4 +86,23 @@
       makeFooter();
     ?>
   </body>
+
+  <script>
+    function toggleDeleteMenu(eventName)
+    {
+      let deleteMenuBox = document.getElementById("deleteBox"+eventName);
+      deleteMenuBox.classList.toggle("hiddenClass");
+    }
+
+    function tryArchivePost(eventName)
+    {
+      let archiveValue = document.getElementById("post"+eventName).value;
+
+      if(archiveValue == "Delete") //Replace with actual word
+      {
+        //This represents an api call that passes the admins credentials through, but I need to do that later
+        document.getElementById("bigPost"+eventName).remove();
+      }
+    }
+  </script>
 </html>

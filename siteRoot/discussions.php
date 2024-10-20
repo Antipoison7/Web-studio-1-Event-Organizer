@@ -15,7 +15,7 @@ if ($conn->connect_error) {
 // Function to fetch random discussions from the database
 function fetchRandomDiscussions() {
     global $conn;
-    $sql = "SELECT id, title, content FROM discussions ORDER BY RAND() LIMIT 500";
+    $sql = "SELECT id, title, content, likes, dislikes FROM discussions ORDER BY RAND() LIMIT 500";
     $result = $conn->query($sql);
 
     if (!$result) {
@@ -38,7 +38,7 @@ function fetchRandomDiscussions() {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Discussions</title>
     <link rel="stylesheet" href="./Resources/Style/base.css"> 
-    <link rel="stylesheet" href="./Resources/Style/discussions.css"> <!-- Your new CSS for discussions -->
+    <link rel="stylesheet" href="./Resources/Style/discussions.css"> <!-- CSS for discussions -->
     <style>
         /* Additional styles for two-column layout */
         .discussions-container {
@@ -59,6 +59,14 @@ function fetchRandomDiscussions() {
     </style>
 </head>
 <body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <a href="HomePage.php" class="nav-link">Home</a>
+        <a href="fancommunity.php" class="nav-link">Fan Community</a>
+        <a href="favorites.php" class="nav-link">Favorites</a>
+        <a href="profileView.php" class="nav-link">Profile</a>
+    </nav>
+
     <header>
         <h1>Fan Community Discussions</h1>
     </header>
@@ -85,8 +93,11 @@ function fetchRandomDiscussions() {
         echo "<h3>{$discussions[$i]['title']}</h3>";
         echo "<p>{$discussions[$i]['content']}</p>";
         echo "<div class='discussion-actions'>";
-        echo "<a href='#' class='like-btn' data-id='{$discussions[$i]['id']}'>Like</a>";
-        echo "<a href='#' class='dislike-btn' data-id='{$discussions[$i]['id']}'>Dislike</a>";
+        echo "<span>Likes: {$discussions[$i]['likes']}</span> | ";
+        echo "<span>Dislikes: {$discussions[$i]['dislikes']}</span>";
+        echo "<br>";
+        echo "<a href='#' class='like-btn' data-id='{$discussions[$i]['id']}'>Like</a> ";
+        echo "<a href='#' class='dislike-btn' data-id='{$discussions[$i]['id']}'>Dislike</a> ";
         echo "<a href='reply.php?discussion_id={$discussions[$i]['id']}'>Reply</a>";
         echo "</div>";
         echo "</div>";
@@ -97,8 +108,11 @@ function fetchRandomDiscussions() {
             echo "<h3>{$discussions[$i + 1]['title']}</h3>";
             echo "<p>{$discussions[$i + 1]['content']}</p>";
             echo "<div class='discussion-actions'>";
-            echo "<a href='#' class='like-btn' data-id='{$discussions[$i + 1]['id']}'>Like</a>";
-            echo "<a href='#' class='dislike-btn' data-id='{$discussions[$i + 1]['id']}'>Dislike</a>";
+            echo "<span>Likes: {$discussions[$i + 1]['likes']}</span> | ";
+            echo "<span>Dislikes: {$discussions[$i + 1]['dislikes']}</span>";
+            echo "<br>";
+            echo "<a href='#' class='like-btn' data-id='{$discussions[$i + 1]['id']}'>Like</a> ";
+            echo "<a href='#' class='dislike-btn' data-id='{$discussions[$i + 1]['id']}'>Dislike</a> ";
             echo "<a href='reply.php?discussion_id={$discussions[$i + 1]['id']}'>Reply</a>";
             echo "</div>";
             echo "</div>";
@@ -108,50 +122,65 @@ function fetchRandomDiscussions() {
     ?>
 </section>
 
-    <script>
-        // JavaScript for handling like and dislike actions
-        document.querySelectorAll('.like-btn').forEach(btn => {
-            btn.addEventListener('click', function(event) {
-                event.preventDefault();
-                const discussionId = this.getAttribute('data-id');
-                // Perform AJAX request to like the discussion
-                fetch('like_discussion.php', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/x-www-form-urlencoded',
-                    },
-                    body: `id=${discussionId}&action=like`
-                })
-                .then(response => response.text())
-                .then(data => {
-                    if (data === 'success') {
-                        alert('Liked successfully');
-                    }
-                });
+<script>
+    // JavaScript for handling like and dislike actions with better error handling
+    document.querySelectorAll('.like-btn').forEach(btn => {
+        btn.addEventListener('click', function(event) {
+            event.preventDefault();
+            const discussionId = this.getAttribute('data-id');
+            
+            // Perform AJAX request to like the discussion
+            fetch('like_discussion.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: `id=${discussionId}&action=like`
+            })
+            .then(response => response.text())
+            .then(data => {
+                console.log('Response from like_discussion.php:', data); // Debugging: output the server response
+                if (data.trim() === 'success') {
+                    alert('Liked successfully');
+                } else {
+                    alert('Error: ' + data); // Show the actual error
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('An error occurred: ' + error);
             });
         });
+    });
 
-        document.querySelectorAll('.dislike-btn').forEach(btn => {
-            btn.addEventListener('click', function(event) {
-                event.preventDefault();
-                const discussionId = this.getAttribute('data-id');
-                // Perform AJAX request to dislike the discussion
-                fetch('like_discussion.php', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/x-www-form-urlencoded',
-                    },
-                    body: `id=${discussionId}&action=dislike`
-                })
-                .then(response => response.text())
-                .then(data => {
-                    if (data === 'success') {
-                        alert('Disliked successfully');
-                    }
-                });
+    document.querySelectorAll('.dislike-btn').forEach(btn => {
+        btn.addEventListener('click', function(event) {
+            event.preventDefault();
+            const discussionId = this.getAttribute('data-id');
+            
+            // Perform AJAX request to dislike the discussion
+            fetch('like_discussion.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: `id=${discussionId}&action=dislike`
+            })
+            .then(response => response.text())
+            .then(data => {
+                console.log('Response from like_discussion.php:', data); // Debugging: output the server response
+                if (data.trim() === 'success') {
+                    alert('Disliked successfully');
+                } else {
+                    alert('Error: ' + data); // Show the actual error
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('An error occurred: ' + error);
             });
         });
-    </script>
-
+    });
+</script>
 </body>
 </html>

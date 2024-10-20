@@ -49,23 +49,24 @@ $geolocationData = getUserGeolocation($ip); // Pass the IP address to fetch geol
 
     <!-- Trending Discussions Section -->
     <section class="trending-discussions">
-        <div class="trending-heading">
-            <img src="./Resources/Images/fancommunity/Headers/discussions.png" alt="Trending Discussions">
+    <div class="trending-heading">
+        <img src="./Resources/Images/fancommunity/Headers/discussions.png" alt="Trending Discussions">
+    </div>
+    <div class="discussion-container combined-background">
+        <div class="discussion-item">
+            <img src="./Resources/Images/fancommunity/discussions/discussion1.png" alt="Trending Discussions">
         </div>
-        <div class="discussion-container combined-background">
-            <div class="discussion-item">
-                <h3>Discussion 1</h3>
-                <p>A short description or snippet of the discussion.</p>
-            </div>
-            <div class="discussion-item">
-                <h3>Discussion 2</h3>
-                <p>A short description or snippet of the discussion.</p>
-            </div>
-            <div class="arrow-navigation">
-    <a href="discussions.php"><img src="./Resources/Images/fancommunity/emojis/arrow.png" alt="Go to Discussions"></a>
-            </div>
+        <div class="discussion-item">
+            <img src="./Resources/Images/fancommunity/discussions/discussion2.png" alt="Trending Discussions">
         </div>
-    </section>
+        <div class="arrow-navigation">
+            <a href="discussions.php">
+                <img src="./Resources/Images/fancommunity/emojis/arrow.png" alt="Go to Discussions" style="width: 50px; height: auto;">
+            </a>
+        </div>
+    </div>
+</section>
+
 
     <!-- Community Clubs Section -->
     <section class="community-clubs">

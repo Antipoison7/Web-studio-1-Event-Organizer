@@ -68,9 +68,8 @@ body {
 }
 
 .arrow-navigation img {
-    width: 40px;
-    height: auto;
-    cursor: pointer;
+    width: 50px !important; /* Set the desired width for the arrow */
+    height: auto !important; /* Maintain the aspect ratio */
 }
 
 /* Community Clubs styles */
@@ -200,4 +199,27 @@ footer {
     max-width: 25%; /* Ensures the image is responsive */
     height: auto;
     padding-bottom: 20px; /* Adds space below the image */
+}
+/* Styles for Trending Discussions Images */
+.trending-discussions .discussion-item img {
+    width: 100%; /* Make images responsive to the container's width */
+    height: auto; /* Maintain aspect ratio */
+    max-width: 500px; /* Set a maximum width for the images */
+    margin: 0 auto; /* Center the images if desired */
+}
+
+.trending-discussions .discussion-container {
+    display: flex; /* Use flexbox for layout */
+    flex-wrap: wrap; /* Allow items to wrap to the next line */
+    justify-content: center; /* Center the discussion items */
+}
+
+.trending-discussions .arrow-navigation {
+    text-align: center; /* Center the arrow navigation */
+    margin-top: 10px; /* Add spacing above the arrow */
+}
+
+.trending-discussions .arrow-navigation img {
+    width: 85px !important; /* Set the desired width for the arrow */
+    height: auto !important; /* Maintain the aspect ratio */
 }

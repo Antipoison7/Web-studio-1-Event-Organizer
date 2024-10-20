@@ -314,17 +314,42 @@ a:hover
     margin-left: 20px;
 }
 
-.mainHeader div
+.mainHeaderdiv
 {
+    align-items: center;
     display: flex;
     margin-left: auto;
-    align-items: center;
 }
 
 .mainHeader a
 {
     margin: 10px;
-    
+}
+
+.mainHeaderLogout
+{
+    display: flex;
+    background-color: white;
+    border: 1px solid white;
+    border-radius: 25px;
+    align-items: center;
+}
+
+.mainHeaderLogout h1
+{
+    margin-left: 20px;
+}
+
+.mainHeaderLogout div
+{
+    align-items: center;
+    display: flex;
+    margin-left: auto;
+}
+
+.mainHeaderLogout a
+{
+    margin: 10px;
 }
 
 .min
@@ -785,6 +810,57 @@ border-top: 5px solid black;
     border: 3px solid black;
     border-radius: 5px;
     width:20%;
+}
+
+.dropdownContainer
+{
+    position:relative;
+    align-items: center;
+    display: flex;
+}
+
+#dropdownTri
+{
+    position: absolute;
+    top: 102px;
+    right: 112px;
+    width: 0;
+    height: 0;
+    border-bottom: 15px solid black;
+    border-left: 15px solid transparent;
+    border-right: 15px solid transparent;
+}
+
+#dropdown
+{
+    position:absolute;
+    top:114px;
+    right:30px;
+    background-color: black;
+    border-radius: 5px;
+    border: 2px solid black;
+}
+
+#dropdown a
+{
+    margin:0px;
+}
+
+#dropdown div
+{
+    width: 9em;
+    height: 2em;
+    background-color: white;
+    margin: 2px;
+    padding-top: 5px;
+    text-align: center;
+    font-size: 2em;
+}
+
+#dropdown div:hover
+{
+    background-color: darkgray;
+    color: white;
 }
 
 #logo {

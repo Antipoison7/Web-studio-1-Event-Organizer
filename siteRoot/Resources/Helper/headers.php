@@ -28,7 +28,13 @@
                     <a href=\"./PrivacyPolicy.php\"><h2>Privacy Policy</h2></a>
                     <a href=\"./TermsOfService.php\"><h2>Terms of Service</h2></a>
                     <a href=\"./login.php\"><h2>Log In</h2></a>
-                    <a href=\"./register.php\"><h2>Register</h2></a>
+                    <a href=\"./register.php\"><h2>Register</h2></a>");
+
+                    if(isset($_SESSION["loginDetails"])){if(isValidLogin($_SESSION["loginDetails"]["username"], $_SESSION["loginDetails"]["password"])){
+                        echo("<a href=\"./Resources/Helper/logout.php\"><h2>Log Out</h2></a>");
+                    }}
+
+    echo("
                 </div>
                 <div class=\"footerItem\">
                     <h1>Contact Us</h1>

@@ -23,7 +23,7 @@
         <div style="width: 14em; height: 3em;"></div>
     </div>
 
-    <?php if(isset($_SESSION["loginDetails"])){if(isValidLogin($_SESSION["loginDetails"]["username"], $_SESSION["loginDetails"]["password"])){?>
+    <?php if(isset($_SESSION["loginDetails"]["username"])&&isset($_SESSION["loginDetails"]["password"])){if(isValidLogin($_SESSION["loginDetails"]["username"], $_SESSION["loginDetails"]["password"])){?>
       <div class="content">
         <form id="customiseForm" class="uncrunch" method="post" action="./IntermediateCustomise.php">
           <div class="flex userInfoContainer">

@@ -4,7 +4,7 @@ include_once('./Resources/Helper/validation.php');
 
     function getProfilePicture($username)
     {
-        if(isset($_SESSION["loginDetails"]))
+        if(isset($_SESSION["loginDetails"]["username"])&&isset($_SESSION["loginDetails"]["password"]))
         {
             if(isValidLogin($_SESSION["loginDetails"]["username"], $_SESSION["loginDetails"]["password"]))
             {
@@ -44,7 +44,7 @@ include_once('./Resources/Helper/validation.php');
 
     function getDisplayName($username)
     {
-        if(isset($_SESSION["loginDetails"]))
+        if(isset($_SESSION["loginDetails"]["username"])&&isset($_SESSION["loginDetails"]["password"]))
         {
             if(isValidLogin($_SESSION["loginDetails"]["username"], $_SESSION["loginDetails"]["password"]))
             {
@@ -84,7 +84,7 @@ include_once('./Resources/Helper/validation.php');
 
     function getDescription($username)
     {
-        if(isset($_SESSION["loginDetails"]))
+        if(isset($_SESSION["loginDetails"]["username"])&&isset($_SESSION["loginDetails"]["password"]))
         {
             if(isValidLogin($_SESSION["loginDetails"]["username"], $_SESSION["loginDetails"]["password"]))
             {
@@ -124,7 +124,7 @@ include_once('./Resources/Helper/validation.php');
 
     function getThemeName($username)
     {
-        if(isset($_SESSION["loginDetails"]))
+        if(isset($_SESSION["loginDetails"]["username"])&&isset($_SESSION["loginDetails"]["password"]))
         {
             if(isValidLogin($_SESSION["loginDetails"]["username"], $_SESSION["loginDetails"]["password"]))
             {
@@ -164,7 +164,7 @@ include_once('./Resources/Helper/validation.php');
 
     function getRealName($username)
     {
-        if(isset($_SESSION["loginDetails"]))
+        if(isset($_SESSION["loginDetails"]["username"])&&isset($_SESSION["loginDetails"]["password"]))
         {
             if(isValidLogin($_SESSION["loginDetails"]["username"], $_SESSION["loginDetails"]["password"]))
             {
@@ -204,7 +204,7 @@ include_once('./Resources/Helper/validation.php');
 
     function getEmail($username)
     {
-        if(isset($_SESSION["loginDetails"]))
+        if(isset($_SESSION["loginDetails"]["username"])&&isset($_SESSION["loginDetails"]["password"]))
         {
             if(isValidLogin($_SESSION["loginDetails"]["username"], $_SESSION["loginDetails"]["password"]))
             {
@@ -244,7 +244,7 @@ include_once('./Resources/Helper/validation.php');
 
     function getUsername($email)
     {
-        if(isset($_SESSION["loginDetails"]))
+        if(isset($_SESSION["loginDetails"]["username"])&&isset($_SESSION["loginDetails"]["password"]))
         {
             if(isValidLogin($_SESSION["loginDetails"]["username"], $_SESSION["loginDetails"]["password"]))
             {

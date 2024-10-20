@@ -6,7 +6,7 @@
   
   $isAdmin = false;
 
-  if(isset($_SESSION["loginDetails"]))
+  if(isset($_SESSION["loginDetails"]["username"])&&isset($_SESSION["loginDetails"]["password"]))
   {
       $isAdmin = isValidAdminLogin($_SESSION["loginDetails"]["username"], $_SESSION["loginDetails"]["password"]);
   }

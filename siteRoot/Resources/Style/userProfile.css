@@ -1,0 +1,145 @@
+.profileContainer
+{
+    max-width: 60%;
+    margin: 0px auto 0px auto;
+}
+
+.profileImage
+{
+    border-radius: 9000px;
+    object-fit: cover;
+    width: 150px;
+    height: 150px;
+    border: 4px solid black;
+}
+
+.profilePictureContainer
+{
+    position: relative;
+}
+
+.mainInfo
+{
+    
+}
+
+.profileHeader
+{
+    
+    background-image:linear-gradient(rgba(255, 255, 255, 0.558),rgba(255, 255, 255, 0.558)),
+    url(../Images/Resources/Headers/AdobeStock_Jogging_One.jpeg);
+    background-position: 50% 15%;
+    background-size: cover;
+    margin: 0px 0px 30px 0px;
+    padding: 30px 8px 30px 8px;
+
+
+    border-bottom: 2px solid gray;
+    display: flex;
+    justify-content: space-between;
+}
+
+.profileHeader h1
+{
+    text-shadow: -2px 0 2px white, 0 2px 2px white, 2px 0 2px, 0 -2px 2px white;
+    font-size: 3em;
+}
+
+.customisePfp
+{
+    border-radius: 9000px;
+    object-fit: cover;
+    width: 150px;
+    height: 150px;
+    border: 4px solid black;
+    cursor: pointer;
+}
+
+.customisePfpOverlay
+{
+    object-fit: cover;
+    position:absolute;
+    width: 100px;
+    height: 100px;
+    z-index: 2;
+    left: 29px;
+    top: 29px;
+    cursor: pointer;
+}
+
+.pfpContainer
+{
+    position: relative;
+}
+
+.userInfoContainer
+{
+    max-width: 80%;
+    margin: 0px auto 0px auto;
+}
+
+.userInfoContainer h2
+{
+    font-weight: normal;
+    margin-bottom: 10px;
+    font-size: x-large;
+}
+
+.userInfoBoxR
+{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.userInfoBoxR input
+{
+    font-size: 2em;
+    margin-bottom: 10px;
+    padding: 5px;
+    border-radius: 5px;
+    border: 2px solid black;
+}
+.userInfoBoxR label
+{
+    font-size: x-large;
+}
+
+.userInfoBoxR textarea
+{
+    border: 2px solid black;
+    border-radius: 5px;
+    padding: 5px;
+    font-size: x-large;
+}
+
+.userInfoBoxR a
+{
+    font-size: large;
+    color: blue;
+    text-decoration-color: blue;
+}
+
+.userInfoBoxR a:hover
+{
+    font-size: large;
+    color: cyan;
+    text-decoration-color: cyan;
+}
+
+.userInfoBoxR select
+{
+    width: 50%;
+    height: 40px;
+    font-size: large;
+    background-color: white;
+    border: 2px solid black;
+    border-radius: 5px;
+}
+
+.themeBox
+{
+    display: flex;
+    align-items: flex-end;
+    margin-bottom: 10px;
+}

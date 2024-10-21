@@ -255,51 +255,6 @@ a:hover
     margin-bottom: 30px;
 }
 
-.login
-{
-    display: flex; 
-    flex-direction:column; 
-    justify-content:center; 
-    max-width: 80%;
-    margin:0px auto 0px auto;
-    font-size:2em;
-}
-
-.loginErrorSmall
-{
-    font-size: 0.8em;
-    color: red;
-}
-
-.login input
-{
-    height: 1.5em;
-    font-size: x-large;
-    margin-bottom: 5px;
-}
-
-.login ul, .login p
-{
-    margin: 0;
-    color: darkslategray;
-}
-
-.loginError
-{
-    border-color: red;
-}
-
-.loginFontError
-{
-    color:red;
-    font-size: medium;
-}
-
-.loginFontErrorColor
-{
-    color:red;
-}
-
 .mainHeader
 {
     display: flex;
@@ -384,46 +339,6 @@ a:hover
     width: 20%;
 }
 
-.creatorBox
-{
-    border: 1px solid black;
-    display: flex;
-    flex-direction: column;
-    height: auto;
-    width: 20%;
-    
-    padding: 10px;
-    column-gap: 20px;
-    justify-content: center;
-    
-    
-}
-
-.creatorBox div a, .creatorBox div a:visited, .creatorBox a:hover, .creatorBox a:active .creatorBox h2
-{
-    color: darkslategray;
-}
-
-.creatorBox p
-{
-    font-size: 2vw;
-}
-
-.creatorBox img
-{
-    height: 100%;
-    width: 100%;
-    
-    
-}
-
-.creatorFlex
-{
-    display: flex;
-    justify-content: space-around;
-    padding: 10px;
-}
-
 .headerPfp
 {
     border-radius: 9000px;
@@ -471,48 +386,6 @@ a:hover
     max-height: 35px;
 }
 
-.regBlock {
-    display: flex;
-    align-content:space-between;
-    justify-content: space-around;
-    padding: 10px;
-    border: 5px solid black;
-    margin: 100px;
-    border-radius: 25px;
-    background-color: lightblue;
-}
-
-.regBlock div {
-    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-
-    justify-content: center;
-}
-
-.DiscussionBlock {
-    display: flex;
-    align-content:space-between;
-    justify-content: space-around;
-    padding: 10px;
-    border: 5px solid black;
-    margin: 100px;
-    border-radius: 25px;
-    background-color: lightblue;
-    flex-direction:column;
-    flex: 0 1 calc(20% - 8px);
-}
-
-.DiscussionPost {
-    flex: 0 1 calc(20% - 8px);
-    align-content:space-between;
-    justify-content: space-around;
-    padding: 10px;
-    border: 5px solid black;
-    margin: 100px;
-    border-radius: 25px;
-    background-color: lightblue;
-    
-}
-
 .cartIcon {
     display: inline-block;
     padding: 5px;
@@ -524,157 +397,11 @@ a:hover
     background-color: #c5c3c3;
 }
 
-#discussionpost_layout {
-	display: grid;
-	grid-template-rows: repeat(3, 1fr);
-	grid-template-columns: repeat(3, 1fr);
-	gap: 3px;
-	width: 100%;
-	height: 100%;
-}
-#Event_Title {
-	grid-area: 1 / 1 / 2 / 3;
-	background-color: rgba(202,231,246, 0.5);
-}
-#Event_Description {
-	grid-area: 2 / 1 / 4 / 3;
-	background-color: rgba(249,89,252, 0.5);
-}
-#Event_Image {
-	grid-area: 1 / 3 / 3 / 4;
-	background-color: rgba(190,79,61, 0.5);
-}
-#Price_Amount {
-	grid-area: 3/3/4/4;
-	background-color: rgba(180,191,227, 0.5);
-}
-
-.profileHeader
-{
-    
-    background-image:linear-gradient(rgba(255, 255, 255, 0.558),rgba(255, 255, 255, 0.558)),
-    url(../Images/Resources/Headers/AdobeStock_Jogging_One.jpeg);
-    background-position: 50% 15%;
-    background-size: cover;
-    margin: 0px 0px 30px 0px;
-    padding: 30px 8px 30px 8px;
-
-
-    border-bottom: 2px solid gray;
-    display: flex;
-    justify-content: space-between;
-}
-
-.profileHeader h1
-{
-    text-shadow: -2px 0 2px white, 0 2px 2px white, 2px 0 2px, 0 -2px 2px white;
-    font-size: 3em;
-}
-
 .split
 {
     height: 2px;
     background-color: gray;
     margin: 10px 0px 10px 0px
-}
-
-.customisePfp
-{
-    border-radius: 9000px;
-    object-fit: cover;
-    width: 150px;
-    height: 150px;
-    border: 4px solid black;
-    cursor: pointer;
-}
-
-.customisePfpOverlay
-{
-    object-fit: cover;
-    position:absolute;
-    width: 100px;
-    height: 100px;
-    z-index: 2;
-    left: 29px;
-    top: 29px;
-    cursor: pointer;
-}
-
-.pfpContainer
-{
-    position: relative;
-}
-
-.userInfoContainer
-{
-    max-width: 80%;
-    margin: 0px auto 0px auto;
-}
-
-.userInfoContainer h2
-{
-    font-weight: normal;
-    margin-bottom: 10px;
-    font-size: x-large;
-}
-
-.userInfoBoxR
-{
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-}
-
-.userInfoBoxR input
-{
-    font-size: 2em;
-    margin-bottom: 10px;
-    padding: 5px;
-    border-radius: 5px;
-    border: 2px solid black;
-}
-.userInfoBoxR label
-{
-    font-size: x-large;
-}
-
-.userInfoBoxR textarea
-{
-    border: 2px solid black;
-    border-radius: 5px;
-    padding: 5px;
-    font-size: x-large;
-}
-
-.userInfoBoxR a
-{
-    font-size: large;
-    color: blue;
-    text-decoration-color: blue;
-}
-
-.userInfoBoxR a:hover
-{
-    font-size: large;
-    color: cyan;
-    text-decoration-color: cyan;
-}
-
-.userInfoBoxR select
-{
-    width: 50%;
-    height: 40px;
-    font-size: large;
-    background-color: white;
-    border: 2px solid black;
-    border-radius: 5px;
-}
-
-.themeBox
-{
-    display: flex;
-    align-items: flex-end;
-    margin-bottom: 10px;
 }
 
 .save
@@ -695,7 +422,6 @@ a:hover
 
 .BannerFlex {
 border-top: 5px solid black;
-
 }
 
 .HomePageFlex {
@@ -744,72 +470,9 @@ border-top: 5px solid black;
     box-sizing: border-box;
 }
 
-.privacyPolicy
-{
-    margin: 0px 10px 0px 10px;
-}
-
-.privacyPolicy p, .privacyPolicy li
-{
-    font-size: larger;
-}
-
-.captcha
-{
-    margin: 10px 0px;
-    background-color:rgb(255, 254, 248);
-    border-radius: 10px;
-    border: 2px solid black;
-    padding: 5px;
-}
-
-.captcha label
-{
-    display: flex;
-    flex-wrap: wrap;
-    align-content: center;
-}
-
-.captcha h1
-{
-    font-size: 1em;
-    margin: 10px 0px;
-}
-
-.captcha h2
-{
-    font-family: cursive;
-    font-size: 1em;
-    margin: 5px 0px;
-}
-
-.discussionDeleteImage
-{
-    width: 8%;
-    margin-left: auto;
-    padding: 10px;
-    display: block;
-    position: absolute;
-    top: 0px;
-    right: 0px;
-}
-
-.discussionDeleteDiv
-{
-    grid-column: 1/4;
-}
-
 .darkRedColor
 {
     color: darkred;    
-}
-
-.discussionDeleteDiv input
-{
-    height: 2em;
-    border: 3px solid black;
-    border-radius: 5px;
-    width:20%;
 }
 
 .dropdownContainer
@@ -874,44 +537,3 @@ border-top: 5px solid black;
 {
     border-radius: 10px;
 }
-
-#discussionImage {
-
-    max-width: 100%;
-    
-}
-
-#Event_Title h1 {
-    font-size: 240%;
-    text-align: center;
-}
-
-#Event_Description {
-    text-align: center;
-    font-size: larger;
-}
-
-#Price_Amount {
-    text-align: center;
-    align-items: center;
-    position:relative;
-}
-
-#popup-ticket {
-    display: none;
-    width:fit-content;
-    height:fit-content;
-    border:1px solid #CCC;
-    background:#EEE;
-    
-  }
-
-  #popup-ticket a {
-    color: blue;
-    text-decoration: underline;
-  }
-  
-  #popup-ticket:target {
-    display: block;
-  }
-

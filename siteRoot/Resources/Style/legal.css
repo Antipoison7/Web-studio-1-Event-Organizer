@@ -1,0 +1,49 @@
+.creatorBox
+{
+    border: 1px solid black;
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    width: 20%;
+    
+    padding: 10px;
+    column-gap: 20px;
+    justify-content: center;
+    
+    
+}
+
+.creatorBox div a, .creatorBox div a:visited, .creatorBox a:hover, .creatorBox a:active .creatorBox h2
+{
+    color: darkslategray;
+}
+
+.creatorBox p
+{
+    font-size: 2vw;
+}
+
+.creatorBox img
+{
+    height: 100%;
+    width: 100%;
+    
+    
+}
+
+.creatorFlex
+{
+    display: flex;
+    justify-content: space-around;
+    padding: 10px;
+}
+
+.privacyPolicy
+{
+    margin: 0px 10px 0px 10px;
+}
+
+.privacyPolicy p, .privacyPolicy li
+{
+    font-size: larger;
+}

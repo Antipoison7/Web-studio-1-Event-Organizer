@@ -1,7 +1,12 @@
 .profileContainer
 {
-    max-width: 60%;
+    max-width: 80%;
     margin: 0px auto 0px auto;
+}
+
+.profileContainer p
+{
+    font-size: 1.8em;
 }
 
 .profileImage
@@ -18,9 +23,32 @@
     position: relative;
 }
 
+.profileFlex
+{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
 .mainInfo
 {
-    
+    margin-left: 20px;
+}
+
+.mainInfo h2
+{
+    font-size: 3em;
+    margin-bottom: 5px;
+    text-wrap: wrap;
+    word-break: break-all;
+}
+
+.mainInfo h3
+{
+    margin-top: 3px;
+    font-size: 2em;
+    text-wrap:wrap;
+    word-break: break-all;
 }
 
 .profileHeader

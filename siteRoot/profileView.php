@@ -3,6 +3,18 @@
   include_once('./Resources/Helper/headers.php');
   include_once('./Resources/Helper/loginHelper.php');
   include_once('./Resources/Helper/userDetailsHelper.php');
+
+  $selectedUser = "Antipoison";
+
+  if(isset($_GET["userLookup"]))
+  {
+    $userVal = isUserReal($_GET["userLookup"]);
+
+    if($userVal != false)
+    {
+      $selectedUser = $userVal;
+    }
+  }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -18,7 +30,7 @@
   <body class="crunch">
   <?php headerNoLogin("Discussion Board") ?>
     <div class="profileContainer">
-      <div class="flex">
+      <div class="profileFlex">
         <div class="profilePictureContainer">
           <img src="./Resources/Images/userPfp/connorPfp.jpg" alt="Profile Picture" class="profileImage">
         </div>

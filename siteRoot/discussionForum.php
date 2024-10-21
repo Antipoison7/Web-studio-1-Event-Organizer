@@ -52,7 +52,7 @@
                           </div>
                           <div id='Event_Description'> " . cleanTextHTML($row["eventDesc"]). "</div>
                           <div id='Event_Image'> 
-                            <img id=\"discussionImage\" src=\"./Resources/Images/Resources/day in the park example.jpg\" alt=\"day in the park image\">
+                            <img id=\"discussionImage\" src=\"./Resources/Images/Events/day in the park example.jpg\" alt=\"day in the park image\">
                           </div>
                           <element id='Price_Amount'>$<a href=\"#popup-ticket\">" . cleanTextHTML($row["priceCost"]). "</a>
                             <div id=\"popup-ticket\">Ticket added to Cart <a href=\"#\"> Close the Popup</a></div>";

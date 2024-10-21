@@ -1,5 +1,6 @@
 <?php
     include_once('./Resources/Helper/userDetailsHelper.php');
+    include_once('./Resources/Helper/pdoScript.php');
 
     function registerIsBlank($inputArray)
     {
@@ -254,5 +255,46 @@
       <h1>You need to be logged in to use this page</h2>
       <h2><a href=\"./login.php\">Please log in here and try again</a></h2>
     </div>");
+    }
+
+    function isUserReal($username)
+    {
+        try
+        {
+            $db = createDB();
+
+            $type = "username";
+
+            if(strpos($username, '@') !== false)
+            {
+                $type = "email";
+            }
+
+            if($type == "username")
+            {
+                $stmt = $db->prepare("SELECT DISTINCT accounts.login_name FROM accounts JOIN users ON accounts.login_name = users.username WHERE login_name = :name AND archived = 0;");
+            }
+            else if($type == "email")
+            {
+                $stmt = $db->prepare("SELECT DISTINCT accounts.login_name FROM accounts JOIN users ON accounts.login_name = users.username WHERE email = :name AND archived = 0;");
+            }
+
+            $stmt->bindParam(':name', $username, PDO::PARAM_STR);
+
+            $stmt->execute();
+
+            // echo(var_dump($stmt->fetchColumn()));
+
+            $passVal = $stmt->fetchColumn();
+
+            $db = null;
+            $stmt = null;
+            
+            return $passVal;
+        }
+        catch (PDOException $e)
+        {
+            echo("oh great heavens: " . $e->getMessage());
+        }
     }
 ?>

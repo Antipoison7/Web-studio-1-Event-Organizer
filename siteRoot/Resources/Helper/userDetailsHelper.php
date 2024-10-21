@@ -288,4 +288,15 @@ include_once('./Resources/Helper/validation.php');
 
         return $themeArray;
     }
+
+    function getPublic($username)
+    {
+        $db = new PDO("mysql:host=talsprddb02.int.its.rmit.edu.au;dbname=COSC3046_2402_UGRD_1479_G4", "COSC3046_2402_UGRD_1479_G4", "GYS3sfUkzIqA");
+        $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+        $stmt = $db->prepare("SELECT username, display_name, real_name, profile_picture, profile_description, theme_name FROM users WHERE username = :name;");
+
+                    $stmt->bindParam(':name', $username, PDO::PARAM_STR);
+                    $stmt->execute();
+    }
 ?>

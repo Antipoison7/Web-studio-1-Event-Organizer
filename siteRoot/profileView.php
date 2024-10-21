@@ -12,30 +12,24 @@
     
     <?php createMeta() ?>
     <link rel="stylesheet" href="./Resources/Style/base.css">
+    <link rel="stylesheet" href="./Resources/Style/userProfile.css">
     <link rel="icon" type="image/x-icon" href="./Resources/Images/Resources/favicon.png">
   </head>
   <body class="crunch">
+  <?php headerNoLogin("Discussion Board") ?>
+    <div class="profileContainer">
+      <div class="flex">
+        <div class="profilePictureContainer">
+          <img src="./Resources/Images/userPfp/connorPfp.jpg" alt="Profile Picture" class="profileImage">
+        </div>
+        <div class="mainInfo">
+          <h2>Antipoison</h2>
+          <h3>Connor Orders</h3>
+        </div>
+      </div>
+      <p>Haha, someone please remind me to remove this cat, it is absolutely just something I stole of google images</p>
+    </div>
+
     <?php makeFooter(); ?>
   </body>
-
-  <script>
-    let imageObj = document.getElementById("profilePictureIcon");
-    let imageOvl = document.getElementById("profilePictureOverlay");
-    imageObj.addEventListener("mouseover", dimImmadome);
-    imageObj.addEventListener("mouseout", brightImmadome);
-    imageOvl.addEventListener("mouseover", dimImmadome);
-    imageOvl.addEventListener("mouseout", brightImmadome);
-
-    function dimImmadome()
-    {
-      imageObj.style.filter = "brightness(75%)";
-      imageOvl.hidden = false;
-    }
-    
-    function brightImmadome()
-    {
-      imageObj.style.filter = "brightness(100%)";
-      imageOvl.hidden = true;
-    }
-  </script>
 </html>

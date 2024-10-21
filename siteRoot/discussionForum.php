@@ -19,6 +19,7 @@
     
     <?php createMeta() ?>
     <link rel="stylesheet" href="./Resources/Style/base.css">
+    <link rel="stylesheet" href="./Resources/Style/forum.css">
     <link rel="icon" type="image/x-icon" href="./Resources/Images/Resources/favicon.png">
   </head>
   <body>

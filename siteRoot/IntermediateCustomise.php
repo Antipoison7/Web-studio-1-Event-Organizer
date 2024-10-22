@@ -1,12 +1,13 @@
 <?php
     include_once('./Resources/Helper/validation.php');
     include_once('./Resources/Helper/loginHelper.php');
-?>
-<!DOCTYPE html>
-<?php
+
     session_start();
 
-    $redirect = "./index.php";
+    if(isset($_SESSION["issues"]))
+    {
+        unset($_SESSION["issues"]);
+    }
 
     try
     {
@@ -29,53 +30,25 @@
             {
                 $redirect = "./index.php";
                 updateUser($_SESSION["loginDetails"]["username"], $pfp, $displayName, $realName, $description, $theme);
+                header("Location: ./index.php");
             }
             else
             {
                 $redirect = "./profileCustomise.php";
+                header("Location: ./profileCustomise.php");
             }
+        }
+        else
+        {
+            header("Location: ./index.php");
         }
 
 
     }
     catch(Exception $e)
     {
+        header("Location: ./index.php");
         $redirect = "./index.php";
     }
     
-?>
-
-<html lang="en">
-        <head>
-               <title>Please Dont Break</title>
-
-
-        <!-- <meta http-equiv='refresh' content='5'; url ='<?php echo($redirect)?>'/> -->
-        </head>
-
-        redirectScript()
-    <body onload=''>
-
-        <p><a href="<?php echo($redirect); ?>">Damn, if you see this and it doesn't load, click this. Do not refresh the page.</a></p>
-        <br>
-        <?php echo(var_dump($_POST)); ?>
-            <script>
-                // function redirectScript()
-                // {
-                //     sleep(1000);
-                //     window.location.replace("<?php echo($redirect)?>");
-                // }
-                // function sleep(ms) {
-                //     return new Promise(resolve => setTimeout(resolve, ms));
-                // }
-            </script>
-
-    </body>
-</html>
-
-<?php
-    if(isset($_SESSION["issues"]))
-    {
-        unset($_SESSION["issues"]);
-    }
 ?>

@@ -67,7 +67,7 @@
                     {
                         echo("<div>
                         <h1>Profile Links</h1>
-                        <a href=\"./profileView.php\"><h2>Your Profile</h2></a>
+                        <a href=\"./profileView.php?userLookup=" . $_SESSION["loginDetails"]["username"] . "\"><h2>Your Profile</h2></a>
                         <a href=\"./profileCustomise.php\"><h2>Customize Profile</h2></a>
                         <a href=\"./Resources/Helper/logout.php\"><h2>Log Out</h2></a>
                             <br>
@@ -140,7 +140,7 @@
                         <a href=\"./shoppingcart.php\" class=\"cartIcon\"><img src=\"./Resources/Images/Resources/shoppingCart.svg\" alt=\"Your Cart\" style=\"height:3em\"></a></div>
                         <div id=\"dropdownTri\" class=\"hiddenClass\"></div>
                         <div id=\"dropdown\" class=\"hiddenClass\">
-                                <a href=\"./profileView.php\"><div>My Profile</div></a>
+                                <a href=\"./profileView.php?userLookup=" . $_SESSION["loginDetails"]["username"] . "\"><div>My Profile</div></a>
                                 <a href=\"./profileCustomise.php\"><div>Customise Profile</div></a>
                                 <a href=\"./Resources/Helper/logout.php\"><div>Log Out</div></a>
                         </div>

@@ -86,7 +86,13 @@
                         <a href=\"./fancommunity.php\"><h2>Social</h2></a>
                         
                         <br>
-                    </div>                   
+                    </div>
+                    <div>
+                        <h1>Comment Section</h1>
+                        <a href=\"./commentSection.php\"><h2>Social</h2></a>
+                        
+                        <br>
+                    </div>                    
                 </div>
             </div>
         ");

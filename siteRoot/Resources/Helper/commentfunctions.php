@@ -2,7 +2,7 @@
         
         $user_id = 1;
         
-        $db = mysqli_connect("localhost", "root", "", "comment-reply-system");
+        $db = mysqli_connect("talsprddb02.int.its.rmit.edu.au", "COSC3046_2402_UGRD_1479_G4", "GYS3sfUkzIqA", "COSC3046_2402_UGRD_1479_G4");
         
         $post_query_result = mysqli_query($db, "SELECT * FROM EventList WHERE id=1");
         $post = mysqli_fetch_assoc($post_query_result);

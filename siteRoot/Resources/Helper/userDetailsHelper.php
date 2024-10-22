@@ -298,5 +298,12 @@ include_once('./Resources/Helper/validation.php');
 
                     $stmt->bindParam(':name', $username, PDO::PARAM_STR);
                     $stmt->execute();
+
+                    $result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        $db = null;
+        $stmt = null;
+
+        return $result;
     }
 ?>

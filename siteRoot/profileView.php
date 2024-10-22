@@ -15,11 +15,14 @@
       $selectedUser = $userVal;
     }
   }
+
+  $userResults = getPublic($selectedUser);
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Username Goes Here</title>
+    <title><?php echo($userResults["username"]); ?></title>
     
     
     <?php createMeta() ?>
@@ -32,14 +35,14 @@
     <div class="profileContainer">
       <div class="profileFlex">
         <div class="profilePictureContainer">
-          <img src="./Resources/Images/userPfp/connorPfp.jpg" alt="Profile Picture" class="profileImage">
+          <img src=".<?php echo($userResults["profile_picture"]); ?>" alt="Profile Picture" class="profileImage">
         </div>
         <div class="mainInfo">
-          <h2>Antipoison</h2>
-          <h3>Connor Orders</h3>
+          <h2><?php echo($userResults["display_name"]); ?></h2>
+          <h3><?php echo($userResults["real_name"]); ?></h3>
         </div>
       </div>
-      <p>Haha, someone please remind me to remove this cat, it is absolutely just something I stole of google images</p>
+      <p><?php echo($userResults["profile_description"]); ?></p>
     </div>
 
     <?php makeFooter(); ?>

@@ -9,11 +9,11 @@
         
         $db = mysqli_connect($servername, $username, $password, $dbname);
         
-        $post_query_result = mysqli_query($db, "SELECT * FROM EventList WHERE EventID=1");
+        $post_query_result = mysqli_query($db, "SELECT * FROM EventList WHERE EventID = 1");
         $post = mysqli_fetch_assoc($post_query_result);
 
         
-        $comments_query_result = mysqli_query($db, "SELECT * FROM comments WHERE Event_ID=" . $post['id'] . " ORDER BY created_at DESC");
+        $comments_query_result = mysqli_query($db, "SELECT * FROM comments WHERE Event_ID=" . $post['EventID'] . " ORDER BY created_at DESC");
         $comments = mysqli_fetch_all($comments_query_result, MYSQLI_ASSOC);
 
         

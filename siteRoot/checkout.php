@@ -92,7 +92,21 @@ include_once('./Resources/Helper/headers.php');
             
 
             <!-- Checkout Button -->
-            <button class="checkout-btn">Checkout</button>
+            <form action="order_confirmation.php" method="POST" id="checkout-form">
+                <input type="hidden" name="items" value='<?php echo json_encode($items); ?>'>
+                <input type="hidden" name="totalAmount" value="<?php echo htmlspecialchars($totalAmount); ?>">
+                <input type="hidden" name="discountedTotal" value="">
+                <input type="hidden" name="cardType" id="hidden-card-type" value="">
+                <input type="hidden" name="address" value="">
+                <input type="hidden" name="suburb" value="">
+                <input type="hidden" name="state" value="">
+                <input type="hidden" name="postcode" value="">
+                <input type="hidden" name="fname" value="">
+                <input type="hidden" name="lname" value="">
+                <input type="hidden" name="phone" value="">
+
+                <button type="submit" class="checkout-btn">Checkout</button>
+            </form>
         </div>
 
         <!-- Order Summary Section -->
@@ -156,7 +170,21 @@ include_once('./Resources/Helper/headers.php');
             alert('Invalid coupon code.');
         }
     });
-</script>
+    </script>
+
+    <script>
+    // Fill in form data on checkout click
+        document.querySelector('.checkout-btn').addEventListener('click', function(e) {
+            document.getElementById('hidden-card-type').value = document.getElementById('card-type').value;
+            document.querySelector('input[name="address"]').value = document.getElementById('address').value;
+            document.querySelector('input[name="suburb"]').value = document.getElementById('suburb').value;
+            document.querySelector('input[name="state"]').value = document.getElementById('state').value;
+            document.querySelector('input[name="postcode"]').value = document.getElementById('postcode').value;
+            document.querySelector('input[name="fname"]').value = document.getElementById('card-holder-fname').value;
+            document.querySelector('input[name="lname"]').value = document.getElementById('card-holder-lname').value;
+            document.querySelector('input[name="phone"]').value = document.getElementById('phone').value;
+        });
+    </script>
 
 </body>
 </html>

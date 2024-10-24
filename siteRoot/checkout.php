@@ -90,13 +90,6 @@ include_once('./Resources/Helper/headers.php');
                 <input type="text" id="phone" placeholder="Enter Mobile Phone" required>
             </div>
             
-            <!-- Coupon Code Section -->
-            <div class="coupon-section">
-                <h3>Coupon Code</h3>
-                <label for="coupon-code">Enter Coupon Code</label>
-                <input type="text" id="coupon-code" placeholder="Enter Coupon Code">
-                <button class="apply-coupon-btn">Apply Coupon</button>
-            </div>
 
             <!-- Checkout Button -->
             <button class="checkout-btn">Checkout</button>
@@ -124,6 +117,14 @@ include_once('./Resources/Helper/headers.php');
             }
             ?>
             <a href="#" class="cancel-order">Cancel Order</a>
+        
+            <!-- Coupon Code Section -->
+        <div class="coupon-section">
+                <h3>Coupon Code</h3>
+                <label for="coupon-code">Enter Coupon Code</label>
+                <input type="text" id="coupon-code" placeholder="Enter Coupon Code">
+                <button class="apply-coupon-btn">Apply Coupon</button>
+            </div>
         </div>
     </main>
 

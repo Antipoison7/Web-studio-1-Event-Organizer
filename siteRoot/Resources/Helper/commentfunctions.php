@@ -9,7 +9,7 @@
         
         $db = mysqli_connect($servername, $username, $password, $dbname);
         
-        $post_query_result = mysqli_query($db, "SELECT * FROM EventList WHERE id=1");
+        $post_query_result = mysqli_query($db, "SELECT * FROM EventList WHERE EventID=1");
         $post = mysqli_fetch_assoc($post_query_result);
 
         

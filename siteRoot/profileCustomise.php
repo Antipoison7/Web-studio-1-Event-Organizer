@@ -26,7 +26,7 @@
 
     <?php if(isset($_SESSION["loginDetails"]["username"])&&isset($_SESSION["loginDetails"]["password"])){if(isValidLogin($_SESSION["loginDetails"]["username"], $_SESSION["loginDetails"]["password"])){?>
       <div class="content">
-        <form id="customiseForm" class="uncrunch" method="post" action="./IntermediateCustomise.php">
+        <form id="customiseForm" class="uncrunch" method="post" action="./IntermediateCustomise.php" enctype="multipart/form-data">
           <div class="flex userInfoContainer">
             <label for="pfp" style="margin-right: 20px;">
               <div class="pfpContainer">
@@ -89,7 +89,7 @@
             <a href="./">
               <div class="button">Discard</div>
             </a>
-            <button class="button save" type="submit">Save Changes</button>
+            <button class="button save" type="submit" name="submit">Save Changes</button>
           </div>
         </form>
       </div>

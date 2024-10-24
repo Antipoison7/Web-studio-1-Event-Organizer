@@ -273,6 +273,46 @@ include_once('./Resources/Helper/validation.php');
         }
     }
 
+    function getImageCount($username)
+    {
+        if(isset($_SESSION["loginDetails"]["username"])&&isset($_SESSION["loginDetails"]["password"]))
+        {
+            if(isValidLogin($_SESSION["loginDetails"]["username"], $_SESSION["loginDetails"]["password"]))
+            {
+                try
+                {
+                    $db = new PDO("mysql:host=talsprddb02.int.its.rmit.edu.au;dbname=COSC3046_2402_UGRD_1479_G4", "COSC3046_2402_UGRD_1479_G4", "GYS3sfUkzIqA");
+                    $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+                    $stmt = $db->prepare("SELECT profile_picture_count FROM users WHERE username = :name;");
+
+                    if(containsAt($username))
+                    {
+                        $setName = getUsername($username);
+                    }
+                    else
+                    {
+                        $setName = $username;
+                    }
+
+                    $stmt->bindParam(':name', $setName, PDO::PARAM_STR);
+                    $stmt->execute();
+
+                    $returnVal = $stmt->fetchColumn();
+
+                    $db = null;
+                    $stmt = null;
+
+                    return $returnVal;
+                }
+                catch (PDOException $e)
+                {
+                    echo("oh great heavens: " . $e->getMessage());
+                }
+            }
+        }
+    }
+
     function getThemes()
     {
         $db = new PDO("mysql:host=talsprddb02.int.its.rmit.edu.au;dbname=COSC3046_2402_UGRD_1479_G4", "COSC3046_2402_UGRD_1479_G4", "GYS3sfUkzIqA");

@@ -92,7 +92,21 @@ include_once('./Resources/Helper/headers.php');
             
 
             <!-- Checkout Button -->
-            <button class="checkout-btn">Checkout</button>
+            <form action="order_confirmation.php" method="POST" id="checkout-form">
+                <input type="hidden" name="items" value='<?php echo json_encode($items); ?>'>
+                <input type="hidden" name="totalAmount" value="<?php echo htmlspecialchars($totalAmount); ?>">
+                <input type="hidden" name="discountedTotal" value="">
+                <input type="hidden" name="cardType" id="hidden-card-type" value="">
+                <input type="hidden" name="address" value="">
+                <input type="hidden" name="suburb" value="">
+                <input type="hidden" name="state" value="">
+                <input type="hidden" name="postcode" value="">
+                <input type="hidden" name="fname" value="">
+                <input type="hidden" name="lname" value="">
+                <input type="hidden" name="phone" value="">
+
+                <button type="submit" class="checkout-btn">Checkout</button>
+            </form>
         </div>
 
         <!-- Order Summary Section -->
@@ -102,7 +116,12 @@ include_once('./Resources/Helper/headers.php');
             if (isset($_POST['items']) && isset($_POST['totalAmount'])) {
                 $items = $_POST['items'];
                 $totalAmount = $_POST['totalAmount'];
-
+                
+                // Check if the discount was applied
+                if (isset($_POST['discountedTotal'])) {
+                $totalAmount = $_POST['discountedTotal'];
+                }
+                
                 echo "<ul>";
                 foreach ($items as $item) {
                     $title = htmlspecialchars($item['title']);
@@ -127,6 +146,45 @@ include_once('./Resources/Helper/headers.php');
             </div>
         </div>
     </main>
+    
+    <script>
+    document.querySelector('.apply-coupon-btn').addEventListener('click', function() {
+        const couponCode = document.getElementById('coupon-code').value;
+        const totalElement = document.querySelector('.order-summary-section p strong');
+        let totalAmount = parseFloat(totalElement.textContent.replace('$', ''));
+
+        if (couponCode === 'TEST10') {
+            const discount = totalAmount * 0.10;
+            const discountedTotal = (totalAmount - discount).toFixed(2);
+            
+            totalElement.textContent = `$${discountedTotal}`;
+
+            const discountInput = document.createElement('input');
+            discountInput.type = 'hidden';
+            discountInput.name = 'discountedTotal';
+            discountInput.value = discountedTotal;
+            document.querySelector('.checkout-container').appendChild(discountInput);
+
+            alert('Coupon applied! 10% discount has been applied.');
+        } else {
+            alert('Invalid coupon code.');
+        }
+    });
+    </script>
+
+    <script>
+    // Fill in form data on checkout click
+        document.querySelector('.checkout-btn').addEventListener('click', function(e) {
+            document.getElementById('hidden-card-type').value = document.getElementById('card-type').value;
+            document.querySelector('input[name="address"]').value = document.getElementById('address').value;
+            document.querySelector('input[name="suburb"]').value = document.getElementById('suburb').value;
+            document.querySelector('input[name="state"]').value = document.getElementById('state').value;
+            document.querySelector('input[name="postcode"]').value = document.getElementById('postcode').value;
+            document.querySelector('input[name="fname"]').value = document.getElementById('card-holder-fname').value;
+            document.querySelector('input[name="lname"]').value = document.getElementById('card-holder-lname').value;
+            document.querySelector('input[name="phone"]').value = document.getElementById('phone').value;
+        });
+    </script>
 
 </body>
 </html>

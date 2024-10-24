@@ -72,7 +72,7 @@ $cartItems = [
                 <!-- Add a hidden input for the total amount -->
                 <input type="hidden" name="totalAmount" id="hidden-total" value="<?= $total ?>">
 
-                <button type="submit" class="btn checkout">Checkout</button>
+                <button type="submit" class="btn checkout">Continue</button>
             </form>
         </div>
     </div>

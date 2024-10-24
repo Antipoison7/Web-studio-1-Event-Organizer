@@ -62,7 +62,7 @@
                                                         <a class='reply-btn' href='#' data-id='" . $inserted_comment['id'] . "'>reply</a>
                                                 </div>
                                                 <!-- reply form -->
-                                                <form action='post_details.php' class='reply_form clearfix' id='comment_reply_form_" . $inserted_comment['id'] . "' data-id='" . $inserted_comment['id'] . "'>
+                                                <form action='commentSection.php' class='reply_form clearfix' id='comment_reply_form_" . $inserted_comment['id'] . "' data-id='" . $inserted_comment['id'] . "'>
                                                         <textarea class='form-control' name='reply_text' id='reply_text' cols='30' rows='2'></textarea>
                                                         <button class='btn btn-primary btn-xs pull-right submit-reply'>Submit reply</button>
                                                 </form>

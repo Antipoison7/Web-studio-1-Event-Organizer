@@ -88,23 +88,24 @@
                                                 <?php endif ?>
                                         </div>
                                 </div>
-                                        <!-- // comment -->
+                                        
                                 <?php endforeach ?>
                         <?php else: ?>
                                 <h2>Be the first to comment on this post</h2>
                         <?php endif ?>
-                        </div><!-- comments wrapper -->
-                </div><!-- // all comments -->
+                        </div>
+                </div>
         </div>
 </div>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+ <script src=\"https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js\"></script>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src=\"https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js\"></script>
 
 
 
-<script type="text/javascript">
+
+<script>
   $(document).ready(function(){
         // When user clicks on submit comment to add comment under post
         $(document).on('click', '#submit_comment', function(e) {
@@ -167,6 +168,7 @@
         });
 });
 </script>
+
     </div>
     <?php
       makeFooter();

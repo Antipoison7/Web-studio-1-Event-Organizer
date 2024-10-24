@@ -1,14 +1,19 @@
 <?php 
+
+        $servername = "talsprddb02.int.its.rmit.edu.au:3306";
+        $username = "COSC3046_2402_UGRD_1479_G4";
+        $password = "GYS3sfUkzIqA";
+        $dbname = "COSC3046_2402_UGRD_1479_G4";
         
         $user_id = 1;
         
-        $db = mysqli_connect("talsprddb02.int.its.rmit.edu.au", "COSC3046_2402_UGRD_1479_G4", "GYS3sfUkzIqA", "COSC3046_2402_UGRD_1479_G4");
+        $db = mysqli_connect($servername, $username, $password, $dbname);
         
-        $post_query_result = mysqli_query($db, "SELECT * FROM EventList WHERE id=1");
+        $post_query_result = mysqli_query($db, "SELECT * FROM EventList WHERE EventID=1");
         $post = mysqli_fetch_assoc($post_query_result);
 
         
-        $comments_query_result = mysqli_query($db, "SELECT * FROM comments WHERE post_id=" . $post['id'] . " ORDER BY created_at DESC");
+        $comments_query_result = mysqli_query($db, "SELECT * FROM comments WHERE Event_ID=" . $post['id'] . " ORDER BY created_at DESC");
         $comments = mysqli_fetch_all($comments_query_result, MYSQLI_ASSOC);
 
         

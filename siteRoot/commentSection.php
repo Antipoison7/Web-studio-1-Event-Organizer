@@ -27,73 +27,79 @@
     
       <?php headerNoLogin("Discussion Board") ?>
       <div class="BannerFlex">
-        <?php
-            $servername = "talsprddb02.int.its.rmit.edu.au:3306";
-            $username = "COSC3046_2402_UGRD_1479_G4";
-            $password = "GYS3sfUkzIqA";
-            $dbname = "COSC3046_2402_UGRD_1479_G4";
+      <div class="container">
+        <div class="row">
+                <div class="col-md-6 col-md-offset-3 post">
+                        <h2><?php echo $post['title'] ?></h2>
+                        <p><?php echo $post['body']; ?></p>
+                </div>
+                <div class="col-md-6 col-md-offset-3 comments-section">
+                        
+                        <!-- <?php if (isset($user_id)): ?>
+                                <form class="clearfix" action="post_details.php" method="post" id="comment_form">
+                                        <textarea name="comment_text" id="comment_text" class="form-control" cols="30" rows="3"></textarea>
+                                        <button class="btn btn-primary btn-sm pull-right" id="submit_comment">Submit comment</button>
+                                </form>
+                        <?php else: ?>
+                                <div class="well" style="margin-top: 20px;">
+                                        <h4 class="text-center"><a href="#">Sign in</a> to post a comment</h4>
+                                </div>
+                        <?php endif ?> -->
+                        <!-- Display total number of comments on this post  -->
+                        <h2><span id="comments_count"><?php echo count($comments) ?></span> Comment(s)</h2>
+                        <hr>
+                        
+                        <div id="comments-wrapper">
+                        <?php if (isset($comments)): ?>
+                                <!-- Display comments -->
+                                <?php foreach ($comments as $comment): ?>
+                                
+                                <div class="comment clearfix">
+                                        <img src="profile.png" alt="" class="profile_pic">
+                                        <div class="comment-details">
+                                                <span class="comment-name"><?php echo getUsernameById($comment['user_id']) ?></span>
+                                                <span class="comment-date"><?php echo date("F j, Y ", strtotime($comment["created_at"])); ?></span>
+                                                <p><?php echo $comment['body']; ?></p>
+                                                <a class="reply-btn" href="#" data-id="<?php echo $comment['id']; ?>">reply</a>
+                                        </div>
+                                        
+                                        <form action="post_details.php" class="reply_form clearfix" id="comment_reply_form_<?php echo $comment['id'] ?>" data-id="<?php echo $comment['id']; ?>">
+                                                <textarea class="form-control" name="reply_text" id="reply_text" cols="30" rows="2"></textarea>
+                                                <button class="btn btn-primary btn-xs pull-right submit-reply">Submit reply</button>
+                                        </form>
 
-                  
-            $conn = mysqli_connect($servername, $username, $password, $dbname);
-                  
-            if (!$conn) {
-              die("Connection failed: " . mysqli_connect_error());
-            }
+                                        <!-- GET ALL REPLIES -->
+                                        <?php $replies = getRepliesByCommentId($comment['id']) ?>
+                                        <div class="replies_wrapper_<?php echo $comment['id']; ?>">
+                                                <?php if (isset($replies)): ?>
+                                                        <?php foreach ($replies as $reply): ?>
+                                                                
+                                                                <div class="comment reply clearfix">
+                                                                        <img src="profile.png" alt="" class="profile_pic">
+                                                                        <div class="comment-details">
+                                                                                <span class="comment-name"><?php echo getUsernameById($reply['user_id']) ?></span>
+                                                                                <span class="comment-date"><?php echo date("F j, Y ", strtotime($reply["created_at"])); ?></span>
+                                                                                <p><?php echo $reply['body']; ?></p>
+                                                                                <a class="reply-btn" href="#">reply</a>
+                                                                        </div>
+                                                                </div>
+                                                        <?php endforeach ?>
+                                                <?php endif ?>
+                                        </div>
+                                </div>
+                                        <!-- // comment -->
+                                <?php endforeach ?>
+                        <?php else: ?>
+                                <h2>Be the first to comment on this post</h2>
+                        <?php endif ?>
+                        </div><!-- comments wrapper -->
+                </div><!-- // all comments -->
+        </div>
+</div>
 
-            $sql = "SELECT EventID, eventName, eventDesc, priceCost FROM EventList";
-            $result = mysqli_query($conn, $sql);
-            echo "<div class='DiscussionBlock'>";
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
-            if (mysqli_num_rows($result) > 0) {
-                    
-              while($row = mysqli_fetch_assoc($result)) {
-                echo "<div class='DiscussionPost' id=\"bigPost" . $row["EventID"] . "\">
-                        <div id='discussionpost_layout'>
-                          <div id='Event_Title'>
-                            <h1>" . cleanTextHTML($row["eventName"]). "</h1>
-                          </div>
-                          <div id='Event_Description'> " . cleanTextHTML($row["eventDesc"]). "</div>
-                          <div id='Event_Image'> 
-                            <img id=\"discussionImage\" src=\"./Resources/Images/Events/thumbnails/day in the park example.jpg\" alt=\"day in the park image\">
-                          </div>
-                          <element id='Price_Amount'>$<a href=\"#popup-ticket\">" . cleanTextHTML($row["priceCost"]). "</a>
-                            <div id=\"popup-ticket\">Ticket added to Cart <a href=\"#\"> Close the Popup</a></div>";
-                if($isAdmin == true)
-                {
-                  echo("<img src=\"./Resources/Images/Resources/delete.png\" alt=\"Delete Post\" class=\"discussionDeleteImage\" onclick=\"toggleDeleteMenu(" . $row["EventID"] . ")\">
-                          </element>
-
-                          <div class=\"discussionDeleteDiv hiddenClass\" id=\"deleteBox" . $row["EventID"] . "\">
-                            <h2>Are you sure you want to archive post:</h2>
-                            <p>Copy this word to confirm: <span class=\"darkRedColor\">Delete</span></p>
-                            <div class=\"flex\" style=\"align-items:center; gap: 5px;\">
-                              <input type=\"text\" id=\"post" . $row["EventID"] . "\">
-                              <div class=\"smallButtonWarn\" onclick=\"tryArchivePost(" . $row["EventID"] . ")\">Archive</div>
-                            </div>
-                          </div>");
-                }
-                else
-                {
-                  echo("</element>");
-                }
-                echo "
-                        </div>
-                      </div>";
-              }
-            } else {
-              echo "0 results";
-            }
-            echo "</div>";
-
-            mysqli_close($conn);
-        ?>
-      
-
-
-
-
-
-      
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
     </div>
     <?php
       makeFooter();

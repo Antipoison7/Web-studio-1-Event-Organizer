@@ -36,7 +36,7 @@
                 </div>
                 <div class="col-md-6 col-md-offset-3 comments-section">
                         
-                        <!-- <?php if (isset($user_id)): ?>
+                        <?php if (isset($user_id)): ?>
                                 <form class="clearfix" action="post_details.php" method="post" id="comment_form">
                                         <textarea name="comment_text" id="comment_text" class="form-control" cols="30" rows="3"></textarea>
                                         <button class="btn btn-primary btn-sm pull-right" id="submit_comment">Submit comment</button>
@@ -45,7 +45,7 @@
                                 <div class="well" style="margin-top: 20px;">
                                         <h4 class="text-center"><a href="#">Sign in</a> to post a comment</h4>
                                 </div>
-                        <?php endif ?> -->
+                        <?php endif ?>
                         <!-- Display total number of comments on this post  -->
                         <h2><span id="comments_count"><?php echo count($comments) ?></span> Comment(s)</h2>
                         <hr>

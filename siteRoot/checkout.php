@@ -102,7 +102,12 @@ include_once('./Resources/Helper/headers.php');
             if (isset($_POST['items']) && isset($_POST['totalAmount'])) {
                 $items = $_POST['items'];
                 $totalAmount = $_POST['totalAmount'];
-
+                
+                // Check if the discount was applied
+                if (isset($_POST['discountedTotal'])) {
+                $totalAmount = $_POST['discountedTotal'];
+                }
+                
                 echo "<ul>";
                 foreach ($items as $item) {
                     $title = htmlspecialchars($item['title']);
@@ -127,6 +132,31 @@ include_once('./Resources/Helper/headers.php');
             </div>
         </div>
     </main>
+    
+    <script>
+    document.querySelector('.apply-coupon-btn').addEventListener('click', function() {
+        const couponCode = document.getElementById('coupon-code').value;
+        const totalElement = document.querySelector('.order-summary-section p strong');
+        let totalAmount = parseFloat(totalElement.textContent.replace('$', ''));
+
+        if (couponCode === 'TEST10') {
+            const discount = totalAmount * 0.10;
+            const discountedTotal = (totalAmount - discount).toFixed(2);
+            
+            totalElement.textContent = `$${discountedTotal}`;
+
+            const discountInput = document.createElement('input');
+            discountInput.type = 'hidden';
+            discountInput.name = 'discountedTotal';
+            discountInput.value = discountedTotal;
+            document.querySelector('.checkout-container').appendChild(discountInput);
+
+            alert('Coupon applied! 10% discount has been applied.');
+        } else {
+            alert('Invalid coupon code.');
+        }
+    });
+</script>
 
 </body>
 </html>

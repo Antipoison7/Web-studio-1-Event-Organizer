@@ -81,7 +81,16 @@ include_once('./Resources/Helper/headers.php');
                     <label for="suburb">Suburb *</label>
                     <input type="text" id="suburb" placeholder="Enter Suburb" required>
                     <label for="state">State *</label>
-                    <input type="text" id="state" placeholder="Enter State" required>
+                    <select id="state" required>
+                        <option value="">Select State</option>
+                        <option value="ACT">ACT</option>
+                        <option value="NSW">NSW</option>
+                        <option value="NT">NT</option>
+                        <option value="QLD">QLD</option>
+                        <option value="SA">SA</option>
+                        <option value="VIC">VIC</option>
+                        <option value="WA">WA</option>
+                    </select>
                     <label for="postcode">Postcode *</label>
                     <input type="text" id="postcode" placeholder="Enter Postcode" required>
                 </div>

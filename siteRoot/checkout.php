@@ -1,6 +1,18 @@
 <?php
 session_start();
 include_once('./Resources/Helper/headers.php');
+
+$servername = "talsprddb02.int.its.rmit.edu.au";
+$username = "COSC3046_2402_UGRD_1479_G4";
+$password = "GYS3sfUkzIqA";
+$dbname = "COSC3046_2402_UGRD_1479_G4";
+
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
 ?>
 
 <!DOCTYPE html>
@@ -165,14 +177,17 @@ include_once('./Resources/Helper/headers.php');
         if (couponCode === 'TEST10') {
             const discount = totalAmount * 0.10;
             const discountedTotal = (totalAmount - discount).toFixed(2);
-            
+
             totalElement.textContent = `$${discountedTotal}`;
 
-            const discountInput = document.createElement('input');
-            discountInput.type = 'hidden';
-            discountInput.name = 'discountedTotal';
+            let discountInput = document.querySelector('input[name="discountedTotal"]');
+            if (!discountInput) {
+                discountInput = document.createElement('input');
+                discountInput.type = 'hidden';
+                discountInput.name = 'discountedTotal';
+                document.querySelector('#checkout-form').appendChild(discountInput);
+            }
             discountInput.value = discountedTotal;
-            document.querySelector('.checkout-container').appendChild(discountInput);
 
             alert('Coupon applied! 10% discount has been applied.');
         } else {

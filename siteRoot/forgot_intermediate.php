@@ -1,4 +1,5 @@
 <?php
+session_start();
 
 function doesUserExist($userlogin)
 {
@@ -116,17 +117,33 @@ if(isset($_POST["emailUser"]))
             }
 
             $ip = getUserIP();
+            $resetCode = substr(uniqid(bin2hex(random_bytes(10/2)), true),0,6);
+            $_SESSION["resetPassword"]["resetCode"] = $resetCode;
+            $_SESSION["resetPassword"]["email"] = $email;
+            $_SESSION["resetPassword"]["toggle"] = true;
 
-            $msg = "Someone has requested a password reset for the account linked to this email\nIt was requested from " . $ip . ", however this may be inaccurate due to the person using a vpn.\nThe password reset code is : ";
+            $msg = "Someone has requested a password reset for the account linked to this email\nIt was requested from " . $ip . ", however this may be inaccurate due to the person using a vpn.\nThe password reset code is : " . $resetCode;
 
             $msg = wordwrap($msg,70);
 
             mail($email,"Event Organiser - Forgot Password",$msg);
+            header("Location: ./forgot_confirm.php");
         }
         else
         {
-
+            $_SESSION["error"]["resetIssue"] = "User Not Found";
+            header("Location: ./forgot_password.php");
         }
     }
+    else
+    {
+        $_SESSION["error"]["resetIssue"] = "Input is Blank";
+        header("Location: ./forgot_password.php");
+    }
+}
+else
+{
+    $_SESSION["error"]["resetIssue"] = "No Username / Email Entered";
+    header("Location: ./forgot_password.php");
 }
 ?>

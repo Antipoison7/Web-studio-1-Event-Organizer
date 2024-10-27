@@ -33,17 +33,17 @@
                 {
                     uploadFile();
                 }
-                // header("Location: ./index.php");
+                header("Location: ./index.php");
             }
             else
             {
                 $redirect = "./profileCustomise.php";
-                // header("Location: ./profileCustomise.php");
+                header("Location: ./profileCustomise.php");
             }
         }
         else
         {
-            // header("Location: ./index.php");
+            header("Location: ./index.php");
         }
 
 

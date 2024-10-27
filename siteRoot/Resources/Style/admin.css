@@ -1,0 +1,17 @@
+.admin h2
+{
+    font-size: 3em;
+}
+
+.admin li
+{
+    font-size: 2em;
+}
+
+.admin .back
+{
+    border: 2px solid black;
+    border-radius: 5px;
+    padding: 5px 10px;
+    text-decoration: none;
+}

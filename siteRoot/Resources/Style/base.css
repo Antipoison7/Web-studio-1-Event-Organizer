@@ -507,6 +507,7 @@ border-top: 5px solid black;
 #dropdown a
 {
     margin:0px;
+    text-decoration: none;
 }
 
 #dropdown div

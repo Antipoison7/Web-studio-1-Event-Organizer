@@ -24,6 +24,11 @@
     <link rel="stylesheet" href="./Resources/Style/commentsection.css">
     <link rel="icon" type="image/x-icon" href="./Resources/Images/Resources/favicon.png">
   </head>
+  <?php
+  echo "<script src=\"https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js\"></script>";
+
+  echo "<script src=\"https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js\"></script>";
+  ?>
   <body>
     
       <?php headerNoLogin("Discussion Board") ?>
@@ -37,7 +42,7 @@
                 <div class="col-md-6 col-md-offset-3 comments-section">
                         
                         <?php if (isset($user_id)): ?>
-                                <form class="clearfix" action="post_details.php" method="post" id="comment_form">
+                                <form class="clearfix" action="commentSection.php" method="post" id="comment_form">
                                         <textarea name="comment_text" id="comment_text" class="form-control" cols="30" rows="3"></textarea>
                                         <button class="btn btn-primary btn-sm pull-right" id="submit_comment">Submit comment</button>
                                 </form>
@@ -64,7 +69,7 @@
                                                 <a class="reply-btn" href="#" data-id="<?php echo $comment['id']; ?>">reply</a>
                                         </div>
                                         
-                                        <form action="post_details.php" class="reply_form clearfix" id="comment_reply_form_<?php echo $comment['id'] ?>" data-id="<?php echo $comment['id']; ?>">
+                                        <form action="commentSection.php" class="reply_form clearfix" id="comment_reply_form_<?php echo $comment['id'] ?>" data-id="<?php echo $comment['id']; ?>">
                                                 <textarea class="form-control" name="reply_text" id="reply_text" cols="30" rows="2"></textarea>
                                                 <button class="btn btn-primary btn-xs pull-right submit-reply">Submit reply</button>
                                         </form>
@@ -98,14 +103,12 @@
         </div>
 </div>
 
- <script src=\"https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js\"></script>
-
-  <script src=\"https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js\"></script>
+ 
 
 
 
 
-<script>
+<script type="text/javascript">
   $(document).ready(function(){
         // When user clicks on submit comment to add comment under post
         $(document).on('click', '#submit_comment', function(e) {
@@ -166,7 +169,7 @@
                         });
                 });
         });
-});
+   });
 </script>
 
     </div>

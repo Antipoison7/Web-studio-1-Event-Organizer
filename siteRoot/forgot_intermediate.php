@@ -77,6 +77,16 @@ function getEmail($username)
     }
 }
 
+function getUserIP() {
+    if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
+        return $_SERVER['HTTP_CLIENT_IP'];
+    } elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+        return $_SERVER['HTTP_X_FORWARDED_FOR'];
+    } else {
+        return $_SERVER['REMOTE_ADDR'];
+    }
+}
+
 $email = "";
 
 if(isset($_POST["emailUser"]))
@@ -104,6 +114,14 @@ if(isset($_POST["emailUser"]))
             {
                 $email = $_POST["emailUser"];
             }
+
+            $ip = getUserIP();
+
+            $msg = "Someone has requested a password reset for the account linked to this email\nIt was requested from " . $ip . ", however this may be inaccurate due to the person using a vpn.\nThe password reset code is : ";
+
+            $msg = wordwrap($msg,70);
+
+            mail($email,"Event Organiser - Forgot Password",$msg);
         }
         else
         {

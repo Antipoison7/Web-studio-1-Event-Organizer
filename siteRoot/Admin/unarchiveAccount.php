@@ -23,13 +23,12 @@
     <link rel="icon" type="image/x-icon" href="../Resources/Images/Resources/favicon.png">
   </head>
   <body>
-    <?php headerNoLogin("Moderator Portal - Archive Account"); 
+    <?php headerNoLogin("Moderator Portal - Unarchive Account"); 
      if($isAdmin == true){?>
         <div class="admin">
             <h2><a class="back" href="../adminControls.php">Back</a></h2>
 
-            <form action="./archiveAccountIntermediate.php">
-            </form>
+            <form action="./">
         </div>
     <?php
      }

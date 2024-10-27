@@ -1,5 +1,5 @@
 <?php
-session_start(); // Ensure session is started before accessing it
+session_start(); // Ensure the session is started before accessing it
 header('Content-Type: application/json');
 
 include_once('./Resources/Helper/commentfunctions.php');
@@ -8,47 +8,42 @@ include_once('./Resources/Helper/headers.php');
 
 $response = [];
 
-// Handling a new comment
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['comment_text']) && isset($_POST['comment_posted'])) {
-    $comment_text = sanitizeInput($_POST['comment_text']);
-    $user_id = $_SESSION['loginDetails']['user_id'] ?? null;
+// Handle new comment submission
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    if (isset($_POST['comment_text']) && isset($_POST['comment_posted'])) {
+        $comment_text = sanitizeInput($_POST['comment_text']);
+        $user_id = $_SESSION['loginDetails']['user_id'] ?? null;
 
-    if ($user_id && !empty($comment_text)) {
-        $comment_id = addComment($user_id, $comment_text); // Function to add comment
-        $comment_html = generateCommentHtml($comment_id); // Function to generate HTML for the new comment
+        if ($user_id && !empty($comment_text)) {
+            $comment_id = addComment($user_id, $comment_text); // Function to add comment
+            $comment_html = generateCommentHtml($comment_id); // Function to generate HTML for the new comment
+            
+            $response = [
+                "comment" => $comment_html,
+                "comments_count" => getCommentsCount() // Get updated comment count
+            ];
+        } else {
+            $response = ["error" => "Invalid comment or user"];
+        }
+    } elseif (isset($_POST['reply_text']) && isset($_POST['reply_posted']) && isset($_POST['comment_id'])) {
+        $reply_text = sanitizeInput($_POST['reply_text']);
+        $comment_id = intval($_POST['comment_id']);
+        $user_id = $_SESSION['loginDetails']['user_id'] ?? null;
 
-        $response = [
-            "comment" => $comment_html,
-            "comments_count" => getCommentsCount()
-        ];
+        if ($user_id && !empty($reply_text) && $comment_id) {
+            $reply_id = addReply($user_id, $comment_id, $reply_text); // Function to add reply
+            $reply_html = generateReplyHtml($reply_id); // Function to generate HTML for the new reply
+
+            $response = ["reply" => $reply_html];
+        } else {
+            $response = ["error" => "Invalid reply or user"];
+        }
     } else {
-        $response = ["error" => "Invalid comment or user"];
+        $response = ["error" => "Invalid request"];
     }
-    echo json_encode($response);
+    echo json_encode($response); // Send JSON response
     exit;
 }
-
-// Handling a new reply
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['reply_text']) && isset($_POST['reply_posted']) && isset($_POST['comment_id'])) {
-    $reply_text = sanitizeInput($_POST['reply_text']);
-    $comment_id = intval($_POST['comment_id']);
-    $user_id = $_SESSION['loginDetails']['user_id'] ?? null;
-
-    if ($user_id && !empty($reply_text) && $comment_id) {
-        $reply_id = addReply($user_id, $comment_id, $reply_text); // Function to add reply
-        $reply_html = generateReplyHtml($reply_id); // Function to generate HTML for the new reply
-
-        echo json_encode(["reply" => $reply_html]);
-        exit;
-    } else {
-        echo json_encode(["error" => "Invalid reply or user"]);
-        exit;
-    }
-}
-
-// Default error response for invalid requests
-echo json_encode(["error" => "Invalid request"]);
-exit; // Ensure no further processing happens after this point
 ?>
 
 <!DOCTYPE html>
@@ -61,7 +56,6 @@ exit; // Ensure no further processing happens after this point
     <link rel="stylesheet" href="./Resources/Style/commentsection.css">
     <link rel="icon" type="image/x-icon" href="./Resources/Images/Resources/favicon.png">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
     <?php headerNoLogin("Discussion Board"); ?>
@@ -128,87 +122,33 @@ exit; // Ensure no further processing happens after this point
     </div>
 
     <script type="text/javascript">
+    $(document).ready(function() {
+        $('#submit_comment').on('click', function(e) {
+            e.preventDefault(); // Prevent the default form submission
 
-                $.ajax({
-                type: "POST",
-                url: "commentfunctions.php", // Change to your PHP file
-                data: { comment_text: "Your comment here", comment_posted: true },
+            const commentText = $('#comment_text').val(); // Get the comment text
+
+            $.ajax({
+                url: 'commentfunctions.php', // The URL of your PHP file
+                type: 'POST',
+                dataType: 'json', // Specify that you're expecting a JSON response
+                data: {
+                    comment_text: commentText,
+                    comment_posted: true // Additional data can be sent as needed
+                },
                 success: function(response) {
-                        // Handle the response here
+                    if (response.error) {
+                        alert(response.error); // Handle any error messages
+                    } else {
+                        // Append the new comment to the comments section
+                        $('#comments-wrapper').prepend(response.comment);
+                        $('#comments_count').text(response.comments_count);
+                        $('#comment_text').val(''); // Clear the input field
+                    }
                 },
                 error: function(xhr, status, error) {
-                        console.log("Error: " + error);
-                }
-                });
-
-
-
-    $(document).ready(function() {
-        // Submitting a comment
-        $(document).on('click', '#submit_comment', function(e) {
-            e.preventDefault();
-            var comment_text = $('#comment_text').val();
-            var url = $('#comment_form').attr('action');
-
-            if (comment_text === "") return;
-
-            $.ajax({
-                url: url,
-                type: "POST",
-                data: {
-                    comment_text: comment_text,
-                    comment_posted: 1
-                },
-                success: function(data) {
-                    console.log("Server response:", data);
-
-                    if (data.error) {
-                        alert(data.error);
-                    } else {
-                        $('#comments-wrapper').prepend(data.comment);
-                        $('#comments_count').text(data.comments_count);
-                        $('#comment_text').val('');
-                    }
-                },
-                error: function() {
-                    alert("An error occurred during the request.");
-                }
-            });
-        });
-
-        // Submitting a reply
-        $(document).on('click', '.reply-btn', function(e) {
-            e.preventDefault();
-            var comment_id = $(this).data('id');
-            $(this).parent().siblings('form#comment_reply_form_' + comment_id).toggle(500);
-        });
-
-        $(document).on('click', '.submit-reply', function(e) {
-            e.preventDefault();
-            var comment_id = $(this).closest('form').data('id');
-            var reply_text = $(this).siblings('textarea').val();
-            var url = $(this).closest('form').attr('action');
-
-            if (reply_text === "") return;
-
-            $.ajax({
-                url: url,
-                type: "POST",
-                data: {
-                    comment_id: comment_id,
-                    reply_text: reply_text,
-                    reply_posted: 1
-                },
-                success: function(data) {
-                    if (data.error) {
-                        alert(data.error);
-                    } else {
-                        $('.replies_wrapper_' + comment_id).append(data.reply);
-                        $(this).siblings('textarea').val('');
-                    }
-                },
-                error: function() {
-                    alert("An error occurred during the request.");
+                    console.error("AJAX Error: " + error); // Log any AJAX errors
+                    alert("An error occurred while processing your request.");
                 }
             });
         });

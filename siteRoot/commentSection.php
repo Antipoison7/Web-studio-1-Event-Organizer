@@ -1,16 +1,51 @@
 <?php
-  session_start();
-  include_once('./Resources/Helper/headers.php');
-  include_once('./Resources/Helper/sanitization.php');
-  include_once('./Resources/Helper/loginHelper.php');
-  include_once('./Resources/Helper/commentfunctions.php');
-  
-  $isAdmin = false;
+// Start by setting Content-Type for JSON response
+header('Content-Type: application/json');
 
-  if(isset($_SESSION["loginDetails"]["username"])&&isset($_SESSION["loginDetails"]["password"]))
-  {
-      $isAdmin = isValidAdminLogin($_SESSION["loginDetails"]["username"], $_SESSION["loginDetails"]["password"]);
-  }
+include_once('./Resources/Helper/commentfunctions.php');
+include_once('./Resources/Helper/sanitization.php');
+
+$response = [];
+
+// Handling a new comment
+if (isset($_POST['comment_text']) && isset($_POST['comment_posted'])) {
+    $comment_text = sanitizeInput($_POST['comment_text']);
+    $user_id = $_SESSION['loginDetails']['user_id'] ?? null;
+
+    if ($user_id && !empty($comment_text)) {
+        $comment_id = addComment($user_id, $comment_text); // Function to add comment
+        $comment_html = generateCommentHtml($comment_id); // Function to generate HTML for the new comment
+
+        $response = [
+            "comment" => $comment_html,
+            "comments_count" => getCommentsCount()
+        ];
+    } else {
+        $response = ["error" => "Invalid comment or user"];
+    }
+    echo json_encode($response);
+    exit;
+}
+
+// Handling a new reply
+if (isset($_POST['reply_text']) && isset($_POST['reply_posted']) && isset($_POST['comment_id'])) {
+    $reply_text = sanitizeInput($_POST['reply_text']);
+    $comment_id = intval($_POST['comment_id']);
+    $user_id = $_SESSION['loginDetails']['user_id'] ?? null;
+
+    if ($user_id && !empty($reply_text) && $comment_id) {
+        $reply_id = addReply($user_id, $comment_id, $reply_text); // Function to add reply
+        $reply_html = generateReplyHtml($reply_id); // Function to generate HTML for the new reply
+
+        echo json_encode(["reply" => $reply_html]);
+    } else {
+        echo json_encode(["error" => "Invalid reply or user"]);
+    }
+    exit;
+}
+
+// Default error response
+echo json_encode(["error" => "Invalid request"]);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -23,12 +58,17 @@
     <link rel="stylesheet" href="./Resources/Style/forum.css">
     <link rel="stylesheet" href="./Resources/Style/commentsection.css">
     <link rel="icon" type="image/x-icon" href="./Resources/Images/Resources/favicon.png">
-  </head>
-  <?php
-  echo "<script src=\"https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js\"></script>";
 
-  echo "<script src=\"https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js\"></script>";
-  ?>
+    
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+        
+  
+  </head>
+  
+  
   <body>
     
       <?php headerNoLogin("Discussion Board") ?>
@@ -79,7 +119,6 @@
                                         <div class="replies_wrapper_<?php echo $comment['id']; ?>">
                                                 <?php if (isset($replies)): ?>
                                                         <?php foreach ($replies as $reply): ?>
-                                                                
                                                                 <div class="comment reply clearfix">
                                                                         <img src="profile.png" alt="" class="profile_pic">
                                                                         <div class="comment-details">
@@ -110,66 +149,76 @@
 
 <script type="text/javascript">
   $(document).ready(function(){
-        // When user clicks on submit comment to add comment under post
-        $(document).on('click', '#submit_comment', function(e) {
-                e.preventDefault();
-                var comment_text = $('#comment_text').val();
-                var url = $('#comment_form').attr('action');
-                // Stop executing if not value is entered
-                if (comment_text === "" ) return;
-                $.ajax({
-                        url: url,
-                        type: "POST",
-                        data: {
-                                comment_text: comment_text,
-                                comment_posted: 1
-                        },
-                        success: function(data){
-                                var response = JSON.parse(data);
-                                if (data === "error") {
-                                        alert('There was an error adding comment. Please try again');
-                                } else {
-                                        $('#comments-wrapper').prepend(response.comment)
-                                        $('#comments_count').text(response.comments_count); 
-                                        $('#comment_text').val('');
-                                }
-                        }
-                });
+    // Submitting a comment
+    $(document).on('click', '#submit_comment', function(e) {
+        e.preventDefault();
+        var comment_text = $('#comment_text').val();
+        var url = $('#comment_form').attr('action');
+
+        if (comment_text === "") return;
+
+        $.ajax({
+            url: url,
+            type: "POST",
+            data: {
+                comment_text: comment_text,
+                comment_posted: 1
+            },
+            success: function(data) {
+                console.log("Server response:", data);
+
+                if (data.error) {
+                    alert(data.error);
+                } else {
+                    $('#comments-wrapper').prepend(data.comment);
+                    $('#comments_count').text(data.comments_count);
+                    $('#comment_text').val('');
+                }
+            },
+            error: function() {
+                alert("An error occurred during the request.");
+            }
         });
-        // When user clicks on submit reply to add reply under comment
-        $(document).on('click', '.reply-btn', function(e){
-                e.preventDefault();
-                // Get the comment id from the reply button's data-id attribute
-                var comment_id = $(this).data('id');
-                // show/hide the appropriate reply form (from the reply-btn (this), go to the parent element (comment-details)
-                // and then its siblings which is a form element with id comment_reply_form_ + comment_id)
-                $(this).parent().siblings('form#comment_reply_form_' + comment_id).toggle(500);
-                $(document).on('click', '.submit-reply', function(e){
-                        e.preventDefault();
-                        // elements
-                        var reply_textarea = $(this).siblings('textarea'); // reply textarea element
-                        var reply_text = $(this).siblings('textarea').val();
-                        var url = $(this).parent().attr('action');
-                        $.ajax({
-                                url: url,
-                                type: "POST",
-                                data: {
-                                        comment_id: comment_id,
-                                        reply_text: reply_text,
-                                        reply_posted: 1
-                                },
-                                success: function(data){
-                                        if (data === "error") {
-                                                alert('There was an error adding reply. Please try again');
-                                        } else {
-                                                $('.replies_wrapper_' + comment_id).append(data);
-                                                reply_textarea.val('');
-                                        }
-                                }
-                        });
-                });
+    });
+
+    // Submitting a reply
+    $(document).on('click', '.reply-btn', function(e){
+        e.preventDefault();
+        var comment_id = $(this).data('id');
+        $(this).parent().siblings('form#comment_reply_form_' + comment_id).toggle(500);
+    });
+
+    $(document).on('click', '.submit-reply', function(e) {
+        e.preventDefault();
+        var comment_id = $(this).closest('form').data('id');
+        var reply_text = $(this).siblings('textarea').val();
+        var url = $(this).closest('form').attr('action');
+
+        if (reply_text === "") return;
+
+        $.ajax({
+            url: url,
+            type: "POST",
+            data: {
+                comment_id: comment_id,
+                reply_text: reply_text,
+                reply_posted: 1
+            },
+            success: function(data) {
+                if (data.error) {
+                    alert(data.error);
+                } else {
+                    $('.replies_wrapper_' + comment_id).append(data.reply);
+                    $(this).siblings('textarea').val('');
+                }
+            },
+            error: function() {
+                alert("An error occurred during the request.");
+            }
         });
-   });
+    });
+});
+
 </script>
 
     </div>

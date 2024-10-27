@@ -1,3 +1,25 @@
+<?php
+                // Check if the request is an AJAX request
+                if (!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') {
+                // Set JSON content type for AJAX requests
+                header('Content-Type: application/json');
+
+                // Your response data
+                $response = [
+                        "comment" => "<HTML or text content of the comment>",
+                        "comments_count" => 5
+                ];
+
+                // Encode and send JSON response
+                echo json_encode($response);
+                exit;
+                }
+
+                // If not an AJAX request, proceed with normal HTML output
+        ?>
+
+
+
 <?php 
 
         $servername = "talsprddb02.int.its.rmit.edu.au:3306";

@@ -128,6 +128,21 @@ exit; // Ensure no further processing happens after this point
     </div>
 
     <script type="text/javascript">
+
+                $.ajax({
+                type: "POST",
+                url: "commentfunctions.php", // Change to your PHP file
+                data: { comment_text: "Your comment here", comment_posted: true },
+                success: function(response) {
+                        // Handle the response here
+                },
+                error: function(xhr, status, error) {
+                        console.log("Error: " + error);
+                }
+                });
+
+
+
     $(document).ready(function() {
         // Submitting a comment
         $(document).on('click', '#submit_comment', function(e) {

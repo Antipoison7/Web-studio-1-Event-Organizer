@@ -19,12 +19,13 @@
     
     <?php createMeta() ?>
     <link rel="stylesheet" href="./Resources/Style/base.css">
+    <link rel="stylesheet" href="./Resources/Style/admin.css">
     <link rel="icon" type="image/x-icon" href="./Resources/Images/Resources/favicon.png">
   </head>
   <body>
     <?php headerNoLogin("Moderator Portal"); 
      if($isAdmin == true){?>
-        <div>
+        <div class="admin">
             <h2>User management</h2>
             <ul>
                 <li><a href="./Admin/archiveAccount.php">Archive Accounts</a></li>

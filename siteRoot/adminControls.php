@@ -6,6 +6,10 @@
   {
       $isAdmin = isValidAdminLogin($_SESSION["loginDetails"]["username"], $_SESSION["loginDetails"]["password"]);
   }
+  else
+  {
+    $isAdmin = false;
+  }
 ?>
 <!DOCTYPE html>
 <html lang="en">

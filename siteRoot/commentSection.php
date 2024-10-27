@@ -123,36 +123,37 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     <script type="text/javascript">
     $(document).ready(function() {
-        $('#submit_comment').on('click', function(e) {
-            e.preventDefault(); // Prevent the default form submission
+    $('#submit_comment').on('click', function(e) {
+        e.preventDefault(); // Prevent the default form submission
 
-            const commentText = $('#comment_text').val(); // Get the comment text
+        const commentText = $('#comment_text').val(); // Get the comment text
 
-            $.ajax({
-                url: 'commentfunctions.php', // The URL of your PHP file
-                type: 'POST',
-                dataType: 'json', // Specify that you're expecting a JSON response
-                data: {
-                    comment_text: commentText,
-                    comment_posted: true // Additional data can be sent as needed
-                },
-                success: function(response) {
-                    if (response.error) {
-                        alert(response.error); // Handle any error messages
-                    } else {
-                        // Append the new comment to the comments section
-                        $('#comments-wrapper').prepend(response.comment);
-                        $('#comments_count').text(response.comments_count);
-                        $('#comment_text').val(''); // Clear the input field
-                    }
-                },
-                error: function(xhr, status, error) {
-                    console.error("AJAX Error: " + error); // Log any AJAX errors
-                    alert("An error occurred while processing your request.");
+        $.ajax({
+            url: 'commentfunctions.php', // The URL of your PHP file
+            type: 'POST',
+            dataType: 'json', // Specify that you're expecting a JSON response
+            data: {
+                comment_text: commentText,
+                comment_posted: true // Additional data can be sent as needed
+            },
+            success: function(response) {
+                if (response.error) {
+                    alert(response.error); // Handle any error messages
+                } else {
+                    // Append the new comment to the comments section
+                    $('#comments-wrapper').prepend(response.comment);
+                    $('#comments_count').text(response.comments_count);
+                    $('#comment_text').val(''); // Clear the input field
                 }
-            });
+            },
+            error: function(xhr, status, error) {
+                console.error("AJAX Error: " + error); // Log any AJAX errors
+                alert("An error occurred while processing your request.");
+            }
         });
     });
+});
+
     </script>
 
     <?php makeFooter(); ?>

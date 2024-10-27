@@ -18,6 +18,17 @@
                 // If not an AJAX request, proceed with normal HTML output
         ?>
 
+<?php
+header('Content-Type: application/json');
+
+// Only process the request if it’s a POST request via AJAX
+if ($_SERVER['REQUEST_METHOD'] !== 'POST' || empty($_SERVER['HTTP_X_REQUESTED_WITH']) || strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) !== 'xmlhttprequest') {
+    echo json_encode(["error" => "Invalid request"]);
+    exit;
+}
+?>
+
+
 
 
 <?php 

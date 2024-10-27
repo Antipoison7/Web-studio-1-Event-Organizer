@@ -14,9 +14,14 @@
     {
 
     $isValid = false;
+    $isAdmin = false;
 
     if(isset($_SESSION["loginDetails"]["username"])&&isset($_SESSION["loginDetails"]["password"])){if(isValidLogin($_SESSION["loginDetails"]["username"], $_SESSION["loginDetails"]["password"])){
         $isValid = true;
+    }}
+
+    if(isset($_SESSION["loginDetails"]["username"])&&isset($_SESSION["loginDetails"]["password"])){if(isValidAdminLogin($_SESSION["loginDetails"]["username"], $_SESSION["loginDetails"]["password"])){
+        $isAdmin = true;
     }}
 
     echo("
@@ -74,14 +79,17 @@
                         </div>");
                     }
 
-    echo("
-                    <div>
+                    if($isAdmin)
+                    {
+                        echo("<div>
                         <h1>Moderation</h1>
                         <a href=\"./adminControls.php\"><h2>Mod Portal</h2></a>
                         
                         <br>
-                    </div> 
-                    <div>
+                    </div>");
+                    }
+                    
+                    echo("<div>
                         <h1>Fancommunity</h1>
                         <a href=\"./fancommunity.php\"><h2>Social</h2></a>
                         

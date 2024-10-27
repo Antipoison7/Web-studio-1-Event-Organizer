@@ -214,6 +214,7 @@ include_once('./Resources/Helper/validation.php');
                     $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
                     $stmt = $db->prepare("SELECT email FROM accounts WHERE login_name = :name;");
+                    echo(var_dump($username));
 
                     if(containsAt($username))
                     {
@@ -226,6 +227,8 @@ include_once('./Resources/Helper/validation.php');
 
                     $stmt->bindParam(':name', $setName, PDO::PARAM_STR);
                     $stmt->execute();
+
+                    echo(var_dump($stmt));
 
                     $returnVal = $stmt->fetchColumn();
 

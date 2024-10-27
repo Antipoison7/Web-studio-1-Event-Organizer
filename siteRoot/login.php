@@ -35,7 +35,7 @@
         </label>
         <input type="text" id="username" name="username" autocomplete="username" <?php if(isset($_SESSION["loginDetails"]["username"])){echo("value = \"" . $_SESSION["loginDetails"]["username"] . "\"");}?>>
 
-        <label for="password">Password: <a href="./forgot">Forgot password</a></label>
+        <label for="password">Password: <a href="./forgot_password.php">Forgot password</a></label>
         <input type="password" id="password" name="password">
 
         <!-- Sets the value passed to the intermediate to Register -->

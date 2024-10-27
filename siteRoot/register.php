@@ -94,7 +94,7 @@ makeCaptcha();
         if (isset($_SESSION["registryDetails"]["username"])) 
         {
           echo ("value = \"" . $_SESSION["registryDetails"]["username"] . "\"");
-        } ?>>
+        } ?>autocomplete="off">
 
       <label for="realname">Real Name:
         <?php
@@ -146,7 +146,7 @@ makeCaptcha();
         if (isset($_SESSION["registryDetails"]["password"])) 
         {
           echo ("value = \"" . $_SESSION["registryDetails"]["password"] . "\"");
-        } ?>>
+        } ?> autocomplete="off">
 
       <!-- Sets the value passed to the intermediate to Register -->
       <input type="text" id="hiddenType" name="hiddenType" value="Register" hidden>

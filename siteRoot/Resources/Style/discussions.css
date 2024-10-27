@@ -1,6 +1,6 @@
 .discussions-container {
     max-width: 1000px;
-    margin: 140px;
+    margin: 140px auto;
     padding: 80px;
     border: 5px solid #ddd;
     border-radius: 8px;
@@ -27,6 +27,7 @@
     margin-right: 15px;
     text-decoration: none;
     color: #007bff; /* Link color */
+    display: block;
 }
 
 .add-discussion {
@@ -86,4 +87,11 @@
     display: flex; /* Use flexbox for rows */
     justify-content: space-between; /* Space between items */
     margin-bottom: 20px; /* Space between rows */
+    width: 100;
+}
+
+.like-button{
+    display:flex;
+    flex-direction:row;
+    margin-top: 5px;
 }

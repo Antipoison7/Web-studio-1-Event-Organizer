@@ -210,7 +210,7 @@
         }
     }
 
-    function updateUser($username, $pfp, $displayName, $realName, $description, $theme)
+    function updateUser($username, $displayName, $realName, $description, $theme)
     {
         try
         {

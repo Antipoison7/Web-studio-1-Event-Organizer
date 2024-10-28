@@ -28,7 +28,7 @@
         <div class="admin">
             <h2>User management</h2>
             <ul>
-                <li><a href="./Admin/archiveAccount.php">Archive Accounts</a></li>
+                <li><a href="./Admin/archiveAccount.php">Archive / Unarchive Accounts</a></li>
                 <li><a href="./Admin/unarchiveAccount.php">Unarchive Accounts</a></li>
                 <li><a href="./Admin/resetCooldown.php">Reset Cooldowns</a></li>
                 <li><a href="./Admin/setCooldowns.php">Set Cooldowns</a></li>

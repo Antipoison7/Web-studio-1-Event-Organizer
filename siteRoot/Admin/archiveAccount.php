@@ -27,8 +27,17 @@
      if($isAdmin == true){?>
         <div class="admin">
             <h2><a class="back" href="../adminControls.php">Back</a></h2>
-
             <form action="./archiveAccountIntermediate.php">
+              <div class="userDetails">
+                <div class="userBox">
+                  <img src="../Resources/Images/userPfp/Antipoison_7_1.jpg">
+                  <h3>Antipoison</h3>
+                  <h4>Antipoison</h4>
+                  <h4>Connor Orders</h4>
+                  <p>Why is the cat looking at me like that?</p>
+                  <p>Archived: false</p>
+                </div>
+              </div>
             </form>
         </div>
     <?php

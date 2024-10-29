@@ -266,5 +266,26 @@
         $_SESSION["captcha"] = substr(uniqid(bin2hex(random_bytes(10/2)), true),0,6);
     }
 
+    function checkCaptcha($input)
+    {
+        if(isset($_SESSION["captcha"]))
+        {
+            if($input === $_SESSION["captcha"])
+            {
+                return true;
+            }
+            else
+            {
+                $_SESSION["issues"]["captcha"] = "failed";
+                return false;
+            }
+        }
+        else
+        {
+            $_SESSION["issues"]["captcha"] = "failed";
+            return false;
+        }
+    }
+
     
 ?>

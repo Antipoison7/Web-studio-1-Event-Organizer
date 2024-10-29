@@ -66,6 +66,7 @@
         $password = $_POST["password"];
         $email = $_POST["email"];
         $realname = $_POST["realname"];
+        $captchaAnswer = $_POST["captchaText"];
 
         $_SESSION["registryDetails"]["username"] = $username;
         $_SESSION["registryDetails"]["password"] = $password;
@@ -80,11 +81,7 @@
                 unset($_SESSION["issues"]); // If issues have not been cleared in register, clear them
             }
 
-            if(validateRegister(["username"=>$username,"password"=>$password,"email"=>$email,"realName"=>$realname]) == false)
-            {
-                $redirect = "./register.php";
-            }
-            else
+            if((validateRegister(["username"=>$username,"password"=>$password,"email"=>$email,"realName"=>$realname]) == true) && (checkCaptcha($captchaAnswer)))
             {
                 registerUser($email, $username, $realname, $password);
                 unset($_SESSION["registryDetails"]);
@@ -92,6 +89,10 @@
                 $_SESSION["loginDetails"]["password"] = $password;
 
                 $redirect = "./HomePage.php";
+            }
+            else
+            {
+                $redirect = "./register.php";
             }
             // echo("register set");
         }

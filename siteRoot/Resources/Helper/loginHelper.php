@@ -297,4 +297,144 @@
             echo("oh great heavens: " . $e->getMessage());
         }
     }
+
+    function updateCooldown($username)
+    {
+        try
+        {
+            $db = createDB();
+
+            $type = "username";
+
+            if(strpos($username, '@') !== false)
+            {
+                $type = "email";
+            }
+
+            if($type == "username")
+            {
+                $stmt = $db->prepare("SELECT DISTINCT accounts.cooldown FROM accounts JOIN users ON accounts.login_name = users.username WHERE login_name = :name AND archived = 0;");
+            }
+            else if($type == "email")
+            {
+                $stmt = $db->prepare("SELECT DISTINCT accounts.cooldown FROM accounts JOIN users ON accounts.login_name = users.username WHERE email = :name AND archived = 0;");
+            }
+
+            $stmt->bindParam(':name', $username, PDO::PARAM_STR);
+
+            $stmt->execute();
+
+            // echo(var_dump($stmt->fetchColumn()));
+
+            $passVal = $stmt->fetchColumn();
+
+            if($passVal != false)
+            {
+                $arrayOne = json_decode($passVal);
+
+                $tempArray = json_encode([time(), $arrayOne[0], $arrayOne[1]]);
+
+                if($type == "username")
+                {
+                    $stmt = $db->prepare("UPDATE accounts SET cooldown = :cooldownJson WHERE login_name = :name;");
+                }
+                else if($type == "email")
+                {
+                    $stmt = $db->prepare("UPDATE accounts SET cooldown = :cooldownJson WHERE email = :name;");
+                }
+
+                $stmt->bindParam(':name', $username, PDO::PARAM_STR);
+                $stmt->bindParam(':cooldownJson', $tempArray, PDO::PARAM_STR);
+
+                $stmt->execute();
+            }
+
+
+
+            $db = null;
+            $stmt = null;
+
+            
+        }
+        catch (PDOException $e)
+        {
+            echo("oh great heavens: " . $e->getMessage());
+        }
+    }
+
+    function cooldownApplied($username)
+    {
+        try
+        {
+            $success = false;
+
+            $db = createDB();
+
+            $type = "username";
+
+            if(strpos($username, '@') !== false)
+            {
+                $type = "email";
+            }
+
+            if($type == "username")
+            {
+                $stmt = $db->prepare("SELECT DISTINCT accounts.cooldown FROM accounts JOIN users ON accounts.login_name = users.username WHERE login_name = :name AND archived = 0;");
+            }
+            else if($type == "email")
+            {
+                $stmt = $db->prepare("SELECT DISTINCT accounts.cooldown FROM accounts JOIN users ON accounts.login_name = users.username WHERE email = :name AND archived = 0;");
+            }
+
+            $stmt->bindParam(':name', $username, PDO::PARAM_STR);
+
+            $stmt->execute();
+
+            
+            $passVal = $stmt->fetchColumn();
+            // echo(var_dump($stmt->fetchColumn()));
+
+            if($passVal != false)
+            {
+                $cooldowns = json_decode($passVal);
+
+                $checkerTable = [false, false, false];
+
+                $i = 0;
+                foreach($cooldowns as $x)
+                {
+                    if(($x + 3600) > time())
+                    {
+                        $checkerTable[$i] = false;
+                    }
+                    else if(($x + 3600) < time())
+                    {
+                        $checkerTable[$i] = true;
+                    }
+
+                    $i = $i + 1;
+                }
+
+                if(($checkerTable[0] == false)&&($checkerTable[1] == false)&&($checkerTable[2] == false))
+                {
+                    $success = false;
+                }
+                else
+                {
+                    $success = true;
+                }
+            }
+
+
+
+            $db = null;
+            $stmt = null;
+
+            return $success;
+        }
+        catch (PDOException $e)
+        {
+            echo("oh great heavens: " . $e->getMessage());
+        }
+    }
 ?>

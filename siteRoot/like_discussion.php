@@ -25,11 +25,27 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("i", $id);
     if ($stmt->execute()) {
-        echo 'success';
+        // After updating, fetch the new like or dislike count
+        $countSql = "SELECT likes, dislikes FROM discussions WHERE id = ?";
+        $countStmt = $conn->prepare($countSql);
+        $countStmt->bind_param("i", $id);
+        $countStmt->execute();
+        $result = $countStmt->get_result();
+        
+        if ($row = $result->fetch_assoc()) {
+            // Return the new counts as JSON
+            echo json_encode(['likes' => $row['likes'], 'dislikes' => $row['dislikes']]);
+        } else {
+            echo json_encode(['error' => 'Discussion not found.']);
+        }
+
+        $countStmt->close();
     } else {
-        echo 'error';
+        echo json_encode(['error' => 'Failed to update count.']);
     }
+
     $stmt->close();
 }
+
 $conn->close();
 ?>

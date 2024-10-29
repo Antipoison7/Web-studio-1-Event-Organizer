@@ -87,7 +87,7 @@
     display: flex; /* Use flexbox for rows */
     justify-content: space-between; /* Space between items */
     margin-bottom: 20px; /* Space between rows */
-    width: 100;
+    width: 100%;
 }
 
 .like-button{

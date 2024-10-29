@@ -31,51 +31,45 @@ if ($conn->connect_error) {
         <!-- Payment Form Section -->
         <div class="payment-section">
             <h2>Payment</h2>
-
             <!-- Credit/Debit Card Section -->
-<div class="payment-method">
-    <h3>Credit / Debit Card</h3>
-
-    <div class="card-info-container">
-        <div class="card-info">
-            <label for="card-number">Card Number *</label>
-            <input type="text" id="card-number" placeholder="Enter Card Number" required>
-        </div>
-
-        <div class="card-info">
-            <label for="card-type">Card Type *</label>
-            <select id="card-type" required>
-                <option value="">Select Card Type</option>
-                <option value="MasterCard">MasterCard</option>
-                <option value="Visa">Visa</option>
-                <option value="Amex">American Express</option>
-            </select>
-        </div>
-    </div>
-
-    <div class="expiry-container">
-        <div class="expiry">
-            <label for="exp-month">Exp Month *</label>
-            <select id="exp-month" required>
-                <?php for ($i = 1; $i <= 12; $i++) {
-                    printf('<option value="%02d">%02d</option>', $i, $i);
-                } ?>
-            </select>
-        </div>
-        <div class="expiry">
-            <label for="exp-year">Exp Year *</label>
-            <select id="exp-year" required>
-                <?php for ($year = date('Y'); $year <= date('Y') + 11; $year++) {
-                    echo "<option value='$year'>$year</option>";
-                } ?>
-            </select>
-        </div>
-    </div>
-
-    <label for="security-code">Security Code *</label>
-    <input type="password" id="security-code" placeholder="Enter Security Code" required>
-</div>
-
+            <div class="payment-method">
+                <h3>Credit / Debit Card</h3>
+                <div class="card-info-container">
+                    <div class="card-info">
+                        <label for="card-number">Card Number *</label>
+                        <input type="text" id="card-number" placeholder="Enter Card Number" required>
+                    </div>
+                    <div class="card-info">
+                        <label for="card-type">Card Type *</label>
+                        <select id="card-type" required>
+                            <option value="">Select Card Type</option>
+                            <option value="MasterCard">MasterCard</option>
+                            <option value="Visa">Visa</option>
+                            <option value="Amex">American Express</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="expiry-container">
+                    <div class="expiry">
+                        <label for="exp-month">Exp Month *</label>
+                        <select id="exp-month" required>
+                            <?php for ($i = 1; $i <= 12; $i++) {
+                                printf('<option value="%02d">%02d</option>', $i, $i);
+                            } ?>
+                        </select>
+                    </div>
+                    <div class="expiry">
+                        <label for="exp-year">Exp Year *</label>
+                        <select id="exp-year" required>
+                            <?php for ($year = date('Y'); $year <= date('Y') + 11; $year++) {
+                                echo "<option value='$year'>$year</option>";
+                            } ?>
+                        </select>
+                    </div>
+                </div>
+                <label for="security-code">Security Code *</label>
+                <input type="password" id="security-code" placeholder="Enter Security Code" required>
+            </div>
 
             <!-- Billing Address Section -->
             <div class="billing-address">
@@ -111,7 +105,6 @@ if ($conn->connect_error) {
                 <input type="text" id="phone" placeholder="Enter Mobile Phone" required>
             </div>
             
-
             <!-- Checkout Button -->
             <form action="order_confirmation.php" method="POST" id="checkout-form">
                 <input type="hidden" name="items" value='<?php echo json_encode($items); ?>'>
@@ -140,7 +133,7 @@ if ($conn->connect_error) {
                 
                 // Check if the discount was applied
                 if (isset($_POST['discountedTotal'])) {
-                $totalAmount = $_POST['discountedTotal'];
+                    $totalAmount = $_POST['discountedTotal'];
                 }
                 
                 echo "<ul>";
@@ -159,7 +152,7 @@ if ($conn->connect_error) {
             <a href="#" class="cancel-order">Cancel Order</a>
         
             <!-- Coupon Code Section -->
-        <div class="coupon-section">
+            <div class="coupon-section">
                 <h3>Coupon Code</h3>
                 <label for="coupon-code">Enter Coupon Code</label>
                 <input type="text" id="coupon-code" placeholder="Enter Coupon Code">
@@ -171,44 +164,45 @@ if ($conn->connect_error) {
     <script>
     document.querySelector('.apply-coupon-btn').addEventListener('click', function() {
         const couponCode = document.getElementById('coupon-code').value;
-        const totalElement = document.querySelector('.order-summary-section p strong');
-        let totalAmount = parseFloat(totalElement.textContent.replace('$', ''));
 
-        if (couponCode === 'TEST10') {
-            const discount = totalAmount * 0.10;
-            const discountedTotal = (totalAmount - discount).toFixed(2);
+        fetch('apply_coupon.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ couponCode })
+        })
+        .then(response => response.json())
+        .then(data => {
+            const totalElement = document.querySelector('.order-summary-section p strong');
+            let totalAmount = parseFloat(totalElement.textContent.replace('$', ''));
 
-            totalElement.textContent = `$${discountedTotal}`;
+            if (data.success) {
+                const discount = totalAmount * (data.discount / 100);
+                const discountedTotal = (totalAmount - discount).toFixed(2);
 
-            let discountInput = document.querySelector('input[name="discountedTotal"]');
-            if (!discountInput) {
-                discountInput = document.createElement('input');
-                discountInput.type = 'hidden';
-                discountInput.name = 'discountedTotal';
-                document.querySelector('#checkout-form').appendChild(discountInput);
+                totalElement.textContent = `$${discountedTotal}`;
+                document.querySelector('input[name="discountedTotal"]').value = discountedTotal;
+                
+                alert(`Coupon applied! ${data.discount}% discount has been applied.`);
+            } else {
+                alert('Invalid or expired coupon code.');
             }
-            discountInput.value = discountedTotal;
+        })
+        .catch(error => console.error('Error:', error));
+    });
 
-            alert('Coupon applied! 10% discount has been applied.');
-        } else {
-            alert('Invalid coupon code.');
-        }
+    // Fill in form data on checkout click
+    document.querySelector('.checkout-btn').addEventListener('click', function(e) {
+        document.getElementById('hidden-card-type').value = document.getElementById('card-type').value;
+        document.querySelector('input[name="address"]').value = document.getElementById('address').value;
+        document.querySelector('input[name="suburb"]').value = document.getElementById('suburb').value;
+        document.querySelector('input[name="state"]').value = document.getElementById('state').value;
+        document.querySelector('input[name="postcode"]').value = document.getElementById('postcode').value;
+        document.querySelector('input[name="fname"]').value = document.getElementById('card-holder-fname').value;
+        document.querySelector('input[name="lname"]').value = document.getElementById('card-holder-lname').value;
+        document.querySelector('input[name="phone"]').value = document.getElementById('phone').value;
     });
     </script>
-
-    <script>
-    // Fill in form data on checkout click
-        document.querySelector('.checkout-btn').addEventListener('click', function(e) {
-            document.getElementById('hidden-card-type').value = document.getElementById('card-type').value;
-            document.querySelector('input[name="address"]').value = document.getElementById('address').value;
-            document.querySelector('input[name="suburb"]').value = document.getElementById('suburb').value;
-            document.querySelector('input[name="state"]').value = document.getElementById('state').value;
-            document.querySelector('input[name="postcode"]').value = document.getElementById('postcode').value;
-            document.querySelector('input[name="fname"]').value = document.getElementById('card-holder-fname').value;
-            document.querySelector('input[name="lname"]').value = document.getElementById('card-holder-lname').value;
-            document.querySelector('input[name="phone"]').value = document.getElementById('phone').value;
-        });
-    </script>
-
 </body>
 </html>

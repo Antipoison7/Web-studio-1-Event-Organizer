@@ -124,5 +124,12 @@
       imageObj.style.filter = "brightness(100%)";
       imageOvl.hidden = true;
     }
+
+    pfp.onchange = evt => {
+    const [file] = pfp.files
+    if (file) {
+      profilePictureIcon.src = URL.createObjectURL(file)
+    }
+  }
   </script>
 </html>

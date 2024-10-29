@@ -29,7 +29,7 @@
           <?php
           if(isset($_SESSION["issues"]["accountValidation"]))
           {
-            echo("<span class=\"loginErrorSmall\">Invalid username/password</span>");
+            echo("<span class=\"loginErrorSmall\">" . $_SESSION["issues"]["accountValidation"] . "</span>");
           }
         ?>
         </label>

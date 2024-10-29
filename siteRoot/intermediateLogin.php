@@ -1,9 +1,7 @@
 <?php
     include_once('./Resources/Helper/validation.php');
     include_once('./Resources/Helper/loginHelper.php');
-?>
-<!DOCTYPE html>
-<?php
+
     session_start();
     $type = "fail";
     
@@ -26,7 +24,7 @@
             echo("username and password set");
             // echo(var_dump(isValidLogin($username, $password, "username")));
 
-            if(isValidLogin($username, $password))
+            if(isValidLogin($username, $password) && cooldownApplied($username))
             {
                 $_SESSION["loginDetails"]["username"] = $username;
                 $_SESSION["loginDetails"]["password"] = $password;
@@ -38,15 +36,27 @@
             {
                 echo("invalid login / password");
                 $_SESSION["loginDetails"]["username"] = $username;
-                $_SESSION["issues"]["accountValidation"] = false;
+                if(!cooldownApplied($username))
+                {
+                    $_SESSION["issues"]["accountValidation"] = "Login on cooldown, wait 1 hour or contact an admin";
+                }
+                else
+                {
+                    $_SESSION["issues"]["accountValidation"] = "Incorrect login / password";
+                }
                 $redirect = "./login.php";
+
+                if(isUserReal($username) != false)
+                {
+                    updateCooldown($username);
+                }
             }
         }
         else
         {
             echo("username and password not set");
             $_SESSION["loginDetails"]["username"] = $username;
-            $_SESSION["issues"]["accountValidation"] = false;
+            $_SESSION["issues"]["accountValidation"] = "Invalid login / password";
             $redirect = "./login.php";
         }
     }

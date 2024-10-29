@@ -130,10 +130,20 @@ function addToRecord($fileName, $count, $username)
                 $stmt->execute();
                 $stmt = null;
 
-                $stmt = $db->prepare("UPDATE users SET
-                                      profile_picture = :pathName,
-                                      profile_picture_count = :countName
-                                      WHERE username = :accName;");
+                if(strpos($username, '@') !== false)
+                {
+$stmt = $db->prepare("UPDATE users SET
+                      profile_picture = :pathName,
+                      profile_picture_count = :countName
+                      WHERE username = (SELECT login_name FROM accounts WHERE email = :accName);");
+                }
+                else
+                {
+$stmt = $db->prepare("UPDATE users SET
+                      profile_picture = :pathName,
+                      profile_picture_count = :countName
+                      WHERE username = :accName;");
+                }
 
                 $stmt->bindParam(':pathName', $fullName, PDO::PARAM_STR);
                 $stmt->bindParam(':countName', $count, PDO::PARAM_STR);

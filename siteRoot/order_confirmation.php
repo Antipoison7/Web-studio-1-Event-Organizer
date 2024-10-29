@@ -22,6 +22,7 @@ $phone = htmlspecialchars($_POST['phone']);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./Resources/Style/base.css">
     <link rel="stylesheet" href="./Resources/Style/order_confirmation.css">
+    <link rel="icon" type="image/x-icon" href="./Resources/Images/Resources/favicon.png">
     <title>Order Confirmation</title>
 </head>
 <body>

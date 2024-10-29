@@ -15,6 +15,7 @@ $cartItems = [
     <title>Shopping Cart</title>
     <link rel="stylesheet" href="./Resources/Style/shoppingcart.css">
     <link rel="stylesheet" href="./Resources/Style/base.css">
+    <link rel="icon" type="image/x-icon" href="./Resources/Images/Resources/favicon.png">
 </head>
 <body>
     

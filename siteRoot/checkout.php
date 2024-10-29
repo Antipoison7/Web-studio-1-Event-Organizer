@@ -22,6 +22,7 @@ if ($conn->connect_error) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./Resources/Style/checkoutpage.css">
     <link rel="stylesheet" href="./Resources/Style/base.css">
+    <link rel="icon" type="image/x-icon" href="./Resources/Images/Resources/favicon.png">
     <title>Checkout</title>
 </head>
 <body>

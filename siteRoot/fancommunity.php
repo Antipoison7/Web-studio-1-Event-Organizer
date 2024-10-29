@@ -23,6 +23,7 @@ $geolocationData = getUserGeolocation($ip); // Pass the IP address to fetch geol
     <!-- Linking CSS files -->
     <link rel="stylesheet" href="./Resources/Style/base.css"> <!-- Shared styles -->
     <link rel="stylesheet" href="./Resources/Style/fancommunity.css"> <!-- Fan community specific styles -->
+    <link rel="icon" type="image/x-icon" href="./Resources/Images/Resources/favicon.png">
     
     <title>Fan Community</title>
 </head>

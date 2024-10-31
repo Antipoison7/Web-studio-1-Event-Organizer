@@ -2,7 +2,7 @@
 header('Content-Type: application/json');
 
 // Include your geolocation function
-include 'fetchgeolocation.php'; // Include geolocation code
+include '../siteRoot/fetchgeolocation.php'; // Include geolocation code
 
 // Function to get the user's IP address
 function getUserIP() {

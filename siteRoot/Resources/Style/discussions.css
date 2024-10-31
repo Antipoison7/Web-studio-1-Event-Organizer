@@ -95,3 +95,12 @@
     flex-direction:row;
     margin-top: 5px;
 }
+.reply-form {
+    margin-top: 10px;
+}
+
+.replies {
+    margin-left: 20px;
+    font-size: 0.9em;
+    color: #555;
+}

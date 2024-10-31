@@ -12,6 +12,17 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
+function getReplies($discussionId) {
+    global $conn;
+    $stmt = $conn->prepare("SELECT reply_text, user_id FROM replies WHERE discussion_id = ? ORDER BY reply_date ASC");
+    $stmt->bind_param("i", $discussionId);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $replies = $result->fetch_all(MYSQLI_ASSOC);
+    $stmt->close();
+    return $replies;
+}
+
 // Function to fetch random discussions from the database
 function fetchRandomDiscussions() {
     global $conn;
@@ -82,7 +93,7 @@ function fetchRandomDiscussions() {
 
     <section class="discussions-container">
     <?php
-    // Fetch random discussions from your SQL database
+    // Fetch discussions from your SQL database
     $discussions = fetchRandomDiscussions();
     
     // Loop through discussions and display them in pairs
@@ -126,24 +137,13 @@ function fetchRandomDiscussions() {
     ?>
 </section>
 
+
 <script>
-
-function redirectScript()
-                {
-                    sleep(1000);
-                    window.location.replace("./discussions.php");
-                }
-                function sleep(ms) {
-                    return new Promise(resolve => setTimeout(resolve, ms));
-                }
-
-    // JavaScript for handling like and dislike actions with better error handling
     document.querySelectorAll('.like-btn').forEach(btn => {
         btn.addEventListener('click', function(event) {
             event.preventDefault();
             const discussionId = this.getAttribute('data-id');
             
-            // Perform AJAX request to like the discussion
             fetch('like_discussion.php', {
                 method: 'POST',
                 headers: {
@@ -151,18 +151,23 @@ function redirectScript()
                 },
                 body: `id=${discussionId}&action=like`
             })
-            .then(response => response.json()) // Expect a JSON response
+            .then(response => response.json())
             .then(data => {
-                console.log('Response from like_discussion.php:', data); // Debugging: output the server response
-            
+                console.log('Response from like_discussion.php:', data);
+
                 if (data.likes !== undefined && data.dislikes !== undefined) {
-                    // Update the like and dislike counts on the page
-                    document.querySelector(`#like-count-${discussionId}`).textContent = data.likes;
-                    document.querySelector(`#dislike-count-${discussionId}`).textContent = data.dislikes;
-                    alert('Liked successfully');
-                    redirectScript();
+                    const likeCountElement = document.querySelector(`#like-count-${discussionId}`);
+                    const dislikeCountElement = document.querySelector(`#dislike-count-${discussionId}`);
+
+                    if (likeCountElement && dislikeCountElement) {
+                        likeCountElement.textContent = data.likes;
+                        dislikeCountElement.textContent = data.dislikes;
+                        alert('Liked successfully');
+                    } else {
+                        console.error(`Like or dislike count element not found for discussion ID ${discussionId}`);
+                    }
                 } else {
-                    alert('Error: ' + (data.error || 'An unknown error occurred')); // Show the actual error
+                    alert('Error: ' + (data.error || 'An unknown error occurred'));
                 }
             })
             .catch(error => {
@@ -177,7 +182,6 @@ function redirectScript()
             event.preventDefault();
             const discussionId = this.getAttribute('data-id');
             
-            // Perform AJAX request to dislike the discussion
             fetch('like_discussion.php', {
                 method: 'POST',
                 headers: {
@@ -185,16 +189,23 @@ function redirectScript()
                 },
                 body: `id=${discussionId}&action=dislike`
             })
-            .then(response => response.json()) // Expect a JSON response
+            .then(response => response.json())
             .then(data => {
-                console.log('Response from like_discussion.php:', data); // Debugging: output the server response
+                console.log('Response from like_discussion.php:', data);
+
                 if (data.likes !== undefined && data.dislikes !== undefined) {
-                    // Update the like and dislike counts on the page
-                    document.querySelector(`#like-count-${discussionId}`).textContent = data.likes;
-                    document.querySelector(`#dislike-count-${discussionId}`).textContent = data.dislikes;
-                    alert('Disliked successfully');
+                    const likeCountElement = document.querySelector(`#like-count-${discussionId}`);
+                    const dislikeCountElement = document.querySelector(`#dislike-count-${discussionId}`);
+
+                    if (likeCountElement && dislikeCountElement) {
+                        likeCountElement.textContent = data.likes;
+                        dislikeCountElement.textContent = data.dislikes;
+                        alert('Disliked successfully');
+                    } else {
+                        console.error(`Like or dislike count element not found for discussion ID ${discussionId}`);
+                    }
                 } else {
-                    alert('Error: ' + (data.error || 'An unknown error occurred')); // Show the actual error
+                    alert('Error: ' + (data.error || 'An unknown error occurred'));
                 }
             })
             .catch(error => {
@@ -204,5 +215,6 @@ function redirectScript()
         });
     });
 </script>
+
 </body>
 </html>

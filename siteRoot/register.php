@@ -126,7 +126,9 @@ makeCaptcha();
           if (gettype($_SESSION["issues"]["password"]) == "string") {
             echo ("<span class=\"loginFontError\">Please enter a password</span>");
           } else {
+            if(count($_SESSION["issues"]["password"]) > 0){
             echo ("<span class=\"loginFontError\">Invalid Password</span>");
+            }
           }
         } ?></label>
       <input type="password" id="password" name="password"
@@ -139,7 +141,9 @@ makeCaptcha();
           } 
           else 
           {
+            if(count($_SESSION["issues"]["password"]) > 0){
             echo ("class = \"loginError\"");
+            }
           }
         }
 
@@ -173,6 +177,15 @@ makeCaptcha();
 
       <div class="captcha">
         <div>
+          <?php
+          if (isset($_SESSION["issues"]["captcha"])) 
+          {
+            if($_SESSION["issues"]["captcha"] == "failed")
+            {
+              echo("<span class=\"loginFontErrorColor\">Are you a robot? (Captcha Failed)</span>");
+            }
+          }
+          ?>
           <label for="captchaText"><h1>Captcha Code:&nbsp;</h1>
           <?php echo("<h2>" . $_SESSION["captcha"] . "</h2>"); ?></label>
           <input type="text" id="captchaText" name="captchaText">
@@ -184,10 +197,6 @@ makeCaptcha();
       </div>
     </div>
   </form>
-
-  <?php
-  // echo(var_dump($_SESSION["issues"]));
-  ?>
   <?php makeFooter();
   unset($_SESSION["issues"]);
   unset($_SESSION["registryDetails"]); ?>

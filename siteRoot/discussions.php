@@ -50,6 +50,7 @@ function fetchRandomDiscussions() {
     <title>Discussions</title>
     <link rel="stylesheet" href="./Resources/Style/base.css"> 
     <link rel="stylesheet" href="./Resources/Style/discussions.css"> <!-- CSS for discussions -->
+    <link rel="icon" type="image/x-icon" href="./Resources/Images/Resources/favicon.png">
     <style>
         /* Additional styles for two-column layout */
         .discussions-container {

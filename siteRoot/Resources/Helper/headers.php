@@ -143,7 +143,7 @@
             echo("
             <div class=\"mainHeader\">
                 <div id=\"logo\"><a href=\"./HomePage.php\">
-                    <img  src=\"./Resources/Images/Resources/WebsiteLogo.webp\" alt=\"WebsiteLogo\" width=\"100\" height=\"100\">
+                    <img  src=\"./Resources/Images/Resources/WebsiteLogo.webp\" alt=\"Home Link\" width=\"100\" height=\"100\">
                 </a></div>
 
                 <h1>$title</h1>
@@ -172,7 +172,7 @@
             echo("
             <div class=\"mainHeaderLogout\">
                 <div id=\"logo\"><a href=\"./HomePage.php\">
-                    <img  src=\"./Resources/Images/Resources/WebsiteLogo.webp\" alt=\"WebsiteLogo\" width=\"100\" height=\"100\">
+                    <img  src=\"./Resources/Images/Resources/WebsiteLogo.webp\" alt=\"Home Link\" width=\"100\" height=\"100\">
                 </a></div>
 
                 <h1>$title</h1>

@@ -37,6 +37,8 @@ try {
 
               //$conn->exec($sql);
               echo "New record created successfully";
+              echo "<br><a href=\"../../HomePage.php\">Back Home</a>";
+              echo "<br><a href=\"../../discussionForum.php\">View Events</a>";
             }
 
 

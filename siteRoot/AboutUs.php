@@ -26,7 +26,7 @@
         foreach($creatorArray as $x)
         {
           echo("<div class=\"creatorBox\">
-                <p>" . $x["name"] . "</p>
+                <h1>" . $x["name"] . "</h1>
                 <img src=\"./Resources/Images/userPfp/" . $x["pfp"] . "\" alt=\"" . $x["name"] . " Profile Picture\">
                 </div>");
         }

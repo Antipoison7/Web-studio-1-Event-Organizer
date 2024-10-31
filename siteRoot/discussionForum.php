@@ -59,7 +59,7 @@
                             <div id=\"popup-ticket\">Ticket added to Cart <a href=\"#\"> Close the Popup</a></div>";
                 if($isAdmin == true)
                 {
-                  echo("<img src=\"./Resources/Images/Resources/delete.png\" alt=\"Delete Post\" class=\"discussionDeleteImage\" onclick=\"toggleDeleteMenu(" . $row["EventID"] . ")\">
+                  echo("<img src=\"./Resources/Images/Resources/delete.png\" alt=\"Delete Post\" class=\"discussionDeleteImage\" onclick=\"toggleDeleteMenu(" . $row["EventID"] . ")\" tabindex=\"0\" role=\"button\">
                           </element>
 
                           <div class=\"discussionDeleteDiv hiddenClass\" id=\"deleteBox" . $row["EventID"] . "\">
@@ -67,7 +67,7 @@
                             <p>Copy this word to confirm: <span class=\"darkRedColor\">Delete</span></p>
                             <div class=\"flex\" style=\"align-items:center; gap: 5px;\">
                               <input type=\"text\" id=\"post" . $row["EventID"] . "\">
-                              <div class=\"smallButtonWarn\" onclick=\"tryArchivePost(" . $row["EventID"] . ")\">Archive</div>
+                              <div class=\"smallButtonWarn\" onclick=\"tryArchivePost(" . $row["EventID"] . ")\" tabindex=\"0\">Archive</div>
                             </div>
                           </div>");
                 }

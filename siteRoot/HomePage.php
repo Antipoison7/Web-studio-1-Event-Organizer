@@ -1,6 +1,8 @@
 <?php
   session_start();
   include_once('./Resources/Helper/headers.php');
+  include_once('./Resources/Helper/imageHelper.php');
+  updateCache();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -16,7 +18,7 @@
     <?php headerNoLogin("Home Page") ?>
     <div class="BannerFlex">
       <br>
-      <img id="WebsiteBanner" src="./Resources/Images/Resources/Website banner_Final.jpg" alt="WebsiteBanner" width="100%">
+      <img id="WebsiteBanner" src=".<?php echo getImg("site_resources","site_banner");?>" alt="WebsiteBanner" width="100%">
     </div>
     <div class="HomePageFlex">
       <a href="./register.php"><div class="smallButtonInv">Register</div></a>

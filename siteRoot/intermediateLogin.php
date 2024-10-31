@@ -1,8 +1,9 @@
 <?php
+    session_start();
+    
     include_once('./Resources/Helper/validation.php');
     include_once('./Resources/Helper/loginHelper.php');
 
-    session_start();
     $type = "fail";
     
     if(isset($_POST["hiddenType"]))

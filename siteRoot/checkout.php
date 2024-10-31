@@ -38,7 +38,7 @@ if ($conn->connect_error) {
                 <div class="card-info-container">
                     <div class="card-info">
                         <label for="card-number">Card Number *</label>
-                        <input type="text" id="card-number" placeholder="Enter Card Number" required>
+                        <input type="text" id="card-number" placeholder="Enter Card Number" maxlength="12" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 12)" required>
                     </div>
                     <div class="card-info">
                         <label for="card-type">Card Type *</label>
@@ -69,7 +69,7 @@ if ($conn->connect_error) {
                     </div>
                 </div>
                 <label for="security-code">Security Code *</label>
-                <input type="password" id="security-code" placeholder="Enter Security Code" required>
+                <input type="password" id="security-code" placeholder="Enter Security Code" maxlength="3" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 3)" required>
             </div>
 
             <!-- Billing Address Section -->
@@ -191,6 +191,25 @@ if ($conn->connect_error) {
             }
         })
         .catch(error => console.error('Error:', error));
+    });
+
+    document.querySelector('.checkout-btn').addEventListener('click', function(e) {
+    // Manually check all required fields
+    const requiredFields = [
+        'card-number', 'card-type', 'security-code', 'card-holder-fname',
+        'card-holder-lname', 'address', 'suburb', 'state', 'postcode', 'phone'
+    ];
+    
+    let allFieldsFilled = true;
+    requiredFields.forEach(id => {
+        const input = document.getElementById(id);
+        if (!input.value.trim()) {
+            allFieldsFilled = false;
+            input.focus();
+            alert(`Please fill in the ${input.previousElementSibling.textContent} field.`);
+            e.preventDefault();  // Prevent form submission
+            return;  // Exit loop if a field is empty
+        }
     });
 
     // Fill in form data on checkout click

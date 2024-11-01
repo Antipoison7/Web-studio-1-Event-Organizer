@@ -3,6 +3,8 @@
   include_once('./Resources/Helper/headers.php');
   include_once('./Resources/Helper/loginHelper.php');
   include_once('./Resources/Helper/userDetailsHelper.php');
+  include_once('./Resources/Helper/imageHelper.php');
+  updateCache();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -14,6 +16,13 @@
     <link rel="stylesheet" href="./Resources/Style/userProfile.css">
     <link rel="stylesheet" href="./Resources/Style/base.css">
     <link rel="icon" type="image/x-icon" href="./Resources/Images/Resources/favicon.png">
+    <style>
+      .profileHeader
+      {
+        background-image:linear-gradient(rgba(255, 255, 255, 0.558),rgba(255, 255, 255, 0.558)),
+        url(.<?php echo getImg("site_headers", "site_header_jog");?>);
+      }
+    </style>
   </head>
   <body class="crunch">
     <div class="profileHeader">

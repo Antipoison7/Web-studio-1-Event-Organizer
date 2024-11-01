@@ -193,25 +193,6 @@ if ($conn->connect_error) {
         .catch(error => console.error('Error:', error));
     });
 
-    document.querySelector('.checkout-btn').addEventListener('click', function(e) {
-    // Manually check all required fields
-    const requiredFields = [
-        'card-number', 'card-type', 'security-code', 'card-holder-fname',
-        'card-holder-lname', 'address', 'suburb', 'state', 'postcode', 'phone'
-    ];
-    
-    let allFieldsFilled = true;
-    requiredFields.forEach(id => {
-        const input = document.getElementById(id);
-        if (!input.value.trim()) {
-            allFieldsFilled = false;
-            input.focus();
-            alert(`Please fill in the ${input.previousElementSibling.textContent} field.`);
-            e.preventDefault();  // Prevent form submission
-            return;  // Exit loop if a field is empty
-        }
-    });
-
     // Fill in form data on checkout click
     document.querySelector('.checkout-btn').addEventListener('click', function(e) {
         document.getElementById('hidden-card-type').value = document.getElementById('card-type').value;

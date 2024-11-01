@@ -1,5 +1,7 @@
 <?php
     include_once('./Resources/Helper/loginHelper.php');
+    include_once('./Resources/Helper/imageHelper.php');
+    updateCache();
 
     function makeHeader($title)
     {
@@ -143,7 +145,7 @@
             echo("
             <div class=\"mainHeader\">
                 <div id=\"logo\"><a href=\"./HomePage.php\">
-                    <img  src=\"./Resources/Images/Resources/WebsiteLogo.webp\" alt=\"Home Link\" width=\"100\" height=\"100\">
+                    <img  src=\"." . getImg("site_resources", "site_logo") . "\" alt=\"Home Link\" width=\"100\" height=\"100\">
                 </a></div>
 
                 <h1>$title</h1>
@@ -151,7 +153,7 @@
                     <div class=\"dropdownContainer\">
                         <div>
                             <img src=\"." . $pfpVal . "\" alt=\"User Profile Picture\" class=\"headerPfp\" id=\"dropDownController\"></div>
-                        <a href=\"./shoppingcart.php\" class=\"cartIcon\"><img src=\"./Resources/Images/Resources/shoppingCart.svg\" alt=\"Your Cart\" style=\"height:3em\"></a></div>
+                        <a href=\"./shoppingcart.php\" class=\"cartIcon\"><img src=\"." . getImg("site_resources", "site_cart") . "\" alt=\"Your Cart\" style=\"height:3em\"></a></div>
                         <div id=\"dropdownTri\" class=\"hiddenClass\"></div>
                         <div id=\"dropdown\" class=\"hiddenClass\">
                                 <a href=\"./profileView.php?userLookup=" . $_SESSION["loginDetails"]["username"] . "\"><div>My Profile</div></a>

@@ -66,16 +66,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     <!-- Display selected discussion -->
     <?php if ($discussion): ?>
-        <h2><?php echo htmlspecialchars($discussion['title']); ?></h2>
-        <p><?php echo nl2br(htmlspecialchars($discussion['content'])); ?></p>
+        <h2><?php echo ($discussion['title']); ?></h2>
+        <p><?php echo ($discussion['content']); ?></p>
     <?php endif; ?>
 
     <!-- Display previous replies -->
     <h3>Replies</h3>
     <?php while ($reply = $replies->fetch_assoc()): ?>
         <div class="reply">
-            <p><?php echo nl2br(htmlspecialchars($reply['reply_text'])); ?></p>
-            <small><?php echo htmlspecialchars($reply['reply_date']); ?></small>
+            <p><?php echo ($reply['reply_text']); ?></p>
+            <small><?php echo ($reply['reply_date']); ?></small>
             <hr>
         </div>
     <?php endwhile; ?>

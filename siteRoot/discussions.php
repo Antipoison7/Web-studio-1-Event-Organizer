@@ -140,11 +140,13 @@ function fetchRandomDiscussions() {
 
 
 <script>
+    // JavaScript for handling like and dislike actions with error handling
     document.querySelectorAll('.like-btn').forEach(btn => {
         btn.addEventListener('click', function(event) {
             event.preventDefault();
             const discussionId = this.getAttribute('data-id');
             
+            // Perform AJAX request to like the discussion
             fetch('like_discussion.php', {
                 method: 'POST',
                 headers: {
@@ -157,9 +159,11 @@ function fetchRandomDiscussions() {
                 console.log('Response from like_discussion.php:', data);
 
                 if (data.likes !== undefined && data.dislikes !== undefined) {
+                    // Select elements for updating like and dislike counts
                     const likeCountElement = document.querySelector(`#like-count-${discussionId}`);
                     const dislikeCountElement = document.querySelector(`#dislike-count-${discussionId}`);
 
+                    // Check if elements exist, then update counts
                     if (likeCountElement && dislikeCountElement) {
                         likeCountElement.textContent = data.likes;
                         dislikeCountElement.textContent = data.dislikes;
@@ -173,7 +177,7 @@ function fetchRandomDiscussions() {
             })
             .catch(error => {
                 console.error('Error:', error);
-                alert('An error occurred: ' + error);
+                alert('An error occurred: ' + error.message);
             });
         });
     });
@@ -183,6 +187,7 @@ function fetchRandomDiscussions() {
             event.preventDefault();
             const discussionId = this.getAttribute('data-id');
             
+            // Perform AJAX request to dislike the discussion
             fetch('like_discussion.php', {
                 method: 'POST',
                 headers: {
@@ -195,9 +200,11 @@ function fetchRandomDiscussions() {
                 console.log('Response from like_discussion.php:', data);
 
                 if (data.likes !== undefined && data.dislikes !== undefined) {
+                    // Select elements for updating like and dislike counts
                     const likeCountElement = document.querySelector(`#like-count-${discussionId}`);
                     const dislikeCountElement = document.querySelector(`#dislike-count-${discussionId}`);
 
+                    // Check if elements exist, then update counts
                     if (likeCountElement && dislikeCountElement) {
                         likeCountElement.textContent = data.likes;
                         dislikeCountElement.textContent = data.dislikes;
@@ -211,7 +218,7 @@ function fetchRandomDiscussions() {
             })
             .catch(error => {
                 console.error('Error:', error);
-                alert('An error occurred: ' + error);
+                alert('An error occurred: ' + error.message);
             });
         });
     });

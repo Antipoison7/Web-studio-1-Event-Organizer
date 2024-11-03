@@ -375,6 +375,7 @@ a:hover
     font-size: small;
     justify-content: left;
     flex: 2 1 auto;
+    
 
 }
 
@@ -384,11 +385,13 @@ a:hover
     display: flex;
     flex-direction: column;
     width: fit-content;
+    
 }
 
 .footerItem a {
     margin-bottom: 15px;
     max-height: 35px;
+    
 }
 
 .cartIcon {
@@ -535,6 +538,7 @@ border-top: 5px solid black;
 }
 
 #logo {
+    
 
     margin: 0;
 }
@@ -542,4 +546,5 @@ border-top: 5px solid black;
 #logo a img
 {
     border-radius: 10px;
+    border: 5px solid lightgreen;
 }

@@ -99,6 +99,7 @@
 }
 
 .reply-btn {
+    display: flex;
     background-color: #007bff;
     color: white;
 }
@@ -121,10 +122,12 @@
 }
 
 .reply-form {
+    display: flex;
     margin-top: 10px;
 }
 
 .replies {
+    display: flex;
     margin-left: 20px;
     font-size: 0.9em;
     color: #555;

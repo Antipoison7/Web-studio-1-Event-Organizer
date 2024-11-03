@@ -114,7 +114,7 @@ $geolocationData = getUserGeolocation($ip); // Pass the IP address to fetch geol
                     <img src="./Resources/Images/fancommunity/Fangallery/E1P2.png" alt="Event 1 Image 2">
                     <img src="./Resources/Images/fancommunity/Fangallery/E1P3.png" alt="Event 1 Image 3">
                     <img src="./Resources/Images/fancommunity/Fangallery/E1P4.png" alt="Event 1 Image 4">
-                    <div class="image-overlay"></div>
+                    <div class="image-overlay">+10</div>
                 </div>
                 <p>Basketball League</p>
                 <p>John Cain Arena</p> <!-- Event Location -->
@@ -128,7 +128,7 @@ $geolocationData = getUserGeolocation($ip); // Pass the IP address to fetch geol
                     <img src="./Resources/Images/fancommunity/Fangallery/E2P2.png" alt="Event 2 Image 2">
                     <img src="./Resources/Images/fancommunity/Fangallery/E2P3.png" alt="Event 2 Image 3">
                     <img src="./Resources/Images/fancommunity/Fangallery/E2P4.png" alt="Event 2 Image 4">
-                    <div class="image-overlay"></div>
+                    <div class="image-overlay">+10</div>
                 </div>
                 <p>Basketball Pros</p>
                 <p>Margaret Court Arena</p> <!-- Event Location -->
@@ -142,7 +142,7 @@ $geolocationData = getUserGeolocation($ip); // Pass the IP address to fetch geol
                     <img src="./Resources/Images/fancommunity/Fangallery/E1P2.png" alt="Event 1 Image 2">
                     <img src="./Resources/Images/fancommunity/Fangallery/E1P3.png" alt="Event 1 Image 3">
                     <img src="./Resources/Images/fancommunity/Fangallery/E1P4.png" alt="Event 1 Image 4">
-                    <div class="image-overlay"></div>
+                    <div class="image-overlay">+10</div>
                 </div>
                 <p>FIBA Basketball World Cup</p>
                 <p>Docklands</p> <!-- Event Location -->
@@ -156,7 +156,7 @@ $geolocationData = getUserGeolocation($ip); // Pass the IP address to fetch geol
                     <img src="./Resources/Images/fancommunity/Fangallery/E3P2.png" alt="Event 3 Image 2">
                     <img src="./Resources/Images/fancommunity/Fangallery/E3P3.png" alt="Event 3 Image 3">
                     <img src="./Resources/Images/fancommunity/Fangallery/E3P4.png" alt="Event 3 Image 4">
-                    <div class="image-overlay"></div>
+                    <div class="image-overlay">+10</div>
                 </div>
                 <p>Cricket World Cup</p>
                 <p>Melbourne Cricket Ground</p> <!-- Event Location -->
@@ -170,7 +170,7 @@ $geolocationData = getUserGeolocation($ip); // Pass the IP address to fetch geol
                     <img src="./Resources/Images/fancommunity/Fangallery/E4P2.png" alt="Event 4 Image 2">
                     <img src="./Resources/Images/fancommunity/Fangallery/E4P3.png" alt="Event 4 Image 3">
                     <img src="./Resources/Images/fancommunity/Fangallery/E4P4.png" alt="Event 4 Image 4">
-                    <div class="image-overlay"></div>
+                    <div class="image-overlay">+10</div>
                 </div>
                 <p>BCM Women</p>
                 <p>State Sport Centres</p> <!-- Event Location -->

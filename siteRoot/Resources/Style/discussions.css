@@ -4,19 +4,39 @@
     padding: 80px;
     border: 5px solid #ddd;
     border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Mobile Responsive Adjustments */
+@media (max-width: 768px) {
+    .discussions-container {
+        padding: 20px; /* Adjust padding for smaller screens */
+        margin: 20px auto;
+    }
+
+    .discussion-item {
+        flex: 0 0 100%; /* Full width for mobile */
+        margin-right: 0;
+        padding: 20px; /* Reduce padding for smaller screens */
+        border: 1px solid #ddd;
+    }
 }
 
 .discussion-item {
-    flex: 0 0 calc(50% - 150px); /* Allow two items in a row with space */
-    border: 100px solid #ddd; /* Add border for distinction */
-    padding: 150px; /* Add some padding */
-    border-radius: 8px; /* Rounded corners */
-    background-color: #f9f9f9; /* Background color for items */
-    margin-right: 100px; /* Right margin for spacing */
+    flex: 0 0 calc(50% - 20px); /* Two items per row on larger screens */
+    border: 1px solid #ddd;
+    padding: 20px;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    margin-right: 20px;
+    margin-bottom: 20px; /* Spacing between items */
+    box-sizing: border-box;
 }
 
 .discussion-item:last-child {
-    border-bottom: none; /* Remove border from last item */
+    border-bottom: none;
 }
 
 .discussion-actions {
@@ -26,16 +46,19 @@
 .discussion-actions a {
     margin-right: 15px;
     text-decoration: none;
-    color: #007bff; /* Link color */
+    color: #007bff;
     display: block;
 }
 
 .add-discussion {
+    width: 100%;
+    max-width: 500px; /* Set max-width for centered form */
     margin-top: 30px;
     padding: 20px;
     border: 1px solid #ddd;
     border-radius: 8px;
     background-color: #f1f1f1;
+    box-sizing: border-box;
 }
 
 .add-discussion form input,
@@ -55,7 +78,7 @@
 }
 
 .add-discussion form button:hover {
-    background-color: #0056b3; /* Darker shade on hover */
+    background-color: #0056b3;
 }
 
 .discussion-actions a {
@@ -66,35 +89,37 @@
 }
 
 .like-btn {
-    background-color: #28a745; /* Green for Like */
+    background-color: #28a745;
     color: white;
 }
 
 .dislike-btn {
-    background-color: #dc3545; /* Red for Dislike */
+    background-color: #dc3545;
     color: white;
 }
 
 .reply-btn {
-    background-color: #007bff; /* Blue for Reply */
+    background-color: #007bff;
     color: white;
 }
 
 .discussion-actions a:hover {
-    opacity: 0.8; /* Slightly darker on hover */
+    opacity: 0.8;
 }
+
 .discussion-row {
-    display: flex; /* Use flexbox for rows */
-    justify-content: space-between; /* Space between items */
-    margin-bottom: 20px; /* Space between rows */
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
     width: 100%;
 }
 
-.like-button{
-    display:flex;
-    flex-direction:row;
+.like-button {
+    display: flex;
+    flex-direction: row;
     margin-top: 5px;
 }
+
 .reply-form {
     margin-top: 10px;
 }
@@ -103,4 +128,21 @@
     margin-left: 20px;
     font-size: 0.9em;
     color: #555;
+}
+
+/* Additional mobile styles */
+@media (max-width: 768px) {
+    .discussion-row {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .discussion-actions a {
+        margin-right: 0;
+        margin-bottom: 10px;
+    }
+
+    .add-discussion {
+        padding: 15px;
+    }
 }

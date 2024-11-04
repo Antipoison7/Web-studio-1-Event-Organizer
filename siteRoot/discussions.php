@@ -156,6 +156,7 @@ function fetchRandomDiscussions() {
             })
             .then(response => response.json())
             .then(data => {
+                location.reload("./discussions.php")
                 console.log('Response from like_discussion.php:', data);
 
                 if (data.likes !== undefined && data.dislikes !== undefined) {
@@ -197,6 +198,7 @@ function fetchRandomDiscussions() {
             })
             .then(response => response.json())
             .then(data => {
+                location.reload("./discussions.php")
                 console.log('Response from like_discussion.php:', data);
 
                 if (data.likes !== undefined && data.dislikes !== undefined) {
@@ -226,3 +228,8 @@ function fetchRandomDiscussions() {
 
 </body>
 </html>
+
+
+<script>
+document.getElementById("reloadPage")
+.addEventListener("click", function(){location.reload("./discussions.php")})</script>

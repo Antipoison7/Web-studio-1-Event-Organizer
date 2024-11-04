@@ -293,3 +293,28 @@ footer {
         font-size: 16px;
     }
 }
+
+/* Full Gallery Page Styles */
+.full-gallery-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 20px;
+}
+
+.full-gallery-container img {
+    width: calc(33% - 10px); /* Adjust to fit images nicely */
+    border-radius: 5px;
+}
+
+.uploaded-photos {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.uploaded-photos img {
+    width: 100px; /* Adjust size as needed */
+    height: auto;
+    border-radius: 5px;
+}

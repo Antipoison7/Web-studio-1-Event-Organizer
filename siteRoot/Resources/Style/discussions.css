@@ -52,7 +52,6 @@
 
 .add-discussion {
     width: 100%;
-    max-width: 500px; /* Set max-width for centered form */
     margin-top: 30px;
     padding: 20px;
     border: 1px solid #ddd;

@@ -16,7 +16,7 @@
   <body>
     <?php headerNoLogin("Forgot your password?") ?>
     <form action="./forgot_intermediate.php" method="post">
-        <div class="forgot">
+        <div class="login">
             <a href="./login.php" class="button">I remembered it!</a>
             <label for="emailUser">Username / Email</label>
             <input type="text" id="emailUser" name="emailUser" autocomplete="off">

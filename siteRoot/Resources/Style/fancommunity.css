@@ -1,9 +1,9 @@
 /* Header background styles */
 .header-background {
     background: url('../Images/fancommunity/topimage.png');
-    padding: 50px 20px; /* Adjust padding as needed */
-    border-radius: 0 0 5px 5px; /* Rounded corners at the bottom */
-    box-shadow: 0 2px 5px rgba(209, 45, 45, 0.1); /* Optional: subtle shadow for depth */
+    padding: 50px 20px;
+    border-radius: 0 0 5px 5px;
+    box-shadow: 0 2px 5px rgba(209, 45, 45, 0.1);
 }
 
 /* Header styles */
@@ -24,27 +24,27 @@
 }
 
 .nav-icons li {
-    margin-right: 15px; /* Space between icons */
+    margin-right: 15px;
 }
 
 .nav-icons img {
-    width: 30px; /* Adjust icon size as needed */
+    width: 30px;
     height: auto;
 }
 
 /* Background for the entire page */
 body {
-    background: url('../Images/fancommunity/trendingbackground.png') no-repeat center center; /* Replace with your actual image path */
-    background-size: cover; /* Cover entire section */
-    padding: 20px; /* Add padding to create space around content */
+    background: url('../Images/fancommunity/trendingbackground.png') no-repeat center center;
+    background-size: cover;
+    padding: 20px;
 }
 
 /* Combined background for discussions to fan gallery */
 .combined-background {
-    background: url('..') no-repeat center center; /* Replace with your actual image path */
-    background-size: cover; /* Cover entire section */
-    padding: 20px; /* Add padding to create space around content */
-    border-radius: 5px; /* Optional: rounded corners */
+    background: url('..') no-repeat center center;
+    background-size: cover;
+    padding: 20px;
+    border-radius: 5px;
 }
 
 /* Trending discussions styles */
@@ -57,27 +57,27 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    flex-wrap: wrap; /* Allows items to wrap on smaller screens */
 }
 
-/* Discussion item styles */
 .discussion-item {
     width: 45%;
-    background-color: rgba(245, 245, 245, 0.8); /* Slightly transparent background */
+    background-color: rgba(245, 245, 245, 0.8);
     padding: 10px;
     border-radius: 5px;
+    box-sizing: border-box;
 }
 
 .arrow-navigation img {
-    width: 50px !important; /* Set the desired width for the arrow */
-    height: auto !important; /* Maintain the aspect ratio */
+    width: 50px !important;
+    height: auto !important;
 }
 
 /* Community Clubs styles */
 .community-clubs {
-    margin: 20px 0; /* Added margin */
+    margin: 20px 0;
 }
 
-/* Community Clubs styles */
 .clubs-container {
     display: flex;
     align-items: center;
@@ -86,27 +86,26 @@ body {
 }
 
 .club-item {
-    width: 10%; /* Adjust width for each club image */
-    margin: 22px; /* Spacing between images */
+    width: 10%;
+    margin: 22px;
 }
 
 .club-item img {
-    width: 99%; /* Make images responsive */
-    border-radius: 50%; /* Makes the club images round */
+    width: 99%;
+    border-radius: 50%;
 }
 
-/* Club Summary styles */
 .club-summary {
     display: flex;
-    align-items: center; /* Center align the summary box vertically */
+    align-items: center;
 }
 
 .summary-box {
-    background-color: rgba(245, 245, 245, 0.8); /* Slightly transparent background for summary */
+    background-color: rgba(245, 245, 245, 0.8);
     text-align: center;
     padding: 20px;
-    border-radius: 50%; /* Makes the summary box round */
-    margin-left: 10px; /* Space between last club image and summary */
+    border-radius: 50%;
+    margin-left: 10px;
 }
 
 .summary-box span {
@@ -124,7 +123,6 @@ body {
     margin: 40px 0;
 }
 
-/* Adjust fan gallery container to behave like the club container */
 .gallery-container {
     display: flex;
     align-items: center;
@@ -132,10 +130,9 @@ body {
     flex-wrap: wrap;
 }
 
-/* Adjust fan gallery items to be side by side like club items */
 .gallery-item {
-    width: 15%; /* Adjust width for each fan gallery item */
-    margin: 17px; /* Spacing between fan gallery items */
+    width: 15%;
+    margin: 17px;
     position: relative;
 }
 
@@ -152,12 +149,14 @@ body {
 
 .image-overlay {
     position: absolute;
-    bottom: 0;
-    right: 0;
-    background-color: rgba(0, 0, 0, 0.6);
+    bottom: 125px;
+    right: 21px;
+    background-color: rgba(229, 229, 229, 0.55);
     color: #fff;
-    padding: 5px 10px;
+    padding: 20px 15px;
     border-radius: 5px;
+    font-size: 0.9rem;
+    font-weight: bold;
 }
 
 /* Footer styles */
@@ -168,58 +167,154 @@ footer {
     padding: 10px 0;
     margin-top: 20px;
 }
+
+/* Larger icon and logo styles */
 .nav-icons img {
-    width: 70px !important; /* Force the size to increase */
-    height: auto !important; /* Maintain the aspect ratio */
+    width: 70px !important;
+    height: auto !important;
 }
+
 .logo img {
-    width: 150px; /* Adjust the width to make the logo bigger */
-    height: auto; /* Keeps the aspect ratio */
-}
-/* Community Clubs heading image - left aligned */
-.clubs-heading img {
-    display: block;
-    margin: 0; /* Removes centering */
-    max-width: 25%; /* Ensures the image is responsive */
+    width: 150px;
     height: auto;
-    padding-bottom: 20px; /* Adds space below the image */
 }
-/* Fan Gallery heading image - left aligned */
-.gallery-heading img {
-    display: block;
-    margin: 0; /* Removes centering */
-    max-width: 25%; /* Ensures the image is responsive */
-    height: auto;
-    padding-bottom: 20px; /* Adds space below the image */
-}
-/* Trending Discussions heading image - left aligned */
+
+/* Left aligned images for headings */
+.clubs-heading img,
+.gallery-heading img,
 .trending-heading img {
     display: block;
-    margin: 0; /* Removes centering */
-    max-width: 25%; /* Ensures the image is responsive */
+    margin: 0;
+    max-width: 25%;
     height: auto;
-    padding-bottom: 20px; /* Adds space below the image */
+    padding-bottom: 20px;
 }
-/* Styles for Trending Discussions Images */
+
+/* Trending Discussions Image styles */
 .trending-discussions .discussion-item img {
-    width: 100%; /* Make images responsive to the container's width */
-    height: auto; /* Maintain aspect ratio */
-    max-width: 500px; /* Set a maximum width for the images */
-    margin: 0 auto; /* Center the images if desired */
+    width: 100%;
+    height: auto;
+    max-width: 500px;
+    margin: 0 auto;
 }
 
 .trending-discussions .discussion-container {
-    display: flex; /* Use flexbox for layout */
-    flex-wrap: wrap; /* Allow items to wrap to the next line */
-    justify-content: center; /* Center the discussion items */
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
 .trending-discussions .arrow-navigation {
-    text-align: center; /* Center the arrow navigation */
-    margin-top: 10px; /* Add spacing above the arrow */
+    text-align: center;
+    margin-top: 10px;
 }
 
 .trending-discussions .arrow-navigation img {
-    width: 85px !important; /* Set the desired width for the arrow */
-    height: auto !important; /* Maintain the aspect ratio */
+    width: 85px !important;
+    height: auto !important;
+}
+
+/* Responsive adjustments for mobile screens */
+@media only screen and (max-width: 768px) {
+    .header-container {
+        flex-direction: column;
+    }
+
+    .logo img {
+        width: 100px;
+    }
+
+    .nav-icons ul {
+        flex-direction: row;
+        justify-content: center;
+    }
+
+    .discussion-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .discussion-item {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+
+    .clubs-container,
+    .gallery-container {
+        justify-content: center;
+    }
+
+    .club-item,
+    .gallery-item {
+        width: 30%;
+        margin: 10px;
+    }
+
+    .summary-box span {
+        font-size: 18px;
+    }
+
+    .summary-box p {
+        font-size: 12px;
+    }
+
+    .gallery-collage {
+        gap: 3px;
+    }
+
+    footer {
+        padding: 20px 10px;
+    }
+}
+
+@media only screen and (max-width: 480px) {
+    .logo img {
+        width: 80px;
+    }
+
+    .nav-icons img {
+        width: 40px !important;
+    }
+
+    .club-item,
+    .gallery-item {
+        width: 45%;
+    }
+
+    .gallery-collage img {
+        border-radius: 3px;
+    }
+
+    .image-overlay {
+        font-size: 12px;
+    }
+
+    .summary-box span {
+        font-size: 16px;
+    }
+}
+
+/* Full Gallery Page Styles */
+.full-gallery-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 20px;
+}
+
+.full-gallery-container img {
+    width: calc(33% - 10px); /* Adjust to fit images nicely */
+    border-radius: 5px;
+}
+
+.uploaded-photos {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.uploaded-photos img {
+    width: 100px; /* Adjust size as needed */
+    height: auto;
+    border-radius: 5px;
 }

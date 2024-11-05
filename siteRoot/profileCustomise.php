@@ -9,7 +9,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Customise profile</title>
+    <title>Profile Settings</title>
     
     
     <?php createMeta() ?>
@@ -29,7 +29,7 @@
         <a href="./">
             <div class="button">Discard</div>
         </a>
-        <h1>Customise profile</h1>
+        <h1>Profile Settings</h1>
         <div style="width: 14em; height: 3em;"></div>
     </div>
 

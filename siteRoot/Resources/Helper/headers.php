@@ -139,7 +139,7 @@
                 }
                 catch (PDOException $e)
                 {
-                    echo("oh great heavens: " . $e->getMessage());
+                    // echo("oh great heavens: " . $e->getMessage());
                 }
 
             echo("
@@ -157,7 +157,7 @@
                         <div id=\"dropdownTri\" class=\"hiddenClass\"></div>
                         <div id=\"dropdown\" class=\"hiddenClass\">
                                 <a href=\"./profileView.php?userLookup=" . $_SESSION["loginDetails"]["username"] . "\"><div>My Profile</div></a>
-                                <a href=\"./profileCustomise.php\"><div>Customise Profile</div></a>
+                                <a href=\"./profileCustomise.php\"><div>Profile Settings</div></a>
                                 <a href=\"./Resources/Helper/logout.php\"><div>Log Out</div></a>
                         </div>
                     </div>

@@ -68,6 +68,20 @@ function fetchRandomDiscussions() {
         .discussion-actions {
             margin-top: 10px;
         }
+        .discussion-text {
+            display: block;
+            overflow: hidden;
+            max-height: 50px;
+            line-height: 1.5em;
+        }
+        .discussion-text.expanded {
+            max-height: none;
+        }
+        .read-more-link {
+            color: blue;
+            cursor: pointer;
+            font-weight: bold;
+        }
     </style>
 </head>
 <body>
@@ -103,7 +117,8 @@ function fetchRandomDiscussions() {
         // Display the first discussion
         echo "<div class='discussion-item'>";
         echo "<h3>{$discussions[$i]['title']}</h3>";
-        echo "<p>{$discussions[$i]['content']}</p>";
+        echo "<p class='discussion-text' id='discussion{$discussions[$i]['id']}'>{$discussions[$i]['content']}</p>";
+        echo "<span class='read-more-link' onclick='toggleText(\"discussion{$discussions[$i]['id']}\")'>Read More</span>";
         echo "<div class='discussion-actions'>";
         echo "<span>Likes: {$discussions[$i]['likes']}</span> | ";
         echo "<span>Dislikes: {$discussions[$i]['dislikes']}</span>";
@@ -120,7 +135,8 @@ function fetchRandomDiscussions() {
         if (isset($discussions[$i + 1])) {
             echo "<div class='discussion-item'>";
             echo "<h3>{$discussions[$i + 1]['title']}</h3>";
-            echo "<p>{$discussions[$i + 1]['content']}</p>";
+            echo "<p class='discussion-text' id='discussion{$discussions[$i + 1]['id']}'>{$discussions[$i + 1]['content']}</p>";
+            echo "<span class='read-more-link' onclick='toggleText(\"discussion{$discussions[$i + 1]['id']}\")'>Read More</span>";
             echo "<div class='discussion-actions'>";
             echo "<span>Likes: {$discussions[$i + 1]['likes']}</span> | ";
             echo "<span>Dislikes: {$discussions[$i + 1]['dislikes']}</span>";
@@ -138,6 +154,20 @@ function fetchRandomDiscussions() {
     ?>
 </section>
 
+<script>
+    function toggleText(id) {
+        const text = document.getElementById(id);
+        const readMoreLink = text.nextElementSibling;
+
+        if (text.classList.contains('expanded')) {
+            text.classList.remove('expanded');
+            readMoreLink.textContent = "Read More";
+        } else {
+            text.classList.add('expanded');
+            readMoreLink.textContent = "Show Less";
+        }
+    }
+</script>
 
 <script>
     // JavaScript for handling like and dislike actions with error handling
@@ -156,6 +186,7 @@ function fetchRandomDiscussions() {
             })
             .then(response => response.json())
             .then(data => {
+                location.reload("./discussions.php")
                 console.log('Response from like_discussion.php:', data);
 
                 if (data.likes !== undefined && data.dislikes !== undefined) {
@@ -197,6 +228,7 @@ function fetchRandomDiscussions() {
             })
             .then(response => response.json())
             .then(data => {
+                location.reload("./discussions.php")
                 console.log('Response from like_discussion.php:', data);
 
                 if (data.likes !== undefined && data.dislikes !== undefined) {
@@ -224,5 +256,21 @@ function fetchRandomDiscussions() {
     });
 </script>
 
+<script>
+        document.addEventListener("DOMContentLoaded", function(event) { 
+            var scrollpos = localStorage.getItem('scrollpos');
+            if (scrollpos) window.scrollTo(0, scrollpos);
+        });
+
+        window.onbeforeunload = function(e) {
+            localStorage.setItem('scrollpos', window.scrollY);
+        };
+    </script>
+
 </body>
 </html>
+
+
+<script>
+document.getElementById("reloadPage")
+.addEventListener("click", function(){location.reload("./discussions.php")})</script>

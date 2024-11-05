@@ -89,23 +89,6 @@
     margin: 5px 0px;
 }
 
-.forgot
-{
-    display: flex; 
-    flex-direction:column; 
-    justify-content:center; 
-    max-width: 80%;
-    margin:0px auto 0px auto;
-    font-size:2em;
-}
-
-.forgot input
-{
-    height: 1.5em;
-    font-size: x-large;
-    margin-bottom: 5px;
-}
-
 .smallButtonWide
 {
     align-items: center;

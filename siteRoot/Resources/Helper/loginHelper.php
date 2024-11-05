@@ -437,4 +437,28 @@
             echo("oh great heavens: " . $e->getMessage());
         }
     }
+
+    function resetPassword($emailVal, $passwordVal)
+    {
+        try
+        {
+            $db = createDB();
+
+            $passHashValue = password_hash($passwordVal, PASSWORD_BCRYPT);
+
+            $stmt = $db->prepare("UPDATE accounts SET pass_hash = :passHashName WHERE email = :emailName;");
+
+            $stmt->bindParam(':passHashName', $passHashValue, PDO::PARAM_STR);
+            $stmt->bindParam(':emailName', $emailVal, PDO::PARAM_STR);
+
+            $stmt->execute();
+
+            $db = null;
+            $stmt = null;            
+        }
+        catch (PDOException $e)
+        {
+            echo("oh great heavens: " . $e->getMessage());
+        }
+    }
 ?>

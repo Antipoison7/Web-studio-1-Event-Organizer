@@ -26,12 +26,33 @@ if(isset($_SESSION["resetPassword"]["toggle"]))
   <body>
     <?php headerNoLogin("Reset Your Password") ?>
 
-<form action="./forgot_intermediate.php" method="post">
-    <div class="forgot">
-        <label for="emailUser">Username / Email</label>
-        <input type="text" id="emailUser" name="emailUser" autocomplete="off">
+<form action="./forgot_reset.php" method="post">
+    <div class="login">
+        <label for="emailCode">Code recieved in email</label>
+        <input type="text" id="emailCode" name="emailCode" autocomplete="off">
         <label for="passwordUser">New Password</label>
         <input type="password" id="passwordUser" name="passwordUser" autocomplete="off">
+
+        <p>Passwords should be:</p>
+      <ul>
+        <li <?php if (isset($_SESSION["issues"]) && (isset($_SESSION["issues"]["password"]["length"]))) 
+        {
+              echo ("class = \"loginFontErrorColor\"");
+            } ?>>At least 8 characters in length</li>
+        <li <?php if (isset($_SESSION["issues"]) && (isset($_SESSION["issues"]["password"]["upper"]))) 
+        {
+              echo ("class = \"loginFontErrorColor\"");
+            } ?>>Contains at least one uppercase Letter</li>
+        <li <?php if (isset($_SESSION["issues"]) && (isset($_SESSION["issues"]["password"]["lower"]))) 
+        {
+              echo ("class = \"loginFontErrorColor\"");
+            } ?>>Contains at least one lowercase Letter</li>
+        <li <?php if (isset($_SESSION["issues"]) && (isset($_SESSION["issues"]["password"]["symbol"]))) 
+        {
+              echo ("class = \"loginFontErrorColor\"");
+            } ?>>Contains at least one symbol (!@#$%^&*)</li>
+      </ul>
+        
         <button class="smallButtonWide" type="submit">Reset Password</button>
     </div>
 </form>
@@ -43,10 +64,6 @@ if(isset($_SESSION["resetPassword"]["toggle"]))
 </html>
 
 <?php
-    }
-    else if($_SESSION["resetPassword"]["toggle"] == false)
-    {
-        
     }
     else
     {

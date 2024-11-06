@@ -18,10 +18,44 @@
 
 .userDetails
 {
-
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5%;
+    justify-content: space-evenly;
 }
 
-userBox
+.userBox 
 {
+    width: 40%;
+    margin-bottom: 20px;
+}
 
+.userBox div
+{
+    box-shadow: rgb(0, 0, 0) 0px 0px 0px 3px;
+    padding: 10px;
+}
+
+.userBox div img
+{
+    object-fit: scale-down;
+    width: 50%;
+    height: 100%;
+    border: 2px solid black;
+    display: block;
+    margin: 0px auto;
+}
+
+.hideRadioButton
+{
+    display: none;
+}
+
+.submitHeaderDiv
+{
+    position: sticky;
+    padding: 0px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }

@@ -1,9 +1,10 @@
 <?php
-// Database connection
+// Database connection details
 $servername = "talsprddb02.int.its.rmit.edu.au";
 $username = "COSC3046_2402_UGRD_1479_G4";
 $password = "GYS3sfUkzIqA";
 $dbname = "COSC3046_2402_UGRD_1479_G4";
+
 $conn = new mysqli($servername, $username, $password, $dbname);
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -13,27 +14,27 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $file = $_FILES['file'];
         $fileName = $file['name'];
         $fileTmpPath = $file['tmp_name'];
-        $fileSize = $file['size'];
-        $fileType = $file['type'];
 
         // Set upload directory and move uploaded file
         $uploadDir = 'uploads/';
         $filePath = $uploadDir . basename($fileName);
 
-        // Check if upload directory exists
+        // Create upload directory if it does not exist
         if (!is_dir($uploadDir)) {
-            mkdir($uploadDir, 0777, true); // Create it if not
+            mkdir($uploadDir, 0777, true);
         }
 
-        // Move file to uploads directory
+        // Move the file to the upload directory
         if (move_uploaded_file($fileTmpPath, $filePath)) {
-            // Store image path in the database
+            // Insert the photo path into the database
             $stmt = $conn->prepare("INSERT INTO event_photos (event_id, photo_path) VALUES (?, ?)");
             $stmt->bind_param("is", $event_id, $filePath);
             $stmt->execute();
             $stmt->close();
 
-            echo "Photo uploaded successfully!";
+            // Redirect back to gallery page
+            header("Location: event1_gallery.php");
+            exit();
         } else {
             echo "Error: Could not upload the file.";
         }

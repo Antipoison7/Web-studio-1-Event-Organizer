@@ -32,6 +32,13 @@ if ($result === false) {
     <link rel="stylesheet" href="./Resources/Style/fancommunity.css">
 </head>
 <body>
+    <nav class="navbar">
+        <a href="HomePage.php" class="nav-link">Home</a>
+        <a href="fancommunity.php" class="nav-link">Fan Community</a>
+        <a href="favorites.php" class="nav-link">Favorites</a>
+        <a href="profileView.php" class="nav-link">Profile</a>
+       </nav>
+
     <h2>Upload Your Photos</h2>
     <form action="upload_photo.php" method="POST" enctype="multipart/form-data">
         <label for="file">Choose a photo to upload:</label>

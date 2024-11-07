@@ -164,46 +164,56 @@ if ($conn->connect_error) {
     
     <script>
     document.querySelector('.apply-coupon-btn').addEventListener('click', function() {
-        const couponCode = document.getElementById('coupon-code').value;
+    const couponCode = document.getElementById('coupon-code').value;
 
-        fetch('apply_coupon.php', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ couponCode })
-        })
-        .then(response => response.json())
-        .then(data => {
-            const totalElement = document.querySelector('.order-summary-section p strong');
-            let totalAmount = parseFloat(totalElement.textContent.replace('$', ''));
+    fetch('apply_coupon.php', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ couponCode })
+    })
+    .then(response => response.json())
+    .then(data => {
+        const totalElement = document.querySelector('.order-summary-section p strong');
+        let totalAmount = parseFloat(totalElement.textContent.replace('$', ''));
 
-            if (data.success) {
-                const discount = totalAmount * (data.discount / 100);
-                const discountedTotal = (totalAmount - discount).toFixed(2);
+        if (data.success) {
+            const discount = totalAmount * (data.discount / 100);
+            const discountedTotal = (totalAmount - discount).toFixed(2);
 
-                totalElement.textContent = `$${discountedTotal}`;
-                document.querySelector('input[name="discountedTotal"]').value = discountedTotal;
-                
-                alert(`Coupon applied! ${data.discount}% discount has been applied.`);
-            } else {
-                alert('Invalid or expired coupon code.');
-            }
-        })
-        .catch(error => console.error('Error:', error));
-    });
+            totalElement.textContent = `$${discountedTotal}`;
+            document.querySelector('input[name="discountedTotal"]').value = discountedTotal;
+            
+            alert(`Coupon applied! ${data.discount}% discount has been applied.`);
+        } else {
+            alert('Invalid or expired coupon code.');
+        }
+    })
+    .catch(error => console.error('Error:', error));
+});
 
-    // Fill in form data on checkout click
+// Checkout button click event with validation
     document.querySelector('.checkout-btn').addEventListener('click', function(e) {
-        document.getElementById('hidden-card-type').value = document.getElementById('card-type').value;
-        document.querySelector('input[name="address"]').value = document.getElementById('address').value;
-        document.querySelector('input[name="suburb"]').value = document.getElementById('suburb').value;
-        document.querySelector('input[name="state"]').value = document.getElementById('state').value;
-        document.querySelector('input[name="postcode"]').value = document.getElementById('postcode').value;
-        document.querySelector('input[name="fname"]').value = document.getElementById('card-holder-fname').value;
-        document.querySelector('input[name="lname"]').value = document.getElementById('card-holder-lname').value;
-        document.querySelector('input[name="phone"]').value = document.getElementById('phone').value;
+    const cardNumber = document.getElementById('card-number').value.trim();
+
+    if (cardNumber === "") {
+        alert("Please enter your credit card number.");
+        e.preventDefault(); // Prevent form submission
+        return;
+    }
+
+    // Fill in form data for hidden fields
+    document.getElementById('hidden-card-type').value = document.getElementById('card-type').value;
+    document.querySelector('input[name="address"]').value = document.getElementById('address').value;
+    document.querySelector('input[name="suburb"]').value = document.getElementById('suburb').value;
+    document.querySelector('input[name="state"]').value = document.getElementById('state').value;
+    document.querySelector('input[name="postcode"]').value = document.getElementById('postcode').value;
+    document.querySelector('input[name="fname"]').value = document.getElementById('card-holder-fname').value;
+    document.querySelector('input[name="lname"]').value = document.getElementById('card-holder-lname').value;
+    document.querySelector('input[name="phone"]').value = document.getElementById('phone').value;
     });
+
     </script>
 </body>
 </html>

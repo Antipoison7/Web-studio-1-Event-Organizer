@@ -40,6 +40,8 @@ function fetchRandomDiscussions() {
         }
     }
     return $discussions;
+
+    
 }
 ?>
 <!DOCTYPE html>
@@ -108,7 +110,7 @@ function fetchRandomDiscussions() {
 
     <section class="discussions-container">
     <?php
-    // Fetch discussions from your SQL database
+    // Fetch discussions from SQL database
     $discussions = fetchRandomDiscussions();
     
     // Loop through discussions and display them in pairs
@@ -124,6 +126,7 @@ function fetchRandomDiscussions() {
         echo "<span>Dislikes: {$discussions[$i]['dislikes']}</span>";
         echo "<br>";
         echo "<div class = 'like-button'>";
+        echo "<a href='delete_discussion.php?id={$discussions[$i]['id']}' onclick='return confirm(\"Are you sure you want to delete this discussion?\");' class='delete-btn'>Delete</a>";
         echo "<a href='#' class='like-btn' data-id='{$discussions[$i]['id']}'>Like</a> ";
         echo "<a href='#' class='dislike-btn' data-id='{$discussions[$i]['id']}'>Dislike</a> ";
         echo "<a href='reply.php?discussion_id={$discussions[$i]['id']}'>Reply</a>";

@@ -98,7 +98,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <h2><?php echo htmlspecialchars($discussion['title']); ?></h2>
         <p>
             <span class="text-container"><?php echo htmlspecialchars(substr($discussion['content'], 0, 200)); ?></span>
-            <?php if (strlen($discussion['content']) > 200): ?>
+            <?php if (strlen($discussion['content']) > 500): ?>
                 <span class="text-container" style="display: none;"><?php echo htmlspecialchars(substr($discussion['content'], 200)); ?></span>
                 <span class="read-more-link" onclick="toggleText(this)">Read More</span>
             <?php endif; ?>
@@ -111,7 +111,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <div class="reply">
             <p>
                 <span class="text-container"><?php echo htmlspecialchars(substr($reply['reply_text'], 0, 100)); ?></span>
-                <?php if (strlen($reply['reply_text']) > 100): ?>
+                <?php if (strlen($reply['reply_text']) > 500): ?>
                     <span class="text-container" style="display: none;"><?php echo htmlspecialchars(substr($reply['reply_text'], 100)); ?></span>
                     <span class="read-more-link" onclick="toggleText(this)">Read More</span>
                 <?php endif; ?>

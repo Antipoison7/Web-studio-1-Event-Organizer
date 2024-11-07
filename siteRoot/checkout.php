@@ -148,6 +148,8 @@ if ($conn->connect_error) {
         <!-- Hidden input for last four digits of the card -->
         <input type="hidden" name="cardLastFour" id="card-last-four" value="">
 
+
+
         <!-- Checkout Button -->
         <form action="order_confirmation.php" method="POST" id="checkout-form">
             <input type="hidden" name="items" value='<?php echo json_encode($items); ?>'>
@@ -214,11 +216,6 @@ if ($conn->connect_error) {
     const postcode = document.getElementById('postcode').value.trim();
     const phone = document.getElementById('phone').value.trim();
 
-    const cardNumber = document.getElementById('card-number').value.trim();
-    
-    // Set the last four digits of the card number to the hidden field
-    document.getElementById('card-last-four').value = cardNumber.slice(-4);
-    
     // Validate fields
     if (!cardNumber) {
         alert("Please enter your credit card number.");

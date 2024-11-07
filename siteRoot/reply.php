@@ -65,6 +65,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <nav class="navbar">
         <a href="HomePage.php" class="nav-link">Home</a>
         <a href="fancommunity.php" class="nav-link">Fan Community</a>
+        <a href="discussions.php" class="nav-link">Discussions</a>
         <a href="favorites.php" class="nav-link">Favorites</a>
         <a href="profileView.php" class="nav-link">Profile</a>
     </nav>

@@ -23,11 +23,5 @@ function getUserGeolocation($ip) {
 
     return $data;
 }
-
-
-
-// Example usage
-$ip = $_SERVER['REMOTE_ADDR']; // Get the user's IP address
-$geolocationData = getUserGeolocation($ip);
 ?>
 

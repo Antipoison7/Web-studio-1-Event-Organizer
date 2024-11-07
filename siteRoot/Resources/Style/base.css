@@ -247,6 +247,11 @@ a:hover
     box-sizing: border-box;
 }
 
+.autoRight
+{
+    margin-left: auto;
+}
+
 /* Classes used in the login and register pages */
 .loginHeader
 {

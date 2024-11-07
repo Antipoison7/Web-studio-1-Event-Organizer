@@ -19,12 +19,17 @@ makeCaptcha();
 </head>
 
 <body>
-  <div class="loginHeader">
+  <div class="mainHeaderLogout">
+    <div id="logo"><a href="./HomePage.php">
+        <img  src="./Resources/Images/Resources/WebsiteLogo.webp" alt="Home Link" width="100" height="100">
+    </a></div>
+
+    <h1>User Login</h1>
+  <div class="toRight" style="margin-right: 15px;">
     <a href="./login.php">
-      <div class="button">Back</div>
+      <div class="button">Back / Login</div>
     </a>
-    <h1>User Register</h1>
-    <div style="width: 14em; height: 3em;"></div>
+  </div>
   </div>
 
   <form method="post" action="./intermediateLogin.php">

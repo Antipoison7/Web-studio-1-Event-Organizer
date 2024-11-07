@@ -14,13 +14,13 @@
     <link rel="icon" type="image/x-icon" href="./Resources/Images/Resources/favicon.png">
   </head>
   <body>
-    <div class="loginHeader">
-      <div id="logo"><a href="./HomePage.php">
-        <img  src="./Resources/Images/Resources/WebsiteLogo.webp" alt="WebsiteLogo" width="100" height="100">
-      </a></div>
-        <h1>User Login</h1>
-        <div style="width: 100px; height: 100px;"></div>
-    </div>
+  <div class="mainHeaderLogout">
+    <div id="logo"><a href="./HomePage.php">
+        <img  src="./Resources/Images/Resources/WebsiteLogo.webp" alt="Home Link" width="100" height="100">
+    </a></div>
+
+    <h1>User Login</h1>
+  </div>
 
     <form method="post" action="./intermediateLogin.php">
       <div class="login">

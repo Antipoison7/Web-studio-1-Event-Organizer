@@ -193,26 +193,95 @@ if ($conn->connect_error) {
     .catch(error => console.error('Error:', error));
 });
 
-// Checkout button click event with validation
+// Checkout button click event with validation for all required fields
     document.querySelector('.checkout-btn').addEventListener('click', function(e) {
+    // Get field values
     const cardNumber = document.getElementById('card-number').value.trim();
+    const cardType = document.getElementById('card-type').value.trim();
+    const expMonth = document.getElementById('exp-month').value.trim();
+    const expYear = document.getElementById('exp-year').value.trim();
+    const securityCode = document.getElementById('security-code').value.trim();
+    const firstName = document.getElementById('card-holder-fname').value.trim();
+    const lastName = document.getElementById('card-holder-lname').value.trim();
+    const address = document.getElementById('address').value.trim();
+    const suburb = document.getElementById('suburb').value.trim();
+    const state = document.getElementById('state').value.trim();
+    const postcode = document.getElementById('postcode').value.trim();
+    const phone = document.getElementById('phone').value.trim();
 
-    if (cardNumber === "") {
+    // Validate fields
+    if (!cardNumber) {
         alert("Please enter your credit card number.");
-        e.preventDefault(); // Prevent form submission
+        e.preventDefault();
+        return;
+    }
+    if (!cardType) {
+        alert("Please select your card type.");
+        e.preventDefault();
+        return;
+    }
+    if (!expMonth) {
+        alert("Please select the expiration month.");
+        e.preventDefault();
+        return;
+    }
+    if (!expYear) {
+        alert("Please select the expiration year.");
+        e.preventDefault();
+        return;
+    }
+    if (!securityCode) {
+        alert("Please enter the security code.");
+        e.preventDefault();
+        return;
+    }
+    if (!firstName) {
+        alert("Please enter the card holder's first name.");
+        e.preventDefault();
+        return;
+    }
+    if (!lastName) {
+        alert("Please enter the card holder's last name.");
+        e.preventDefault();
+        return;
+    }
+    if (!address) {
+        alert("Please enter the billing address.");
+        e.preventDefault();
+        return;
+    }
+    if (!suburb) {
+        alert("Please enter the suburb.");
+        e.preventDefault();
+        return;
+    }
+    if (!state) {
+        alert("Please select the state.");
+        e.preventDefault();
+        return;
+    }
+    if (!postcode) {
+        alert("Please enter the postcode.");
+        e.preventDefault();
+        return;
+    }
+    if (!phone) {
+        alert("Please enter a mobile phone number.");
+        e.preventDefault();
         return;
     }
 
-    // Fill in form data for hidden fields
-    document.getElementById('hidden-card-type').value = document.getElementById('card-type').value;
-    document.querySelector('input[name="address"]').value = document.getElementById('address').value;
-    document.querySelector('input[name="suburb"]').value = document.getElementById('suburb').value;
-    document.querySelector('input[name="state"]').value = document.getElementById('state').value;
-    document.querySelector('input[name="postcode"]').value = document.getElementById('postcode').value;
-    document.querySelector('input[name="fname"]').value = document.getElementById('card-holder-fname').value;
-    document.querySelector('input[name="lname"]').value = document.getElementById('card-holder-lname').value;
-    document.querySelector('input[name="phone"]').value = document.getElementById('phone').value;
+    // Fill in form data for hidden fields if all validations pass
+    document.getElementById('hidden-card-type').value = cardType;
+    document.querySelector('input[name="address"]').value = address;
+    document.querySelector('input[name="suburb"]').value = suburb;
+    document.querySelector('input[name="state"]').value = state;
+    document.querySelector('input[name="postcode"]').value = postcode;
+    document.querySelector('input[name="fname"]').value = firstName;
+    document.querySelector('input[name="lname"]').value = lastName;
+    document.querySelector('input[name="phone"]').value = phone;
     });
+
 
     </script>
 </body>

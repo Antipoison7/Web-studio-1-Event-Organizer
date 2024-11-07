@@ -136,11 +136,11 @@ if ($conn->connect_error) {
                     <option value="WA">WA</option>
                 </select>
                 <label for="postcode">Postcode *</label>
-                <input type="text" id="postcode" placeholder="Enter Postcode" required>
+                <input type="text" id="postcode" placeholder="Enter Postcode" maxlength="4" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 4)" required>
             </div>
 
                 <label for="phone">Mobile Phone *</label>
-                <input type="text" id="phone" placeholder="Enter Mobile Phone" required>
+                <input type="text" id="phone" placeholder="Enter Mobile Phone" maxlength="10" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 10)" required>
             </div>
         
             <!-- Checkout Button -->

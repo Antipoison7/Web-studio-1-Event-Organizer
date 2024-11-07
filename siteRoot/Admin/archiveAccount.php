@@ -77,18 +77,20 @@
               {
                 if($_SESSION["issues"]["adminStuff"] == "Changed")
                 {
-
+                  echo("<h2>User Archived / Unarchived</h2>");
                 }
-                if($_SESSION["issues"]["adminStuff"] == "What Happened?")
+                if($_SESSION["issues"]["adminStuff"] == "What happened?")
                 {
-                  
+                  echo("<h2 class=\"darkRedColor\">User Not Found</h2>");
                 }
                 if($_SESSION["issues"]["adminStuff"] == "NotSet")
                 {
-
+                  echo("<h2 class=\"darkRedColor\">Pick a user please</h2>");
                 }
-                echo("<h2 class=\"error\"></h2>")
+                
+              
               }
+              
             ?>
               <div class="userDetails">
                 <?php
@@ -130,3 +132,6 @@
         }
     </script>
 </html>
+<?php
+$_SESSION["issues"]["adminStuff"] = null;
+?>

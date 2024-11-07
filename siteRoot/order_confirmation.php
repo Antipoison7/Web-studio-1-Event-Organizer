@@ -1,6 +1,7 @@
 <?php
 session_start();
-$orderNumber = strtoupper(uniqid('ORD')); // Generate unique order number
+
+$orderNumber = strtoupper(uniqid('ORD')); // Generate a unique order number
 
 // Retrieve submitted data
 $items = json_decode($_POST['items'], true);
@@ -13,6 +14,11 @@ $postcode = htmlspecialchars($_POST['postcode']);
 $fname = htmlspecialchars($_POST['fname']);
 $lname = htmlspecialchars($_POST['lname']);
 $phone = htmlspecialchars($_POST['phone']);
+
+// Extract the last four digits of the credit card number
+$cardNumber = $_POST['cardNumber'] ?? ''; // Assuming you send the full card number from the checkout form
+$cardLastFour = strlen($cardNumber) >= 4 ? substr($cardNumber, -4) : 'N/A';
+
 ?>
 
 <!DOCTYPE html>
@@ -56,6 +62,7 @@ $phone = htmlspecialchars($_POST['phone']);
         <div class="payment-details">
             <h3>Payment Method</h3>
             <p><strong>Card Type:</strong> <?php echo $cardType; ?></p>
+            <p><strong>Last Four Digits of Card:</strong> <?php echo $cardLastFour; ?></p>
         </div>
 
         <!-- Back to Home Button -->

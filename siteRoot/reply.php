@@ -60,9 +60,31 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <meta charset="UTF-8">
     <title>Reply to Discussion</title>
     <link rel="stylesheet" href="Resources/Style/base.css">
+    <style>
+        .text-container {
+            display: inline;
+        }
+        .read-more-link {
+            color: blue;
+            cursor: pointer;
+            text-decoration: underline;
+        }
+    </style>
+    <script>
+        function toggleText(element) {
+            const fullText = element.previousElementSibling;
+            if (fullText.style.display === "none") {
+                fullText.style.display = "inline";
+                element.textContent = "Read Less";
+            } else {
+                fullText.style.display = "none";
+                element.textContent = "Read More";
+            }
+        }
+    </script>
 </head>
 <body>
-<nav class="navbar">
+    <nav class="navbar">
         <a href="HomePage.php" class="nav-link">Home</a>
         <a href="fancommunity.php" class="nav-link">Fan Community</a>
         <a href="discussions.php" class="nav-link">Discussions</a>
@@ -73,16 +95,28 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     <!-- Display selected discussion -->
     <?php if ($discussion): ?>
-        <h2><?php echo ($discussion['title']); ?></h2>
-        <p><?php echo ($discussion['content']); ?></p>
+        <h2><?php echo htmlspecialchars($discussion['title']); ?></h2>
+        <p>
+            <span class="text-container"><?php echo htmlspecialchars(substr($discussion['content'], 0, 200)); ?></span>
+            <?php if (strlen($discussion['content']) > 200): ?>
+                <span class="text-container" style="display: none;"><?php echo htmlspecialchars(substr($discussion['content'], 200)); ?></span>
+                <span class="read-more-link" onclick="toggleText(this)">Read More</span>
+            <?php endif; ?>
+        </p>
     <?php endif; ?>
 
     <!-- Display previous replies -->
     <h3>Replies</h3>
     <?php while ($reply = $replies->fetch_assoc()): ?>
         <div class="reply">
-            <p><?php echo ($reply['reply_text']); ?></p>
-            <small><?php echo ($reply['reply_date']); ?></small>
+            <p>
+                <span class="text-container"><?php echo htmlspecialchars(substr($reply['reply_text'], 0, 100)); ?></span>
+                <?php if (strlen($reply['reply_text']) > 100): ?>
+                    <span class="text-container" style="display: none;"><?php echo htmlspecialchars(substr($reply['reply_text'], 100)); ?></span>
+                    <span class="read-more-link" onclick="toggleText(this)">Read More</span>
+                <?php endif; ?>
+            </p>
+            <small><?php echo htmlspecialchars($reply['reply_date']); ?></small>
             <hr>
         </div>
     <?php endwhile; ?>
@@ -92,7 +126,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <textarea name="reply_text" placeholder="Write your reply here..." required></textarea><br>
         <button type="submit">Submit Reply</button>
     </form>
-
 </body>
 </html>
 

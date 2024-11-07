@@ -143,21 +143,28 @@ if ($conn->connect_error) {
                 <input type="text" id="phone" placeholder="Enter Mobile Phone" maxlength="10" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 10)" required>
             </div>
         
-            <!-- Checkout Button -->
-            <form action="order_confirmation.php" method="POST" id="checkout-form">
-                <input type="hidden" name="items" value='<?php echo json_encode($items); ?>'>
-                <input type="hidden" name="totalAmount" value="<?php echo htmlspecialchars($totalAmount); ?>">
-                <input type="hidden" name="discountedTotal" value="">
-                <input type="hidden" name="cardType" id="hidden-card-type" value="">
-                <input type="hidden" name="address" value="">
-                <input type="hidden" name="suburb" value="">
-                <input type="hidden" name="state" value="">
-                <input type="hidden" name="postcode" value="">
-                <input type="hidden" name="fname" value="">
-                <input type="hidden" name="lname" value="">
-                <input type="hidden" name="phone" value="">
+            
 
-                <button type="submit" class="checkout-btn">Checkout</button>
+        <!-- Hidden input for last four digits of the card -->
+        <input type="hidden" name="cardLastFour" id="card-last-four" value="">
+
+
+
+        <!-- Checkout Button -->
+        <form action="order_confirmation.php" method="POST" id="checkout-form">
+            <input type="hidden" name="items" value='<?php echo json_encode($items); ?>'>
+            <input type="hidden" name="totalAmount" value="<?php echo htmlspecialchars($totalAmount); ?>">
+            <input type="hidden" name="discountedTotal" value="">
+            <input type="hidden" name="cardType" id="hidden-card-type" value="">
+            <input type="hidden" name="address" value="">
+            <input type="hidden" name="suburb" value="">
+            <input type="hidden" name="state" value="">
+            <input type="hidden" name="postcode" value="">
+            <input type="hidden" name="fname" value="">
+            <input type="hidden" name="lname" value="">
+            <input type="hidden" name="phone" value="">
+
+            <button type="submit" class="checkout-btn">Checkout</button>
             </form>
         </div>
     </main>

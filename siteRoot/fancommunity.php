@@ -95,11 +95,14 @@ $geolocationData = getUserGeolocation($ip); // Pass the IP address to fetch geol
                 <img src="./Resources/Images/fancommunity/clubs/club6.png" alt="Club 6">
             </div>
             <div class="club-summary">
-                <div class="summary-box">
-                    <span>+57.4k</span>
-                    <p>Clubs Available</p>
-                </div>
-            </div>
+    <a href="clubsAvailable.php" class="summary-link">
+        <div class="summary-box">
+            <span>+57.4k</span>
+            <p>Clubs Available</p>
+        </div>
+    </a>
+</div>
+
         </div>
     </section>
 

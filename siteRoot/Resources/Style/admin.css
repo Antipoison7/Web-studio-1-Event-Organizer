@@ -30,10 +30,20 @@
     margin-bottom: 20px;
 }
 
+.userBox h3, .userBox h4
+{
+    word-wrap: break-word;
+}
+
 .userBox div
 {
     box-shadow: rgb(0, 0, 0) 0px 0px 0px 3px;
     padding: 10px;
+}
+
+.kobold
+{
+    font-weight: normal;
 }
 
 .userBox div img

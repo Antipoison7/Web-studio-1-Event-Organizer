@@ -38,11 +38,11 @@
           <img src=".<?php echo($userResults["profile_picture"]); ?>" alt="Profile Picture" class="profileImage">
         </div>
         <div class="mainInfo">
-          <h2><?php echo($userResults["display_name"]); ?></h2>
-          <h3><?php echo($userResults["real_name"]); ?></h3>
+          <h2><?php echo(htmlspecialchars($userResults["display_name"])); ?></h2>
+          <h3><?php echo(htmlspecialchars($userResults["real_name"])); ?></h3>
         </div>
       </div>
-      <p><?php echo($userResults["profile_description"]); ?></p>
+      <p><?php echo(htmlspecialchars($userResults["profile_description"])); ?></p>
     </div>
 
     <?php makeFooter(); ?>

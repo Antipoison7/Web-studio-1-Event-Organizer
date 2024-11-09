@@ -41,10 +41,10 @@
         <label for=\"" . $x["username"] . "\" class=\"userBox\">
           <div class=\"highlightBox\">
             <img src=\".." . $x["profile_picture"] . "\">
-            <h3>Username: " . $x["username"] . "</h3>
-            <h4>Display Name: " . $x["display_name"] . "</h4>
-            <h4>Real Name: " . $x["real_name"] . "</h4>
-            <p>Description: " . $x["profile_description"] . "</p>
+            <h3>Username: " . htmlspecialchars($x["username"]) . "</h3>
+            <h4>Display Name: " . htmlspecialchars($x["display_name"]) . "</h4>
+            <h4>Real Name: " . htmlspecialchars($x["real_name"]) . "</h4>
+            <p>Description: " . htmlspecialchars($x["profile_description"]) . "</p>
             <p>Archived: " . $archiveVal . "</p>
           </div>
         </label>");

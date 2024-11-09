@@ -1,4 +1,6 @@
 <?php
+session_start();
+include_once('./Resources/Helper/loginHelper.php');
 // Database connection
 $servername = "talsprddb02.int.its.rmit.edu.au";
 $username = "COSC3046_2402_UGRD_1479_G4";
@@ -26,7 +28,7 @@ function getReplies($discussionId) {
 // Function to fetch random discussions from the database
 function fetchRandomDiscussions() {
     global $conn;
-    $sql = "SELECT id, title, content, likes, dislikes FROM discussions ORDER BY id DESC LIMIT 500";
+    $sql = "SELECT id, title, content, likes, dislikes FROM discussions WHERE Archived != 1 ORDER BY id DESC LIMIT 500";
     $result = $conn->query($sql);
 
     if (!$result) {
@@ -42,6 +44,12 @@ function fetchRandomDiscussions() {
     return $discussions;
 
     
+}
+
+$isAdmin = false;
+
+if (isset($_SESSION["loginDetails"]["username"]) && isset($_SESSION["loginDetails"]["password"])) {
+  $isAdmin = isValidAdminLogin($_SESSION["loginDetails"]["username"], $_SESSION["loginDetails"]["password"]);
 }
 ?>
 <!DOCTYPE html>
@@ -126,7 +134,7 @@ function fetchRandomDiscussions() {
         echo "<span>Dislikes: {$discussions[$i]['dislikes']}</span>";
         echo "<br>";
         echo "<div class = 'like-button'>";
-        echo "<a href='delete_discussion.php?id={$discussions[$i]['id']}' onclick='return confirm(\"Are you sure you want to delete this discussion?\");' class='delete-btn'>Delete</a>";
+        if($isAdmin){echo "<a href='#' onclick='tryArchivePost(\"{$discussions[$i]['id']}\")' class='delete-btn'>Delete</a>";}
         echo "<a href='#' class='like-btn' data-id='{$discussions[$i]['id']}'>Like</a> ";
         echo "<a href='#' class='dislike-btn' data-id='{$discussions[$i]['id']}'>Dislike</a> ";
         echo "<a href='reply.php?discussion_id={$discussions[$i]['id']}'>Reply</a>";
@@ -145,7 +153,7 @@ function fetchRandomDiscussions() {
             echo "<span>Dislikes: {$discussions[$i + 1]['dislikes']}</span>";
             echo "<br>";
             echo "<div class = 'like-button'>";
-            echo "<a href='delete_discussion.php?id={$discussions[$i]['id']}' onclick='return confirm(\"Are you sure you want to delete this discussion?\");' class='delete-btn'>Delete</a>";
+            if($isAdmin){echo "<a href='delete_discussion.php?id={$discussions[$i]['id']}' onclick='return confirm(\"Are you sure you want to delete this discussion?\");' class='delete-btn'>Delete</a>";}
             echo "<a href='#' class='like-btn' data-id='{$discussions[$i + 1]['id']}'>Like</a> ";
             echo "<a href='#' class='dislike-btn' data-id='{$discussions[$i + 1]['id']}'>Dislike</a> ";
             echo "<a href='reply.php?discussion_id={$discussions[$i + 1]['id']}'>Reply</a>";
@@ -258,6 +266,38 @@ function fetchRandomDiscussions() {
             });
         });
     });
+
+    <?php if ($isAdmin == true) { ?>
+        //Yes this is an awful way to do this (The whole code within the isAdmin check), Yes I would rather not have to do it this way but I commited to using Javascript and APIs and I don't know how to pass a PHP session through a POST request
+        //As such this awful solution exists that I would love to fix but I do not have time nor the resources to do it, please ignore this is you are marking / looking over my work - ---(___C'>
+  function toggleDeleteMenu(eventName) {
+    let deleteMenuBox = document.getElementById("deleteBox" + eventName);
+    deleteMenuBox.classList.toggle("hiddenClass");
+  }
+
+  function tryArchivePost(eventName) {
+    //Ideally I would not do it like this however I am retrofitting the actual code onto what has been given to me because I have a writeup to do and he went ahead and just added this code without even
+    //Checking to see if people are admins or are the creators of the post (As of the time of writing this, that feature has not been implemented) ---(___C'>
+    if(confirm("Are you sure you want to Archive this post (ID: " + eventName + ")?"))
+    {
+      fetch("../APIs/api.php", {
+        method: "POST",
+        body: JSON.stringify({
+          function: "archivePost",
+          Username: "<?php echo($_SESSION["loginDetails"]["username"]); ?>",
+          Password: "<?php echo($_SESSION["loginDetails"]["password"]); ?>",
+          varA: eventName
+        }),
+        headers: {
+          "Content-type": "application/x-www-form-urlencoded; charset=UTF-8"
+        }
+      }).then((response) => response.json()).then((json) => {location.reload("./discussions.php")}) ;
+    //   if(typeof json.status !== 'undefined'){document.getElementById("bigPost" + eventName).remove();}
+      ;
+    }
+    window.event.preventDefault();
+  }
+  <?php } ?>
 </script>
 
 <script>

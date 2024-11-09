@@ -57,14 +57,14 @@
                 <div class=\"footerItem\">
                     <div>
                         <h1>Forum Links</h1>
-                        <a href=\"../discussionForum.php\"><h2>Home</h2></a>
+                        <a href=\"../discussions.php\"><h2>View Forum</h2></a>
                         
                         <br>
                     </div>
                     <div>
                         <h1>Event Links</h1>
+                        <a href=\"../discussionForum.php\"><h2>View Events</h2></a>
                         <a href=\"../eventRegistration.php\"><h2>Create an Event</h2></a>
-                        
                         <br>
                     </div>");
 

@@ -102,4 +102,84 @@ function getProfilePicture($username)
     }
 }
 
+function archiveEvent($EventID)
+{
+    try
+    {
+        $db = new PDO("mysql:host=talsprddb02.int.its.rmit.edu.au;dbname=COSC3046_2402_UGRD_1479_G4", "COSC3046_2402_UGRD_1479_G4", "GYS3sfUkzIqA");
+        $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        
+        $stmt = $db->prepare("SELECT '1' FROM EventList WHERE EventID = :inputID");    
+
+        $stmt->bindParam(':inputID', $EventID, PDO::PARAM_STR);
+        $stmt->execute();
+
+        $returnVal = $stmt->fetchColumn();
+
+        if($returnVal != false)
+        {
+            $stmt = $db->prepare("UPDATE EventList SET archived = 1 WHERE EventID = :inputID;");
+
+            $stmt->bindParam(':inputID', $EventID, PDO::PARAM_STR);
+            $returnVal = $stmt->execute();
+        }
+
+        $db = null;
+        $stmt = null;
+
+        if($returnVal)
+        {
+            return json_encode(['status' => "Successfully archived post"]);
+        }
+        else
+        {
+            return json_encode(['error' => 'No Event found at ID: ' . $EventID]);
+        }
+    }
+    catch (PDOException $e)
+    {
+        return ['error' => 'Internal Error ' . $e->getMessage()];
+    }
+}
+
+function archivePost($PostID)
+{
+    try
+    {
+        $db = new PDO("mysql:host=talsprddb02.int.its.rmit.edu.au;dbname=COSC3046_2402_UGRD_1479_G4", "COSC3046_2402_UGRD_1479_G4", "GYS3sfUkzIqA");
+        $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        
+        $stmt = $db->prepare("SELECT '1' FROM discussions WHERE id = :inputID");    
+
+        $stmt->bindParam(':inputID', $PostID, PDO::PARAM_STR);
+        $stmt->execute();
+
+        $returnVal = $stmt->fetchColumn();
+
+        if($returnVal != false)
+        {
+            $stmt = $db->prepare("UPDATE discussions SET archived = 1 WHERE id = :inputID;");
+
+            $stmt->bindParam(':inputID', $PostID, PDO::PARAM_STR);
+            $returnVal = $stmt->execute();
+        }
+
+        $db = null;
+        $stmt = null;
+
+        if($returnVal)
+        {
+            return json_encode(['status' => "Successfully archived post"]);
+        }
+        else
+        {
+            return json_encode(['error' => 'No Post found at ID: ' . $PostID]);
+        }
+    }
+    catch (PDOException $e)
+    {
+        return ['error' => 'Internal Error ' . $e->getMessage()];
+    }
+}
+
 ?>

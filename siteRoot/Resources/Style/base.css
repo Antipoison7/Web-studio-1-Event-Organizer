@@ -548,9 +548,13 @@ border-top: 5px solid black;
 }
 
 #logo {
-    
-
     margin: 0;
+}
+
+#logo a
+{
+    display: flex;
+    justify-content: center;
 }
 
 #logo a img

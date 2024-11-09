@@ -226,6 +226,38 @@ $geolocationData = getUserGeolocation($ip); // Pass the IP address to fetch geol
             <a href="#"><img src="./Resources/Images/fancommunity/social/youtube.png" alt="YouTube"></a>
         </div>
     </footer>
+    <div>
+    <input type="text" id="discussionContent" placeholder="Enter your discussion">
+    <button onclick="submitDiscussion()">Add Discussion</button>
+</div>
+
+<script>
+   function submitDiscussion() {
+       const content = document.getElementById('discussionContent').value;
+       addDiscussion(content);
+   }
+</script>
+
 
 </body>
 </html>
+<script>
+    function addDiscussion(content) {
+        fetch('api.php?action=addDiscussion', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: `content=${encodeURIComponent(content)}`
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.status === 'success') {
+                alert(data.message);
+                // Optionally reload or update discussions here
+            } else {
+                alert(data.message);
+            }
+        });
+    }
+</script>

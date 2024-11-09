@@ -136,74 +136,160 @@ if ($conn->connect_error) {
                     <option value="WA">WA</option>
                 </select>
                 <label for="postcode">Postcode *</label>
-                <input type="text" id="postcode" placeholder="Enter Postcode" required>
+                <input type="text" id="postcode" placeholder="Enter Postcode" maxlength="4" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 4)" required>
             </div>
 
                 <label for="phone">Mobile Phone *</label>
-                <input type="text" id="phone" placeholder="Enter Mobile Phone" required>
+                <input type="text" id="phone" placeholder="Enter Mobile Phone" maxlength="10" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 10)" required>
             </div>
         
-            <!-- Checkout Button -->
-            <form action="order_confirmation.php" method="POST" id="checkout-form">
-                <input type="hidden" name="items" value='<?php echo json_encode($items); ?>'>
-                <input type="hidden" name="totalAmount" value="<?php echo htmlspecialchars($totalAmount); ?>">
-                <input type="hidden" name="discountedTotal" value="">
-                <input type="hidden" name="cardType" id="hidden-card-type" value="">
-                <input type="hidden" name="address" value="">
-                <input type="hidden" name="suburb" value="">
-                <input type="hidden" name="state" value="">
-                <input type="hidden" name="postcode" value="">
-                <input type="hidden" name="fname" value="">
-                <input type="hidden" name="lname" value="">
-                <input type="hidden" name="phone" value="">
+            
 
-                <button type="submit" class="checkout-btn">Checkout</button>
+        <!-- Hidden input for last four digits of the card -->
+        <input type="hidden" name="cardLastFour" id="card-last-four" value="">
+
+
+
+        <!-- Checkout Button -->
+        <form action="order_confirmation.php" method="POST" id="checkout-form">
+            <input type="hidden" name="items" value='<?php echo json_encode($items); ?>'>
+            <input type="hidden" name="totalAmount" value="<?php echo htmlspecialchars($totalAmount); ?>">
+            <input type="hidden" name="discountedTotal" value="">
+            <input type="hidden" name="cardType" id="hidden-card-type" value="">
+            <input type="hidden" name="address" value="">
+            <input type="hidden" name="suburb" value="">
+            <input type="hidden" name="state" value="">
+            <input type="hidden" name="postcode" value="">
+            <input type="hidden" name="fname" value="">
+            <input type="hidden" name="lname" value="">
+            <input type="hidden" name="phone" value="">
+
+            <button type="submit" class="checkout-btn">Checkout</button>
             </form>
         </div>
     </main>
     
     <script>
     document.querySelector('.apply-coupon-btn').addEventListener('click', function() {
-        const couponCode = document.getElementById('coupon-code').value;
+    const couponCode = document.getElementById('coupon-code').value;
 
-        fetch('apply_coupon.php', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ couponCode })
-        })
-        .then(response => response.json())
-        .then(data => {
-            const totalElement = document.querySelector('.order-summary-section p strong');
-            let totalAmount = parseFloat(totalElement.textContent.replace('$', ''));
+    fetch('apply_coupon.php', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ couponCode })
+    })
+    .then(response => response.json())
+    .then(data => {
+        const totalElement = document.querySelector('.order-summary-section p strong');
+        let totalAmount = parseFloat(totalElement.textContent.replace('$', ''));
 
-            if (data.success) {
-                const discount = totalAmount * (data.discount / 100);
-                const discountedTotal = (totalAmount - discount).toFixed(2);
+        if (data.success) {
+            const discount = totalAmount * (data.discount / 100);
+            const discountedTotal = (totalAmount - discount).toFixed(2);
 
-                totalElement.textContent = `$${discountedTotal}`;
-                document.querySelector('input[name="discountedTotal"]').value = discountedTotal;
-                
-                alert(`Coupon applied! ${data.discount}% discount has been applied.`);
-            } else {
-                alert('Invalid or expired coupon code.');
-            }
-        })
-        .catch(error => console.error('Error:', error));
-    });
+            totalElement.textContent = `$${discountedTotal}`;
+            document.querySelector('input[name="discountedTotal"]').value = discountedTotal;
+            
+            alert(`Coupon applied! ${data.discount}% discount has been applied.`);
+        } else {
+            alert('Invalid or expired coupon code.');
+        }
+    })
+    .catch(error => console.error('Error:', error));
+});
 
-    // Fill in form data on checkout click
+// Checkout button click event with validation for all required fields
     document.querySelector('.checkout-btn').addEventListener('click', function(e) {
-        document.getElementById('hidden-card-type').value = document.getElementById('card-type').value;
-        document.querySelector('input[name="address"]').value = document.getElementById('address').value;
-        document.querySelector('input[name="suburb"]').value = document.getElementById('suburb').value;
-        document.querySelector('input[name="state"]').value = document.getElementById('state').value;
-        document.querySelector('input[name="postcode"]').value = document.getElementById('postcode').value;
-        document.querySelector('input[name="fname"]').value = document.getElementById('card-holder-fname').value;
-        document.querySelector('input[name="lname"]').value = document.getElementById('card-holder-lname').value;
-        document.querySelector('input[name="phone"]').value = document.getElementById('phone').value;
+    // Get field values
+    const cardNumber = document.getElementById('card-number').value.trim();
+    const cardType = document.getElementById('card-type').value.trim();
+    const expMonth = document.getElementById('exp-month').value.trim();
+    const expYear = document.getElementById('exp-year').value.trim();
+    const securityCode = document.getElementById('security-code').value.trim();
+    const firstName = document.getElementById('card-holder-fname').value.trim();
+    const lastName = document.getElementById('card-holder-lname').value.trim();
+    const address = document.getElementById('address').value.trim();
+    const suburb = document.getElementById('suburb').value.trim();
+    const state = document.getElementById('state').value.trim();
+    const postcode = document.getElementById('postcode').value.trim();
+    const phone = document.getElementById('phone').value.trim();
+
+    // Validate fields
+    if (!cardNumber) {
+        alert("Please enter your credit card number.");
+        e.preventDefault();
+        return;
+    }
+    if (!cardType) {
+        alert("Please select your card type.");
+        e.preventDefault();
+        return;
+    }
+    if (!expMonth) {
+        alert("Please select the expiration month.");
+        e.preventDefault();
+        return;
+    }
+    if (!expYear) {
+        alert("Please select the expiration year.");
+        e.preventDefault();
+        return;
+    }
+    if (!securityCode) {
+        alert("Please enter the security code.");
+        e.preventDefault();
+        return;
+    }
+    if (!firstName) {
+        alert("Please enter the card holder's first name.");
+        e.preventDefault();
+        return;
+    }
+    if (!lastName) {
+        alert("Please enter the card holder's last name.");
+        e.preventDefault();
+        return;
+    }
+    if (!address) {
+        alert("Please enter the billing address.");
+        e.preventDefault();
+        return;
+    }
+    if (!suburb) {
+        alert("Please enter the suburb.");
+        e.preventDefault();
+        return;
+    }
+    if (!state) {
+        alert("Please select the state.");
+        e.preventDefault();
+        return;
+    }
+    if (!postcode) {
+        alert("Please enter the postcode.");
+        e.preventDefault();
+        return;
+    }
+    if (!phone) {
+        alert("Please enter a mobile phone number.");
+        e.preventDefault();
+        return;
+    }
+
+    // Fill in form data for hidden fields if all validations pass
+    document.getElementById('hidden-card-type').value = cardType;
+    document.querySelector('input[name="address"]').value = address;
+    document.querySelector('input[name="suburb"]').value = suburb;
+    document.querySelector('input[name="state"]').value = state;
+    document.querySelector('input[name="postcode"]').value = postcode;
+    document.querySelector('input[name="fname"]').value = firstName;
+    document.querySelector('input[name="lname"]').value = lastName;
+    document.querySelector('input[name="phone"]').value = phone;
     });
+
+
     </script>
 </body>
 </html>

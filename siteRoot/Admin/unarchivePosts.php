@@ -27,7 +27,7 @@
         foreach($result as $x)
         {
     echo("<input type=\"radio\" name=\"deleteRadio\" id=\"event" . $x["id"] . "\" value=\"" . $x["id"] . "\" class=\"hideRadioButton\">
-        <label for=\"event" . $x["id"] . "\" class=\"userBox\">
+        <label for=\"event" . $x["id"] . "\" class=\"userBox\" tabindex=\"0\">
           <div class=\"highlightBox\">
             <h3>ID: " . htmlspecialchars($x["id"]) . " | " . htmlspecialchars($x["title"]) . "</h3>
             <h4>Content: <span class=\"kobold\">" . htmlspecialchars($x["content"]) . "</span></h4>

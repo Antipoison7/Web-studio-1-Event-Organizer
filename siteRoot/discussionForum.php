@@ -40,7 +40,7 @@ if (isset($_SESSION["loginDetails"]["username"]) && isset($_SESSION["loginDetail
       die("Connection failed: " . mysqli_connect_error());
     }
 
-    $sql = "SELECT EventID, eventName, eventDesc, priceCost FROM EventList";
+    $sql = "SELECT EventID, eventName, eventDesc, priceCost FROM EventList WHERE NOT archived = 1;";
     $result = mysqli_query($conn, $sql);
     echo "<div class='DiscussionBlock'>";
 
@@ -98,6 +98,7 @@ if (isset($_SESSION["loginDetails"]["username"]) && isset($_SESSION["loginDetail
 </body>
 
 <script>
+  <?php if ($isAdmin == true) { ?>
   function toggleDeleteMenu(eventName) {
     let deleteMenuBox = document.getElementById("deleteBox" + eventName);
     deleteMenuBox.classList.toggle("hiddenClass");
@@ -108,10 +109,23 @@ if (isset($_SESSION["loginDetails"]["username"]) && isset($_SESSION["loginDetail
 
     if (archiveValue == "Delete") //Replace with actual word
     {
-      //This represents an api call that passes the admins credentials through, but I need to do that later
-      document.getElementById("bigPost" + eventName).remove();
+      fetch("../APIs/api.php", {
+        method: "POST",
+        body: JSON.stringify({
+          function: "archiveEvent",
+          Username: "<?php echo($_SESSION["loginDetails"]["username"]); ?>",
+          Password: "<?php echo($_SESSION["loginDetails"]["password"]); ?>",
+          varA: eventName
+        }),
+        headers: {
+          "Content-type": "application/x-www-form-urlencoded; charset=UTF-8"
+        }
+      }).then((response) => response.json()).then((json) => { if(typeof json.status !== 'undefined'){document.getElementById("bigPost" + eventName).remove();}}) ;
+
+      ;
     }
   }
+  <?php } ?>
 </script>
 
 </html>

@@ -11,7 +11,11 @@ header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE");
 //THIS IS JUST TO PROVIDE SAMPLE CODE FOR USER AUTHENTICATION AND COMMANDS
 
 // Get the request method
-$method = $_SERVER['REQUEST_METHOD'];
+$method = "none";
+if(isset($_SERVER['REQUEST_METHOD']))
+{
+    $method = $_SERVER['REQUEST_METHOD'];
+}
 
 //Pre-emptively sets the error code for if a function is not found
 $errorCode = "Invalid function, function does not exist";
@@ -62,18 +66,53 @@ if(isset($_GET["function"])) //Checks to see if a function has been sent
             
     }
 }
+else if((isset($_POST["function"]))||($method == "POST"))
+{
+    $switchCase = json_decode(file_get_contents('php://input'));
+    
+    switch($switchCase->function)
+    {
+        case 'archiveEvent':
+            if(isset($switchCase->Username)&&isset($switchCase->Password)&&isset($switchCase->varA)) 
+            {   //Check to see if the user has at max level 3 (admin) clearance
+                if(isAdmin($switchCase->Username,$switchCase->Password))
+                {
+                    echo(archiveEvent($switchCase->varA));
+                }
+                else
+                {
+                    $errorCode = "Username and/or password invalid";
+                    goto failedAPIpost;
+                }
+            }
+            else
+            {
+                $errorCode = "Username and/or password not set";
+                goto failedAPIpost;
+            }
+            break;
+
+        default: 
+            failedAPIpost: //Skip here to display error codes
+            echo(json_encode(['error' => 'invalid function usage', 'errorMessage' => $errorCode]));
+            break;
+    }
+}
 else //If function is not set, return all possible commands
 {
     echo(json_encode(
         ['greeting' => 'Welcome to the webapi for Web Programming Studio Group 1',
         'publicFunctions' => [
-            'returnUserPfp' => [
-                'description' =>'Returns the path of the user\'s profile picture relative to siteRoot as the root folder', 
+            'GET:function=returnUserPfp' => [
+                'description' =>'Returns the path of the user\'s profile picture relative to siteRoot as the root folder.', 
                 'parameters' => 'Accepts one input assigned on varA=Str']
             ],
         'privateFunctions' => [
-            'dumpAllUserData' => [
-                'description' => 'Self explanatory, dumps all user data (NOTE: WILL NOT DUMP ACCOUNT DATA)',
-                'parameters' => 'Username=Str&Password=Str']]]));
+            'GET:function=dumpAllUserData' => [
+                'description' => 'Self explanatory, dumps all user data (NOTE: WILL NOT DUMP ACCOUNT DATA).',
+                'parameters' => 'Username=Str&Password=Str'],
+            'POST:function=archiveEvent' => [
+                'description' => 'Input is admin login and Event ID and it will archive the event supplied.',
+                'parameters' => 'Username=Str&Password=Str&varA=Str']]]));
 }
 ?>

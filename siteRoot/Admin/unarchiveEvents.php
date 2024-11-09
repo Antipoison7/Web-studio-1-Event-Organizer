@@ -75,15 +75,15 @@
               {
                 if($_SESSION["issues"]["adminStuff"] == "Changed")
                 {
-                  echo("<h2>Post Restored</h2>");
+                  echo("<h2>Event Restored</h2>");
                 }
                 if($_SESSION["issues"]["adminStuff"] == "What happened?")
                 {
-                  echo("<h2 class=\"darkRedColor\">Post Not Found</h2>");
+                  echo("<h2 class=\"darkRedColor\">Event Not Found</h2>");
                 }
                 if($_SESSION["issues"]["adminStuff"] == "NotSet")
                 {
-                  echo("<h2 class=\"darkRedColor\">Pick a post please</h2>");
+                  echo("<h2 class=\"darkRedColor\">Pick an event please</h2>");
                 }
               }
               

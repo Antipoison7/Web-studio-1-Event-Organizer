@@ -9,8 +9,8 @@ $conn = new mysqli($servername, $username, $password, $dbname);
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // Check if a file was uploaded without errors
-    if (isset($_FILES['file']) && $_FILES['file']['error'] == 0) {
-        $event_id = $_POST['event_id'];
+    if (isset($_FILES['file']) && $_FILES['file']['error'] == 0 && isset($_GET['event_id'])) {
+        $event_id = intval($_GET['event_id']); // Retrieve event ID from query parameters
         $file = $_FILES['file'];
         $fileName = $file['name'];
         $fileTmpPath = $file['tmp_name'];
@@ -32,14 +32,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $stmt->execute();
             $stmt->close();
 
-            // Redirect back to gallery page
-            header("Location: event1_gallery.php");
+            // Redirect back to the specific event gallery page
+            header("Location: event_gallery.php?event_id=" . $event_id);
             exit();
         } else {
             echo "Error: Could not upload the file.";
         }
     } else {
-        echo "Error: No file uploaded or there was an error during the upload.";
+        echo "Error: No file uploaded, event ID missing, or there was an error during the upload.";
     }
 } else {
     echo "Invalid request.";

@@ -92,6 +92,26 @@ else if((isset($_POST["function"]))||($method == "POST"))
             }
             break;
 
+            case 'archivePost':
+                if(isset($switchCase->Username)&&isset($switchCase->Password)&&isset($switchCase->varA)) 
+                {   //Check to see if the user has at max level 3 (admin) clearance
+                    if(isAdmin($switchCase->Username,$switchCase->Password))
+                    {
+                        echo(archivePost($switchCase->varA));
+                    }
+                    else
+                    {
+                        $errorCode = "Username and/or password invalid";
+                        goto failedAPIpost;
+                    }
+                }
+                else
+                {
+                    $errorCode = "Username and/or password not set";
+                    goto failedAPIpost;
+                }
+                break;
+
         default: 
             failedAPIpost: //Skip here to display error codes
             echo(json_encode(['error' => 'invalid function usage', 'errorMessage' => $errorCode]));
@@ -113,6 +133,9 @@ else //If function is not set, return all possible commands
                 'parameters' => 'Username=Str&Password=Str'],
             'POST:function=archiveEvent' => [
                 'description' => 'Input is admin login and Event ID and it will archive the event supplied.',
-                'parameters' => 'Username=Str&Password=Str&varA=Str']]]));
+                'parameters' => 'Username=Str&Password=Str&varA=Int'],
+            'POST:function=archivePost' => [
+                'description' => 'Input is admin login and Post ID and it will archive the post supplied.',
+                'parameters' => 'Username=Str&Password=Str&varA=Int']]]));
 }
 ?>

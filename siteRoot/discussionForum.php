@@ -59,7 +59,7 @@ if (isset($_SESSION["loginDetails"]["username"]) && isset($_SESSION["loginDetail
                           <element id='Price_Amount'>$<a href=\"#popup-ticket\">" . cleanTextHTML($row["priceCost"]) . "</a>
                             <div id=\"popup-ticket\">Ticket added to Cart <a href=\"#\"> Close the Popup</a></div>";
         if ($isAdmin == true) {
-          echo ("<img src=\"./Resources/Images/Resources/delete.png\" alt=\"Delete Post\" class=\"discussionDeleteImage\" onclick=\"toggleDeleteMenu(" . $row["EventID"] . ")\" tabindex=\"0\" role=\"button\">
+          echo ("<a href=\"#\" onclick=\"toggleDeleteMenu(" . $row["EventID"] . ")\" tabindex=\"0\"><img src=\"./Resources/Images/Resources/delete.png\" alt=\"Delete Post\" class=\"discussionDeleteImage\"></a>
                           </element>
 
                           <div class=\"discussionDeleteDiv hiddenClass\" id=\"deleteBox" . $row["EventID"] . "\">
@@ -67,7 +67,7 @@ if (isset($_SESSION["loginDetails"]["username"]) && isset($_SESSION["loginDetail
                             <p>Copy this word to confirm: <span class=\"darkRedColor\">Delete</span></p>
                             <div class=\"flex\" style=\"align-items:center; gap: 5px;\">
                               <input type=\"text\" id=\"post" . $row["EventID"] . "\">
-                              <div class=\"smallButtonWarn\" onclick=\"tryArchivePost(" . $row["EventID"] . ")\" tabindex=\"0\">Archive</div>
+                              <a href=\"#\" onclick=\"tryArchivePost(" . $row["EventID"] . ")\" tabindex=\"0\"><div class=\"smallButtonWarn\">Archive</div></a>
                             </div>
                           </div>");
         } else {

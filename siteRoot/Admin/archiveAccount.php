@@ -88,7 +88,7 @@
 
                 }
                 echo("<h2 class=\"error\"></h2>")
-              }
+              
             ?>
               <div class="userDetails">
                 <?php

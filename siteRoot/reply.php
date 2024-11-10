@@ -76,16 +76,25 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             cursor: pointer;
             text-decoration: underline;
         }
+        .discussion-text {
+            display: block;
+            overflow: hidden;
+            max-height: 50px;
+            line-height: 1.5em;
+        }
+        .discussion-text.expanded {
+            max-height: none;
+        }
     </style>
     <script>
         function toggleText(element) {
             const fullText = element.previousElementSibling;
-            if (fullText.style.display === "none") {
-                fullText.style.display = "inline";
-                element.textContent = "Read Less";
+            if (fullText.classList.contains('expanded')) {
+            fullText.classList.remove('expanded');
+            element.textContent = "Read More";
             } else {
-                fullText.style.display = "none";
-                element.textContent = "Read More";
+                fullText.classList.add('expanded');
+                element.textContent = "Show Less";
             }
         }
     </script>
@@ -102,27 +111,19 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     <!-- Display selected discussion -->
     <?php if ($discussion): ?>
-        <h2><?php echo htmlspecialchars($discussion['title']); ?></h2>
-        <p>
-            <span class="text-container"><?php echo htmlspecialchars(substr($discussion['content'], 0, 200)); ?></span>
-            <?php if (strlen($discussion['content']) > 500): ?>
-                <span class="text-container" style="display: none;"><?php echo htmlspecialchars(substr($discussion['content'], 200)); ?></span>
+        <h2><?php echo ($discussion['title']); ?></h2>
+        <p><?php echo ($discussion['content']); ?></p>
                 <span class="read-more-link" onclick="toggleText(this)">Read More</span>
-            <?php endif; ?>
-        </p>
     <?php endif; ?>
 
     <!-- Display previous replies -->
     <h3>Replies</h3>
     <?php while ($reply = $replies->fetch_assoc()): ?>
         <div class="reply">
-            <p>
-                <span class="text-container"><?php echo htmlspecialchars(substr($reply['reply_text'], 0, 100)); ?></span>
-                <?php if (strlen($reply['reply_text']) > 500): ?>
-                    <span class="text-container" style="display: none;"><?php echo htmlspecialchars(substr($reply['reply_text'], 100)); ?></span>
-                    <span class="read-more-link" onclick="toggleText(this)">Read More</span>
-                <?php endif; ?>
+            <p class="discussion-text">
+                <?php echo ($reply['reply_text']); ?>
             </p>
+            <span class="read-more-link" onclick="toggleText(this)">Read More</span>
             <small>
                 <?php echo htmlspecialchars($reply['reply_date']) . " | "; 
                 if($isAdmin){

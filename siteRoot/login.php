@@ -48,6 +48,8 @@
       </div>
     </form>
 
-    <?php makeFooter(); ?>
+    <?php makeFooter(); 
+    $_SESSION["issues"]["accountValidation"] = null;
+    ?>
   </body>
 </html>

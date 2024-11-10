@@ -32,7 +32,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         }
 
         // Check file size (example: max size 15MB)
-        if ($fileSize > 15 * 1024 * 1024) { // 5MB
+        if ($fileSize > 15 * 1024 * 1024) { // 15MB
             echo "Error: File size exceeds the 15MB limit.";
             exit;
         }

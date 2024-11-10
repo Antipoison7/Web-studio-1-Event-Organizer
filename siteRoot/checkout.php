@@ -55,7 +55,7 @@ if ($conn->connect_error) {
             echo "No items found in the cart.";
         }
         ?>
-        <a href="#" class="cancel-order">Cancel Order</a>
+        
     
         <!-- Coupon Code Section -->
         <div class="coupon-section">

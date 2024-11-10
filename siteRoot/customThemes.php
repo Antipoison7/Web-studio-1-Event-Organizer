@@ -30,7 +30,7 @@
         <p><a target="_blank" href="./profileView.php?userLookup=Antipoison_7">Navigate to the individual profile page here</a></p>
         <p>And open the extension from your toolbar, clicking 'Write new style for "link to profile"'</p>
         <h3>Step 4: Paste the template you copied before and edit it</h3>
-        <h3>step 5: Send it </h3>
+        <h3>step 5: Send it to the email listed in Contact Us</h3>
     </div>
     <?php
       makeFooter();

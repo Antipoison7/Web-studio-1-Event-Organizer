@@ -119,7 +119,7 @@ function getUsernameById($id)
 function getRepliesByCommentId($id)
 {
         global $db;
-        $result = mysqli_query($db, "SELECT * FROM replies WHERE comment_id=" . intval($id));
+        $result = mysqli_query($db, "SELECT * FROM replies WHERE discussion_id=" . intval($id));
         return mysqli_fetch_all($result, MYSQLI_ASSOC);
 }
 

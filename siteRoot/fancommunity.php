@@ -117,7 +117,7 @@ $geolocationData = getUserGeolocation($ip); // Pass the IP address to fetch geol
                     <img src="./Resources/Images/fancommunity/Fangallery/E1P1.jpg" alt="Event 1 Image 1">
                     <img src="./Resources/Images/fancommunity/Fangallery/E1P2.jpg" alt="Event 1 Image 2">
                     <img src="./Resources/Images/fancommunity/Fangallery/E1P3.jpg" alt="Event 1 Image 3">
-                    <img src="./Resources/Images/fancommunity/Fangallery/E1P4.jpg" alt="Event 1 Image 4">
+                    <img src="./Resources/Images/fancommunity/Fangallery/E3P2.jpg" alt="Event 1 Image 4">
                     <a href="event_gallery.php?event_id=1">
                     <div class="image-overlay">+10</div>
                     </a>
@@ -133,7 +133,7 @@ $geolocationData = getUserGeolocation($ip); // Pass the IP address to fetch geol
                     <img src="./Resources/Images/fancommunity/Fangallery/E2P1.jpg" alt="Event 2 Image 1">
                     <img src="./Resources/Images/fancommunity/Fangallery/E2P2.jpg" alt="Event 2 Image 2">
                     <img src="./Resources/Images/fancommunity/Fangallery/E2P3.jpg" alt="Event 2 Image 3">
-                    <img src="./Resources/Images/fancommunity/Fangallery/E2P4.jpg" alt="Event 2 Image 4">
+                    <img src="./Resources/Images/fancommunity/Fangallery/E1P1.jpg" alt="Event 2 Image 4">
                     <a href="event_gallery.php?event_id=2">
                     <div class="image-overlay">+10</div>
                     </a>
@@ -149,7 +149,7 @@ $geolocationData = getUserGeolocation($ip); // Pass the IP address to fetch geol
                     <img src="./Resources/Images/fancommunity/Fangallery/E1P1.jpg" alt="Event 1 Image 1">
                     <img src="./Resources/Images/fancommunity/Fangallery/E1P2.jpg" alt="Event 1 Image 2">
                     <img src="./Resources/Images/fancommunity/Fangallery/E1P3.jpg" alt="Event 1 Image 3">
-                    <img src="./Resources/Images/fancommunity/Fangallery/E1P4.jpg" alt="Event 1 Image 4">
+                    <img src="./Resources/Images/fancommunity/Fangallery/image.png" alt="Event 1 Image 4">
                     <a href="event_gallery.php?event_id=3">
                     <div class="image-overlay">+10</div>
                     </a>
@@ -181,7 +181,7 @@ $geolocationData = getUserGeolocation($ip); // Pass the IP address to fetch geol
                     <img src="./Resources/Images/fancommunity/Fangallery/E4P1.jpg" alt="Event 4 Image 1">
                     <img src="./Resources/Images/fancommunity/Fangallery/E4P2.jpg" alt="Event 4 Image 2">
                     <img src="./Resources/Images/fancommunity/Fangallery/E4P3.jpg" alt="Event 4 Image 3">
-                    <img src="./Resources/Images/fancommunity/Fangallery/E4P4.jpg" alt="Event 4 Image 4">
+                    <img src="./Resources/Images/fancommunity/Fangallery/image copy.png" alt="Event 4 Image 4">
                     <a href="event_gallery.php?event_id=5">
                     <div class="image-overlay">+10</div>
                     </a>

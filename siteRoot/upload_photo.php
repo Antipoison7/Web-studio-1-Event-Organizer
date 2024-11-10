@@ -31,9 +31,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             exit;
         }
 
-        // Check file size (example: max size 5MB)
-        if ($fileSize > 5 * 1024 * 1024) { // 5MB
-            echo "Error: File size exceeds the 5MB limit.";
+        // Check file size (example: max size 15MB)
+        if ($fileSize > 15 * 1024 * 1024) { // 5MB
+            echo "Error: File size exceeds the 15MB limit.";
             exit;
         }
 

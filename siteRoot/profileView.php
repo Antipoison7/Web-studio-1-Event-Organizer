@@ -28,6 +28,7 @@
     <?php createMeta() ?>
     <link rel="stylesheet" href="./Resources/Style/base.css">
     <link rel="stylesheet" href="./Resources/Style/userProfile.css">
+    <link rel="stylesheet" href="./Resources<?php echo($userResults["theme_name"]) ?>">
     <link rel="icon" type="image/x-icon" href="./Resources/Images/Resources/favicon.png">
   </head>
   <body class="crunch">

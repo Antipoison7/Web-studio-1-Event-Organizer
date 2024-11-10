@@ -2,10 +2,27 @@
 session_start();
 include_once('./Resources/Helper/headers.php');
 
-$cartItems = [
-    ['title' => 'Soccer Game 7v7', 'price' => 5, 'img' => './Resources/Images/soccer.jpg', 'date' => '26/11/2024'],
-    ['title' => 'Tennis Tournament', 'price' => 20, 'img' => './Resources/Images/tennis.jpg', 'date' => '20/12 - 22/12']
-];
+if (!isset($_SESSION['cartItems'])) {
+    $_SESSION['cartItems'] = [];
+}
+
+// If an item was added via the discussion forum
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $input = json_decode(file_get_contents('php://input'), true);
+    if (isset($input['id'], $input['title'], $input['price'], $input['date'])) {
+        $_SESSION['cartItems'][] = [
+            'title' => $input['title'],
+            'price' => $input['price'],
+            'img' => './Resources/Images/default.jpg', // Default image, or you can modify this to pass a specific image
+            'date' => $input['date']
+        ];
+        echo json_encode(['success' => true]);
+        exit;
+    }
+}
+
+// Fetch cart items from session
+$cartItems = $_SESSION['cartItems'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -18,7 +35,7 @@ $cartItems = [
     <link rel="icon" type="image/x-icon" href="./Resources/Images/Resources/favicon.png">
 </head>
 <body>
-    
+
     <?php headerNoLogin("Shopping Cart") ?>
 
     <!-- Shopping Cart Section -->
@@ -83,60 +100,38 @@ $cartItems = [
     <!-- JavaScript for Quantity and Total Update -->
     <script>
         function updateItemTotal(index, price) {
-            // Get the selected quantity
             var quantity = document.getElementById('quantity' + index).value;
             var itemTotal = quantity * price;
-
-            // Update the item total display
             document.getElementById('item-total' + index).textContent = '$' + itemTotal;
-
-            // Update the hidden quantity input for the item
             document.getElementById('hidden-quantity' + index).value = quantity;
-
-            // Recalculate and update the cart total
             updateCartTotal();
         }
 
         function updateCartTotal() {
             var cartTotal = 0;
-            
-            // Loop through all items and sum their totals
             var itemTotals = document.querySelectorAll('.item-total');
             itemTotals.forEach(function(item) {
                 cartTotal += parseFloat(item.textContent.replace('$', ''));
             });
-
-            // Update the cart total display
             document.getElementById('cart-total').textContent = '$' + cartTotal;
-
-            // Update the hidden total input
             document.getElementById('hidden-total').value = cartTotal;
-
-            console.log("Updated cart total:", cartTotal); // Debugging log
         }
 
         function removeItem(index) {
-            // Remove the cart item from the DOM
             var cartItem = document.getElementById('cart-item' + index);
             if (cartItem) {
                 cartItem.remove();
             }
-
-            // Remove the corresponding hidden input fields
             var hiddenInputs = document.getElementById('hidden-inputs' + index);
             if (hiddenInputs) {
                 hiddenInputs.remove();
             }
-
-            // Recalculate and update the cart total
             updateCartTotal();
         }
 
-        // Debugging
         document.getElementById('cart-form').onsubmit = function() {
             var formData = new FormData(this);
             console.log("Form submission data:", formData);
-
             for (var pair of formData.entries()) {
                 console.log(pair[0]+ ': ' + pair[1]);
             }

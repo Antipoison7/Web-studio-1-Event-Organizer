@@ -174,30 +174,30 @@ if ($conn->connect_error) {
     const couponCode = document.getElementById('coupon-code').value;
 
     fetch('apply_coupon.php', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ couponCode })
-    })
-    .then(response => response.json())
-    .then(data => {
-        const totalElement = document.querySelector('.order-summary-section p strong');
-        let totalAmount = parseFloat(totalElement.textContent.replace('$', ''));
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ couponCode })
+})
+.then(response => response.json())
+.then(data => {
+    const totalElement = document.querySelector('.order-summary-section p strong');
+    let totalAmount = parseFloat(totalElement.textContent.replace('$', ''));
 
-        if (data.success) {
-            const discount = totalAmount * (data.discount / 100);
-            const discountedTotal = (totalAmount - discount).toFixed(2);
+    if (data.success) {
+        const discount = totalAmount * (data.discount / 100);
+        const discountedTotal = (totalAmount - discount).toFixed(2);
 
-            totalElement.textContent = `$${discountedTotal}`;
-            document.querySelector('input[name="discountedTotal"]').value = discountedTotal;
-            
-            alert(`Coupon applied! ${data.discount}% discount has been applied.`);
-        } else {
-            alert('Invalid or expired coupon code.');
-        }
-    })
-    .catch(error => console.error('Error:', error));
+        totalElement.textContent = `$${discountedTotal}`;
+        document.querySelector('input[name="discountedTotal"]').value = discountedTotal;
+        
+        alert(`Coupon applied! ${data.discount}% discount has been applied.`);
+    } else {
+        alert(data.message);
+    }
+})
+.catch(error => console.error('Error:', error));
 });
 
 // Checkout button click event with validation for all required fields

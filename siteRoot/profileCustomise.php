@@ -87,7 +87,7 @@
             </a>
 
             <h2>Archive Account? (Requires Password)</h2>
-            <a href="./" style="display:inline-block;">
+            <a href="./archiveAccount.php" style="display:inline-block;">
               <div class="buttonWarn">Archive</div>
             </a>
           </div>

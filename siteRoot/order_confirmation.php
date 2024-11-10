@@ -1,10 +1,11 @@
 <?php
 session_start();
+
 $orderNumber = strtoupper(uniqid('ORD')); // Generate unique order number
 
 // Retrieve submitted data
 $items = json_decode($_POST['items'], true);
-$totalAmount = $_POST['discountedTotal'] ?? $_POST['totalAmount'];
+$totalAmount = ($_POST['totalAmount'] ?? $_POST['totalAmount']);
 $cardType = htmlspecialchars($_POST['cardType']);
 $address = htmlspecialchars($_POST['address']);
 $suburb = htmlspecialchars($_POST['suburb']);
@@ -13,6 +14,8 @@ $postcode = htmlspecialchars($_POST['postcode']);
 $fname = htmlspecialchars($_POST['fname']);
 $lname = htmlspecialchars($_POST['lname']);
 $phone = htmlspecialchars($_POST['phone']);
+
+
 ?>
 
 <!DOCTYPE html>

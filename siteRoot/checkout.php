@@ -13,6 +13,8 @@ $conn = new mysqli($servername, $username, $password, $dbname);
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
+
+
 ?>
 
 <!DOCTYPE html>
@@ -55,7 +57,7 @@ if ($conn->connect_error) {
             echo "No items found in the cart.";
         }
         ?>
-        <a href="#" class="cancel-order">Cancel Order</a>
+        
     
         <!-- Coupon Code Section -->
         <div class="coupon-section">

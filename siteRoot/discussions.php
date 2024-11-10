@@ -153,7 +153,7 @@ if (isset($_SESSION["loginDetails"]["username"]) && isset($_SESSION["loginDetail
             echo "<span>Dislikes: {$discussions[$i + 1]['dislikes']}</span>";
             echo "<br>";
             echo "<div class = 'like-button'>";
-            if($isAdmin){echo "<a href='delete_discussion.php?id={$discussions[$i]['id']}' onclick='return confirm(\"Are you sure you want to delete this discussion?\");' class='delete-btn'>Delete</a>";}
+            if($isAdmin){echo "<a href='#' onclick='tryArchivePost(\"{$discussions[$i +1]['id']}\")' class='delete-btn'>Delete</a>";}
             echo "<a href='#' class='like-btn' data-id='{$discussions[$i + 1]['id']}'>Like</a> ";
             echo "<a href='#' class='dislike-btn' data-id='{$discussions[$i + 1]['id']}'>Dislike</a> ";
             echo "<a href='reply.php?discussion_id={$discussions[$i + 1]['id']}'>Reply</a>";

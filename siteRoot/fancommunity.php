@@ -16,6 +16,8 @@ if ($conn->connect_error) {
 
 <?php
 include 'fetchgeolocation.php'; // Include the file
+include_once('./Resources/Helper/userDetailsHelper.php');
+include_once('./Resources/Helper/loginHelper.php');
 session_start();
 
 // Function to get the user's real IP address
@@ -31,6 +33,17 @@ function getUserIP() {
 
 $ip = getUserIP(); // Get the user's IP address
 $geolocationData = getUserGeolocation($ip); // Pass the IP address to fetch geolocation data
+
+$profilePictureVal = "/Resources/Images/fancommunity/emojis/profile.png";
+
+if(isset($_SESSION["loginDetails"]["username"])&&isset($_SESSION["loginDetails"]["password"]))
+{
+    if(isValidLogin($_SESSION["loginDetails"]["username"], $_SESSION["loginDetails"]["password"]))
+    {
+        $profilePictureVal = getProfilePicture($_SESSION["loginDetails"]["username"]);
+        $profileLookup = $_SESSION["loginDetails"]["username"];
+    }
+}
 ?>
 
 <!DOCTYPE html>
@@ -59,7 +72,7 @@ $geolocationData = getUserGeolocation($ip); // Pass the IP address to fetch geol
                     <li><a href="HomePage.php"><img src="./Resources/Images/fancommunity/emojis/home.png" alt="Home"></a></li>
                     <li><a href="fancommunity.php"><img src="./Resources/Images/fancommunity/emojis/people.png" alt="Fancommunity"></a></li>
                     <li><a href="favorites.php"><img src="./Resources/Images/fancommunity/emojis/heart.png" alt="Favorites"></a></li>
-                    <li><a href="profileView.php"><img src="./Resources/Images/fancommunity/emojis/profile.png" alt="Profile"></a></li>
+                    <li><a href="profileView.php?userLookup=<?php echo($profileLookup); ?>"><img src=".<?php echo($profilePictureVal); ?>" alt="Profile" class="profileFanCommunity"></a></li>
                 </ul>
             </nav>
         </div>
@@ -134,7 +147,7 @@ $geolocationData = getUserGeolocation($ip); // Pass the IP address to fetch geol
 
         <?php
     // Function to get image count for each event
-    function getImageCount($conn, $event_id) {
+    function getImageCounts($conn, $event_id) {
         $sql = "SELECT COUNT(*) AS image_count FROM event_photos WHERE event_id = ?";
         $stmt = $conn->prepare($sql);
         if ($stmt) {
@@ -157,7 +170,7 @@ $geolocationData = getUserGeolocation($ip); // Pass the IP address to fetch geol
                 <img src="./Resources/Images/fancommunity/Fangallery/E1P3.jpg" alt="Event 1 Image 3">
                 <img src="./Resources/Images/fancommunity/Fangallery/E3P2.jpg" alt="Event 1 Image 4">
                 <a href="event_gallery.php?event_id=1">
-                <div class="image-overlay">+<?php echo getImageCount($conn, 1); ?></div>
+                <div class="image-overlay">+<?php echo getImageCounts($conn, 1); ?></div>
                 </a>
             </div>
             <p>Basketball League</p>
@@ -173,7 +186,7 @@ $geolocationData = getUserGeolocation($ip); // Pass the IP address to fetch geol
                 <img src="./Resources/Images/fancommunity/Fangallery/E2P3.jpg" alt="Event 2 Image 3">
                 <img src="./Resources/Images/fancommunity/Fangallery/E1P1.jpg" alt="Event 2 Image 4">
                 <a href="event_gallery.php?event_id=2">
-                <div class="image-overlay">+<?php echo getImageCount($conn, 2); ?></div>
+                <div class="image-overlay">+<?php echo getImageCounts($conn, 2); ?></div>
                 </a>
             </div>
             <p>Basketball Pros</p>
@@ -189,7 +202,7 @@ $geolocationData = getUserGeolocation($ip); // Pass the IP address to fetch geol
                 <img src="./Resources/Images/fancommunity/Fangallery/E1P3.jpg" alt="Event 1 Image 3">
                 <img src="./Resources/Images/fancommunity/Fangallery/image.png" alt="Event 1 Image 4">
                 <a href="event_gallery.php?event_id=3">
-                <div class="image-overlay">+<?php echo getImageCount($conn, 3); ?></div>
+                <div class="image-overlay">+<?php echo getImageCounts($conn, 3); ?></div>
                 </a>
             </div>
             <p>FIBA Basketball World Cup</p>
@@ -205,7 +218,7 @@ $geolocationData = getUserGeolocation($ip); // Pass the IP address to fetch geol
                     <img src="./Resources/Images/fancommunity/Fangallery/E3P3.jpg" alt="Event 3 Image 3">
                     <img src="./Resources/Images/fancommunity/Fangallery/E1P1.jpg" alt="Event 3 Image 4">
                     <a href="event_gallery.php?event_id=4">
-                    <div class="image-overlay">+<?php echo getImageCount($conn, 4); ?></div>
+                    <div class="image-overlay">+<?php echo getImageCounts($conn, 4); ?></div>
                     </a>
                 </div>
                 <p>Cricket World Cup</p>
@@ -222,7 +235,7 @@ $geolocationData = getUserGeolocation($ip); // Pass the IP address to fetch geol
                     <img src="./Resources/Images/fancommunity/Fangallery/E4P3.jpg" alt="Event 4 Image 3">
                     <img src="./Resources/Images/fancommunity/Fangallery/image copy.png" alt="Event 4 Image 4">
                     <a href="event_gallery.php?event_id=5">
-                    <div class="image-overlay">+<?php echo getImageCount($conn, 5); ?></div>
+                    <div class="image-overlay">+<?php echo getImageCounts($conn, 5); ?></div>
                     </a>
                 </div>
                 <p>BCM Women</p>

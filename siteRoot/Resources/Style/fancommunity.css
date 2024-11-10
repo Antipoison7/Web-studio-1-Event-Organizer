@@ -171,7 +171,14 @@ footer {
 /* Larger icon and logo styles */
 .nav-icons img {
     width: 70px !important;
-    height: auto !important;
+    height: 70px !important;
+    object-fit: cover;
+}
+
+.profileFanCommunity
+{
+    border-radius: 9999px;
+    border: 3px solid black;
 }
 
 .logo img {

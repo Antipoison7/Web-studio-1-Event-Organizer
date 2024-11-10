@@ -56,7 +56,7 @@ if (isset($_SESSION["loginDetails"]["username"]) && isset($_SESSION["loginDetail
                           <div id='Event_Image'> 
                             <img id=\"discussionImage\" src=\"./Resources/Images/Events/thumbnails/day in the park example.jpg\" alt=\"day in the park image\">
                           </div>
-                          <element id='Price_Amount'>$
+                          <element id='Price_Amount'>
                           $<a href='#' onclick=\"addToCart(" . $row["EventID"] . ", '" . addslashes($row["eventName"]) . "', " . $row["priceCost"] . ")\">" . cleanTextHTML($row["priceCost"]) . "</a>
                             <div id=\"popup-ticket\">Ticket added to Cart <a href=\"#\"> Close the Popup</a></div>";
         if ($isAdmin == true) {

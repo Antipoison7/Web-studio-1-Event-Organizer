@@ -22,7 +22,7 @@
             <input type="text" id="eventTitle" name="eventTitle" placeholder="Day in the Park etc." size="50" maxlength="25"><br><br>
         
           <label for="eventDescription">Whats your event about?</label><br>
-            <input type="text" id="eventDescription" name="eventDescription" placeholder="Come spend a day in the park etc." size="50" maxlength="250"><br><br>
+            <input type="text" id="eventDescription" name="eventDescription" placeholder="Come spend a day in the park etc." size="50" maxlength="500"><br><br>
 
           <label for="eLink">Price of ticket</label><br>
             <input type="text" id="priceCost" name="priceCost" placeholder="80.00 Dont include $ Symbols" size="50" maxlength="50"><br><br>

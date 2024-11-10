@@ -53,3 +53,19 @@ a
 {
     color: white;
 }
+
+#dropdownTri
+{
+    border-bottom: 15px solid white;
+}
+
+#dropdown
+{
+    border: 2px solid white;
+}
+
+#dropdown div
+{
+    background-color: black;
+    color: white;
+}

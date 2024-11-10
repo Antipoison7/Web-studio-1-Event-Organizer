@@ -58,6 +58,7 @@ if(isset($_SESSION["resetPassword"]["toggle"]))
 </form>
 
 <?php
+      $_SESSION["issues"]["password"] = "";
       makeFooter();
     ?>
   </body>

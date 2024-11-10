@@ -7,24 +7,54 @@ $dbname = "COSC3046_2402_UGRD_1479_G4";
 
 $conn = new mysqli($servername, $username, $password, $dbname);
 
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    // Check if a file was uploaded without errors
+    // Check if file is uploaded and event_id is set in the URL
     if (isset($_FILES['file']) && $_FILES['file']['error'] == 0 && isset($_GET['event_id'])) {
-        $event_id = intval($_GET['event_id']); // Retrieve event ID from query parameters
+        $event_id = intval($_GET['event_id']); // Get event_id from the query parameter
         $file = $_FILES['file'];
         $fileName = $file['name'];
         $fileTmpPath = $file['tmp_name'];
+        $fileSize = $file['size'];
+        $fileType = strtolower(pathinfo($fileName, PATHINFO_EXTENSION));
 
-        // Set upload directory and move uploaded file
+        // Allowed file types
+        $allowedTypes = ['jpg', 'jpeg', 'png', 'gif'];
+
+        // Check if the file type is allowed
+        if (!in_array($fileType, $allowedTypes)) {
+            echo "Error: Only JPG, PNG, and GIF files are allowed.";
+            exit;
+        }
+
+        // Check file size (example: max size 5MB)
+        if ($fileSize > 5 * 1024 * 1024) { // 5MB
+            echo "Error: File size exceeds the 5MB limit.";
+            exit;
+        }
+
+        // Set upload directory
         $uploadDir = 'uploads/';
-        $filePath = $uploadDir . basename($fileName);
-
-        // Create upload directory if it does not exist
+        
+        // Create the directory if it does not exist
         if (!is_dir($uploadDir)) {
             mkdir($uploadDir, 0777, true);
         }
 
-        // Move the file to the upload directory
+        // Define the full path where the file will be saved
+        $filePath = $uploadDir . basename($fileName);
+
+        // Debugging: Print file info
+        echo 'File name: ' . $fileName . '<br>';
+        echo 'File type: ' . $fileType . '<br>';
+        echo 'File size: ' . $fileSize . ' bytes<br>';
+        echo 'File path: ' . $filePath . '<br>';
+
+        // Move the uploaded file to the target directory
         if (move_uploaded_file($fileTmpPath, $filePath)) {
             // Insert the photo path into the database
             $stmt = $conn->prepare("INSERT INTO event_photos (event_id, photo_path) VALUES (?, ?)");

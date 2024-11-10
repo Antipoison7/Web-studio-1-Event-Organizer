@@ -41,11 +41,12 @@ if ($result === false) {
     </nav>
 
     <h2>Upload Your Photos for Event <?php echo htmlspecialchars($event_id); ?></h2>
-    <form action="upload_photo.php?event_id=<?php echo htmlspecialchars($event_id); ?>" method="POST" enctype="multipart/form-data">
-        <label for="file">Choose a photo to upload:</label>
-        <input type="file" name="file" id="file" required>
-        <button type="submit">Upload Photo</button>
-    </form>
+    <form action="upload_photo.php?event_id=<?php echo $_GET['event_id']; ?>" method="POST" enctype="multipart/form-data">
+    <label for="file">Choose a photo to upload:</label>
+    <input type="file" name="file" id="file" required>
+    <input type="hidden" name="event_id" value="<?php echo htmlspecialchars($_GET['event_id']); ?>"> <!-- Dynamically passing event_id -->
+    <button type="submit">Upload Photo</button>
+</form>
 
     <h2>Event <?php echo htmlspecialchars($event_id); ?> - Full Gallery</h2>
     <div class="full-gallery-container">

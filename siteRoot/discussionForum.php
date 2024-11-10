@@ -56,7 +56,8 @@ if (isset($_SESSION["loginDetails"]["username"]) && isset($_SESSION["loginDetail
                           <div id='Event_Image'> 
                             <img id=\"discussionImage\" src=\"./Resources/Images/Events/thumbnails/day in the park example.jpg\" alt=\"day in the park image\">
                           </div>
-                          <element id='Price_Amount'>$<a href=\"#popup-ticket\">" . cleanTextHTML($row["priceCost"]) . "</a>
+                          <element id='Price_Amount'>$
+                          $<a href='#' onclick=\"addToCart(" . $row["EventID"] . ", '" . addslashes($row["eventName"]) . "', " . $row["priceCost"] . ")\">" . cleanTextHTML($row["priceCost"]) . "</a>
                             <div id=\"popup-ticket\">Ticket added to Cart <a href=\"#\"> Close the Popup</a></div>";
         if ($isAdmin == true) {
           echo ("<a href=\"#\" onclick=\"toggleDeleteMenu(" . $row["EventID"] . ")\" tabindex=\"0\"><img src=\"./Resources/Images/Resources/delete.png\" alt=\"Delete Post\" class=\"discussionDeleteImage\"></a>
@@ -126,6 +127,28 @@ if (isset($_SESSION["loginDetails"]["username"]) && isset($_SESSION["loginDetail
     }
   }
   <?php } ?>
-</script>
+
+  function addToCart(eventID, eventName, price) {
+    fetch('./addToCart.php', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        id: eventID,
+        title: eventName,
+        price: price,
+        date: new Date().toLocaleDateString()
+      })
+    })
+    .then(response => response.json())
+    .then(data => {
+      if (data.success) {
+        alert('Ticket added to cart!');
+      } else {
+        alert('Error adding to cart.');
+      }
+    })
+    .catch(error => console.error('Error:', error));
+  }
+  </script>
 
 </html>

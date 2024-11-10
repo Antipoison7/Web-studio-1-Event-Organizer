@@ -95,11 +95,14 @@ $geolocationData = getUserGeolocation($ip); // Pass the IP address to fetch geol
                 <img src="./Resources/Images/fancommunity/clubs/club6.png" alt="Club 6">
             </div>
             <div class="club-summary">
-                <div class="summary-box">
-                    <span>+57.4k</span>
-                    <p>Clubs Available</p>
-                </div>
-            </div>
+    <a href="clubsAvailable.php" class="summary-link">
+        <div class="summary-box">
+            <span>+57.4k</span>
+            <p>Clubs Available</p>
+        </div>
+    </a>
+</div>
+
         </div>
     </section>
 
@@ -114,8 +117,8 @@ $geolocationData = getUserGeolocation($ip); // Pass the IP address to fetch geol
                     <img src="./Resources/Images/fancommunity/Fangallery/E1P1.jpg" alt="Event 1 Image 1">
                     <img src="./Resources/Images/fancommunity/Fangallery/E1P2.jpg" alt="Event 1 Image 2">
                     <img src="./Resources/Images/fancommunity/Fangallery/E1P3.jpg" alt="Event 1 Image 3">
-                    <img src="./Resources/Images/fancommunity/Fangallery/E1P4.jpg" alt="Event 1 Image 4">
-                    <a href="event1_gallery.php">
+                    <img src="./Resources/Images/fancommunity/Fangallery/E3P2.jpg" alt="Event 1 Image 4">
+                    <a href="event_gallery.php?event_id=1">
                     <div class="image-overlay">+10</div>
                     </a>
                 </div>
@@ -130,8 +133,8 @@ $geolocationData = getUserGeolocation($ip); // Pass the IP address to fetch geol
                     <img src="./Resources/Images/fancommunity/Fangallery/E2P1.jpg" alt="Event 2 Image 1">
                     <img src="./Resources/Images/fancommunity/Fangallery/E2P2.jpg" alt="Event 2 Image 2">
                     <img src="./Resources/Images/fancommunity/Fangallery/E2P3.jpg" alt="Event 2 Image 3">
-                    <img src="./Resources/Images/fancommunity/Fangallery/E2P4.jpg" alt="Event 2 Image 4">
-                    <a href="event1_gallery.php">
+                    <img src="./Resources/Images/fancommunity/Fangallery/E1P1.jpg" alt="Event 2 Image 4">
+                    <a href="event_gallery.php?event_id=2">
                     <div class="image-overlay">+10</div>
                     </a>
                 </div>
@@ -146,8 +149,8 @@ $geolocationData = getUserGeolocation($ip); // Pass the IP address to fetch geol
                     <img src="./Resources/Images/fancommunity/Fangallery/E1P1.jpg" alt="Event 1 Image 1">
                     <img src="./Resources/Images/fancommunity/Fangallery/E1P2.jpg" alt="Event 1 Image 2">
                     <img src="./Resources/Images/fancommunity/Fangallery/E1P3.jpg" alt="Event 1 Image 3">
-                    <img src="./Resources/Images/fancommunity/Fangallery/E1P4.jpg" alt="Event 1 Image 4">
-                    <a href="event1_gallery.php">
+                    <img src="./Resources/Images/fancommunity/Fangallery/image.png" alt="Event 1 Image 4">
+                    <a href="event_gallery.php?event_id=3">
                     <div class="image-overlay">+10</div>
                     </a>
                 </div>
@@ -163,7 +166,7 @@ $geolocationData = getUserGeolocation($ip); // Pass the IP address to fetch geol
                     <img src="./Resources/Images/fancommunity/Fangallery/E3P2.jpg" alt="Event 3 Image 2">
                     <img src="./Resources/Images/fancommunity/Fangallery/E3P3.jpg" alt="Event 3 Image 3">
                     <img src="./Resources/Images/fancommunity/Fangallery/E3P4.jpg" alt="Event 3 Image 4">
-                    <a href="event1_gallery.php">
+                    <a href="event_gallery.php?event_id=4">
                     <div class="image-overlay">+10</div>
                     </a>
                 </div>
@@ -178,8 +181,8 @@ $geolocationData = getUserGeolocation($ip); // Pass the IP address to fetch geol
                     <img src="./Resources/Images/fancommunity/Fangallery/E4P1.jpg" alt="Event 4 Image 1">
                     <img src="./Resources/Images/fancommunity/Fangallery/E4P2.jpg" alt="Event 4 Image 2">
                     <img src="./Resources/Images/fancommunity/Fangallery/E4P3.jpg" alt="Event 4 Image 3">
-                    <img src="./Resources/Images/fancommunity/Fangallery/E4P4.jpg" alt="Event 4 Image 4">
-                    <a href="event1_gallery.php">
+                    <img src="./Resources/Images/fancommunity/Fangallery/image copy.png" alt="Event 4 Image 4">
+                    <a href="event_gallery.php?event_id=5">
                     <div class="image-overlay">+10</div>
                     </a>
                 </div>
@@ -191,11 +194,13 @@ $geolocationData = getUserGeolocation($ip); // Pass the IP address to fetch geol
             </div>
             
             <div class="gallery-summary">
-                <div class="summary-box">
-                    <span>+22.5k</span>
-                    <p>Events Photos</p>
-                </div>
+        <a href="eventGallery.php" class="summary-link">
+            <div class="summary-box">
+                <span>+22.5k</span>
+                <p>Events Photos</p>
             </div>
+        </a>
+    </div>
         </div>
     </section>
 
@@ -226,6 +231,38 @@ $geolocationData = getUserGeolocation($ip); // Pass the IP address to fetch geol
             <a href="#"><img src="./Resources/Images/fancommunity/social/youtube.png" alt="YouTube"></a>
         </div>
     </footer>
+    <div>
+    <input type="text" id="discussionContent" placeholder="Enter your discussion">
+    <button onclick="submitDiscussion()">Add Discussion</button>
+</div>
+
+<script>
+   function submitDiscussion() {
+       const content = document.getElementById('discussionContent').value;
+       addDiscussion(content);
+   }
+</script>
+
 
 </body>
 </html>
+<script>
+    function addDiscussion(content) {
+        fetch('api.php?action=addDiscussion', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: `content=${encodeURIComponent(content)}`
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.status === 'success') {
+                alert(data.message);
+                // Optionally reload or update discussions here
+            } else {
+                alert(data.message);
+            }
+        });
+    }
+</script>

@@ -20,7 +20,7 @@ Josip
 
 [Declan's mirror s4009378](https://titan.csit.rmit.edu.au/~s4009378/web-studio-project-group_01_wps_2024/siteRoot/)
 
-[Himanth s4055688](https://titan.csit.rmit.edu.au/~s4055688/web-studio-project-group_01_wps_2024/siteRoot/fancommunity.php)
+[Himanth s4055688](https://saturn.csit.rmit.edu.au/~s4055688/web-studio-project-group_01_wps_2024/siteRoot/fancommunity.php)
 
 Please note during the assigment stage of the modules Declan was assigned to Discussion Forum, we have had some issues as Himanth as also done a discussion forum which wasnt discussed between the group and was done independently. I, Declan have tried to speak with Himanth about this but was unable to get a clear picture. Himanth was convinced his discussion module was apart of the REST API's section which he was assigned but made no effort to discuss this with the rest of the group.
 

@@ -1,18 +1,5 @@
 <?php
 session_start();
-require_once 'db_connection.php'; // Ensure you have a file for your DB connection
-
-$servername = "talsprddb02.int.its.rmit.edu.au";
-$username = "COSC3046_2402_UGRD_1479_G4";
-$password = "GYS3sfUkzIqA";
-$dbname = "COSC3046_2402_UGRD_1479_G4";
-
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
 
 $orderNumber = strtoupper(uniqid('ORD')); // Generate unique order number
 
@@ -28,39 +15,6 @@ $fname = htmlspecialchars($_POST['fname']);
 $lname = htmlspecialchars($_POST['lname']);
 $phone = htmlspecialchars($_POST['phone']);
 
-// Insert data into orders table
-$stmt = $pdo->prepare("INSERT INTO orders (order_number, first_name, last_name, address, suburb, state, postcode, phone, total_amount) 
-                        VALUES (:orderNumber, :fname, :lname, :address, :suburb, :state, :postcode, :phone, :totalAmount)");
-$stmt->execute([
-    ':orderNumber' => $orderNumber,
-    ':fname' => $fname,
-    ':lname' => $lname,
-    ':address' => $address,
-    ':suburb' => $suburb,
-    ':state' => $state,
-    ':postcode' => $postcode,
-    ':phone' => $phone,
-    ':totalAmount' => $totalAmount
-]);
-
-// Get the order ID of the newly inserted order
-$orderId = $pdo->lastInsertId();
-
-// Insert items into order_items table
-foreach ($items as $item) {
-    $title = htmlspecialchars($item['title']);
-    $quantity = htmlspecialchars($item['quantity']);
-    $price = htmlspecialchars($item['price']);
-
-    $stmt = $pdo->prepare("INSERT INTO order_items (order_id, product_title, quantity, price) 
-                            VALUES (:orderId, :title, :quantity, :price)");
-    $stmt->execute([
-        ':orderId' => $orderId,
-        ':title' => $title,
-        ':quantity' => $quantity,
-        ':price' => $price
-    ]);
-}
 
 ?>
 

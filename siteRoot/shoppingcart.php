@@ -48,7 +48,6 @@ $cartItems = $_SESSION['cartItems'];
             $total += $itemTotal;
         ?>
         <div class="cart-item" id="cart-item<?= $index ?>">
-            <img src="<?= $item['img'] ?>" alt="<?= $item['title'] ?>">
             <div class="item-details">
                 <h3><?= $item['title'] ?></h3>
                 <p><?= $item['date'] ?></p>
@@ -65,6 +64,15 @@ $cartItems = $_SESSION['cartItems'];
                         <option value="7">7</option>
                         <option value="8">8</option>
                         <option value="9">9</option>
+                        <option value="10">10</option>
+                        <option value="11">11</option>
+                        <option value="12">12</option>
+                        <option value="13">13</option>
+                        <option value="14">14</option>
+                        <option value="15">15</option>
+                        <option value="16">16</option>
+                        <option value="17">17</option>
+                        <option value="18">18</option>
                     </select>
                 </div>
             </div>

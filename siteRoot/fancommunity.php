@@ -358,16 +358,16 @@ if (navigator.geolocation) {
 
     <!-- Footer Section -->
     <footer>
-        <div class="footer-links">
-            <a href="#">Privacy</a>
-            <a href="#">Terms and Conditions</a>
-            <a href="#">FAQ</a>
-            <a href="#">Contact Us</a>
-        </div>
+    <div class="footer-links">
+        <a href="../siteRoot/PrivacyPolicy.php">Privacy</a>
+        <a href="../siteRoot/TermsOfService.php">Terms and Conditions</a>
+        <a href="../siteRoot/FAQSite.php">FAQ</a>
+        <a href="">Contact Us</a>
+    </div>
         <div class="social-media">
-            <a href="#"><img src="./Resources/Images/fancommunity/social/instagram.png" alt="Instagram"></a>
-            <a href="#"><img src="./Resources/Images/fancommunity/social/facebook.png" alt="Facebook"></a>
-            <a href="#"><img src="./Resources/Images/fancommunity/social/youtube.png" alt="YouTube"></a>
+            <a href="#"><img src="../siteRoot/Resources/Images/fancommunity/instagram.jpg" alt="Instagram"></a>
+            <a href="#"><img src="../siteRoot/Resources/Images/fancommunity/facebook.png" alt="Facebook"></a>
+            <a href="#"><img src="../siteRoot/Resources/Images/fancommunity/youtube.png" alt="YouTube"></a>
         </div>
     </footer>
 

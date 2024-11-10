@@ -1,6 +1,13 @@
 <?php
 // reply.php
+session_start();
+include_once('./Resources/Helper/loginHelper.php');
 
+$isAdmin = false;
+
+if (isset($_SESSION["loginDetails"]["username"]) && isset($_SESSION["loginDetails"]["password"])) {
+  $isAdmin = isValidAdminLogin($_SESSION["loginDetails"]["username"], $_SESSION["loginDetails"]["password"]);
+}
 // Database connection
 $servername = "talsprddb02.int.its.rmit.edu.au";
 $username = "COSC3046_2402_UGRD_1479_G4";
@@ -19,7 +26,7 @@ if (isset($_GET['discussion_id'])) {
     $discussionId = $_GET['discussion_id'];
     
     // Fetch the main discussion
-    $discussionSql = "SELECT title, content FROM discussions WHERE id = ?";
+    $discussionSql = "SELECT title, content FROM discussions WHERE id = ? AND Archived = 0";
     $stmt = $conn->prepare($discussionSql);
     $stmt->bind_param("i", $discussionId);
     $stmt->execute();
@@ -27,7 +34,7 @@ if (isset($_GET['discussion_id'])) {
     $stmt->close();
 
     // Fetch replies for the discussion
-    $replySql = "SELECT reply_text, reply_date FROM replies WHERE discussion_id = ? ORDER BY reply_date ASC";
+    $replySql = "SELECT reply_text, reply_date, id FROM replies WHERE discussion_id = ? AND Archived = 0 ORDER BY reply_date ASC";
     $stmt = $conn->prepare($replySql);
     $stmt->bind_param("i", $discussionId);
     $stmt->execute();
@@ -116,7 +123,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     <span class="read-more-link" onclick="toggleText(this)">Read More</span>
                 <?php endif; ?>
             </p>
-            <small><?php echo htmlspecialchars($reply['reply_date']); ?></small>
+            <small>
+                <?php echo htmlspecialchars($reply['reply_date']) . " | "; 
+                if($isAdmin){
+                echo("<a href='#' onclick='tryArchivePost(\"{$reply['id']}\")' class='delete-btn'>Delete</a>");
+                }
+                ?>
+            </small>
             <hr>
         </div>
     <?php endwhile; ?>
@@ -128,6 +141,33 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     </form>
 </body>
 </html>
+
+<?php if ($isAdmin == true) { ?>
+    <script>
+        //I do not have enough time to fix this once again, sorry to anyone who has to see this, I would rather not have to do it like this - ---(___C'>
+
+  function tryArchivePost(eventName) {
+    if(confirm("Are you sure you want to Archive this comment (ID: " + eventName + ")?"))
+    {
+      fetch("../APIs/api.php", {
+        method: "POST",
+        body: JSON.stringify({
+          function: "archiveReply",
+          Username: "<?php echo($_SESSION["loginDetails"]["username"]); ?>",
+          Password: "<?php echo($_SESSION["loginDetails"]["password"]); ?>",
+          varA: eventName
+        }),
+        headers: {
+          "Content-type": "application/x-www-form-urlencoded; charset=UTF-8"
+        }
+      }).then((response) => response.json()).then((json) => {location.reload("./discussions.php")}) ;
+    //   if(typeof json.status !== 'undefined'){document.getElementById("bigPost" + eventName).remove();}
+      ;
+    }
+    window.event.preventDefault();
+  }
+  </script>
+  <?php } ?>
 
 <?php
 $conn->close();

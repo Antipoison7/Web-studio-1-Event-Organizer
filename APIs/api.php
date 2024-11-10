@@ -22,6 +22,7 @@ $errorCode = "Invalid function, function does not exist";
 
 if(isset($_GET["function"])) //Checks to see if a function has been sent
 {
+    $errorCode = "Function Does Not Exist";
     switch ($_GET["function"])
     {
         //?Function=dumpAllUserData | Dumps 'users' table data
@@ -69,6 +70,7 @@ if(isset($_GET["function"])) //Checks to see if a function has been sent
 else if((isset($_POST["function"]))||($method == "POST"))
 {
     $switchCase = json_decode(file_get_contents('php://input'));
+    $errorCode = "Function Does Not Exist";
     
     switch($switchCase->function)
     {
@@ -98,6 +100,26 @@ else if((isset($_POST["function"]))||($method == "POST"))
                     if(isAdmin($switchCase->Username,$switchCase->Password))
                     {
                         echo(archivePost($switchCase->varA));
+                    }
+                    else
+                    {
+                        $errorCode = "Username and/or password invalid";
+                        goto failedAPIpost;
+                    }
+                }
+                else
+                {
+                    $errorCode = "Username and/or password not set";
+                    goto failedAPIpost;
+                }
+                break;
+
+            case 'archiveReply':
+                if(isset($switchCase->Username)&&isset($switchCase->Password)&&isset($switchCase->varA)) 
+                {   //Check to see if the user has at max level 3 (admin) clearance
+                    if(isAdmin($switchCase->Username,$switchCase->Password))
+                    {
+                        echo(archiveReply($switchCase->varA));
                     }
                     else
                     {

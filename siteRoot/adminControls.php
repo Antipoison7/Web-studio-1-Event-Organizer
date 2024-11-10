@@ -35,6 +35,7 @@
             <h2>Post management</h2>
             <ul>
                 <li><a href="./Admin/unarchivePosts.php">Unarchive Posts</a></li>
+                <li><a href="./Admin/unarchiveReplies.php">Unarchive Post Replies</a></li>
                 <li><a href="./Admin/unarchiveEvents.php">Unarchive Events</a></li>
             </ul>
         </div>

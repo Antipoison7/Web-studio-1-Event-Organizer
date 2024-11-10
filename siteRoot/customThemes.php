@@ -27,7 +27,10 @@
         <p><a target="_blank" href="https://addons.mozilla.org/en-US/firefox/addon/styl-us/">Firefox</a></p>
         <p><a target="_blank" href="https://chromewebstore.google.com/detail/stylus/clngdbkpkpeebahjckkjfobafhncgmne">Chrome</a></p>
         <h3>Step 3: Creating a theme</h3>
-        <p><a target="_blank" href="./profileView.php?Lookup=Antipoison_7">Navigate to the individual profile page here</a></p>
+        <p><a target="_blank" href="./profileView.php?userLookup=Antipoison_7">Navigate to the individual profile page here</a></p>
+        <p>And open the extension from your toolbar, clicking 'Write new style for "link to profile"'</p>
+        <h3>Step 4: Paste the template you copied before and edit it</h3>
+        <h3>step 5: Send it </h3>
     </div>
     <?php
       makeFooter();

@@ -1,4 +1,20 @@
 <?php
+// Database connection details
+$servername = "talsprddb02.int.its.rmit.edu.au";
+$username = "COSC3046_2402_UGRD_1479_G4";
+$password = "GYS3sfUkzIqA";
+$dbname = "COSC3046_2402_UGRD_1479_G4";
+
+// Create a connection to the database
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+?>
+
+<?php
 include 'fetchgeolocation.php'; // Include the file
 session_start();
 
@@ -112,6 +128,26 @@ $geolocationData = getUserGeolocation($ip); // Pass the IP address to fetch geol
             <img src="./Resources/Images/fancommunity/Headers/fangallery.png" alt="Fan Gallery">
         </div>
         <div class="gallery-container">
+        <?php
+    // Fetch events from the database dynamically
+    $sql = "SELECT event_id, event_name FROM events"; // Replace with your actual event query
+    $result = $conn->query($sql);
+
+    if ($result->num_rows > 0) 
+        // Loop through each event
+        while ($row = $result->fetch_assoc()) 
+            $event_id = $row['event_id'];
+            
+
+            // Fetch the image count for the current event
+            $sql_images = "SELECT COUNT(*) AS image_count FROM event_photos WHERE event_id = ?";
+            $stmt = $conn->prepare($sql_images);
+            $stmt->bind_param("i", $event_id);
+            $stmt->execute();
+            $image_result = $stmt->get_result();
+            $image_row = $image_result->fetch_assoc();
+            $image_count = $image_row['image_count'];
+    ?>
             <div class="gallery-item">
                 <div class="gallery-collage">
                     <img src="./Resources/Images/fancommunity/Fangallery/E1P1.jpg" alt="Event 1 Image 1">
@@ -119,8 +155,8 @@ $geolocationData = getUserGeolocation($ip); // Pass the IP address to fetch geol
                     <img src="./Resources/Images/fancommunity/Fangallery/E1P3.jpg" alt="Event 1 Image 3">
                     <img src="./Resources/Images/fancommunity/Fangallery/E3P2.jpg" alt="Event 1 Image 4">
                     <a href="event_gallery.php?event_id=1">
-                    <div class="image-overlay">+10</div>
-                    </a>
+                    <div class="image-overlay">+<?php echo $image_count; ?></div>
+                </a>
                 </div>
                 <p>Basketball League</p>
                 <p>John Cain Arena</p> <!-- Event Location -->
@@ -135,8 +171,8 @@ $geolocationData = getUserGeolocation($ip); // Pass the IP address to fetch geol
                     <img src="./Resources/Images/fancommunity/Fangallery/E2P3.jpg" alt="Event 2 Image 3">
                     <img src="./Resources/Images/fancommunity/Fangallery/E1P1.jpg" alt="Event 2 Image 4">
                     <a href="event_gallery.php?event_id=2">
-                    <div class="image-overlay">+10</div>
-                    </a>
+                    <div class="image-overlay">+<?php echo $image_count; ?></div>
+                </a>
                 </div>
                 <p>Basketball Pros</p>
                 <p>Margaret Court Arena</p> <!-- Event Location -->

@@ -82,7 +82,7 @@
           </div>
           <div class="userInfoContainer">
             <h2>Change Password?</h2>
-            <a href="./" style="display:inline-block;">
+            <a href="./changePassword.php" style="display:inline-block;">
               <div class="buttonInv">Change Password</div>
             </a>
 

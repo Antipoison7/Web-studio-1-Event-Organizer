@@ -270,10 +270,6 @@ if (isset($_SESSION["loginDetails"]["username"]) && isset($_SESSION["loginDetail
     <?php if ($isAdmin == true) { ?>
         //Yes this is an awful way to do this (The whole code within the isAdmin check), Yes I would rather not have to do it this way but I commited to using Javascript and APIs and I don't know how to pass a PHP session through a POST request
         //As such this awful solution exists that I would love to fix but I do not have time nor the resources to do it, please ignore this is you are marking / looking over my work - ---(___C'>
-  function toggleDeleteMenu(eventName) {
-    let deleteMenuBox = document.getElementById("deleteBox" + eventName);
-    deleteMenuBox.classList.toggle("hiddenClass");
-  }
 
   function tryArchivePost(eventName) {
     //Ideally I would not do it like this however I am retrofitting the actual code onto what has been given to me because I have a writeup to do and he went ahead and just added this code without even

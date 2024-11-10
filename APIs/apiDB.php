@@ -182,4 +182,45 @@ function archivePost($PostID)
     }
 }
 
+function archiveReply($PostID)
+{
+    try
+    {
+        $db = new PDO("mysql:host=talsprddb02.int.its.rmit.edu.au;dbname=COSC3046_2402_UGRD_1479_G4", "COSC3046_2402_UGRD_1479_G4", "GYS3sfUkzIqA");
+        $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        
+        $stmt = $db->prepare("SELECT '1' FROM replies WHERE id = :inputID");    
+
+        $stmt->bindParam(':inputID', $PostID, PDO::PARAM_STR);
+        $stmt->execute();
+
+        $returnVal = $stmt->fetchColumn();
+
+        if($returnVal != false)
+        {
+            $stmt = $db->prepare("UPDATE replies SET archived = 1 WHERE id = :inputID;");
+
+            $stmt->bindParam(':inputID', $PostID, PDO::PARAM_STR);
+            $returnVal = $stmt->execute();
+        }
+
+        $db = null;
+        $stmt = null;
+
+        if($returnVal)
+        {
+            return json_encode(['status' => "Successfully archived reply"]);
+        }
+        else
+        {
+            return json_encode(['error' => 'No reply found at ID: ' . $PostID]);
+        }
+    }
+    catch (PDOException $e)
+    {
+        return ['error' => 'Internal Error ' . $e->getMessage()];
+    }
+}
+
+
 ?>

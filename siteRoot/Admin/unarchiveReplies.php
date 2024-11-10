@@ -16,7 +16,7 @@
     $db = new PDO("mysql:host=talsprddb02.int.its.rmit.edu.au;dbname=COSC3046_2402_UGRD_1479_G4", "COSC3046_2402_UGRD_1479_G4", "GYS3sfUkzIqA");
         $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-        $stmt = $db->prepare("SELECT id, title, content, likes, dislikes, archived FROM discussions WHERE Archived = 1;");
+        $stmt = $db->prepare("SELECT replies.id, replies.discussion_id, replies.user_id, replies.reply_text, replies.archived, discussions.title FROM replies JOIN discussions ON replies.discussion_id = discussions.id WHERE replies.archived = 1 ORDER BY replies.discussion_id;");
         $stmt->execute();
 
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -27,11 +27,11 @@
         foreach($result as $x)
         {
     echo("<input type=\"radio\" name=\"deleteRadio\" id=\"event" . $x["id"] . "\" value=\"" . $x["id"] . "\" class=\"hideRadioButton\">
-        <label for=\"event" . $x["id"] . "\" class=\"userBox\" tabindex=\"0\">
+        <label for=\"event" . $x["id"] . "\" class=\"userBox\">
           <div class=\"highlightBox\">
-            <h3>ID: " . htmlspecialchars($x["id"]) . " | " . htmlspecialchars($x["title"]) . "</h3>
-            <h4>Content: <span class=\"kobold\">" . htmlspecialchars($x["content"]) . "</span></h4>
-            <h4>Like Ratio: " . htmlspecialchars($x["likes"]) . " Likes | " . htmlspecialchars($x["dislikes"]) . " Dislikes</h4>
+            <h3>ID: " . htmlspecialchars($x["discussion_id"]) . " | " . htmlspecialchars($x["title"]) . "</h3>
+            <h3>Username: " . htmlspecialchars($x["user_id"]) . "</h3>
+            <h4>Content Id =" . htmlspecialchars($x["id"]) . ": " . htmlspecialchars($x["reply_text"]) . "</h4>
           </div>
         </label>");
         }
@@ -50,28 +50,28 @@
     <link rel="icon" type="image/x-icon" href="../Resources/Images/Resources/favicon.png">
   </head>
   <body>
-    <?php headerNoLogin("Moderator Portal - Unarchive Posts"); 
+    <?php headerNoLogin("Moderator Portal - Unarchive Replies"); 
      if($isAdmin == true){?>
         <div class="admin">
-          <form action="./unarchivePostsIntermediate.php" method="post">
+          <form action="./unarchiveRepliesIntermediate.php" method="post">
             <div class="submitHeaderDiv">
               <h2><a class="back" href="../adminControls.php">Back</a></h2>
-              <button class="button" type="submit" style="width: 13em;">Unarchive Post</button>
+              <button class="button" type="submit" style="width: 13em;">Unarchive Reply</button>
             </div>
             <?php
               if(isset($_SESSION["issues"]["adminStuff"]))
               {
                 if($_SESSION["issues"]["adminStuff"] == "Changed")
                 {
-                  echo("<h2>Post Restored</h2>");
+                  echo("<h2>Reply Restored</h2>");
                 }
                 if($_SESSION["issues"]["adminStuff"] == "What happened?")
                 {
-                  echo("<h2 class=\"darkRedColor\">Post Not Found</h2>");
+                  echo("<h2 class=\"darkRedColor\">Reply Not Found</h2>");
                 }
                 if($_SESSION["issues"]["adminStuff"] == "NotSet")
                 {
-                  echo("<h2 class=\"darkRedColor\">Pick a post please</h2>");
+                  echo("<h2 class=\"darkRedColor\">Pick a reply please</h2>");
                 }
               }
               

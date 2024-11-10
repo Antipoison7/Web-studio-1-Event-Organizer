@@ -62,7 +62,7 @@
           <div class="userInfoContainer userInfoBoxR">
             <div class="themeBox">
             <label for="theme">Profile theme:&nbsp;</label>
-            <a href="https://www.google.com">Custom Themes?</a>
+            <a href="./customThemes.php">Custom Themes?</a>
             </div>
             <select name="theme" id="theme">
               <?php

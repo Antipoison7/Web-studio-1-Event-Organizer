@@ -32,6 +32,7 @@ function getUserIP() {
 $ip = getUserIP(); // Get the user's IP address
 $geolocationData = getUserGeolocation($ip); // Pass the IP address to fetch geolocation data
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -122,88 +123,89 @@ $geolocationData = getUserGeolocation($ip); // Pass the IP address to fetch geol
         </div>
     </section>
 
+
+
     <!-- Fan Gallery Section -->
     <section class="fan-gallery">
         <div class="gallery-heading">
             <img src="./Resources/Images/fancommunity/Headers/fangallery.png" alt="Fan Gallery">
         </div>
         <div class="gallery-container">
+
         <?php
-    // Fetch events from the database dynamically
-    $sql = "SELECT event_id, event_name FROM events"; // Replace with your actual event query
-    $result = $conn->query($sql);
-
-    if ($result->num_rows > 0) 
-        // Loop through each event
-        while ($row = $result->fetch_assoc()) 
-            $event_id = $row['event_id'];
-            
-
-            // Fetch the image count for the current event
-            $sql_images = "SELECT COUNT(*) AS image_count FROM event_photos WHERE event_id = ?";
-            $stmt = $conn->prepare($sql_images);
+    // Function to get image count for each event
+    function getImageCount($conn, $event_id) {
+        $sql = "SELECT COUNT(*) AS image_count FROM event_photos WHERE event_id = ?";
+        $stmt = $conn->prepare($sql);
+        if ($stmt) {
             $stmt->bind_param("i", $event_id);
             $stmt->execute();
-            $image_result = $stmt->get_result();
-            $image_row = $image_result->fetch_assoc();
-            $image_count = $image_row['image_count'];
+            $result = $stmt->get_result();
+            $row = $result->fetch_assoc();
+            return $row['image_count'] ?? 0;
+        } else {
+            die("SQL Error: " . $conn->error); // Optional: Handle SQL preparation errors
+        }
+    }
     ?>
-            <div class="gallery-item">
-                <div class="gallery-collage">
-                    <img src="./Resources/Images/fancommunity/Fangallery/E1P1.jpg" alt="Event 1 Image 1">
-                    <img src="./Resources/Images/fancommunity/Fangallery/E1P2.jpg" alt="Event 1 Image 2">
-                    <img src="./Resources/Images/fancommunity/Fangallery/E1P3.jpg" alt="Event 1 Image 3">
-                    <img src="./Resources/Images/fancommunity/Fangallery/E3P2.jpg" alt="Event 1 Image 4">
-                    <a href="event_gallery.php?event_id=1">
-                    <div class="image-overlay">+<?php echo $image_count; ?></div>
+
+            <!-- Gallery Item for Event 1 -->
+        <div class="gallery-item">
+            <div class="gallery-collage">
+                <img src="./Resources/Images/fancommunity/Fangallery/E1P1.jpg" alt="Event 1 Image 1">
+                <img src="./Resources/Images/fancommunity/Fangallery/E1P2.jpg" alt="Event 1 Image 2">
+                <img src="./Resources/Images/fancommunity/Fangallery/E1P3.jpg" alt="Event 1 Image 3">
+                <img src="./Resources/Images/fancommunity/Fangallery/E3P2.jpg" alt="Event 1 Image 4">
+                <a href="event_gallery.php?event_id=1">
+                <div class="image-overlay">+<?php echo getImageCount($conn, 1); ?></div>
                 </a>
-                </div>
-                <p>Basketball League</p>
-                <p>John Cain Arena</p> <!-- Event Location -->
-    <a href="https://www.google.com/maps/place/John+Cain+Arena/@-37.8227725,144.9793938,17z/data=!3m1!4b1!4m6!3m5!1s0x6ad642be136568a7:0x38c0a17f8edfa003!8m2!3d-37.8227725!4d144.9819687!16zL20vMGIzMTd5?entry=ttu&g_ep=EgoyMDI0MTAxNi4wIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noopener noreferrer">View on Map</a> 
-    <!-- Ensure to replace with the actual coordinates -->
             </div>
+            <p>Basketball League</p>
+            <p>John Cain Arena</p>
+            <a href="https://www.google.com/maps/place/John+Cain+Arena/@-37.8227725,144.9793938,17z/data=!3m1!4b1!4m6!3m5!1s0x6ad642be136568a7:0x38c0a17f8edfa003!8m2!3d-37.8227725!4d144.9819687!16zL20vMGIzMTd5?entry=ttu&g_ep=EgoyMDI0MTAxNi4wIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noopener noreferrer">View on Map</a>
+        </div>
 
-            <div class="gallery-item">
-                <div class="gallery-collage">
-                    <img src="./Resources/Images/fancommunity/Fangallery/E2P1.jpg" alt="Event 2 Image 1">
-                    <img src="./Resources/Images/fancommunity/Fangallery/E2P2.jpg" alt="Event 2 Image 2">
-                    <img src="./Resources/Images/fancommunity/Fangallery/E2P3.jpg" alt="Event 2 Image 3">
-                    <img src="./Resources/Images/fancommunity/Fangallery/E1P1.jpg" alt="Event 2 Image 4">
-                    <a href="event_gallery.php?event_id=2">
-                    <div class="image-overlay">+<?php echo $image_count; ?></div>
+        <!-- Gallery Item for Event 2 -->
+        <div class="gallery-item">
+            <div class="gallery-collage">
+                <img src="./Resources/Images/fancommunity/Fangallery/E2P1.jpg" alt="Event 2 Image 1">
+                <img src="./Resources/Images/fancommunity/Fangallery/E2P2.jpg" alt="Event 2 Image 2">
+                <img src="./Resources/Images/fancommunity/Fangallery/E2P3.jpg" alt="Event 2 Image 3">
+                <img src="./Resources/Images/fancommunity/Fangallery/E1P1.jpg" alt="Event 2 Image 4">
+                <a href="event_gallery.php?event_id=2">
+                <div class="image-overlay">+<?php echo getImageCount($conn, 2); ?></div>
                 </a>
-                </div>
-                <p>Basketball Pros</p>
-                <p>Margaret Court Arena</p> <!-- Event Location -->
-    <a href="https://www.google.com/maps/place/Margaret+Court+Arena/@-37.8211276,144.9750615,17z/data=!3m1!4b1!4m6!3m5!1s0x6ad642b94abc8457:0x606c4133f1ce2040!8m2!3d-37.8211276!4d144.9776364!16zL20vMGNtZ2p6?entry=ttu&g_ep=EgoyMDI0MTAxNi4wIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noopener noreferrer">View on Map</a> 
-    <!-- Ensure to replace with the actual coordinates -->
             </div>
+            <p>Basketball Pros</p>
+            <p>Margaret Court Arena</p>
+            <a href="https://www.google.com/maps/place/Margaret+Court+Arena/@-37.8211276,144.9750615,17z/data=!3m1!4b1!4m6!3m5!1s0x6ad642b94abc8457:0x606c4133f1ce2040!8m2!3d-37.8211276!4d144.9776364!16zL20vMGNtZ2p6?entry=ttu&g_ep=EgoyMDI0MTAxNi4wIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noopener noreferrer">View on Map</a>
+        </div>
 
-            <div class="gallery-item">
-                <div class="gallery-collage">
-                    <img src="./Resources/Images/fancommunity/Fangallery/E1P1.jpg" alt="Event 1 Image 1">
-                    <img src="./Resources/Images/fancommunity/Fangallery/E1P2.jpg" alt="Event 1 Image 2">
-                    <img src="./Resources/Images/fancommunity/Fangallery/E1P3.jpg" alt="Event 1 Image 3">
-                    <img src="./Resources/Images/fancommunity/Fangallery/image.png" alt="Event 1 Image 4">
-                    <a href="event_gallery.php?event_id=3">
-                    <div class="image-overlay">+10</div>
-                    </a>
-                </div>
-                <p>FIBA Basketball World Cup</p>
-                <p>Docklands</p> <!-- Event Location -->
-    <a href="https://www.google.com/maps/search/?api=1&query=-37.81363,144.96306" target="_blank" rel="noopener noreferrer">View on Map</a> 
-    <!-- Ensure to replace with the actual coordinates -->
+            <!-- Gallery Item for Event 3 -->
+        <div class="gallery-item">
+            <div class="gallery-collage">
+                <img src="./Resources/Images/fancommunity/Fangallery/E1P1.jpg" alt="Event 1 Image 1">
+                <img src="./Resources/Images/fancommunity/Fangallery/E1P2.jpg" alt="Event 1 Image 2">
+                <img src="./Resources/Images/fancommunity/Fangallery/E1P3.jpg" alt="Event 1 Image 3">
+                <img src="./Resources/Images/fancommunity/Fangallery/image.png" alt="Event 1 Image 4">
+                <a href="event_gallery.php?event_id=3">
+                <div class="image-overlay">+<?php echo getImageCount($conn, 3); ?></div>
+                </a>
             </div>
+            <p>FIBA Basketball World Cup</p>
+            <p>Docklands</p>
+            <a href="https://www.google.com/maps/search/?api=1&query=-37.81363,144.96306" target="_blank" rel="noopener noreferrer">View on Map</a>
+        </div>
 
+            <!-- Gallery Item for Event 4 -->
             <div class="gallery-item">
                 <div class="gallery-collage">
                     <img src="./Resources/Images/fancommunity/Fangallery/E3P1.jpg" alt="Event 3 Image 1">
                     <img src="./Resources/Images/fancommunity/Fangallery/E3P2.jpg" alt="Event 3 Image 2">
                     <img src="./Resources/Images/fancommunity/Fangallery/E3P3.jpg" alt="Event 3 Image 3">
-                    <img src="./Resources/Images/fancommunity/Fangallery/E3P4.jpg" alt="Event 3 Image 4">
+                    <img src="./Resources/Images/fancommunity/Fangallery/E1P1.jpg" alt="Event 3 Image 4">
                     <a href="event_gallery.php?event_id=4">
-                    <div class="image-overlay">+10</div>
+                    <div class="image-overlay">+<?php echo getImageCount($conn, 4); ?></div>
                     </a>
                 </div>
                 <p>Cricket World Cup</p>
@@ -212,6 +214,7 @@ $geolocationData = getUserGeolocation($ip); // Pass the IP address to fetch geol
     <!-- Ensure to replace with the actual coordinates -->
             </div>
 
+              <!-- Gallery Item for Event 5 -->
             <div class="gallery-item">
                 <div class="gallery-collage">
                     <img src="./Resources/Images/fancommunity/Fangallery/E4P1.jpg" alt="Event 4 Image 1">
@@ -219,7 +222,7 @@ $geolocationData = getUserGeolocation($ip); // Pass the IP address to fetch geol
                     <img src="./Resources/Images/fancommunity/Fangallery/E4P3.jpg" alt="Event 4 Image 3">
                     <img src="./Resources/Images/fancommunity/Fangallery/image copy.png" alt="Event 4 Image 4">
                     <a href="event_gallery.php?event_id=5">
-                    <div class="image-overlay">+10</div>
+                    <div class="image-overlay">+<?php echo getImageCount($conn, 5); ?></div>
                     </a>
                 </div>
                 <p>BCM Women</p>

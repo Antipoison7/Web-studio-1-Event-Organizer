@@ -32,6 +32,7 @@ function getUserIP() {
 $ip = getUserIP(); // Get the user's IP address
 $geolocationData = getUserGeolocation($ip); // Pass the IP address to fetch geolocation data
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -122,32 +123,34 @@ $geolocationData = getUserGeolocation($ip); // Pass the IP address to fetch geol
         </div>
     </section>
 
+
+
     <!-- Fan Gallery Section -->
     <section class="fan-gallery">
         <div class="gallery-heading">
             <img src="./Resources/Images/fancommunity/Headers/fangallery.png" alt="Fan Gallery">
         </div>
         <div class="gallery-container">
+
         <?php
-    // Fetch events from the database dynamically
-    $sql = "SELECT event_id, event_name FROM events"; // Replace with your actual event query
-    $result = $conn->query($sql);
 
-    if ($result->num_rows > 0) 
-        // Loop through each event
-        while ($row = $result->fetch_assoc()) 
-            $event_id = $row['event_id'];
-            
+if (isset($_GET['event_id'])) {
+    $event_id = $_GET['event_id'];
+    $sql = "SELECT COUNT(*) AS image_count FROM event_photos WHERE event_id = ?";
+    $stmt = $conn->prepare($sql);
+    if (!$stmt) {
+        die("SQL Error: " . $conn->error); // Log SQL preparation errors
+    }
+    $stmt->bind_param("i", $event_id);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $row = $result->fetch_assoc();
+    $image_count = $row['image_count'];
+} else {
+    $image_count = 0;
+}
 
-            // Fetch the image count for the current event
-            $sql_images = "SELECT COUNT(*) AS image_count FROM event_photos WHERE event_id = ?";
-            $stmt = $conn->prepare($sql_images);
-            $stmt->bind_param("i", $event_id);
-            $stmt->execute();
-            $image_result = $stmt->get_result();
-            $image_row = $image_result->fetch_assoc();
-            $image_count = $image_row['image_count'];
-    ?>
+?>
             <div class="gallery-item">
                 <div class="gallery-collage">
                     <img src="./Resources/Images/fancommunity/Fangallery/E1P1.jpg" alt="Event 1 Image 1">
@@ -187,7 +190,7 @@ $geolocationData = getUserGeolocation($ip); // Pass the IP address to fetch geol
                     <img src="./Resources/Images/fancommunity/Fangallery/E1P3.jpg" alt="Event 1 Image 3">
                     <img src="./Resources/Images/fancommunity/Fangallery/image.png" alt="Event 1 Image 4">
                     <a href="event_gallery.php?event_id=3">
-                    <div class="image-overlay">+10</div>
+                    <div class="image-overlay">+<?php echo $image_count; ?></div>
                     </a>
                 </div>
                 <p>FIBA Basketball World Cup</p>
@@ -201,9 +204,9 @@ $geolocationData = getUserGeolocation($ip); // Pass the IP address to fetch geol
                     <img src="./Resources/Images/fancommunity/Fangallery/E3P1.jpg" alt="Event 3 Image 1">
                     <img src="./Resources/Images/fancommunity/Fangallery/E3P2.jpg" alt="Event 3 Image 2">
                     <img src="./Resources/Images/fancommunity/Fangallery/E3P3.jpg" alt="Event 3 Image 3">
-                    <img src="./Resources/Images/fancommunity/Fangallery/E3P4.jpg" alt="Event 3 Image 4">
+                    <img src="./Resources/Images/fancommunity/Fangallery/E1P1.jpg" alt="Event 3 Image 4">
                     <a href="event_gallery.php?event_id=4">
-                    <div class="image-overlay">+10</div>
+                    <div class="image-overlay">+<?php echo $image_count; ?></div>
                     </a>
                 </div>
                 <p>Cricket World Cup</p>
@@ -219,7 +222,7 @@ $geolocationData = getUserGeolocation($ip); // Pass the IP address to fetch geol
                     <img src="./Resources/Images/fancommunity/Fangallery/E4P3.jpg" alt="Event 4 Image 3">
                     <img src="./Resources/Images/fancommunity/Fangallery/image copy.png" alt="Event 4 Image 4">
                     <a href="event_gallery.php?event_id=5">
-                    <div class="image-overlay">+10</div>
+                    <div class="image-overlay">+<?php echo $image_count; ?></div>
                     </a>
                 </div>
                 <p>BCM Women</p>

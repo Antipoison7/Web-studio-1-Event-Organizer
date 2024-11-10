@@ -51,8 +51,9 @@ if ($result === false) {
     <h2>Event <?php echo htmlspecialchars($event_id); ?> - Full Gallery</h2>
     <div class="full-gallery-container">
         <!-- Static images -->
-        <img src="../siteRoot/Resources/Images/fancommunity/Fangallery/E3P3.jpg" alt="Event Photo">
-        <img src="../siteRoot/Resources/Images/fancommunity/Fangallery/E2P3.jpg" alt="Event Photo">
+         <!-- I don't know why these images are hard coded but I feel like they shouldn't be - ---(___C'> -->
+        <!-- <img src="../siteRoot/Resources/Images/fancommunity/Fangallery/E3P3.jpg" alt="Event Photo">
+        <img src="../siteRoot/Resources/Images/fancommunity/Fangallery/E2P3.jpg" alt="Event Photo"> -->
 
         <!-- Uploaded images from the database -->
         <?php while ($row = $result->fetch_assoc()): ?>

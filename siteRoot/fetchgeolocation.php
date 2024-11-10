@@ -7,7 +7,7 @@ function getUserGeolocation($ip) {
 
     // Log the raw response
     // if((isset($_SESSION["logindetails"]["login"])&&(isset($_SESSION["logindetails"]["password"])))
-    file_put_contents('geolocation_debug.log', $response . PHP_EOL, FILE_APPEND);
+    // file_put_contents('geolocation_debug.log', $response . PHP_EOL, FILE_APPEND);
 
     if ($response === FALSE) {
         error_log("Error fetching geolocation: " . print_r(error_get_last(), true));

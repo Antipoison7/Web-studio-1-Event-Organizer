@@ -18,7 +18,7 @@
     <div class="creatorFlex">
       <?php
         $creatorArray = [
-          array("name" => "Josip", "pfp" => ""), 
+          array("name" => "Josip", "pfp" => "snoop.jpeg"), 
           array("name" => "Declan", "pfp" => "declanPfp.jpg"), 
           array("name" => "Himanth", "pfp" => "rock.jpeg"), 
           array("name" => "Connor", "pfp" => "connorPfp.jpg")

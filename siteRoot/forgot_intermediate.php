@@ -51,7 +51,6 @@ function getEmail($username)
         $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
         $stmt = $db->prepare("SELECT email FROM accounts WHERE login_name = :name;");
-        echo(var_dump($username));
 
         if(strpos($username, '@') !== false)
         {

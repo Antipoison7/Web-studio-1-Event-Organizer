@@ -2,20 +2,11 @@
 include_once('./Resources/Helper/headers.php');
 session_start();
 
-if(!isset($_SESSION["resetPassword"]["resetCode"]) && !isset($_SESSION["resetPassword"]["email"]))
-{
-    $_SESSION["resetPassword"]["toggle"] = "";
-}
-
-if(isset($_SESSION["resetPassword"]["toggle"]))
-{
-    if($_SESSION["resetPassword"]["toggle"] == true)
-    {
 ?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Reset Password</title>
+    <title>Change Password</title>
     
     
     <?php createMeta() ?>
@@ -24,12 +15,14 @@ if(isset($_SESSION["resetPassword"]["toggle"]))
     <link rel="icon" type="image/x-icon" href="./Resources/Images/Resources/favicon.png">
   </head>
   <body>
-    <?php headerNoLogin("Reset Your Password") ?>
+    <?php headerNoLogin("Change Your Password") ?>
 
-<form action="./forgot_reset.php" method="post">
+    <?php if(isset($_SESSION["loginDetails"]["username"])&&isset($_SESSION["loginDetails"]["password"])){if(isValidLogin($_SESSION["loginDetails"]["username"], $_SESSION["loginDetails"]["password"])){?>
+
+<form action="./changePasswordIntermediate.php" method="post">
     <div class="login">
-        <label for="emailCode">Code recieved in email</label>
-        <input type="text" id="emailCode" name="emailCode" autocomplete="off">
+        <label for="oldPassword">Current Password</label>
+        <input type="password" id="oldPassword" name="oldPassword" autocomplete="off">
         <label for="passwordUser">New Password</label>
         <input type="password" id="passwordUser" name="passwordUser" autocomplete="off">
 
@@ -53,26 +46,23 @@ if(isset($_SESSION["resetPassword"]["toggle"]))
             } ?>>Contains at least one symbol (!@#$%^&*)</li>
       </ul>
         
-        <button class="smallButtonWide" type="submit">Reset Password</button>
+        <button class="smallButtonWide" type="submit">Change Password</button>
     </div>
 </form>
 
+<?php }
+    else
+    {
+      failedLogin();
+    } }
+    else
+    {
+      failedLogin();
+    } ?>
+
 <?php
-      $_SESSION["issues"]["password"] = "";
       makeFooter();
+      $_SESSION["issues"]["password"] = "";
     ?>
   </body>
 </html>
-
-<?php
-    }
-    else
-    {
-        header("Location: ./forgot_password.php");
-    }
-}
-else
-{
-    header("Location: ./forgot_password.php");
-}
-?>

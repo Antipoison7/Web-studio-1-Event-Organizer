@@ -1,6 +1,6 @@
 <?php
 session_start(); // Ensure the session is started before accessing it
-header('Content-Type: application/json');
+// header('Content-Type: application/json');
 
 include_once('./Resources/Helper/commentfunctions.php');
 include_once('./Resources/Helper/sanitization.php');

@@ -3,6 +3,16 @@
   include_once('./Resources/Helper/headers.php');
   include_once('./Resources/Helper/imageHelper.php');
   updateCache();
+
+  $displayRegister = true;
+
+  if(isset($_SESSION["loginDetails"]["username"])&&isset($_SESSION["loginDetails"]["password"]))
+  {
+    if(isValidLogin($_SESSION["loginDetails"]["username"], $_SESSION["loginDetails"]["password"]))
+    {
+      $displayRegister = false;
+    }
+  }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -21,7 +31,9 @@
       <img id="WebsiteBanner" src=".<?php echo getImg("site_resources","site_banner");?>" alt="WebsiteBanner" width="100%">
     </div>
     <div class="HomePageFlex">
+      <?php if($displayRegister){?>
       <a href="./register.php"><div class="smallButtonInv">Register</div></a>
+      <?php }?>
       <a href="./eventRegistration.php"><div class="smallButtonHomePage">Create Event</div></a>
     </div>
     <?php

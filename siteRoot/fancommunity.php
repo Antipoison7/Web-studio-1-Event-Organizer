@@ -16,6 +16,8 @@ if ($conn->connect_error) {
 
 <?php
 include 'fetchgeolocation.php'; // Include the file
+include_once('./Resources/Helper/userDetailsHelper.php');
+include_once('./Resources/Helper/loginHelper.php');
 session_start();
 
 // Function to get the user's real IP address
@@ -31,6 +33,17 @@ function getUserIP() {
 
 $ip = getUserIP(); // Get the user's IP address
 $geolocationData = getUserGeolocation($ip); // Pass the IP address to fetch geolocation data
+
+$profilePictureVal = "/Resources/Images/fancommunity/emojis/profile.png";
+
+if(isset($_SESSION["loginDetails"]["username"])&&isset($_SESSION["loginDetails"]["password"]))
+{
+    if(isValidLogin($_SESSION["loginDetails"]["username"], $_SESSION["loginDetails"]["password"]))
+    {
+        $profilePictureVal = getProfilePicture($_SESSION["loginDetails"]["username"]);
+        $profileLookup = $_SESSION["loginDetails"]["username"];
+    }
+}
 ?>
 
 <!DOCTYPE html>
@@ -59,7 +72,7 @@ $geolocationData = getUserGeolocation($ip); // Pass the IP address to fetch geol
                     <li><a href="HomePage.php"><img src="./Resources/Images/fancommunity/emojis/home.png" alt="Home"></a></li>
                     <li><a href="fancommunity.php"><img src="./Resources/Images/fancommunity/emojis/people.png" alt="Fancommunity"></a></li>
                     <li><a href="favorites.php"><img src="./Resources/Images/fancommunity/emojis/heart.png" alt="Favorites"></a></li>
-                    <li><a href="profileView.php"><img src="./Resources/Images/fancommunity/emojis/profile.png" alt="Profile"></a></li>
+                    <li><a href="profileView.php?userLookup=<?php echo($profileLookup); ?>"><img src=".<?php echo($profilePictureVal); ?>" alt="Profile" class="profileFanCommunity"></a></li>
                 </ul>
             </nav>
         </div>
@@ -134,7 +147,7 @@ $geolocationData = getUserGeolocation($ip); // Pass the IP address to fetch geol
 
         <?php
     // Function to get image count for each event
-    function getImageCount($conn, $event_id) {
+    function getImageCounts($conn, $event_id) {
         $sql = "SELECT COUNT(*) AS image_count FROM event_photos WHERE event_id = ?";
         $stmt = $conn->prepare($sql);
         if ($stmt) {
@@ -157,7 +170,7 @@ $geolocationData = getUserGeolocation($ip); // Pass the IP address to fetch geol
                 <img src="./Resources/Images/fancommunity/Fangallery/E1P3.jpg" alt="Event 1 Image 3">
                 <img src="./Resources/Images/fancommunity/Fangallery/E3P2.jpg" alt="Event 1 Image 4">
                 <a href="event_gallery.php?event_id=1">
-                <div class="image-overlay">+<?php echo getImageCount($conn, 1); ?></div>
+                <div class="image-overlay">+<?php echo getImageCounts($conn, 1); ?></div>
                 </a>
             </div>
             <p>Basketball League</p>
@@ -173,7 +186,7 @@ $geolocationData = getUserGeolocation($ip); // Pass the IP address to fetch geol
                 <img src="./Resources/Images/fancommunity/Fangallery/E2P3.jpg" alt="Event 2 Image 3">
                 <img src="./Resources/Images/fancommunity/Fangallery/E1P1.jpg" alt="Event 2 Image 4">
                 <a href="event_gallery.php?event_id=2">
-                <div class="image-overlay">+<?php echo getImageCount($conn, 2); ?></div>
+                <div class="image-overlay">+<?php echo getImageCounts($conn, 2); ?></div>
                 </a>
             </div>
             <p>Basketball Pros</p>
@@ -189,7 +202,7 @@ $geolocationData = getUserGeolocation($ip); // Pass the IP address to fetch geol
                 <img src="./Resources/Images/fancommunity/Fangallery/E1P3.jpg" alt="Event 1 Image 3">
                 <img src="./Resources/Images/fancommunity/Fangallery/image.png" alt="Event 1 Image 4">
                 <a href="event_gallery.php?event_id=3">
-                <div class="image-overlay">+<?php echo getImageCount($conn, 3); ?></div>
+                <div class="image-overlay">+<?php echo getImageCounts($conn, 3); ?></div>
                 </a>
             </div>
             <p>FIBA Basketball World Cup</p>
@@ -205,7 +218,7 @@ $geolocationData = getUserGeolocation($ip); // Pass the IP address to fetch geol
                     <img src="./Resources/Images/fancommunity/Fangallery/E3P3.jpg" alt="Event 3 Image 3">
                     <img src="./Resources/Images/fancommunity/Fangallery/E1P1.jpg" alt="Event 3 Image 4">
                     <a href="event_gallery.php?event_id=4">
-                    <div class="image-overlay">+<?php echo getImageCount($conn, 4); ?></div>
+                    <div class="image-overlay">+<?php echo getImageCounts($conn, 4); ?></div>
                     </a>
                 </div>
                 <p>Cricket World Cup</p>
@@ -222,7 +235,7 @@ $geolocationData = getUserGeolocation($ip); // Pass the IP address to fetch geol
                     <img src="./Resources/Images/fancommunity/Fangallery/E4P3.jpg" alt="Event 4 Image 3">
                     <img src="./Resources/Images/fancommunity/Fangallery/image copy.png" alt="Event 4 Image 4">
                     <a href="event_gallery.php?event_id=5">
-                    <div class="image-overlay">+<?php echo getImageCount($conn, 5); ?></div>
+                    <div class="image-overlay">+<?php echo getImageCounts($conn, 5); ?></div>
                     </a>
                 </div>
                 <p>BCM Women</p>
@@ -243,18 +256,105 @@ $geolocationData = getUserGeolocation($ip); // Pass the IP address to fetch geol
         </div>
     </section>
 
-    <!-- Geolocation Section -->
-    <?php if ($geolocationData): ?>
-    <div>
-        <h3>User Location:</h3>
-        <p>Latitude: <?= $geolocationData['latitude'] ?></p>
-        <p>Longitude: <?= $geolocationData['longitude'] ?></p>
-        <!-- Add a link to the location, if applicable -->
-        <a href="https://www.google.com/maps/search/?api=1&query=<?= $geolocationData['latitude'] ?>,<?= $geolocationData['longitude'] ?>">View on Map</a>
-    </div>
-    <?php else: ?>
-    <p>Unable to retrieve geolocation data.</p>
-    <?php endif; ?>
+   <!-- Geolocation Section -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+
+<!-- Coordinates Display Section -->
+<div id="coordinates" style="font-size: 16px; margin-bottom: 10px;">
+    <strong>User Location:</strong>
+    <p>Latitude: <span id="latitude"><?= $geolocationData['latitude'] ?? 'Unavailable' ?></span></p>
+    <p>Longitude: <span id="longitude"><?= $geolocationData['longitude'] ?? 'Unavailable' ?></span></p>
+    <!-- Google Maps Link -->
+    <a id="googleMapLink" href="#" target="_blank">View on Google Maps</a>
+</div>
+
+<!-- Map Section -->
+<div id="map" style="height: 400px; width: 100%;"></div>
+
+<script>
+// Make sure the PHP geolocation data is available in JavaScript
+let userLatitude = <?= json_encode($geolocationData['latitude'] ?? null); ?>;
+let userLongitude = <?= json_encode($geolocationData['longitude'] ?? null); ?>;
+
+// Function to initialize the map with provided coordinates
+function initializeMap(lat, lng) {
+    console.log("Initializing map with coordinates:", lat, lng); // Debugging
+
+    // Initialize the map centered on the provided coordinates
+    const map = L.map('map').setView([lat, lng], 13);
+
+    // Add the base map tiles (using OpenStreetMap here)
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 19,
+        attribution: '© OpenStreetMap contributors'
+    }).addTo(map);
+
+    // Add a marker at the user's location
+    L.marker([lat, lng])
+        .addTo(map)
+        .bindPopup('You are here!')
+        .openPopup();
+
+    // Add additional event markers (optional)
+    const events = [
+        { latitude: -37.8136, longitude: 144.9631, event: "Event A" },
+        { latitude: -37.814, longitude: 144.963, event: "Event B" }
+        // Add more events as needed
+    ];
+
+    events.forEach(event => {
+        L.marker([event.latitude, event.longitude])
+            .addTo(map)
+            .bindPopup(event.event);
+    });
+}
+
+// Function to update the displayed coordinates and Google Maps link
+function updateCoordinates(lat, lng) {
+    document.getElementById("latitude").textContent = lat;
+    document.getElementById("longitude").textContent = lng;
+
+    // Update the Google Maps link with the new coordinates
+    const googleMapLink = `https://www.google.com/maps/search/?api=1&query=${lat},${lng}`;
+    document.getElementById("googleMapLink").href = googleMapLink;
+}
+
+// Use HTML5 Geolocation if available, overriding the PHP coordinates if necessary
+if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(
+        (position) => {
+            // Use precise HTML5 geolocation coordinates
+            userLatitude = position.coords.latitude;
+            userLongitude = position.coords.longitude;
+            console.log("HTML5 geolocation successful:", userLatitude, userLongitude); // Debugging
+
+            // Update displayed coordinates and initialize map
+            updateCoordinates(userLatitude, userLongitude);
+            initializeMap(userLatitude, userLongitude);
+        },
+        (error) => {
+            console.error("Error obtaining HTML5 geolocation:", error);
+            if (userLatitude && userLongitude) {
+                // Fallback to PHP-based geolocation if HTML5 fails
+                console.log("Falling back to PHP-based geolocation.");
+                updateCoordinates(userLatitude, userLongitude);
+                initializeMap(userLatitude, userLongitude);
+            } else {
+                alert("Unable to retrieve your location.");
+            }
+        }
+    );
+} else {
+    console.error("HTML5 Geolocation is not supported.");
+    if (userLatitude && userLongitude) {
+        updateCoordinates(userLatitude, userLongitude);
+        initializeMap(userLatitude, userLongitude);
+    } else {
+        alert("Geolocation is not supported by this browser.");
+    }
+}
+</script>
 
     <!-- Footer Section -->
     <footer>
@@ -270,17 +370,6 @@ $geolocationData = getUserGeolocation($ip); // Pass the IP address to fetch geol
             <a href="#"><img src="./Resources/Images/fancommunity/social/youtube.png" alt="YouTube"></a>
         </div>
     </footer>
-    <div>
-    <input type="text" id="discussionContent" placeholder="Enter your discussion">
-    <button onclick="submitDiscussion()">Add Discussion</button>
-</div>
-
-<script>
-   function submitDiscussion() {
-       const content = document.getElementById('discussionContent').value;
-       addDiscussion(content);
-   }
-</script>
 
 
 </body>

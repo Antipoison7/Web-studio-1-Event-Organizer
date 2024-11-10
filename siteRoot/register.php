@@ -191,7 +191,7 @@ makeCaptcha();
             }
           }
           ?>
-          <label for="captchaText"><h1>Captcha Code:&nbsp;</h1>
+          <label for="captchaText" class="disableCopy"><h1 class="disableCopy">Captcha Code:&nbsp;</h1>
           <?php echo("<h2>" . $_SESSION["captcha"] . "</h2>"); ?></label>
           <input type="text" id="captchaText" name="captchaText">
         </div>

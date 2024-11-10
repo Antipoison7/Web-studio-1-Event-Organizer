@@ -500,6 +500,12 @@ border-top: 5px solid black;
     display: flex;
 }
 
+.disableCopy
+{
+    user-select: none;
+    -webkit-user-select: none;
+}
+
 #dropdownTri
 {
     position: absolute;

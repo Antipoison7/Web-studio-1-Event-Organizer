@@ -1,6 +1,6 @@
 <?php
 
-header('Content-Type: application/json'); // Set header for JSON response
+// header('Content-Type: application/json'); // Set header for JSON response
 
 // Database connection setup
 $host = 'talsprddb02.int.its.rmit.edu.au'; // Your database host (port included in connection string)
@@ -143,7 +143,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
         }
     
         echo json_encode($comments);
-        exit();
+        // exit();
     }
 
 // Handle a new comment on POST requests
@@ -194,5 +194,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['reply_text']) && isse
 
 // Default error response for invalid requests
 echo json_encode(["error" => "Invalid request"]);
-exit();
+// exit();
 ?>
